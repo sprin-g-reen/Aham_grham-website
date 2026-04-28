@@ -1,0 +1,106 @@
+#focus-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #05051a; /* Dark background matching the project theme */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+#focus-loader.loader-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.focus-container {
+  position: relative;
+  display: flex;
+  gap: 1.5em;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  outline: none;
+  user-select: none;
+}
+
+.focus-word {
+  position: relative;
+  font-size: 4rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition:
+    filter 0.5s ease,
+    color 0.5s ease;
+  outline: none;
+  user-select: none;
+  color: rgba(255, 255, 255, 0.2);
+  text-transform: lowercase;
+}
+
+.focus-word.active {
+  filter: blur(0);
+  color: #fff;
+}
+
+.focus-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: content-box;
+  border: none;
+  z-index: 10;
+}
+
+.corner {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 4px solid var(--border-color, #6366f1);
+  filter: drop-shadow(0px 0px 8px var(--glow-color, rgba(99, 102, 241, 0.6)));
+  border-radius: 4px;
+  transition: none;
+}
+
+.top-left {
+  top: -15px;
+  left: -15px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.top-right {
+  top: -15px;
+  right: -15px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.bottom-left {
+  bottom: -15px;
+  left: -15px;
+  border-right: none;
+  border-top: none;
+}
+
+.bottom-right {
+  bottom: -15px;
+  right: -15px;
+  border-left: none;
+  border-top: none;
+}
+
+@media (max-width: 768px) {
+  .focus-word {
+    font-size: 2.5rem;
+  }
+  .corner {
+    width: 1rem;
+    height: 1rem;
+  }
+}

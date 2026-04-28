@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sacred Moon Oil | Aham Graham</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "bg-deep": "#05051a",
+            "bg-surface": "#0a0a20",
+            "accent-blue": "#3b82f6",
+            "accent-cyan": "#06b6d4",
+            "text-primary": "#ffffff",
+            "text-secondary": "#94a3b8",
+          },
+          fontFamily: {
+            sans: ['IBM Plex Sans', 'sans-serif'],
+            serif: ['Noto Serif', 'serif'],
+          }
+        },
+      },
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="true-focus.css" />
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    
+    .product-hero-gradient {
+      background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    }
+
+    .cta-glow {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    }
+    
+    .glass-card-product {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* PRODUCT MODAL STYLES */
+    #productModal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #productModal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #productModal .modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 5, 26, 0.85);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-card {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1100px;
+      height: 500px !important;
+      min-height: 500px !important;
+      background: #0a0a20 padding-box,
+                  conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+      border: 2px solid transparent;
+      border-radius: 40px;
+      animation: rotate 10s linear infinite;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    #productModal.active .modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-img-wrap {
+      width: 100%;
+      height: 100%;
+      background: #0f0f30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-info {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-transform: none;
+    }
+
+    .modal-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: #000;
+      color: #fff;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+      width: fit-content;
+    }
+
+    .modal-title {
+      font-size: 52px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+
+    .modal-detail {
+      font-size: 18px;
+      color: #94a3b8;
+      margin-bottom: 24px;
+    }
+
+    .modal-price-wrap {
+      margin-bottom: 30px;
+    }
+
+    .modal-old-price {
+      text-decoration: line-through;
+      color: #94a3b8;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .modal-price {
+      font-size: 56px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .modal-tax {
+      color: #22c55e;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .modal-offer {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-top: 12px;
+    }
+
+    .modal-buy-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(to right, #1e40af, #1d4ed8);
+      color: #fff;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .modal-buy-btn:hover {
+      transform: scale(1.02);
+      filter: brightness(1.1);
+      box-shadow: 0 10px 20px rgba(30, 64, 175, 0.4);
+    }
+
+    .modal-stock {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+
+    .stock-dot {
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    .modal-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .modal-action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 4px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .modal-action-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #fff;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      color: #fff;
+      cursor: pointer;
+      z-index: 100;
+      transition: transform 0.3s ease;
+    }
+
+    .close-modal:hover {
+      transform: rotate(90deg);
+    }
+
+    .hidden { display: none !important; }
+
+    /* Reviews List View Styles */
+    #reviewsListView {
+      max-height: 500px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    #reviewsListView::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    #reviewsListView::-webkit-scrollbar-thumb {
+      background: rgba(59, 130, 246, 0.3);
+      border-radius: 10px;
+    }
+
+    .modal-review-item {
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 24px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .modal-review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .before-after-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .ba-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .ba-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .ba-label {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.1em;
+    }
+
+    .modal-review-user {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .modal-review-stars {
+      color: #3b82f6;
+      display: flex;
+      gap: 2px;
+    }
+
+    .modal-review-text {
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    @media (max-width: 850px) {
+      .modal-card {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .modal-img-wrap {
+        height: 300px;
+      }
+      .modal-info {
+        padding: 30px;
+      }
+      .modal-title {
+        font-size: 32px;
+      }
+      .modal-price {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-bg-deep text-text-primary selection:bg-accent-blue/30">
+  <div id="focus-loader"></div>
+
+  <!-- BG Mesh -->
+  <div class="bg-mesh">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="mainNavbar" class="fixed-nav navbar-initial">
+    <div class="nav-container">
+      <div class="logo-area">
+        <img src="assets/logo_transparent.png" alt="Logo" class="logo-img">
+        <div class="logo-text">
+          <div class="brand-name">aham graham</div>
+          <div class="brand-sub">return to you inner Home</div>
+        </div>
+      </div>
+
+      <div class="menu-buttons">
+        <div class="nav-indicator"></div>
+        <button class="nav-btn" onclick="window.location.href='index.html'">home</button>
+        <button class="nav-btn" onclick="window.location.href='services.html'">services</button>
+        <button class="nav-btn" onclick="window.location.href='events.html'">events</button>
+        <button class="nav-btn" onclick="window.location.href='centers.html'">centers</button>
+        <button class="nav-btn active" onclick="window.location.href='sacred-moon-oil.html'">shop</button>
+        <button class="nav-btn" onclick="window.location.href='about.html'">about us</button>
+      </div>
+
+      <div class="cta-wrapper">
+        <button class="btn-primary" onclick="window.location.href='book-session.html'">book session</button>
+        <button class="btn-icon"><span class="material-symbols-outlined">light_mode</span></button>
+        <button class="btn-icon"><span class="material-symbols-outlined">dark_mode</span></button>
+        <button class="hamburger-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-32 pb-32 relative z-10">
+    <!-- Hero Product Section -->
+    <section class="relative px-6 md:px-12 lg:px-24 mb-32">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center">
+        <!-- Image Canvas -->
+        <div class="relative group">
+          <div class="aspect-[5/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] border border-white/10">
+            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo" alt="Sacred Moon Oil bottle">
+            <div class="absolute inset-0 bg-gradient-to-t from-accent-blue/20 to-transparent opacity-60"></div>
+          </div>
+          <!-- Decorative Element -->
+          <div class="absolute -bottom-6 -left-6 w-32 h-32 border-l border-b border-accent-blue/30 rounded-bl-3xl hidden md:block"></div>
+        </div>
+
+        <!-- Product Details -->
+        <div class="flex flex-col space-y-8">
+          <div class="space-y-4">
+            <span class="text-xs tracking-[0.3em] uppercase text-accent-cyan font-bold">The Celestial Collection</span>
+            <h1 class="text-5xl md:text-6xl font-serif text-white leading-tight">Sacred Moon Oil <br/><span class="italic text-4xl opacity-70">Ritual Grade</span></h1>
+            <p class="text-2xl font-serif text-accent-blue font-bold">$78.00</p>
+          </div>
+          <div class="space-y-6">
+            <p class="text-lg leading-relaxed text-text-secondary font-light">
+              Harvested during the peak of the lunar cycle, this ethereal blend combines cold-pressed jasmine, violet leaf, and rare moonstone essence. A sensory bridge to the subconscious, designed to anchor your evening meditation and quiet the spirit.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] uppercase tracking-wider text-text-secondary">Wild Harvested</span>
+              <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] uppercase tracking-wider text-text-secondary">Cold Pressed</span>
+              <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] uppercase tracking-wider text-text-secondary">Vegan</span>
+            </div>
+          </div>
+          <button class="btn-primary py-5 px-10 rounded-full text-sm uppercase tracking-widest font-bold cta-glow flex items-center justify-center space-x-3 w-full md:w-max group">
+            <span>Add to Sanctuary</span>
+            <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform" data-icon="auto_awesome">auto_awesome</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Ritual (Bento Section) -->
+    <section class="px-6 md:px-12 lg:px-24 mb-32">
+      <div class="mb-12">
+        <h2 class="text-3xl font-serif mb-2">The Ritual</h2>
+        <div class="h-1 w-12 bg-accent-blue rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <!-- Bento 1: Main Process -->
+        <div class="md:col-span-8 bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[400px] relative overflow-hidden group hover:bg-white/[0.07] transition-colors">
+          <div class="relative z-10 space-y-8">
+            <div class="space-y-4">
+              <h3 class="text-4xl font-serif italic text-white">Vessels of Intention</h3>
+              <p class="text-text-secondary max-w-md">Warm three drops between the palms of your hands. Close your eyes and inhale deeply for a count of four, hold for two, and release for six.</p>
+            </div>
+            <ul class="space-y-4">
+              <li class="flex items-start space-x-4">
+                <span class="w-8 h-8 rounded-full bg-accent-blue/20 flex items-center justify-center text-accent-blue font-bold text-xs shrink-0">01</span>
+                <p class="text-text-secondary">Apply to the pulse points at the wrists and behind the ears before stillness.</p>
+              </li>
+              <li class="flex items-start space-x-4">
+                <span class="w-8 h-8 rounded-full bg-accent-blue/20 flex items-center justify-center text-accent-blue font-bold text-xs shrink-0">02</span>
+                <p class="text-text-secondary">Massage into the soles of the feet to ground your energy for dreamwork.</p>
+              </li>
+            </ul>
+          </div>
+          <div class="absolute right-0 bottom-0 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
+            <span class="material-symbols-outlined text-[240px]" data-icon="self_improvement">self_improvement</span>
+          </div>
+        </div>
+
+        <!-- Bento 2: Note Card -->
+        <div class="md:col-span-4 bg-accent-blue/10 border border-accent-blue/20 rounded-3xl p-8 flex flex-col justify-center items-center text-center space-y-6">
+          <span class="material-symbols-outlined text-5xl text-accent-blue" data-icon="nights_stay">nights_stay</span>
+          <h4 class="font-serif text-xl text-white italic">Lunar Synergy</h4>
+          <p class="text-sm text-text-secondary leading-loose">Best used during the New Moon to manifest clarity, or the Full Moon to release what no longer serves your journey.</p>
+        </div>
+
+        <!-- Bento 3: Sensory Card -->
+        <div class="md:col-span-6 bg-white/5 border border-white/10 rounded-3xl p-8 flex items-center space-x-8">
+          <div class="w-24 h-24 rounded-full overflow-hidden shrink-0 border border-white/10">
+            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBie2Fpl4QHo0CN376kgufZCJ9BEoROhNzJSZhvYco63dtHcbUeKBl_Ne_F4Drh41BmS0fzoxDyE4aSz2rfy4paCDdisTT4toxIPOXURa0H3i7ZrNvQsEUReQjjtnBAdAmqh9t3ZNjUXe91M8OwCHOIOWuUfbEZaV_TotuG1WeAhbfS9jk9aPET9hTuIQQa6NX5BKJhaxdM8bT7bIyQ9YyNsNKJUtf8a1mFc_yunLGq-YvWH5q1Thr-JBbOTdeyyZ4fLGvFw8OD8s" alt="Violet petals">
+          </div>
+          <div>
+            <h4 class="text-[10px] uppercase tracking-widest font-bold text-accent-cyan mb-1">Olfactory Notes</h4>
+            <p class="font-serif italic text-lg text-white">Crushed Violet, Evening Jasmine, Sacred Sandalwood</p>
+          </div>
+        </div>
+
+        <!-- Bento 4: Material Card -->
+        <div class="md:col-span-6 bg-white/5 border border-white/10 rounded-3xl p-8 flex items-center justify-between">
+          <div class="space-y-2">
+            <h4 class="text-[10px] uppercase tracking-widest font-bold text-accent-cyan">Eco-Conscious</h4>
+            <p class="text-text-secondary">Violet Miron Glass preserves the bio-energy of our botanical extracts.</p>
+          </div>
+          <span class="material-symbols-outlined text-4xl text-accent-blue/40" data-icon="recycling">recycling</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Reflections (Reviews) -->
+    <section class="px-6 md:px-12 lg:px-24 mb-32">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <h2 class="text-3xl font-serif mb-2 text-white">Student Reflections</h2>
+          <p class="text-text-secondary">Shared moments of peace from our community.</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <div class="flex text-accent-blue">
+            <span class="material-symbols-outlined text-lg">star</span>
+            <span class="material-symbols-outlined text-lg">star</span>
+            <span class="material-symbols-outlined text-lg">star</span>
+            <span class="material-symbols-outlined text-lg">star</span>
+            <span class="material-symbols-outlined text-lg">star</span>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-text-secondary">4.9/5 (124 reviews)</span>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Review Card 1 -->
+        <div class="space-y-6 group review-card cursor-pointer">
+          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY9_v9UU0OyVFB3Ql3CTjzuH04qnfSEcvoXrYB-h6DwXmzWS0SYUtNmZjouJDmXSFdtP2vqA5T5QU0w3vgDgu6Pw9X3aiAVTv9phbw2Dq6wL6nhCTIxc0UDzWu7M_s41xwPe-5g-8-JpJemRJfcTLe4KE6sfpQHtNTcpi1RWjFYFsNoRO4Hdc873cARXIJMRNT0iUyY0hfD61ov8Nqu6BXvaKYsqYStf4ScOaG9iuvhneIybW7hLcH45f-V80OZYv2w2OZqWdmxw8" alt="Practice scene">
+            <div class="absolute top-4 right-4 bg-bg-deep/80 backdrop-blur rounded-full px-3 py-1 text-[8px] font-bold tracking-widest uppercase border border-white/10">Verified Practice</div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex text-accent-blue/60 scale-75 origin-left">
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+            </div>
+            <p class="italic text-text-secondary leading-relaxed">"The scent is transportive. I use it during my yin practice and it helps me drop into a meditative state almost instantly."</p>
+            <p class="text-[10px] font-bold uppercase tracking-widest text-accent-cyan">— Elena V.</p>
+          </div>
+        </div>
+        <!-- Review Card 2 -->
+        <div class="space-y-6 group review-card cursor-pointer">
+          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyUTSbFfYOTgAqU-Or9SC7F6nKd8CSOGX8uVC0UPT7h2hfo5ZUHmE1HnWr4o0Pj9DzgfuTQ0_yU1ZwpW_jt1PYqRSeOLcnFuLpADqM8E8KZd2SdAfdkYqQdu_Dv6jnO6lc3-uxjcC7o2THJoiBhJPuuEEeG30eEmBhtzbeb6KYYYrRG91cpm-lDFBDJELu9jWUBxCuFcTHyFG-9gNfVmcE_5H2nTv2btYrABgrT8aMyREMpKaQF8diW7pVYZmqzL657aCQLFo8bQE" alt="Bedside setup">
+            <div class="absolute top-4 right-4 bg-bg-deep/80 backdrop-blur rounded-full px-3 py-1 text-[8px] font-bold tracking-widest uppercase border border-white/10">Ritualist</div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex text-accent-blue/60 scale-75 origin-left">
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+            </div>
+            <p class="italic text-text-secondary leading-relaxed">"Finally, an oil that isn't greasy. The absorption is beautiful and the violet notes are so sophisticated. A bedside essential."</p>
+            <p class="text-[10px] font-bold uppercase tracking-widest text-accent-cyan">— Julian M.</p>
+          </div>
+        </div>
+        <!-- Review Card 3 -->
+        <div class="space-y-6 group review-card cursor-pointer">
+          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfL-HxfF2T2tR2ZTzfhHY-Yv58ym0VEtMty3dom4LH2IlViWms31mzmAd0ZQ06HNTeO5BauiFq82hGsiZ56uaCpqFUBCXBqVE4fIkWQs2VVAnIM7iO3mdcCN8gADLx2nhvVY3rOjIITvGPOROwXJLzX-pzetKicwfvzt2WU_GpxGnAV8Q8t_L3tkBiNUBQ1AzBCAsNkS5C7fmsWzNm_vG1hhC75LzxTfFOriLoD0kjPi45a7biKHNFCccnD1n40STEiL1c1HSO7DI" alt="Crystal detail">
+            <div class="absolute top-4 right-4 bg-bg-deep/80 backdrop-blur rounded-full px-3 py-1 text-[8px] font-bold tracking-widest uppercase border border-white/10">Verified Practice</div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex text-accent-blue/60 scale-75 origin-left">
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+              <span class="material-symbols-outlined">star</span>
+            </div>
+            <p class="italic text-text-secondary leading-relaxed">"The moonstone essence really makes a difference. I feel more centered and clear-headed every time I use it."</p>
+            <p class="text-[10px] font-bold uppercase tracking-widest text-accent-cyan">— Sarah K.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Vessels -->
+    <section class="px-6 md:px-12 lg:px-24">
+      <div class="mb-12">
+        <h2 class="text-3xl font-serif mb-2 text-white">Related Vessels</h2>
+        <div class="h-1 w-12 bg-accent-blue rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Related 1 -->
+        <div class="space-y-4 group product-card cursor-pointer">
+          <div class="aspect-[3/4] bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEaV4i-W3IS8lFKp3xRkXfjxsx0iMyufbwdHF_HoVCaIDLAXSxlHFSYjDyFlkf9cDgb4Xe_2oifr8x9ErY2iCN9M960seM-6qjLQ6xaRetkw8Rerr4iPFAXV9ynleKuz4CZ8cVQGl9Xj6FtuWCDMjGD5VpGJMcrno-bJATj2_sz5om-nLjicP90Pf3hhy81LVMgWO6yS3FIolV5ZpSa_F7KCkZeeULGAHOx9BaEatFMEU8QYFmL5ojE7r2itFgw3v60fVm9mF30ps" alt="Terra Burner">
+          </div>
+          <div class="text-center">
+            <h4 class="font-serif text-sm text-white">Terra Burner</h4>
+            <p class="text-xs text-text-secondary">$42</p>
+          </div>
+        </div>
+        <!-- Related 2 -->
+        <div class="space-y-4 group product-card cursor-pointer">
+          <div class="aspect-[3/4] bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-6NSAahc08Uzm57lw7OE9F9D8ROrLjjbZahh307gNMHMFEHrfsRFOhUtP-GYxAnB-0fsCx3Eo6D2AdEJKTsqSRtY7XUb_zgrsrDqCHBx_f_kP67uWzekOx1gtk2SFZxd7TlpvApTwVNq9_z54g2nEKTvURV2X6T8vjpj9YaXIY2zx1Lhc4PmKgB7ktShddWoxiPR4CDvv2HxetA9UkDiMm8XtETCeeMi1ZNcqNNmFdvT0qwl41PG2N2JaRwModiL1_JVEi1tGRzQ" alt="Cleansing Bundle">
+          </div>
+          <div class="text-center">
+            <h4 class="font-serif text-sm text-white">Cleansing Bundle</h4>
+            <p class="text-xs text-text-secondary">$24</p>
+          </div>
+        </div>
+        <!-- Related 3 -->
+        <div class="space-y-4 group product-card cursor-pointer">
+          <div class="aspect-[3/4] bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCErz1nR_jHYuv_956tIjdpnGGmh4LzedirAvFWIQ8WiE8-W8YmumO1jZYC9p0NnVFFbRy66_v6AdmqaTK7UwUc1pOszQ9JaE7RdwK8CF3iH-D9KzrqPn0pFfuzEujtdoh6aPN3bD8KMsnMZsFtELSySTiTfZP1s4m6r2dREeS5huKnHvSJEx5iMVJS5mwQzHGy4yl61iNRv35XgHyDUXt8afBRB6QlyXuc1cDC8fuZw7uoJCHnhsBcpWtv8AfiKx5FDM3Y1w-h8F8" alt="Amethyst Point">
+          </div>
+          <div class="text-center">
+            <h4 class="font-serif text-sm text-white">Amethyst Point</h4>
+            <p class="text-xs text-text-secondary">$38</p>
+          </div>
+        </div>
+        <!-- Related 4 -->
+        <div class="space-y-4 group product-card cursor-pointer">
+          <div class="aspect-[3/4] bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsZvehbR0WnajCVbkrQ5KaA0L_NkTfDK_Hcs_H44n1Rsgsc8YUgimUm0c2dzOfNCrUZhcZiehmfy5pJwcx0_TfQCBD0Goe3vb0rnpbAeBX5V0Wq_ZpVkgLQfgx_BWAAbQY9YgyLJ42KiYf5CEBpakXTY0ADvbp98FgBdUfIc41CV63bYCR_P0eRk7bdPyXtpp62X9J0Q0d906FBZOmZfAz2WiO38kw9me7dJ-jSAgHXQv8-yr0MOwdChh0evkpe759zhdJPZkkD98" alt="Solar Aura Mist">
+          </div>
+          <div class="text-center">
+            <h4 class="font-serif text-sm text-white">Solar Aura Mist</h4>
+            <p class="text-xs text-text-secondary">$55</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <!-- MOBILE OVERLAY -->
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">home</a></li>
+      <li><a href="services.html" class="mobile-nav-link">services</a></li>
+      <li><a href="events.html" class="mobile-nav-link">events</a></li>
+      <li><a href="centers.html" class="mobile-nav-link">centers</a></li>
+      <li><a href="sacred-moon-oil.html" class="mobile-nav-link">shop</a></li>
+      <li><a href="about.html" class="mobile-nav-link">about us</a></li>
+      <li><a href="book-session.html" class="btn-primary mt-4">book session</a></li>
+    </ul>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-top overflow-hidden">
+      <div id="marquee-1" class="velocity-marquee">
+        <div class="marquee-content">
+          <span class="footer-tag">Neurological Sync</span>
+          <span class="footer-tag">Cellular Resonance</span>
+          <span class="footer-tag">Prana Flow</span>
+          <span class="footer-tag">Ancestral Healing</span>
+          <span class="footer-tag">Somatic Reset</span>
+          <span class="footer-tag">Astral Projection</span>
+          <span class="footer-tag">Nervous System Ease</span>
+        </div>
+      </div>
+      <div id="marquee-2" class="velocity-marquee">
+        <div class="marquee-content">
+          <span class="footer-tag">Quantum Mindfulness</span>
+          <span class="footer-tag">Bio-Dynamic Flow</span>
+          <span class="footer-tag">Vedic Wisdom</span>
+          <span class="footer-tag">Inner Sanctuary</span>
+          <span class="footer-tag">Harmonic Balance</span>
+          <span class="footer-tag">Solar Vitality</span>
+          <span class="footer-tag">Breath Intelligence</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-container">
+        <div class="footer-col footer-brand-col">
+          <img src="Untitled design (2).png" alt="Aham Graham Logo" class="footer-logo">
+          <div class="footer-quote-wrap">
+            <p class="footer-quote">
+              bridging ancient wisdom with modern neurological insights.<br>
+              your path to biological transcendence begins here.
+            </p>
+          </div>
+          <img src="Copy of VJS-Logo (1).png" alt="VJS Logo" class="footer-badge">
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">about us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="centers.html">Centers</a></li>
+            <li><a href="sacred-moon-oil.html">Shop</a></li>
+          </ul>
+
+          <h4 class="footer-subheading">Social Media</h4>
+          <ul>
+            <li>Facebook</li>
+            <li>Instagram</li>
+            <li>YouTube</li>
+            <li>LinkedIn</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-stack">
+            <a href="mailto:contact@ahamgraham.com" class="contact-link">
+              <span class="material-symbols-outlined">mail</span>
+              contact@ahamgraham.com
+            </a>
+            <a href="tel:+919876543210" class="contact-link">
+              <span class="material-symbols-outlined">call</span>
+              +91 98765 43210
+            </a>
+          </div>
+
+          <h4 class="footer-subheading">Our Centers</h4>
+          <ul>
+            <li>Rishikesh, India</li>
+            <li>Swiss Alps, Switzerland</li>
+            <li>Ubud, Bali</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="bottom-content">
+        <p>&copy; 2026 Aham Graham. all rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="gsap.min.js"></script>
+  <script src="app.js"></script>
+  <script src="true-focus.js"></script>
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div id="productModal">
+    <div class="modal-overlay" onclick="closeProductModal()"></div>
+    <div class="modal-card">
+      <div class="close-modal" onclick="closeProductModal()">
+        <span class="material-symbols-outlined text-3xl">close</span>
+      </div>
+      
+      <div class="modal-img-wrap">
+        <img id="modalImg" src="" alt="Product">
+      </div>
+      
+      <div class="modal-info">
+        <!-- PRODUCT INFO VIEW -->
+        <div id="productInfoView">
+          <span class="modal-badge">Free Shipping</span>
+          <h2 class="modal-title" id="modalTitle">Product Name</h2>
+          <p class="modal-detail" id="modalDetail">Celestial Vessel of Energy.</p>
+          
+          <div class="modal-price-wrap">
+            <p class="modal-old-price" id="modalOldPrice">$000</p>
+            <p class="modal-price" id="modalPrice">$000</p>
+            <p class="modal-tax">inclusive of all taxes</p>
+            <p class="modal-offer">This offer is valid until July 4th</p>
+          </div>
+          
+          <button class="modal-buy-btn">Buy</button>
+          
+          <div class="modal-stock">
+            <div class="stock-dot"></div>
+            <span>20+ pcs. in stock</span>
+          </div>
+          
+          <div class="modal-actions">
+            <button class="modal-action-btn">
+              <span class="material-symbols-outlined text-sm">shopping_cart</span>
+              Add to cart
+            </button>
+            <button class="modal-action-btn">
+              <span class="material-symbols-outlined text-sm">favorite</span>
+              Wishlist
+            </button>
+            <button class="modal-action-btn" onclick="showReviewsListView()">
+              <span class="material-symbols-outlined text-sm">rate_review</span>
+              Reviews
+            </button>
+          </div>
+        </div>
+
+        <!-- REVIEWS LIST VIEW -->
+        <div id="reviewsListView" class="hidden">
+          <h2 class="modal-title text-3xl mb-4">Student Reflections</h2>
+          <p class="modal-detail mb-8 text-sm">Collective wisdom from our global community.</p>
+          
+          <div class="space-y-8">
+            <!-- Review 1 -->
+            <div class="modal-review-item">
+              <div class="modal-review-header">
+                <span class="modal-review-user">Elena V.</span>
+                <div class="modal-review-stars">
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                </div>
+              </div>
+              <div class="before-after-grid">
+                <div class="ba-item">
+                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEaV4i-W3IS8lFKp3xRkXfjxsx0iMyufbwdHF_HoVCaIDLAXSxlHFSYjDyFlkf9cDgb4Xe_2oifr8x9ErY2iCN9M960seM-6qjLQ6xaRetkw8Rerr4iPFAXV9ynleKuz4CZ8cVQGl9Xj6FtuWCDMjGD5VpGJMcrno-bJATj2_sz5om-nLjicP90Pf3hhy81LVMgWO6yS3FIolV5ZpSa_F7KCkZeeULGAHOx9BaEatFMEU8QYFmL5ojE7r2itFgw3v60fVm9mF30ps" class="ba-img" alt="Before">
+                  <span class="ba-label">Initial State</span>
+                </div>
+                <div class="ba-item">
+                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY9_v9UU0OyVFB3Ql3CTjzuH04qnfSEcvoXrYB-h6DwXmzWS0SYUtNmZjouJDmXSFdtP2vqA5T5QU0w3vgDgu6Pw9X3aiAVTv9phbw2Dq6wL6nhCTIxc0UDzWu7M_s41xwPe-5g-8-JpJemRJfcTLe4KE6sfpQHtNTcpi1RWjFYFsNoRO4Hdc873cARXIJMRNT0iUyY0hfD61ov8Nqu6BXvaKYsqYStf4ScOaG9iuvhneIybW7hLcH45f-V80OZYv2w2OZqWdmxw8" class="ba-img" alt="After">
+                  <span class="ba-label">Transcendence</span>
+                </div>
+              </div>
+              <p class="modal-review-text">"The energy of this vessel is unmatched. I felt an immediate shift in my evening ritual after just one use."</p>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="modal-review-item">
+              <div class="modal-review-header">
+                <span class="modal-review-user">Julian M.</span>
+                <div class="modal-review-stars">
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                </div>
+              </div>
+              <div class="before-after-grid">
+                <div class="ba-item">
+                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-6NSAahc08Uzm57lw7OE9F9D8ROrLjjbZahh307gNMHMFEHrfsRFOhUtP-GYxAnB-0fsCx3Eo6D2AdEJKTsqSRtY7XUb_zgrsrDqCHBx_f_kP67uWzekOx1gtk2SFZxd7TlpvApTwVNq9_z54g2nEKTvURV2X6T8vjpj9YaXIY2zx1Lhc4PmKgB7ktShddWoxiPR4CDvv2HxetA9UkDiMm8XtETCeeMi1ZNcqNNmFdvT0qwl41PG2N2JaRwModiL1_JVEi1tGRzQ" class="ba-img" alt="Before">
+                  <span class="ba-label">Preparation</span>
+                </div>
+                <div class="ba-item">
+                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyUTSbFfYOTgAqU-Or9SC7F6nKd8CSOGX8uVC0UPT7h2hfo5ZUHmE1HnWr4o0Pj9DzgfuTQ0_yU1ZwpW_jt1PYqRSeOLcnFuLpADqM8E8KZd2SdAfdkYqQdu_Dv6jnO6lc3-uxjcC7o2THJoiBhJPuuEEeG30eEmBhtzbeb6KYYYrRG91cpm-lDFBDJELu9jWUBxCuFcTHyFG-9gNfVmcE_5H2nTv2btYrABgrT8aMyREMpKaQF8diW7pVYZmqzL657aCQLFo8bQE" class="ba-img" alt="After">
+                  <span class="ba-label">Sanctuary</span>
+                </div>
+              </div>
+              <p class="modal-review-text">"Exquisite quality and sophisticated scent. It has become an essential part of my bedside sanctuary."</p>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="modal-review-item">
+              <div class="modal-review-header">
+                <span class="modal-review-user">Sarah K.</span>
+                <div class="modal-review-stars">
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                  <span class="material-symbols-outlined text-xs">star</span>
+                </div>
+              </div>
+              <div class="before-after-grid">
+                <div class="ba-item">
+                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCErz1nR_jHYuv_956tIjdpnGGmh4LzedirAvFWIQ8WiE8-W8YmumO1jZYC9p0NnVFFbRy66_v6AdmqaTK7UwUc1pOszQ9JaE7RdwK8CF3iH-D9KzrqPn0pFfuzEujtdoh6aPN3bD8KMsnMZsFtELSySTiTfZP1s4m6r2dREeS5huKnHvSJEx5iMVJS5mwQzHGy4yl61iNRv35XgHyDUXt8afBRB6QlyXuc1cDC8fuZw7uoJCHnhsBcpWtv8AfiKx5FDM3Y1w-h8F8" class="ba-img" alt="Before">
+                  <span class="ba-label">Focus</span>
+                </div>
+                <div class="ba-item">
+                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfL-HxfF2T2tR2ZTzfhHY-Yv58ym0VEtMty3dom4LH2IlViWms31mzmAd0ZQ06HNTeO5BauiFq82hGsiZ56uaCpqFUBCXBqVE4fIkWQs2VVAnIM7iO3mdcCN8gADLx2nhvVY3rOjIITvGPOROwXJLzX-pzetKicwfvzt2WU_GpxGnAV8Q8t_L3tkBiNUBQ1AzBCAsNkS5C7fmsWzNm_vG1hhC75LzxTfFOriLoD0kjPi45a7biKHNFCccnD1n40STEiL1c1HSO7DI" class="ba-img" alt="After">
+                  <span class="ba-label">Clarity</span>
+                </div>
+              </div>
+              <p class="modal-review-text">"Deeply grounding. The moonstone essence really brings a sense of clarity to my dreamwork."</p>
+            </div>
+          </div>
+          
+          <button class="modal-buy-btn mt-6" onclick="closeProductModal()">Join Practice</button>
+          <div class="text-center">
+            <button class="text-xs text-text-secondary underline hover:text-white transition-colors" onclick="showProductInfoView()">Back to Product</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openProductModal(card) {
+      showProductInfoView(); // Ensure we start on product info
+      const modal = document.getElementById('productModal');
+      const img = card.querySelector('img').src;
+      const title = card.querySelector('h4').innerText;
+      const priceStr = card.querySelector('p.text-text-secondary').innerText;
+      const priceNum = parseFloat(priceStr.replace('$', ''));
+      
+      document.getElementById('modalImg').src = img;
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDetail').innerText = "Celestial Vessel of Energy.";
+      document.getElementById('modalPrice').innerText = priceStr;
+      document.getElementById('modalOldPrice').innerText = '$' + (priceNum * 1.5).toFixed(0);
+      document.getElementById('modalPrice').style.display = 'block';
+      document.getElementById('modalOldPrice').style.display = 'block';
+      document.querySelector('.modal-badge').innerText = "Free Shipping";
+      document.querySelector('.modal-buy-btn').innerText = "Buy";
+      document.querySelector('.modal-tax').style.display = 'block';
+      document.querySelector('.modal-offer').style.display = 'block';
+      document.querySelector('.modal-stock').style.display = 'flex';
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden'; 
+    }
+
+    function openReviewModal(card) {
+      showProductInfoView(); // Reviews can also show the form if needed
+      const modal = document.getElementById('productModal');
+      const img = card.querySelector('img').src;
+      const text = card.querySelector('p.italic').innerText;
+      const name = card.querySelector('p.text-accent-cyan').innerText.replace('— ', '');
+      
+      document.getElementById('modalImg').src = img;
+      document.getElementById('modalTitle').innerText = name;
+      document.getElementById('modalDetail').innerText = text;
+      document.getElementById('modalPrice').innerText = "Verified Reflection";
+      document.getElementById('modalOldPrice').style.display = 'none';
+      document.getElementById('modalPrice').style.display = 'block';
+      document.querySelector('.modal-badge').innerText = "Student Reflection";
+      document.querySelector('.modal-buy-btn').innerText = "Join Practice";
+      document.querySelector('.modal-tax').style.display = 'none';
+      document.querySelector('.modal-offer').style.display = 'none';
+      document.querySelector('.modal-stock').style.display = 'none';
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function showReviewsListView() {
+      document.getElementById('productInfoView').classList.add('hidden');
+      document.getElementById('reviewsListView').classList.remove('hidden');
+    }
+
+    function showProductInfoView() {
+      document.getElementById('productInfoView').classList.remove('hidden');
+      document.getElementById('reviewsListView').classList.add('hidden');
+    }
+
+    function closeProductModal() {
+      const modal = document.getElementById('productModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scroll
+    }
+
+    // Add click event to all product cards
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', () => openProductModal(card));
+    });
+
+    // Add click event to all review cards
+    document.querySelectorAll('.review-card').forEach(card => {
+      card.addEventListener('click', () => openReviewModal(card));
+    });
+  </script>
+</body>
+
+</html>

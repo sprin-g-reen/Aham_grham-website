@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind CSS -->
+  <script>
+    // Silence Tailwind CDN production warning
+    const originalWarn = console.warn;
+    console.warn = (...args) => {
+      if (args[0] && typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com')) return;
+      originalWarn(...args);
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="scroll-velocity.css" />
+  <link rel="stylesheet" href="true-focus.css" />
+  <link rel="stylesheet" href="light-rays.css" />
+
+
+
+  <title>Hero Section | Aham Graham</title>
+
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+    }
+
+    .asymmetric-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.5rem;
+    }
+  </style>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+
+<body class="home-page">
+    <div id="focus-loader"></div>
+
+    <div class="bg-mesh">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+    </div>
+
+  <!-- NAVBAR -->
+  <nav id="mainNavbar" class="fixed-nav navbar-initial">
+    <div class="nav-container">
+
+      <!-- Logo Area -->
+      <div class="logo-area">
+        <img src="assets/logo_transparent.png" alt="Logo" class="logo-img"
+          onerror="this.src='https://placehold.co/400x100/2c2c3a/white?text=AHAM'">
+        <div class="logo-text">
+          <div class="brand-name">aham graham</div>
+          <div class="brand-sub">return to you inner Home</div>
+        </div>
+      </div>
+
+      <!-- Menu Buttons -->
+      <div class="menu-buttons">
+        <div class="nav-indicator"></div>
+        <button class="nav-btn" onclick="window.location.href='index.html'">home</button>
+        <button class="nav-btn" onclick="window.location.href='services.html'">services</button>
+        <button class="nav-btn" onclick="window.location.href='events.html'">events</button>
+        <button class="nav-btn" onclick="window.location.href='centers.html'">centers</button>
+        <button class="nav-btn" onclick="window.location.href='sacred-moon-oil.html'">shop</button>
+        <button class="nav-btn" onclick="window.location.href='about.html'">about us</button>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="cta-wrapper">
+        <button class="btn-primary" onclick="window.location.href='book-session.html'">book session</button>
+        <button class="btn-icon"><span class="material-symbols-outlined">light_mode</span></button>
+        <button class="btn-icon"><span class="material-symbols-outlined">dark_mode</span></button>
+        <button class="hamburger-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- LIGHT RAYS HERO SECTION -->
+  <section class="hero-light-rays">
+    <div id="light-rays-hero" class="light-rays-container"></div>
+    <div class="hero-brand">
+      <img src="assets/logo_transparent.png" alt="Logo" class="hero-logo" 
+           onerror="this.src='https://placehold.co/400x100/2c2c3a/white?text=AHAM'">
+      <div class="hero-brand-text">
+        <h1 class="hero-brand-name">aham graham</h1>
+        <p class="hero-brand-sub">return to your inner Home</p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+  <!-- EXPERIENCE SECTION -->
+  <section class="experience-section">
+    <div class="exp-header">
+      <h2>experience of yoga</h2>
+      <p>
+        our classes are designed for real life, with simple sequences that ease stiffness,
+        improve posture, and help you feel more grounded from morning to night.
+      </p>
+    </div>
+
+    <div class="exp-grid">
+      <!-- LEFT (YOGA) -->
+      <div class="exp-col left">
+        <h3>yoga</h3>
+        <p>
+          from beginner-friendly flows to restorative practice, we focus on alignment,
+          breath awareness, and gentle progress that supports long-term wellness.
+        </p>
+        <ul>
+          <li>flexibility that supports healthy joints <span>1</span></li>
+          <li>breath-led movement for calmer focus <span>2</span></li>
+          <li>gentle strength for everyday balance <span>3</span></li>
+          <li>improved posture through mindful alignment <span>4</span></li>
+          <li>steady energy that carries into daily life <span>5</span></li>
+        </ul>
+      </div>
+
+      <!-- CENTER ICON -->
+      <div class="exp-center">
+        <img src="assets/logo_transparent.png" alt="icon" class="glowing-logo"
+          onerror="this.src='https://placehold.co/200x200/7c4dff/white?text=OM'">
+      </div>
+
+      <!-- RIGHT (MEDITATION) -->
+      <div class="exp-col right">
+        <h3>meditation</h3>
+        <p>
+          each program blends stretching, balance, and relaxation so you can release tension,
+          move with confidence, and stay connected to your body.
+        </p>
+        <ul>
+          <li><span>1</span> recovery practices that reduce tension</li>
+          <li><span>2</span> quiet routines that support mental clarity</li>
+          <li><span>3</span> breathing exercises for emotional balance</li>
+          <li><span>4</span> mindful pauses that improve sleep quality</li>
+          <li><span>5</span> simple rituals that build inner calm</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="bento-section">
+    <div class="px-2">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-extrabold mb-4 tracking-tight text-white">Our Programs</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">Precision-engineered yoga pathways designed for clinical results and spiritual depth.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- 1. PRIVATE & GROUP (Tall) -->
+        <div class="bento-item row-2">
+          <img src="assets/22.jpg" alt="Yoga Practice">
+          <div class="bento-overlay">
+            <div class="bento-content">
+              <h3>Private & Group</h3>
+              <p>From personalized one-on-one neurological paths to collective energy and synchronized community movement.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. REHAB & RECOVERY (Wide) -->
+        <div class="bento-item span-2">
+          <img src="assets/23.jpg" alt="Restorative Practice">
+          <div class="bento-overlay">
+            <div class="bento-content">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Specialized Care</span>
+              <h3>Rehab & Recovery</h3>
+              <p>Clinical-grade restorative practices for injury healing and biological synchronization.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. B2B (Square) -->
+        <div class="bento-item">
+          <img src="assets/24.jpg" alt="Corporate Team">
+          <div class="bento-overlay">
+            <div class="bento-content">
+              <h3>B2B</h3>
+              <p>Strategic wellness protocols for high-performance corporate teams.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. BRAND SHOWCASE (Hero/Large) -->
+        <div class="bento-item span-2 row-2 brand-card">
+          <div class="brand-card-content">
+            <img src="assets/logo_transparent.png" alt="Aham Graham Logo" class="brand-logo-large">
+            <p class="brand-motto">return to your inner home</p>
+          </div>
+        </div>
+
+        <!-- 4. ONLINE (Square) -->
+        <div class="bento-item">
+          <img src="assets/25.jpg" alt="Digital Yoga">
+          <div class="bento-overlay">
+            <div class="bento-content">
+              <h3>Online</h3>
+              <p>Bring the sanctuary to your home with real-time digital guidance.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. CERTIFICATION (Square) -->
+        <div class="bento-item">
+          <img src="assets/26.jpg" alt="Certification Training">
+          <div class="bento-overlay">
+            <div class="bento-content">
+              <h3>Certification</h3>
+              <p>Master the science of space and breath as a certified instructor.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. MEDICAL THERAPEUTIC (Tall) -->
+        <div class="bento-item row-2">
+          <img src="assets/27.jpg" alt="Therapeutic Yoga">
+          <div class="bento-overlay">
+            <div class="bento-content">
+              <h3>Medical Therapeutic</h3>
+              <p>Evidence-based yoga interventions for chronic condition management.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. KIDS & YOUTH (Square) -->
+        <div class="bento-item">
+          <img src="assets/28.jpg" alt="Kids Yoga">
+          <div class="bento-overlay">
+            <div class="bento-content">
+              <h3>Kids & Youth</h3>
+              <p>Foundation of mindfulness and focus for the next generation.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. RETREATS (Wide) -->
+        <div class="bento-item span-2">
+          <img src="assets/29.jpg" alt="Serene Retreat">
+          <div class="bento-overlay">
+            <div class="bento-content">
+              <h3>Retreats & Getaways</h3>
+              <p>Immersive journeys to high-vibration geographies for total reset.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+    <section class="events-blog-section">
+      <div class="events-blog-wrap">
+        <div class="events-blog-head">
+          <h2>Blog</h2>
+          <p>Upcoming events, workshops, and retreat highlights from our growing community.</p>
+        </div>
+        <div class="bento-blog-grid">
+          <!-- C1: FEATURE TALL -->
+          <article class="bento-blog-item c1">
+            <img src="assets/30.jpg" alt="Meditation">
+            <div class="blog-item-content">
+              <span class="category">Deep Practice</span>
+              <h3>The Silence Within</h3>
+              <p>Explore the neurological benefits of sustained silence and internal resonance.</p>
+            </div>
+          </article>
+
+          <!-- C2: WIDE TOP -->
+          <article class="bento-blog-item c2">
+            <img src="assets/31.jpg" alt="Yoga">
+            <div class="blog-item-content">
+              <span class="category">Biological Healing</span>
+              <h3>Breath as Medicine</h3>
+              <p>Clinical approaches to respiratory control and cellular oxygenation.</p>
+            </div>
+          </article>
+
+          <!-- C3: SMALL -->
+          <article class="bento-blog-item c3">
+            <img src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&q=80" alt="Spine">
+            <div class="blog-item-content">
+              <span class="category">Alignment</span>
+              <h3>Spinal Sync</h3>
+            </div>
+          </article>
+
+          <!-- C4: WIDE -->
+          <article class="bento-blog-item c4">
+            <img src="https://images.unsplash.com/photo-1532798442725-41036acc7489?auto=format&fit=crop&q=80" alt="Moon">
+            <div class="blog-item-content">
+              <span class="category">Astral Yoga</span>
+              <h3>Celestial Alignment</h3>
+              <p>Synchronizing your physical flow with lunar cycles and cosmic rhythms.</p>
+            </div>
+          </article>
+
+          <!-- C5: SMALL -->
+          <article class="bento-blog-item c5">
+            <img src="https://images.unsplash.com/photo-1518611012118-2969c31aef7e?auto=format&fit=crop&q=80" alt="Reset">
+            <div class="blog-item-content">
+              <span class="category">Wellness</span>
+              <h3>Quick Reset</h3>
+            </div>
+          </article>
+
+          <!-- C6: SMALL -->
+          <article class="bento-blog-item c6">
+            <img src="https://images.unsplash.com/photo-1512438248406-306ad8d273af?auto=format&fit=crop&q=80" alt="Rituals">
+            <div class="blog-item-content">
+              <span class="category">Lifestyle</span>
+              <h3>Daily Rituals</h3>
+            </div>
+          </article>
+
+          <!-- C7: TALL MID -->
+          <article class="bento-blog-item c7">
+            <img src="https://images.unsplash.com/photo-1528642463367-8d7bd31da3cd?auto=format&fit=crop&q=80" alt="Sound">
+            <div class="blog-item-content">
+              <span class="category">Sonic Healing</span>
+              <h3>Healing Soundscapes</h3>
+              <p>The science of 432Hz harmonic patterns and auditory cellular reset.</p>
+            </div>
+          </article>
+
+          <!-- C8: LARGE SQUARE -->
+          <article class="bento-blog-item c8">
+            <img src="https://images.unsplash.com/photo-1545201071-75f0581696ae?auto=format&fit=crop&q=80" alt="Summit">
+            <div class="blog-item-content">
+              <span class="category">Global Event</span>
+              <h3>Wellness Summit 2026</h3>
+              <p>Join world leaders in neuroscience and spirituality for a 5-day immersion.</p>
+            </div>
+          </article>
+
+          <!-- C9: WIDE LOWER -->
+          <article class="bento-blog-item c9">
+            <img src="https://images.unsplash.com/photo-1599447421416-3414502d18a5?auto=format&fit=crop&q=80" alt="Somatic">
+            <div class="blog-item-content">
+              <span class="category">Workshop</span>
+              <h3>Somatic Healing</h3>
+              <p>Advanced protocols for trauma release through controlled physical movement.</p>
+            </div>
+          </article>
+
+          <!-- C10: VERTICAL LARGE -->
+          <article class="bento-blog-item c10">
+            <img src="https://images.unsplash.com/photo-1507120410856-1f35574c3b45?auto=format&fit=crop&q=80" alt="Prana">
+            <div class="blog-item-content">
+              <span class="category">Energy Flow</span>
+              <h3>Path of Prana</h3>
+              <p>Mastering the subtle energy systems of the Vedic tradition.</p>
+            </div>
+          </article>
+
+          <!-- C11: WIDE -->
+          <article class="bento-blog-item c11">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80" alt="B2B">
+            <div class="blog-item-content">
+              <span class="category">Corporate</span>
+              <h3>Strategic Stillness</h3>
+              <p>Optimization protocols for high-performance leadership teams.</p>
+            </div>
+          </article>
+
+          <!-- C12: BOTTOM LARGE -->
+          <article class="bento-blog-item c12">
+            <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80" alt="Geometry">
+            <div class="blog-item-content">
+              <span class="category">Sacred Geometry</span>
+              <h3>Architecture of Spirit</h3>
+              <p>How spatial design influences neurological state and spiritual clarity.</p>
+            </div>
+          </article>
+
+          <!-- C13: TALL RIGHT -->
+          <article class="bento-blog-item c13">
+            <img src="https://images.unsplash.com/photo-1517404212328-397cf3ad48b0?auto=format&fit=crop&q=80" alt="Echoes">
+            <div class="blog-item-content">
+              <span class="category">Insights</span>
+              <h3>Ethereal Echoes</h3>
+              <p>Voices from the Himalayas on the future of clinical yoga.</p>
+            </div>
+          </article>
+
+          <!-- C14: FOOTER WIDE -->
+          <article class="bento-blog-item c14">
+            <img src="https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&q=80" alt="Journal">
+            <div class="blog-item-content">
+              <span class="category">Community</span>
+              <h3>Aham Graham Journal</h3>
+              <p>Subscribe to our monthly publication for research and wisdom.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="testimonial-section" style="position: relative; padding: 0 !important; max-width: 100% !important; overflow: hidden;">
+      <div style="position: absolute; top: 60px; left: 0; width: 100%; text-align: center; z-index: 40; pointer-events: none;">
+
+        <span style="color: #6366f1; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em;">practitioner network</span>
+        <h2 style="color: white; font-size: 3rem; font-weight: 700; margin-top: 8px; margin-bottom: 0; line-height: 1.1;">faculty perspectives</h2>
+      </div>
+      <div id="testimonial-dome-container" style="width: 100%; height: 550px; position: relative;"></div>
+    </section>
+
+    <script src="dome-gallery.js"></script>
+    <link rel="stylesheet" href="dome-gallery.css">
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const baseTestimonials = [
+          {
+            src: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=776&auto=format&fit=crop',
+            name: 'Dr. Leila Ahmadi',
+            role: 'Clinical Research Director',
+            text: 'Every session is a data point. Our students don\'t just feel better - they can prove it with numbers.',
+            alt: 'Dr. Leila Ahmadi'
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=774&auto=format&fit=crop',
+            name: 'Marcus Thorne',
+            role: 'Professional Athlete',
+            text: 'The neurological synchronization techniques here transformed my recovery process completely.',
+            alt: 'Marcus Thorne'
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop',
+            name: 'Elena Rodriguez',
+            role: 'Yoga Practitioner',
+            text: 'I\'ve found a depth of practice here that bridges the gap between science and soul.',
+            alt: 'Elena Rodriguez'
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1470&auto=format&fit=crop',
+            name: 'James Wilson',
+            role: 'Tech Executive',
+            text: 'The Somatic Reset protocols are the only thing that actually works for my chronic stress.',
+            alt: 'James Wilson'
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=772&auto=format&fit=crop',
+            name: 'Sarah Jenkins',
+            role: 'Psychotherapist',
+            text: 'Integrating these clinical yoga methods has added a new dimension to my patient work.',
+            alt: 'Sarah Jenkins'
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=774&auto=format&fit=crop',
+            name: 'David Chen',
+            role: 'Biohacker',
+            text: 'The data-driven approach to spiritual transcendence is exactly what the modern world needs.',
+            alt: 'David Chen'
+          },
+          {
+            src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=774&auto=format&fit=crop',
+            name: 'Amara Okafor',
+            role: 'Wellness Coach',
+            text: 'Ancient wisdom meet modern clinical rigour. This is the future of human optimization.',
+            alt: 'Amara Okafor'
+          }
+        ];
+
+        // Duplicate the data to fill the dense grid seen in the design
+        const testimonialData = [...baseTestimonials, ...baseTestimonials, ...baseTestimonials, ...baseTestimonials];
+
+        const container = document.getElementById('testimonial-dome-container');
+        if (container) {
+          new DomeGallery(container, {
+            images: testimonialData,
+            fit: 0.8,
+            fitBasis: 'width',
+            minRadius: 400,
+            maxRadius: 2000,
+            overlayBlurColor: '#05051a',
+            openedImageWidth: '300px',
+            openedImageHeight: '550px',
+            imageBorderRadius: '30px',
+            grayscale: false,
+            segments: 55
+          });
+        }
+      });
+    </script>
+
+    <section class="cta-section">
+        <h2>Your Healing Path Awaits</h2>
+
+        <p>
+          Whether in the high Himalayas or the crisp air of the Alps,
+          your journey to soulful clinical healing starts with a single step.
+        </p>
+
+        <div class="cta-buttons">
+          <button class="btn-primary">Consult with a Specialist</button>
+          <button class="btn-outline">View All Locations</button>
+        </div>
+    </section>
+
+    <!-- MOBILE OVERLAY -->
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">home</a></li>
+      <li><a href="services.html" class="mobile-nav-link">services</a></li>
+      <li><a href="events.html" class="mobile-nav-link">events</a></li>
+      <li><a href="centers.html" class="mobile-nav-link">centers</a></li>
+      <li><a href="sacred-moon-oil.html" class="mobile-nav-link">shop</a></li>
+      <li><a href="about.html" class="mobile-nav-link">about us</a></li>
+      <li><a href="book-session.html" class="btn-primary mt-4">book session</a></li>
+    </ul>
+  </div>
+
+  <footer class="footer">
+        <!-- SECTION 1: AI TAGS (Integrated) -->
+        <div class="footer-top overflow-hidden">
+          <div id="marquee-1" class="velocity-marquee">
+            <div class="marquee-content">
+              <span class="footer-tag">Neurological Sync</span>
+              <span class="footer-tag">Cellular Resonance</span>
+              <span class="footer-tag">Prana Flow</span>
+              <span class="footer-tag">Ancestral Healing</span>
+              <span class="footer-tag">Somatic Reset</span>
+              <span class="footer-tag">Astral Projection</span>
+              <span class="footer-tag">Nervous System Ease</span>
+            </div>
+          </div>
+          <div id="marquee-2" class="velocity-marquee">
+            <div class="marquee-content">
+              <span class="footer-tag">Quantum Mindfulness</span>
+              <span class="footer-tag">Bio-Dynamic Flow</span>
+              <span class="footer-tag">Vedic Wisdom</span>
+              <span class="footer-tag">Inner Sanctuary</span>
+              <span class="footer-tag">Harmonic Balance</span>
+              <span class="footer-tag">Solar Vitality</span>
+              <span class="footer-tag">Breath Intelligence</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: MAP & NAV PARTS -->
+        <div class="footer-main">
+          <div class="footer-container">
+            <!-- Column 1: Brand & Identity -->
+            <div class="footer-col footer-brand-col">
+              <img src="Untitled%20design%20(2).png" alt="Aham Graham Logo" class="footer-logo">
+              
+              <div class="footer-quote-wrap">
+                <p class="footer-quote">
+                  bridging ancient wisdom with modern neurological insights.<br>
+                  your path to biological transcendence begins here.
+                </p>
+              </div>
+
+              <img src="Copy of VJS-Logo (1).png" alt="VJS Logo" class="footer-badge">
+            </div>
+
+            <!-- Column 2: Navigation & Social -->
+            <div class="footer-col">
+              <h4>Navigation</h4>
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">about us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="centers.html">Centers</a></li>
+                <li><a href="sacred-moon-oil.html">Shop</a></li>
+              </ul>
+
+              <h4 class="footer-subheading">Social Media</h4>
+              <ul>
+                <li>Facebook</li>
+                <li>Instagram</li>
+                <li>YouTube</li>
+                <li>LinkedIn</li>
+              </ul>
+            </div>
+
+            <!-- Column 3: Contact & Locations -->
+            <div class="footer-col">
+              <h4>Contact Us</h4>
+              <div class="contact-stack">
+                <a href="mailto:contact@ahamgraham.com" class="contact-link">
+                  <span class="material-symbols-outlined">mail</span>
+                  contact@ahamgraham.com
+                </a>
+                <a href="tel:+919876543210" class="contact-link">
+                  <span class="material-symbols-outlined">call</span>
+                  +91 98765 43210
+                </a>
+              </div>
+
+              <h4 class="footer-subheading">Our Centers</h4>
+              <ul>
+                <li>Rishikesh, India</li>
+                <li>Swiss Alps, Switzerland</li>
+                <li>Ubud, Bali</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: COPYRIGHT -->
+        <div class="footer-bottom">
+          <div class="bottom-content">
+            <p>&copy; 2026 Aham Graham. all rights reserved.</p>
+          </div>
+        </div>
+    </footer>
+
+    <script src="gsap.min.js"></script>
+    <script src="app.js"></script>
+    <script src="scroll-velocity.js"></script>
+    <script src="ogl.js"></script>
+    <script src="true-focus.js"></script>
+    <script src="light-rays.js"></script>
+
+
+
+</body>
+
+</html>
+
+
