@@ -3635,3 +3635,32 @@ html.light-theme .close-modal {
 html.light-theme .modal-old-price {
   color: var(--text-secondary) !important;
 }
+
+/* Custom Background for Healing Path CTA */
+.home-page .cta-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
+              url('assets/AhamGraham-Web/multinational-women-doing-breathing-exercises-or-y-2026-01-08-23-11-26-utc.jpg') center/cover no-repeat !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 28px !important;
+  animation: none !important;
+  margin: 16px 10px 0 !important;
+  overflow: hidden !important;
+  backdrop-filter: none !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Light Mode override - remove dark shade and keep same image */
+html.light-theme .home-page .cta-section {
+  background: url('assets/AhamGraham-Web/multinational-women-doing-breathing-exercises-or-y-2026-01-08-23-11-26-utc.jpg') center/cover no-repeat !important;
+}
+
+/* Force white text for CTA in both themes with high specificity */
+.cta-section h2,
+.cta-section p,
+html.light-theme .cta-section h2,
+html.light-theme .cta-section p,
+.home-page .cta-section h2,
+.home-page .cta-section p {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4); /* Stronger shadow for readability */
+}

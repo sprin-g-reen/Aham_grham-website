@@ -126,6 +126,28 @@
         margin-top: 2rem;
       }
     }
+
+    /* Healing Path CTA Direct Override */
+    .cta-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
+                  url('assets/AhamGraham-Web/multinational-women-doing-breathing-exercises-or-y-2026-01-08-23-11-26-utc.jpg') center/cover no-repeat !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border-radius: 28px !important;
+      animation: none !important;
+      margin: 16px 10px 0 !important;
+      overflow: hidden !important;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    html.light-theme .cta-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('assets/AhamGraham-Web/multinational-women-doing-breathing-exercises-or-y-2026-01-08-23-11-26-utc.jpg') center/cover no-repeat !important;
+    }
+
+    .cta-section h2, .cta-section p {
+      color: #ffffff !important;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+    }
   </style>
 </head>
 
@@ -641,9 +663,9 @@
     </script>
 
     <section class="cta-section">
-        <h2>Your Healing Path Awaits</h2>
+        <h2 style="color: #ffffff !important;">Your Healing Path Awaits</h2>
 
-        <p>
+        <p style="color: #ffffff !important;">
           Whether in the high Himalayas or the crisp air of the Alps,
           your journey to soulful clinical healing starts with a single step.
         </p>
