@@ -108,7 +108,7 @@ class TrueFocus {
 // Global initialization
 window.addEventListener('DOMContentLoaded', () => {
   const loader = new TrueFocus({
-    sentence: 'aham graham',
+    sentence: 'aham grham',
     animationDuration: 0.8,
     pauseBetweenAnimations: 0.5
   });

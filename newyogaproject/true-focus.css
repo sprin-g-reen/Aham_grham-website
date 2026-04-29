@@ -104,3 +104,18 @@
     height: 1rem;
   }
 }
+
+/* Light Theme Overrides */
+html.light-theme #focus-loader {
+  background: #ecf5eb;
+  --border-color: #22c55e !important;
+  --glow-color: rgba(34, 197, 94, 0.4) !important;
+}
+
+html.light-theme .focus-word {
+  color: rgba(22, 101, 52, 0.15);
+}
+
+html.light-theme .focus-word.active {
+  color: #166534;
+}

@@ -200,6 +200,11 @@ function setupThemeToggle() {
       lightBtn.style.display = 'flex';
       darkBtn.style.display = 'none';
     }
+    // Force redraw for canvas-based elements (like light-rays)
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 50);
+
   }
 
   lightBtn.addEventListener('click', () => setTheme(true));

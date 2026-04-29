@@ -24,9 +24,13 @@
   --bg-surface: #0a0a20;
   --text-primary: #ffffff;
   --text-secondary: #94a3b8;
-  --accent-purple: #3b82f6; /* Renamed conceptually to blue */
+  --accent-purple: #7c4dff;
   --accent-cyan: #06b6d4;
-  --border-subtle: rgba(59, 130, 246, 0.15);
+  --border-subtle: rgba(124, 77, 255, 0.15);
+  
+  --btn-book-gradient: linear-gradient(135deg, #7c4dff, #3b82f6);
+  --btn-desc-bg: rgba(124, 77, 255, 0.1);
+  --btn-desc-border: rgba(124, 77, 255, 0.3);
 }
 
 html.light-theme {
@@ -40,8 +44,65 @@ html.light-theme {
   --about-card: #eafae8;
   --about-ink: #111827;
   --about-muted: #6b7280;
-  --accent-purple: #ffffff;
-  --accent-cyan: #ffffff;
+  --accent-purple: #16a34a;
+  --accent-cyan: #10b981;
+  --btn-book-gradient: linear-gradient(135deg, #16a34a, #10b981);
+  --btn-desc-bg: rgba(22, 163, 74, 0.05);
+  --btn-desc-border: rgba(22, 163, 74, 0.2);
+}
+
+/* Card Action Buttons */
+.card-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  width: 100%;
+}
+
+.btn-card {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important;
+}
+
+.btn-book {
+  background: var(--btn-book-gradient);
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-book:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.btn-desc {
+  background: var(--btn-desc-bg);
+  color: var(--accent-purple) !important;
+  border: 1px solid var(--btn-desc-border);
+}
+
+html.light-theme .btn-desc {
+  color: #166534 !important;
+}
+
+.btn-desc:hover {
+  background: rgba(124, 77, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+html.light-theme .btn-desc:hover {
+  background: rgba(22, 163, 74, 0.15);
 }
 
 html.light-theme .bento-item,
@@ -72,24 +133,41 @@ html.light-theme .bento-blog-item:hover .blog-item-content::before {
   background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, transparent 100%) !important;
 }
 
-html.light-theme .btn-primary,
+html.light-theme .about-title,
+html.light-theme .about-subtitle,
+html.light-theme .about-kicker,
+html.light-theme .bento-overlay h3,
+html.light-theme .bento-overlay p,
+html.light-theme .bento-overlay span,
+html.light-theme .bento-card h3,
+html.light-theme .bento-card p,
+html.light-theme .absolute h3,
+html.light-theme .absolute p {
+  color: #111827 !important;
+}
+
+html.light-theme .btn-primary {
+  background: var(--btn-book-gradient) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2) !important;
+}
+
+html.light-theme .btn-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.3) !important;
+}
+
 html.light-theme .exp-col span,
 html.light-theme .testimonial-controls button {
   background: #ffffff !important;
-  color: #111827 !important;
+  color: #166534 !important;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-html.light-theme .btn-primary:hover,
 html.light-theme .testimonial-controls button:hover {
-  background: #f9fafb !important;
-}
-
-html.light-theme .bento-content h3,
-html.light-theme .bento-content p,
-html.light-theme .blog-item-content h3,
-html.light-theme .blog-item-content p {
-  color: #111827 !important;
+  background: #f0fdf4 !important;
 }
 
 html.light-theme .about-hero {
@@ -102,25 +180,49 @@ html.light-theme [style*="color: white"],
 html.light-theme [style*="color: #fff"],
 html.light-theme [style*="color: #ffffff"],
 html.light-theme .cta-section h2,
-html.light-theme .btn-outline,
 html.light-theme .hero-brand-name,
 html.light-theme .hero-brand-sub,
-html.light-theme .about-title,
-html.light-theme .about-subtitle,
-html.light-theme .about-kicker,
-html.light-theme h1,
-html.light-theme h2,
-html.light-theme h3,
+html.light-theme .brand-motto,
+html.light-theme h1:not(.about-hero-content h1),
+html.light-theme h2:not(.absolute h2),
+html.light-theme h3:not(.bento-content h3):not(.blog-item-content h3):not(.brand-card-content h3):not(.bento-overlay h3):not(.bento-card h3):not(.absolute h3),
 html.light-theme h4 {
-  color: #111827 !important;
+  color: #000000 !important;
+}
+
+html.light-theme .btn-outline {
+  background: #16a34a !important;
+  color: #ffffff !important;
+  border: none !important;
 }
 
 html.light-theme .text-gray-400,
 html.light-theme [class*="text-gray-"],
 html.light-theme .cta-section p,
-html.light-theme p {
+html.light-theme p:not(.bento-content p):not(.blog-item-content p):not(.brand-card-content p):not(.about-hero-content p):not(.bento-overlay p):not(.bento-card p):not(.absolute p):not(.testimonial-content p) {
   color: #4b5563 !important;
 }
+
+/* Testimonial Light Mode Overrides - Restored to White on Dark for contrast */
+html.light-theme .testimonial-content {
+  background: linear-gradient(to top, rgba(15, 15, 48, 1) 0%, rgba(15, 15, 48, 0.95) 60%, transparent 100%) !important;
+  color: #ffffff !important;
+}
+
+html.light-theme .testimonial-text {
+  color: #ffffff !important;
+}
+
+html.light-theme .testimonial-author {
+  color: #ffffff !important; 
+}
+
+html.light-theme .testimonial-role {
+  color: #ffffff !important;
+  opacity: 0.8;
+}
+
+
 
 html.light-theme .navbar-initial {
   background: rgba(0, 0, 0, 0.65) !important;
@@ -163,6 +265,7 @@ html.light-theme .blog-item-content .category {
   color: #065f46 !important;
 }
 
+
 html.light-theme .sphere-root {
   --overlay-blur-color: var(--bg-deep) !important;
 }
@@ -183,8 +286,9 @@ html.light-theme .footer-quote,
 html.light-theme .footer-col ul li,
 html.light-theme .footer-col ul li a,
 html.light-theme .footer-bottom p,
-html.light-theme .contact-link {
-  color: #4b5563 !important;
+html.light-theme .contact-link,
+html.light-theme .contact-link span {
+  color: #111827 !important;
 }
 
 html.light-theme .contact-link:hover,
@@ -1061,9 +1165,10 @@ body {
   padding: 16px 32px;
   color: #fff;
   border-radius: 8px;
-  /* ðŸ”¥ rectangle */
+  /* 🔥 rectangle */
   font-weight: 600;
   font-size: 16px;
+  text-transform: lowercase;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -1099,7 +1204,7 @@ body {
 
 /* SECTION 1: TAGS - Updated for ScrollVelocity */
 .footer-top {
-  padding: 48px 0 40px; /* Reduced side padding for edge-to-edge marquee */
+  padding: 12px 0 40px; /* Reduced side padding for edge-to-edge marquee */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1152,6 +1257,19 @@ body {
   margin-top: auto;
   opacity: 0.8;
   transition: opacity 0.3s ease;
+}
+
+/* Theme-aware logo toggling */
+.light-logo {
+  display: none !important;
+}
+
+html.light-theme .light-logo {
+  display: block !important;
+}
+
+html.light-theme .dark-logo {
+  display: none !important;
 }
 
 .footer-badge:hover {
@@ -1275,12 +1393,24 @@ body {
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .footer-container {
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
+    grid-template-columns: 1.9fr 1fr 1.2fr;
+    gap: 24px;
+    padding: 56px 24px;
   }
   .footer-brand-col {
-    grid-column: 1 / -1;
-    margin-top: 0;
+    grid-column: auto;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .footer-logo {
+    height: 60px;
+  }
+  .footer-quote {
+    font-size: 15px;
+  }
+  .footer-badge {
+    height: 90px;
+    margin-top: auto;
   }
 }
 
@@ -1785,14 +1915,14 @@ body {
   border-color: rgba(124, 77, 255, 0.2);
 }
 
-.bento-item>img:first-child {
+.bento-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
 }
 
-.bento-item:hover>img:first-child {
+.bento-item:hover img {
   transform: scale(1.1);
 }
 
@@ -1939,10 +2069,23 @@ body {
 }
 
 /* Responsive Bento */
-@media (max-width: 1100px) {
+@media (min-width: 601px) and (max-width: 1100px) {
+
   .bento-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 250px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+    gap: 15px;
+  }
+
+  .bento-item {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+
+  /* Make the brand card prominent in the 3-column grid */
+  .brand-card {
+    grid-column: span 2 !important;
+    grid-row: span 2 !important;
   }
 }
 
@@ -3461,4 +3604,34 @@ html.light-theme [class*="bg-[#1e40af]"] {
 
 html.light-theme [class*="bg-purple-"] {
   background-color: rgba(6, 95, 70, 0.1) !important;
+}
+
+/* Modal Light Theme Overrides */
+html.light-theme .modal-card {
+  background: var(--bg-surface) padding-box,
+              conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15) !important;
+}
+html.light-theme .modal-review-item {
+  background: var(--bg-deep) !important;
+  border-color: rgba(0,0,0,0.1) !important;
+}
+html.light-theme .modal-review-user {
+  color: var(--text-primary) !important;
+}
+html.light-theme .modal-review-text {
+  color: var(--text-secondary) !important;
+}
+html.light-theme .modal-title,
+html.light-theme .modal-price,
+html.light-theme .modal-detail,
+html.light-theme .modal-offer,
+html.light-theme .modal-stock span {
+  color: var(--text-primary) !important;
+}
+html.light-theme .close-modal {
+  color: var(--text-primary) !important;
+}
+html.light-theme .modal-old-price {
+  color: var(--text-secondary) !important;
 }

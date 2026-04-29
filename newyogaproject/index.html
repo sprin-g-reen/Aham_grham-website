@@ -30,7 +30,7 @@
 
 
 
-  <title>Hero Section | Aham Graham</title>
+  <title>aham grham</title>
 
 
   <style>
@@ -59,6 +59,73 @@
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(12px);
     }
+
+    /* Light Theme Hero Specific Styles */
+    .hero-light-mode {
+      display: none !important;
+    }
+
+    html.light-theme .hero-light-mode {
+      display: flex !important;
+      align-items: center; /* Keeps text centered */
+      width: 100%;
+      background: #ecf5eb; /* Deepest background green */
+      padding: 80px 10% 80px 0; /* Clear the navbar */
+      min-height: 100vh;
+      position: relative;
+      z-index: 10;
+    }
+
+    html.light-theme .hero-light-rays {
+      display: none !important;
+    }
+
+    html.light-theme .hero-light-mode .hero-image {
+      flex: 1.2;
+      align-self: flex-start; /* Move image to top */
+      margin-top: 3px; /* Exactly 3px gap below navbar */
+    }
+
+    html.light-theme .hero-light-mode .hero-content {
+      flex: 1;
+      padding-left: 5rem;
+      /* Vertically centered via align-items: center on parent */
+    }
+
+    html.light-theme .hero-light-mode .hero-content h2 {
+      font-size: 1.5rem;
+      color: #000000 !important;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    html.light-theme .hero-light-mode .hero-content h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      color: #000000 !important;
+      margin: 0.5rem 0 1.5rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    html.light-theme .hero-light-mode .hero-content p {
+      color: #475569;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      max-width: 500px;
+    }
+
+    @media (max-width: 768px) {
+      html.light-theme .hero-light-mode {
+        flex-direction: column;
+        padding: 120px 20px 60px;
+        text-align: center;
+      }
+      html.light-theme .hero-light-mode .hero-content {
+        padding-left: 0;
+        margin-top: 2rem;
+      }
+    }
   </style>
 </head>
 
@@ -81,7 +148,7 @@
         <img src="assets/logo_transparent.png" alt="Logo" class="logo-img"
           onerror="this.src='https://placehold.co/400x100/2c2c3a/white?text=AHAM'">
         <div class="logo-text">
-          <div class="brand-name">aham graham</div>
+          <div class="brand-name">aham grham</div>
           <div class="brand-sub">return to you inner Home</div>
         </div>
       </div>
@@ -111,7 +178,7 @@
     </div>
   </nav>
 
-  <!-- LIGHT RAYS HERO SECTION -->
+  <!-- LIGHT RAYS HERO SECTION (DARK MODE) -->
   <section class="hero-light-rays">
     <div id="light-rays-hero" class="light-rays-container"></div>
     <div class="hero-brand">
@@ -121,6 +188,41 @@
         <h1 class="hero-brand-name">aham graham</h1>
         <p class="hero-brand-sub">return to your inner Home</p>
       </div>
+    </div>
+  </section>
+
+  <!-- LIGHT THEME HERO (LIGHT MODE ONLY) -->
+  <section class="hero-light-mode">
+    <div class="hero-image">
+      <svg viewBox="0 0 600 530" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="stripeMask" clipPathUnits="userSpaceOnUse">
+            <path d="M0,0 H260 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+            <path d="M0,90 H410 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+            <path d="M0,180 H560 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+            <path d="M0,270 H460 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+            <path d="M0,360 H510 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+            <path d="M0,450 H360 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+          </clipPath>
+        </defs>
+
+        <image
+               href="assets/AhamGraham-Web/young-women-doing-yoga-sport-2026-03-24-23-12-41-utc.jpg"
+               width="600"
+               height="530"
+               clip-path="url(#stripeMask)"
+               preserveAspectRatio="xMidYMid slice"
+               />
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <h2>return to your</h2>
+      <h1>inner home</h1>
+      <p>
+        precision-engineered yoga pathways designed for clinical results and spiritual depth. 
+        experience the perfect balance of neurological synchronization and community movement.
+      </p>
     </div>
   </section>
 
@@ -191,33 +293,42 @@
       <div class="bento-grid">
         <!-- 1. PRIVATE & GROUP (Tall) -->
         <div class="bento-item row-2">
-          <img src="assets/22.jpg" alt="Yoga Practice">
+          <picture>
+            <source srcset="assets/AhamGraham-Web/resp_private.png" media="(max-width: 768px)">
+            <img src="assets/AhamGraham-Web/Untitled design (4).png" alt="Yoga Practice">
+          </picture>
           <div class="bento-overlay">
             <div class="bento-content">
               <h3>Private & Group</h3>
               <p>From personalized one-on-one neurological paths to collective energy and synchronized community movement.</p>
+
             </div>
           </div>
         </div>
 
         <!-- 2. REHAB & RECOVERY (Wide) -->
         <div class="bento-item span-2">
-          <img src="assets/23.jpg" alt="Restorative Practice">
+          <picture>
+            <source srcset="assets/AhamGraham-Web/re_mobile.png" media="(max-width: 600px)">
+            <img src="assets/AhamGraham-Web/re.png" alt="Restorative Practice">
+          </picture>
           <div class="bento-overlay">
             <div class="bento-content">
               <h3>Rehab & Recovery</h3>
               <p>Clinical-grade restorative practices for injury healing and biological synchronization.</p>
+
             </div>
           </div>
         </div>
 
         <!-- 3. B2B (Square) -->
         <div class="bento-item">
-          <img src="assets/24.jpg" alt="Corporate Team">
+          <img src="assets/AhamGraham-Web/b2bpc.png" alt="Corporate Team">
           <div class="bento-overlay">
             <div class="bento-content">
               <h3>B2B</h3>
               <p>Strategic wellness protocols for high-performance corporate teams.</p>
+
             </div>
           </div>
         </div>
@@ -232,55 +343,63 @@
 
         <!-- 4. ONLINE (Square) -->
         <div class="bento-item">
-          <img src="assets/25.jpg" alt="Digital Yoga">
+          <img src="assets/AhamGraham-Web/online.png" alt="Digital Yoga">
           <div class="bento-overlay">
             <div class="bento-content">
               <h3>Online</h3>
               <p>Bring the sanctuary to your home with real-time digital guidance.</p>
+
             </div>
           </div>
         </div>
 
         <!-- 6. CERTIFICATION (Square) -->
         <div class="bento-item">
-          <img src="assets/26.jpg" alt="Certification Training">
+          <img src="assets/AhamGraham-Web/certification.png" alt="Certification Training">
           <div class="bento-overlay">
             <div class="bento-content">
               <h3>Certification</h3>
               <p>Master the science of space and breath as a certified instructor.</p>
+
             </div>
           </div>
         </div>
 
         <!-- 7. MEDICAL THERAPEUTIC (Tall) -->
         <div class="bento-item row-2">
-          <img src="assets/27.jpg" alt="Therapeutic Yoga">
+          <img src="assets/AhamGraham-Web/medical.png" alt="Therapeutic Yoga">
           <div class="bento-overlay">
             <div class="bento-content">
               <h3>Medical Therapeutic</h3>
               <p>Evidence-based yoga interventions for chronic condition management.</p>
+
             </div>
           </div>
         </div>
 
         <!-- 8. KIDS & YOUTH (Square) -->
         <div class="bento-item">
-          <img src="assets/28.jpg" alt="Kids Yoga">
+          <picture>
+            <source srcset="assets/AhamGraham-Web/YourSpritualGuide.jpg" media="(min-width: 601px) and (max-width: 1100px)">
+            <img src="assets/AhamGraham-Web/y&k.png" alt="Kids Yoga">
+          </picture>
           <div class="bento-overlay">
             <div class="bento-content">
               <h3>Kids & Youth</h3>
               <p>Foundation of mindfulness and focus for the next generation.</p>
+
             </div>
           </div>
         </div>
 
         <!-- 9. RETREATS (Wide) -->
         <div class="bento-item span-2">
-          <img src="assets/29.jpg" alt="Serene Retreat">
+          <img src="assets/AhamGraham-Web/retreat.png" alt="Serene Retreat">
           <div class="bento-overlay">
             <div class="bento-content">
               <h3>Retreats & Getaways</h3>
               <p>Immersive journeys to high-vibration geographies for total reset.</p>
+
             </div>
           </div>
         </div>
@@ -530,8 +649,8 @@
         </p>
 
         <div class="cta-buttons">
-          <button class="btn-primary">Consult with a Specialist</button>
-          <button class="btn-outline">View All Locations</button>
+          <button class="btn-primary" onclick="window.location.href='book-session.html#contacts'">consult with a specialist</button>
+          <button class="btn-outline" onclick="window.location.href='centers.html'">view all locations</button>
         </div>
     </section>
 
@@ -589,7 +708,8 @@
                 </p>
               </div>
 
-              <img src="Copy of VJS-Logo (1).png" alt="VJS Logo" class="footer-badge">
+              <img src="Copy of VJS-Logo (1).png" alt="VJS Logo" class="footer-badge dark-logo">
+              <img src="VJS-Logo-transparent.png" alt="VJS Logo" class="footer-badge light-logo">
             </div>
 
             <!-- Column 2: Navigation & Social -->

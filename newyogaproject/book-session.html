@@ -20,6 +20,15 @@
 
   <title>Book Session | Aham Graham</title>
 
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.classList.add('light-theme');
+      }
+    })();
+  </script>
+
   <style>
     :root {
       --sidebar-width: 260px;
@@ -453,6 +462,258 @@
       gap: 4px;
     }
 
+    .btn-icon {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-icon:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Dark Mode Events Enhancements */
+    #section-events .text-purple-400 {
+      color: #d8b4fe !important; /* purple-300 */
+    }
+    #section-events .text-blue-400 {
+      color: #93c5fd !important; /* blue-300 */
+    }
+    #section-events .bg-purple-500\/10,
+    #section-events .bg-purple-500\/20,
+    #section-events .bg-blue-500\/10,
+    #section-events .bg-blue-500\/20,
+    #section-events span.rounded-full {
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Light Theme Overrides */
+    html.light-theme body {
+      background: #ecf5eb;
+      color: #111827;
+    }
+
+    html.light-theme .sidebar {
+      background: #eafae8;
+      border-right-color: rgba(0, 0, 0, 0.05);
+    }
+
+    html.light-theme .sidebar-brand,
+    html.light-theme .page-title,
+    html.light-theme .welcome-text h2,
+    html.light-theme .preview-name,
+    html.light-theme .user-name,
+    html.light-theme .session-card h3,
+    html.light-theme #sub-section-programs h3,
+    html.light-theme #sub-section-availability h3 {
+      color: #111827;
+    }
+
+    html.light-theme .nav-item {
+      color: #4b5563;
+    }
+
+    html.light-theme .bg-mesh {
+      display: none;
+    }
+
+    html.light-theme .nav-item:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: #111827;
+    }
+
+    html.light-theme .nav-item.active {
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
+    }
+
+    html.light-theme .top-header {
+      background: rgba(234, 250, 232, 0.8);
+      border-bottom-color: rgba(0, 0, 0, 0.05);
+    }
+
+    html.light-theme .btn-icon {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.1);
+      color: #111827;
+    }
+
+    html.light-theme .btn-action.outline {
+      border-color: rgba(0, 0, 0, 0.1);
+      color: #111827;
+      background: #ffffff;
+    }
+
+    html.light-theme .preview-card,
+    html.light-theme .session-card,
+    html.light-theme #sub-section-programs > div > div,
+    html.light-theme #sub-section-availability > div > div,
+    html.light-theme #section-events > div > div,
+    html.light-theme #section-cancel > div > div,
+    html.light-theme #section-cancel .rounded-2xl {
+       background: #eafae8 !important;
+       border-color: rgba(0, 0, 0, 0.08) !important;
+       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
+    }
+    
+    html.light-theme .bg-gradient-to-t.from-\[\#0a0a20\] {
+      background-image: linear-gradient(to top, #eafae8, transparent, transparent) !important;
+    }
+    
+    html.light-theme .welcome-text p,
+    html.light-theme .preview-email,
+    html.light-theme .text-gray-400,
+    html.light-theme .session-card p,
+    html.light-theme #sub-section-programs p,
+    html.light-theme .text-sm.text-gray-500,
+    html.light-theme #section-events p,
+    html.light-theme #section-cancel p,
+    html.light-theme #section-cancel .text-sm {
+      color: #4b5563 !important;
+    }
+
+    html.light-theme #section-cancel .font-bold {
+      color: #111827 !important;
+    }
+    
+    html.light-theme .sidebar-footer {
+      border-top-color: rgba(0, 0, 0, 0.05);
+    }
+
+    html.light-theme .reflective-card-container {
+      background: #eafae8;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
+    }
+
+    html.light-theme .reflective-content {
+      background: rgba(234, 250, 232, 0.4);
+      color: #111827;
+    }
+
+    /* Mobile Dashboard Optimizations */
+    @media (max-width: 1024px) {
+      .sidebar {
+        position: fixed;
+        left: -280px; /* Fully hidden */
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 90;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .top-header {
+        padding: 1rem 1.5rem;
+      }
+
+      .content-wrapper {
+        padding: 2rem 1.5rem;
+      }
+
+      .page-title {
+        font-size: 1.1rem;
+      }
+
+      .hamburger-dashboard {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+        cursor: pointer;
+      }
+
+      html.light-theme .hamburger-dashboard {
+        background: #ffffff;
+        border-color: rgba(0, 0, 0, 0.1);
+        color: #111827;
+      }
+    }
+
+    .hamburger-dashboard {
+      display: none;
+    }
+
+    html.light-theme .card-header,
+    html.light-theme .card-footer {
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    html.light-theme .security-badge {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.1);
+      color: #111827;
+    }
+
+    html.light-theme .close-modal {
+      color: #111827;
+    }
+
+    html.light-theme #section-events h3 {
+      color: #111827 !important;
+    }
+
+    html.light-theme #section-events .text-purple-400 {
+      color: #7e22ce !important; /* deep purple for contrast */
+    }
+
+    html.light-theme #section-events .text-blue-400 {
+      color: #1d4ed8 !important; /* deep blue for contrast */
+    }
+
+    html.light-theme #section-events button {
+      background: #ffffff !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    html.light-theme #section-events .bg-purple-500\/10,
+    html.light-theme #section-events .bg-purple-500\/20,
+    html.light-theme #section-events span.rounded-full {
+      background: #f5f3ff !important;
+      border: 1px solid rgba(126, 34, 206, 0.2) !important;
+    }
+
+    html.light-theme #section-events .bg-blue-500\/10,
+    html.light-theme #section-events .bg-blue-500\/20 {
+      background: #eff6ff !important;
+      border: 1px solid rgba(29, 78, 216, 0.2) !important;
+    }
+
     /* Modal Styles */
     .pass-modal {
       position: fixed;
@@ -463,6 +724,7 @@
       display: none;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
     .pass-modal.active {
@@ -477,16 +739,27 @@
       color: white;
       opacity: 0.5;
       transition: opacity 0.3s;
+      z-index: 1100;
     }
 
     .close-modal:hover {
       opacity: 1;
+    }
+
+    html.light-theme .pass-modal {
+      background: rgba(234, 250, 232, 0.95);
+    }
+
+    html.light-theme .close-modal {
+      color: #111827;
     }
   </style>
 </head>
 
 <body class="dashboard-page">
   <div id="focus-loader"></div>
+
+  <div class="blob-overlay sidebar-overlay" onclick="toggleSidebar()"></div>
 
   <div class="bg-mesh">
     <div class="blob blob-1"></div>
@@ -547,9 +820,15 @@
     <!-- MAIN CONTENT -->
   <main class="main-container">
     <header class="top-header">
-      <h1 class="page-title" id="main-title">Book Session</h1>
       <div class="flex items-center gap-4">
-        <!-- Profile button removed -->
+        <button class="hamburger-dashboard" onclick="toggleSidebar()">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <h1 class="page-title" id="main-title">Book Session</h1>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="btn-icon" id="theme-light"><span class="material-symbols-outlined">light_mode</span></button>
+        <button class="btn-icon" id="theme-dark" style="display: none;"><span class="material-symbols-outlined">dark_mode</span></button>
       </div>
     </header>
 
@@ -729,14 +1008,7 @@
               </div>
               <h3 class="text-2xl font-bold mb-2">Private & Group</h3>
               <p class="text-gray-400 mb-8 text-sm">Personalized neurological synchronization and collective energy movement.</p>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-semibold">Program Progress</span>
-                <span class="text-xs font-bold text-blue-400">65%</span>
-              </div>
-              <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-                <div class="h-full bg-blue-500 rounded-full w-[65%] shadow-[0_0_15px_rgba(59,130,246,0.4)]"></div>
-              </div>
-              <button class="w-full mt-8 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-sm font-bold transition-all border border-white/5">Continue Sessions</button>
+
             </div>
 
             <!-- Program 2: Rehab & Recovery -->
@@ -747,14 +1019,7 @@
               </div>
               <h3 class="text-2xl font-bold mb-2">Rehab & Recovery</h3>
               <p class="text-gray-400 mb-8 text-sm">Clinical-grade restorative practices for injury healing and biological reset.</p>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-semibold">Program Progress</span>
-                <span class="text-xs font-bold text-purple-400">40%</span>
-              </div>
-              <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-                <div class="h-full bg-purple-500 rounded-full w-[40%] shadow-[0_0_15px_rgba(168,85,247,0.4)]"></div>
-              </div>
-              <button class="w-full mt-8 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-sm font-bold transition-all border border-white/5">View Recovery Log</button>
+
             </div>
 
             <!-- Program 3: Online Sanctuary -->
@@ -765,14 +1030,7 @@
               </div>
               <h3 class="text-2xl font-bold mb-2">Online Sanctuary</h3>
               <p class="text-gray-400 mb-8 text-sm">Real-time digital guidance brought directly to your home practice.</p>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-semibold">Program Progress</span>
-                <span class="text-xs font-bold text-cyan-400">12%</span>
-              </div>
-              <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-                <div class="h-full bg-cyan-500 rounded-full w-[12%] shadow-[0_0_15px_rgba(34,211,238,0.4)]"></div>
-              </div>
-              <button class="w-full mt-8 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-sm font-bold transition-all border border-white/5">Start First Session</button>
+
             </div>
           </div>
         </div>
@@ -895,17 +1153,21 @@
               <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a20] via-transparent to-transparent"></div>
             </div>
             <div class="p-8 relative -mt-20">
-              <div class="flex justify-between items-end mb-4">
-                <div>
-                  <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-[10px] font-bold  tracking-widest mb-3 block w-fit">Main Event</span>
-                  <h3 class="text-2xl font-bold">Wellness Summit 2026</h3>
+              <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-[10px] font-bold  tracking-widest mb-3 block w-fit">Main Event</span>
+              <h3 class="text-2xl font-bold mb-4">Wellness Summit 2026</h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-2">Join world leaders in neuroscience and spirituality for a 5-day immersion into collective awakening.</p>
+              
+              <div class="flex items-center gap-6 mb-8 text-[10px] font-bold uppercase tracking-widest">
+                <div class="flex items-center gap-2 text-gray-400">
+                  <span class="material-symbols-outlined text-sm">calendar_today</span>
+                  June 10-15
                 </div>
-                <div class="text-right">
-                  <div class="text-xs text-gray-400">June 10-15</div>
-                  <div class="text-[10px] text-purple-400 font-bold">Rishikesh, India</div>
+                <div class="flex items-center gap-2 text-purple-400">
+                  <span class="material-symbols-outlined text-sm">location_on</span>
+                  Rishikesh, India
                 </div>
               </div>
-              <p class="text-gray-400 text-sm mb-8 line-clamp-2">Join world leaders in neuroscience and spirituality for a 5-day immersion into collective awakening.</p>
+
               <button class="w-full py-3 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 text-sm font-bold transition-all border border-purple-500/20" onclick="openPass('alexander doe', 'wellness summit 2026')">view pass</button>
             </div>
           </div>
@@ -917,17 +1179,21 @@
               <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a20] via-transparent to-transparent"></div>
             </div>
             <div class="p-8 relative -mt-20">
-              <div class="flex justify-between items-end mb-4">
-                <div>
-                  <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-bold  tracking-widest mb-3 block w-fit">Retreat</span>
-                  <h3 class="text-2xl font-bold">Mountain Silence</h3>
+              <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-bold  tracking-widest mb-3 block w-fit">Retreat</span>
+              <h3 class="text-2xl font-bold mb-4">Mountain Silence</h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-2">A deep immersion into neurological stillness and high-altitude somatic protocols.</p>
+
+              <div class="flex items-center gap-6 mb-8 text-[10px] font-bold uppercase tracking-widest">
+                <div class="flex items-center gap-2 text-gray-400">
+                  <span class="material-symbols-outlined text-sm">calendar_today</span>
+                  July 20-27
                 </div>
-                <div class="text-right">
-                  <div class="text-xs text-gray-400">July 20-27</div>
-                  <div class="text-[10px] text-blue-400 font-bold">Swiss Alps</div>
+                <div class="flex items-center gap-2 text-blue-400">
+                  <span class="material-symbols-outlined text-sm">location_on</span>
+                  Swiss Alps
                 </div>
               </div>
-              <p class="text-gray-400 text-sm mb-8 line-clamp-2">A deep immersion into neurological stillness and high-altitude somatic protocols.</p>
+
               <button class="w-full py-3 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 text-sm font-bold transition-all border border-blue-500/20" onclick="openPass('alexander doe', 'mountain silence retreat')">view pass</button>
             </div>
           </div>
@@ -1131,6 +1397,14 @@
       if (activeNav) {
         activeNav.classList.add('active');
       }
+
+      // Close sidebar on mobile
+      if (window.innerWidth <= 1024) {
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
+        if (sidebar) sidebar.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
+      }
     }
 
     function toggleSubSection(subId) {
@@ -1154,6 +1428,13 @@
       }
     }
 
+    function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      const overlay = document.querySelector('.sidebar-overlay');
+      if (sidebar) sidebar.classList.toggle('active');
+      if (overlay) overlay.classList.toggle('active');
+    }
+
     function openPass(userName, eventName) {
       document.getElementById('pass-user-name').innerText = userName;
       document.getElementById('pass-event-name').innerText = eventName;
@@ -1173,6 +1454,41 @@
         }
       });
     }
+
+    // Theme Toggle Logic
+    const themeLight = document.getElementById('theme-light');
+    const themeDark = document.getElementById('theme-dark');
+
+    function setTheme(isLight) {
+      if (isLight) {
+        document.documentElement.classList.add('light-theme');
+        localStorage.setItem('theme', 'light');
+        themeLight.style.display = 'none';
+        themeDark.style.display = 'flex';
+      } else {
+        document.documentElement.classList.remove('light-theme');
+        localStorage.setItem('theme', 'dark');
+        themeLight.style.display = 'flex';
+        themeDark.style.display = 'none';
+      }
+    }
+
+    themeLight.addEventListener('click', () => setTheme(true));
+    themeDark.addEventListener('click', () => setTheme(false));
+
+    // Initialize Theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      setTheme(true);
+    }
+
+    // Handle URL Hash for deep linking
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && ['sessions', 'scheduling', 'programs', 'events', 'cancel', 'contacts'].includes(hash)) {
+        showSection(hash);
+      }
+    });
   </script>
 </body>
 
