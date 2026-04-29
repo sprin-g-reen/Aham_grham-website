@@ -175,4 +175,43 @@ updateTestimonial();
 startAutoSwitch();
 initRevealAnimation();
 
+// Theme Toggle Logic
+function setupThemeToggle() {
+  const icons = document.querySelectorAll('.material-symbols-outlined');
+  let lightBtn = null;
+  let darkBtn = null;
+
+  icons.forEach(icon => {
+    if (icon.textContent.trim() === 'light_mode') lightBtn = icon.parentElement;
+    if (icon.textContent.trim() === 'dark_mode') darkBtn = icon.parentElement;
+  });
+
+  if (!lightBtn || !darkBtn) return;
+
+  function setTheme(isLight) {
+    if (isLight) {
+      document.documentElement.classList.add('light-theme');
+      localStorage.setItem('theme', 'light');
+      lightBtn.style.display = 'none';
+      darkBtn.style.display = 'flex';
+    } else {
+      document.documentElement.classList.remove('light-theme');
+      localStorage.setItem('theme', 'dark');
+      lightBtn.style.display = 'flex';
+      darkBtn.style.display = 'none';
+    }
+  }
+
+  lightBtn.addEventListener('click', () => setTheme(true));
+  darkBtn.addEventListener('click', () => setTheme(false));
+
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    setTheme(true);
+  } else {
+    setTheme(false);
+  }
+}
+setupThemeToggle();
+
 

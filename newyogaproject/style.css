@@ -29,6 +29,187 @@
   --border-subtle: rgba(59, 130, 246, 0.15);
 }
 
+html.light-theme {
+  --bg-deep: #ecf5eb;
+  --bg-surface: #eafae8;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --border-subtle: rgba(0, 0, 0, 0.1);
+  --about-bg: #ecf5eb;
+  --about-surface: #eafae8;
+  --about-card: #eafae8;
+  --about-ink: #111827;
+  --about-muted: #6b7280;
+  --accent-purple: #ffffff;
+  --accent-cyan: #ffffff;
+}
+
+html.light-theme .bento-item,
+html.light-theme .bento-blog-item,
+html.light-theme .bento-card,
+html.light-theme .product-card,
+html.light-theme .services-feature-shell {
+  background: var(--bg-surface) padding-box !important;
+  border-color: rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light-theme .bento-item:hover,
+html.light-theme .bento-blog-item:hover,
+html.light-theme .bento-card:hover,
+html.light-theme .product-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light-theme .bento-overlay::before,
+html.light-theme .blog-item-content::before {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.85) 0%, transparent 100%) !important;
+}
+
+html.light-theme .bento-item:hover .bento-overlay::before,
+html.light-theme .bento-blog-item:hover .blog-item-content::before {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, transparent 100%) !important;
+}
+
+html.light-theme .btn-primary,
+html.light-theme .exp-col span,
+html.light-theme .testimonial-controls button {
+  background: #ffffff !important;
+  color: #111827 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html.light-theme .btn-primary:hover,
+html.light-theme .testimonial-controls button:hover {
+  background: #f9fafb !important;
+}
+
+html.light-theme .bento-content h3,
+html.light-theme .bento-content p,
+html.light-theme .blog-item-content h3,
+html.light-theme .blog-item-content p {
+  color: #111827 !important;
+}
+
+html.light-theme .about-hero {
+  background: var(--bg-surface) !important;
+}
+
+html.light-theme .text-white,
+html.light-theme [class*="text-white"],
+html.light-theme [style*="color: white"],
+html.light-theme [style*="color: #fff"],
+html.light-theme [style*="color: #ffffff"],
+html.light-theme .cta-section h2,
+html.light-theme .btn-outline,
+html.light-theme .hero-brand-name,
+html.light-theme .hero-brand-sub,
+html.light-theme .about-title,
+html.light-theme .about-subtitle,
+html.light-theme .about-kicker,
+html.light-theme h1,
+html.light-theme h2,
+html.light-theme h3,
+html.light-theme h4 {
+  color: #111827 !important;
+}
+
+html.light-theme .text-gray-400,
+html.light-theme [class*="text-gray-"],
+html.light-theme .cta-section p,
+html.light-theme p {
+  color: #4b5563 !important;
+}
+
+html.light-theme .navbar-initial {
+  background: rgba(0, 0, 0, 0.65) !important;
+}
+
+html.light-theme .menu-buttons {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html.light-theme .navbar-initial .brand-name,
+html.light-theme .navbar-initial .nav-btn {
+  color: #ffffff !important;
+}
+
+html.light-theme .navbar-initial .brand-sub {
+  color: #e2e8f0 !important;
+}
+
+/* Light Theme Nav Indicator & Hover States */
+html.light-theme .nav-indicator {
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light-theme .navbar-initial .nav-btn:hover {
+  color: #111827 !important;
+}
+
+html.light-theme .navbar-scrolled .nav-indicator {
+  background: #eafae8 !important;
+}
+
+html.light-theme .navbar-scrolled .nav-btn:hover {
+  color: #065f46 !important;
+  background: transparent !important;
+}
+
+html.light-theme .blog-item-content .category {
+  color: #065f46 !important;
+}
+
+html.light-theme .sphere-root {
+  --overlay-blur-color: var(--bg-deep) !important;
+}
+
+html.light-theme .mobile-overlay {
+  background: rgba(234, 250, 232, 0.95) !important;
+}
+
+html.light-theme .mobile-nav-link {
+  color: #111827 !important;
+}
+
+html.light-theme .footer {
+  color: #111827 !important;
+}
+
+html.light-theme .footer-quote,
+html.light-theme .footer-col ul li,
+html.light-theme .footer-col ul li a,
+html.light-theme .footer-bottom p,
+html.light-theme .contact-link {
+  color: #4b5563 !important;
+}
+
+html.light-theme .contact-link:hover,
+html.light-theme .footer-col ul li a:hover,
+html.light-theme .footer-col ul li:hover {
+  color: #111827 !important;
+}
+
+html.light-theme .footer-col h4 {
+  color: #111827 !important;
+}
+
+html.light-theme .footer-tag {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #4b5563 !important;
+}
+
+html.light-theme .footer-tag:hover {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-color: rgba(0, 0, 0, 0.3) !important;
+  color: #111827 !important;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -3245,4 +3426,39 @@ body,
   .md\:col-span-4 { grid-column: span 4 / span 4; }
 }
 
+/* Light Theme Centers Page Overrides */
+html.light-theme [class*="bg-[#170529]"],
+html.light-theme [class*="bg-[#250e3a]"],
+html.light-theme [class*="bg-[#0a0a20]"] {
+  background-color: var(--bg-surface) !important;
+  border: 1px solid rgba(0,0,0,0.05) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+}
 
+html.light-theme [class*="from-[#170529]"] {
+  --tw-gradient-from: transparent !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+html.light-theme [class*="text-[#8c52ff]"],
+html.light-theme [class*="text-purple-"] {
+  color: #065f46 !important;
+}
+
+html.light-theme [class*="border-[#8c52ff]"],
+html.light-theme [class*="border-white"] {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light-theme [class*="bg-[#8c52ff]"],
+html.light-theme [class*="bg-[#1e40af]"] {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  text-shadow: none !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important;
+}
+
+html.light-theme [class*="bg-purple-"] {
+  background-color: rgba(6, 95, 70, 0.1) !important;
+}
