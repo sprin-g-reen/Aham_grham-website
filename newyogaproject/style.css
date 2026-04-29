@@ -93,7 +93,16 @@ html.light-theme {
 }
 
 html.light-theme .btn-desc {
-  color: #166534 !important;
+  background: var(--btn-book-gradient) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2) !important;
+}
+
+html.light-theme .btn-desc:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.3) !important;
+  filter: brightness(1.05);
 }
 
 .btn-desc:hover {
@@ -914,7 +923,7 @@ body {
   }
 
   .logo-text {
-    display: none;
+    display: block;
   }
 
   .hero {
@@ -1213,7 +1222,7 @@ body {
 }
 
 .tag-row {
-  display: none; /* Replaced by .velocity-marquee */
+  display: block; /* Replaced by .velocity-marquee */
 }
 
 /* Base styles for tags moved to scroll-velocity.css */
@@ -2120,6 +2129,10 @@ img {
     display: none;
   }
 
+  .hamburger-btn {
+    display: flex;
+  }
+
   .logo-img {
     height: 54px;
   }
@@ -2657,7 +2670,7 @@ img {
 }
 
 .testimonial-main .quote-icon {
-  display: none;
+  display: block;
 }
 
 .testimonial-text {
@@ -3353,10 +3366,11 @@ body,
   z-index: -2;
   background-color: var(--bg-deep);
   overflow: hidden;
+  opacity: 0; /* Hiding mesh to test if it's the grey shade source */
 }
 
 .home-page .blob {
-  display: none;
+  display: block;
 }
 
 .home-page .blob-1 {
@@ -3421,14 +3435,14 @@ body,
   border: 1.5px solid transparent !important;
   border-radius: 28px;
   animation: rotate 6s linear infinite;
-  margin: 16px 10px 0;
+  margin: 0 10px; /* Removed margin-top to hide background bleed */
   overflow: hidden;
   backdrop-filter: none;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+  box-shadow: none; /* Removed shadow to eliminate the grey 'haze' */
 }
 
 .home-page .experience-section {
-  margin-top: 12px;
+  margin-top: 0;
 }
 
 @media (max-width: 700px) {

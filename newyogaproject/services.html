@@ -134,18 +134,44 @@
       position: relative;
       border-radius: 24px;
       overflow: hidden;
-      background: linear-gradient(var(--about-surface), var(--about-surface)) padding-box,
-                  conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
-      border: 1.5px solid transparent;
-      animation: rotate 6s linear infinite;
+      background: #0a0a20;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       min-height: 280px;
-      padding: 30px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-end;
+      padding: 30px;
       gap: 16px;
       box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
       transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .bento-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.5;
+      transition: transform 0.5s ease;
+    }
+
+    .bento-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .bento-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 10, 32, 0.9) 0%, rgba(10, 10, 32, 0.4) 50%, transparent 100%);
+      z-index: 1;
+    }
+
+    .bento-card > div {
+      position: relative;
+      z-index: 2;
     }
 
     .bento-card:hover {
@@ -205,7 +231,28 @@
     @media (max-width: 640px) {
       .programs-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
+      
+      .about-main { padding: 80px 16px 20px; }
+      .services-feature-shell { padding-left: 0; padding-right: 0; margin-left: 0; margin-right: 0; }    }
+      .span-2-2, .span-2-1, .span-1-1 { grid-column: span 1; }
+      .about-hero { margin: 80px 20px 0; }
+      .programs-shell { padding: 0; }
+      .bento-card { 
+        padding: 24px; 
+        min-height: 240px;
       }
+      .bento-card h3 {
+        font-size: 24px;
+      }
+      .card-actions {
+        gap: 8px;
+      }
+      .btn-card {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+    }
       .span-2-2, .span-2-1, .span-1-1 { grid-column: span 1; }
       .about-hero { margin: 80px 20px 0; }
       .programs-shell { padding: 22px 16px; }
@@ -276,9 +323,9 @@
         
         <!-- Rehab & Recovery (Wide - Row 1 Left) -->
         <div class="bento-card span-2-1">
+          <img src="assets/AhamGraham-Web/re.png" alt="Rehab & Recovery">
           <div>
             <h3>rehab & recovery</h3>
-            <p>clinical-grade restorative practices for injury healing and biological synchronization.</p>
           </div>
           <div class="card-actions">
             <a href="book-session.html" class="btn-card btn-book">book now</a>
@@ -288,9 +335,9 @@
 
         <!-- Private & Group (Large - Rows 1-2 Right) -->
         <div class="bento-card span-2-2">
+          <img src="assets/AhamGraham-Web/Untitled design (4).png" alt="Private & Group">
           <div>
             <h3>private & group</h3>
-            <p>from personalized one-on-one neurological paths to collective energy and synchronized community movement.</p>
           </div>
           <div class="card-actions">
             <a href="book-session.html" class="btn-card btn-book">book now</a>
@@ -300,9 +347,9 @@
 
         <!-- Medical Therapeutic (Small - Row 2 Left) -->
         <div class="bento-card span-1-1">
+          <img src="assets/AhamGraham-Web/medical.png" alt="Medical Therapeutic">
           <div>
             <h3>medical therapeutic</h3>
-            <p>evidence-based yoga for chronic management.</p>
           </div>
           <div class="card-actions">
             <a href="book-session.html" class="btn-card btn-book">book now</a>
@@ -312,9 +359,9 @@
 
         <!-- Retreats & Getaways (Small - Row 2 Left) -->
         <div class="bento-card span-1-1">
+          <img src="assets/AhamGraham-Web/retreat.png" alt="Retreats">
           <div>
             <h3>retreats</h3>
-            <p>immersive journeys for total reset.</p>
           </div>
           <div class="card-actions">
             <a href="book-session.html" class="btn-card btn-book">book now</a>
@@ -326,9 +373,9 @@
 
         <!-- B2B (Large - Rows 3-4 Left) -->
         <div class="bento-card span-2-2">
+          <img src="assets/AhamGraham-Web/b2bpc.png" alt="B2B">
           <div>
             <h3>b2b</h3>
-            <p>strategic wellness protocols for high-performance corporate teams.</p>
           </div>
           <div class="card-actions">
             <a href="book-session.html" class="btn-card btn-book">book now</a>
@@ -338,9 +385,9 @@
 
         <!-- Online (Wide - Row 3 Right) -->
         <div class="bento-card span-2-1">
+          <img src="assets/AhamGraham-Web/online.png" alt="Online">
           <div>
             <h3>online</h3>
-            <p>bring the sanctuary to your home with real-time digital guidance.</p>
           </div>
           <div class="card-actions">
             <a href="book-session.html" class="btn-card btn-book">book now</a>
@@ -350,9 +397,9 @@
 
         <!-- Certification (Small - Row 4 Right) -->
         <div class="bento-card span-1-1">
+          <img src="assets/AhamGraham-Web/certification.png" alt="Certification">
           <div>
             <h3>certification</h3>
-            <p>master the science of space and breath.</p>
           </div>
           <div class="card-actions">
             <a href="book-session.html" class="btn-card btn-book">book now</a>
@@ -362,9 +409,9 @@
 
         <!-- Kids & Youth (Small - Row 4 Right) -->
         <div class="bento-card span-1-1">
+          <img src="assets/AhamGraham-Web/y&k.png" alt="Kids & Youth">
           <div>
             <h3>kids & youth</h3>
-            <p>foundation of mindfulness for the next generation.</p>
           </div>
           <div class="card-actions">
             <a href="book-session.html" class="btn-card btn-book">book now</a>
