@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="scroll-velocity.css" />
   <link rel="stylesheet" href="true-focus.css" />
+  <link rel="stylesheet" href="auth.css" />
 
 
   <style>
@@ -304,16 +305,16 @@
 
       <div class="menu-buttons">
         <div class="nav-indicator"></div>
-        <button class="nav-btn" onclick="window.location.href='/'">home</button>
-        <button class="nav-btn active" onclick="window.location.href='services'">services</button>
-        <button class="nav-btn" onclick="window.location.href='events'">events</button>
-        <button class="nav-btn" onclick="window.location.href='centers'">centers</button>
-        <button class="nav-btn" onclick="window.location.href='sacred-moon-oil'">shop</button>
-        <button class="nav-btn" onclick="window.location.href='about'">about us</button>
+        <button class="nav-btn" onclick="window.location.href='index.html'">home</button>
+        <button class="nav-btn active" onclick="window.location.href='services.html'">services</button>
+        <button class="nav-btn" onclick="window.location.href='events.html'">events</button>
+        <button class="nav-btn" onclick="window.location.href='centers.html'">centers</button>
+        <button class="nav-btn" onclick="window.location.href='sacred-moon-oil.html'">shop</button>
+        <button class="nav-btn" onclick="window.location.href='about.html'">about us</button>
       </div>
 
       <div class="cta-wrapper">
-        <button class="btn-primary" onclick="window.location.href='book-session'">book session</button>
+        <button class="btn-primary" onclick="handleBookSessionClick(event)">book session</button>
         <button class="btn-icon"><span class="material-symbols-outlined">light_mode</span></button>
         <button class="btn-icon"><span class="material-symbols-outlined">dark_mode</span></button>
         <button class="hamburger-btn">
@@ -356,7 +357,7 @@
             <h3>rehab & recovery</h3>
           </div>
           <div class="card-actions">
-            <a href="book-session" class="btn-card btn-book">book now</a>
+            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
             <a href="#" class="btn-card btn-desc">description</a>
           </div>
         </div>
@@ -368,7 +369,7 @@
             <h3>private & group</h3>
           </div>
           <div class="card-actions">
-            <a href="book-session" class="btn-card btn-book">book now</a>
+            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
             <a href="#" class="btn-card btn-desc">description</a>
           </div>
         </div>
@@ -380,7 +381,7 @@
             <h3>medical therapeutic</h3>
           </div>
           <div class="card-actions">
-            <a href="book-session" class="btn-card btn-book">book now</a>
+            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
             <a href="#" class="btn-card btn-desc">description</a>
           </div>
         </div>
@@ -392,7 +393,7 @@
             <h3>retreats</h3>
           </div>
           <div class="card-actions">
-            <a href="book-session" class="btn-card btn-book">book now</a>
+            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
             <a href="#" class="btn-card btn-desc">description</a>
           </div>
         </div>
@@ -406,7 +407,7 @@
             <h3>b2b</h3>
           </div>
           <div class="card-actions">
-            <a href="book-session" class="btn-card btn-book">book now</a>
+            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
             <a href="#" class="btn-card btn-desc">description</a>
           </div>
         </div>
@@ -418,7 +419,7 @@
             <h3>online</h3>
           </div>
           <div class="card-actions">
-            <a href="book-session" class="btn-card btn-book">book now</a>
+            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
             <a href="#" class="btn-card btn-desc">description</a>
           </div>
         </div>
@@ -430,7 +431,7 @@
             <h3>certification</h3>
           </div>
           <div class="card-actions">
-            <a href="book-session" class="btn-card btn-book">book now</a>
+            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
             <a href="#" class="btn-card btn-desc">description</a>
           </div>
         </div>
@@ -442,7 +443,7 @@
             <h3>kids & youth</h3>
           </div>
           <div class="card-actions">
-            <a href="book-session" class="btn-card btn-book">book now</a>
+            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
             <a href="#" class="btn-card btn-desc">description</a>
           </div>
         </div>
@@ -529,13 +530,13 @@
   <!-- MOBILE OVERLAY -->
   <div class="mobile-overlay">
     <ul class="mobile-nav-list">
-      <li><a href="/" class="mobile-nav-link">home</a></li>
-      <li><a href="services" class="mobile-nav-link">services</a></li>
-      <li><a href="events" class="mobile-nav-link">events</a></li>
-      <li><a href="centers" class="mobile-nav-link">centers</a></li>
-      <li><a href="sacred-moon-oil" class="mobile-nav-link">shop</a></li>
-      <li><a href="about" class="mobile-nav-link">about us</a></li>
-      <li><a href="book-session" class="btn-primary mt-4">book session</a></li>
+      <li><a href="index.html" class="mobile-nav-link">home</a></li>
+      <li><a href="services.html" class="mobile-nav-link">services</a></li>
+      <li><a href="events.html" class="mobile-nav-link">events</a></li>
+      <li><a href="centers.html" class="mobile-nav-link">centers</a></li>
+      <li><a href="sacred-moon-oil.html" class="mobile-nav-link">shop</a></li>
+      <li><a href="about.html" class="mobile-nav-link">about us</a></li>
+      <li><button onclick="handleBookSessionClick(event)" class="btn-primary mt-4 w-full">book session</button></li>
     </ul>
   </div>
 
@@ -583,12 +584,12 @@
           <div class="footer-col">
             <h4>Navigation</h4>
             <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="about">about us</a></li>
-              <li><a href="services">Services</a></li>
-              <li><a href="events">Events</a></li>
-              <li><a href="centers">Centers</a></li>
-              <li><a href="sacred-moon-oil">Shop</a></li>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">about us</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="events.html">Events</a></li>
+              <li><a href="centers.html">Centers</a></li>
+              <li><a href="sacred-moon-oil.html">Shop</a></li>
             </ul>
           </div>
 
@@ -638,6 +639,6 @@
   <script src="app.js"></script>
   <script src="scroll-velocity.js"></script>
   <script src="true-focus.js"></script>
-
+  <script src="auth.js"></script>
 </body>
 </html>
