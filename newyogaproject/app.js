@@ -200,10 +200,23 @@ function setupThemeToggle() {
       lightBtn.style.display = 'flex';
       darkBtn.style.display = 'none';
     }
+    
     // Force redraw for canvas-based elements (like light-rays)
+    // Multiple dispatches to ensure complex animations catch the visibility change
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
+      if (window.lightRays) window.lightRays.onResize();
     }, 50);
+    
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+      if (window.lightRays) window.lightRays.onResize();
+    }, 150);
+    
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+      if (window.lightRays) window.lightRays.onResize();
+    }, 300);
 
   }
 
@@ -220,3 +233,17 @@ function setupThemeToggle() {
 setupThemeToggle();
 
 
+
+// Footer Accordion Logic
+function setupFooterAccordion() {
+  const headers = document.querySelectorAll('.footer-col h4');
+  headers.forEach(header => {
+    header.addEventListener('click', () => {
+      if (window.innerWidth <= 700) {
+        const col = header.parentElement;
+        col.classList.toggle('active');
+      }
+    });
+  });
+}
+setupFooterAccordion();

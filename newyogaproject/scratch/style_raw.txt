@@ -1,4 +1,4 @@
-@property --angle {
+﻿@property --angle {
   syntax: '<angle>';
   initial-value: 0deg;
   inherits: false;
@@ -234,38 +234,32 @@ html.light-theme .testimonial-role {
 
 
 html.light-theme .navbar-initial {
-  background: rgba(236, 245, 235, 0.8) !important;
-  backdrop-filter: blur(12px) !important;
+  background: rgba(0, 0, 0, 0.65) !important;
 }
 
 html.light-theme .menu-buttons {
-  background: rgba(0, 0, 0, 0.05) !important;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 html.light-theme .navbar-initial .brand-name,
 html.light-theme .navbar-initial .nav-btn {
-  color: #111827 !important;
+  color: #ffffff !important;
 }
 
 html.light-theme .navbar-initial .brand-sub {
-  color: #4b5563 !important;
+  color: #e2e8f0 !important;
 }
 
 /* Light Theme Nav Indicator & Hover States */
 html.light-theme .nav-indicator {
-  background: var(--btn-book-gradient) !important;
-  box-shadow: 0 2px 8px rgba(124, 77, 255, 0.2) !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
 html.light-theme .navbar-initial .nav-btn:hover {
-  color: #ffffff !important;
+  color: #111827 !important;
 }
-
-html.light-theme .logo-img {
-  filter: brightness(0) !important;
-}
-
 
 html.light-theme .navbar-scrolled .nav-indicator {
   background: #eafae8 !important;
@@ -458,7 +452,7 @@ body {
 .nav-indicator {
   position: absolute;
   height: calc(100% - 12px);
-  background: var(--btn-book-gradient);
+  background: linear-gradient(to right, #1e40af, #1d4ed8);
   border-radius: 999px;
   top: 6px;
   left: 0;
@@ -513,7 +507,7 @@ body {
 }
 
 .btn-primary {
-  background: var(--btn-book-gradient);
+  background: linear-gradient(to right, #1e40af, #1d4ed8);
   padding: 8px 20px;
   /* Exact match with .nav-btn */
   border-radius: 999px;
@@ -876,8 +870,8 @@ body {
 
   .exp-col.left li,
   .exp-col.right li {
-    display: block;
-    text-align: center;
+    grid-template-columns: auto 1fr;
+    text-align: left;
     justify-content: center;
   }
 
@@ -894,14 +888,8 @@ body {
 
   .exp-center {
     order: -1;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
-  .exp-center img {
-    height: 450px;
-    max-width: 90%;
-  }
-
-
 
   .menu-buttons {
     display: none;
@@ -913,14 +901,6 @@ body {
 
   .nav-container .btn-primary {
     display: none; /* Hide desktop book button */
-  }
-  .exp-col span {
-    display: none !important;
-  }
-  .exp-col.left li, .exp-col.right li {
-    display: block !important;
-    text-align: center !important;
-  }
   }
 }
 
@@ -935,7 +915,7 @@ body {
   }
 
   .experience-section {
-    padding: 60px 0;
+    padding: 60px 20px;
   }
 
   .nav-container {
@@ -959,6 +939,9 @@ body {
   }
 }
 
+
+
+/* TESTIMONIAL SECTION */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -3200,11 +3183,8 @@ section,
 }
 
 .footer-container {
-  display: grid;
-  text-align: center;
-  grid-template-columns: 1.55fr 1fr 1fr 1fr 1fr;
   padding-bottom: 48px;
-  gap: 64px;
+  gap: 56px;
 }
 
 .footer-logo {
@@ -3234,7 +3214,7 @@ section,
 }
 
 .footer-subheading {
-  margin-top: 0 !important;
+  margin-top: 44px !important;
 }
 
 .footer-col ul li,
@@ -3262,13 +3242,7 @@ section,
   padding: 18px 48px 20px;
 }
 
-@media (min-width: 1025px) {
-  .footer-col:not(.footer-brand-col) {
-    padding-top: 105px;
-  }
-}
-
-@media (min-width: 701px) and (max-width: 1024px) {
+@media (max-width: 1024px) {
   .footer {
     border-radius: 0;
   }
@@ -3284,19 +3258,8 @@ section,
   }
 
   .footer-container {
-    grid-template-columns: repeat(5, 1fr) !important;
-    gap: 60px;
+    gap: 28px;
     padding-bottom: 28px;
-  }
-  .footer-brand-col {
-    grid-column: span 5;
-    text-align: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  .footer-quote {
-    text-align: center;
   }
 }
 
@@ -3316,66 +3279,6 @@ section,
   .footer-quote {
     font-size: 18px;
     line-height: 1.5;
-  }
-  .footer-main {
-    padding: 60px 24px;
-  }
-  
-  .footer-container {
-    grid-template-columns: 1fr !important;
-    gap: 0 !important;
-    text-align: center;
-  }
-  
-  .footer-col {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .footer-brand-col {
-    margin-bottom: 40px;
-    margin-top: 0 !important;
-  }
-  
-  .footer-col:not(.footer-brand-col) h4,
-  .footer-col:not(.footer-brand-col) .footer-subheading {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    margin: 0;
-    border-bottom: 1px solid rgba(127, 119, 221, 0.2);
-    cursor: pointer;
-  }
-  
-  .footer-col:not(.footer-brand-col) h4::after,
-  .footer-col:not(.footer-brand-col) .footer-subheading::after {
-    content: '+';
-    font-size: 20px;
-    font-weight: 300;
-  }
-  
-  .footer-col.active h4::after,
-  .footer-col.active .footer-subheading::after {
-    content: '−';
-  }
-  
-  .footer-col ul,
-  .footer-col .contact-stack {
-    display: none;
-    width: 100%;
-    padding: 20px 0;
-    margin: 0;
-  }
-  
-  .footer-col.active ul,
-  .footer-col.active .contact-stack {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 }
 
@@ -3397,9 +3300,8 @@ body,
   background: var(--bg-deep) !important;
 }
 
-@media (min-width: 701px) {
 .footer-container {
-  grid-template-columns: 1.55fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.55fr 1fr 1fr;
   align-items: start;
 }
 
@@ -3437,7 +3339,6 @@ body,
   color: var(--text-secondary);
   font-style: italic;
   margin: 0;
-}
 }
 
 @media (max-width: 700px) {
@@ -3777,32 +3678,4 @@ html.light-theme .cta-section p,
   color: #ffffff !important;
   text-shadow: 0 2px 8px rgba(0,0,0,0.4); /* Stronger shadow for readability */
 }
-
-
-/* Fix for horizontal footer alignment */
-.footer .footer-subheading { margin-top: 0 !important; }
-
-/* Global Footer Text Centering */
-.footer-container, 
-.footer-quote, 
-.footer-col h4, 
-.footer-subheading, 
-.footer-col ul li, 
-.contact-link {
-  text-align: center !important;
-}
-
-/* Align items to center only when visible */
-.footer-col ul, 
-.contact-stack {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.footer-col ul li {
-  width: 100%;
-}
-
 

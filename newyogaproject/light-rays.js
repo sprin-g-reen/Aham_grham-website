@@ -169,12 +169,17 @@ class LightRays {
 
   onResize() {
     const { clientWidth: w, clientHeight: h } = this.container;
+    if (w === 0 || h === 0) return;
+    
     this.renderer.setSize(w, h);
     const dpr = this.renderer.dpr;
     this.uniforms.iResolution.value = [w * dpr, h * dpr];
     const { anchor, dir } = this.getAnchorAndDir(this.raysOrigin, w * dpr, h * dpr);
     this.uniforms.rayPos.value = anchor;
     this.uniforms.rayDir.value = dir;
+    
+    // Force immediate render
+    this.renderer.render({ scene: this.mesh });
   }
 
   onMouseMove(e) {
@@ -240,7 +245,7 @@ class LightRays {
 window.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('light-rays-hero');
   if (container) {
-    new LightRays({
+    window.lightRays = new LightRays({
       container: container,
       raysOrigin: 'top-center',
       raysColor: '#6366f1',

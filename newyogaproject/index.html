@@ -70,8 +70,8 @@
       align-items: center; /* Keeps text centered */
       width: 100%;
       background: #ecf5eb; /* Deepest background green */
-      padding: 80px 10% 80px 0; /* Clear the navbar */
-      min-height: 100vh;
+      padding: 80px 10% 40px 0; /* Reduced bottom padding */
+      min-height: auto;
       position: relative;
       z-index: 10;
     }
@@ -81,19 +81,23 @@
     }
 
     html.light-theme .hero-light-mode .hero-image {
-      flex: 1.2;
-      align-self: flex-start; /* Move image to top */
-      margin-top: 3px; /* Exactly 3px gap below navbar */
+      flex: 1.5;
+      align-self: flex-start;
+      margin-top: 3px;
     }
 
     html.light-theme .hero-light-mode .hero-content {
       flex: 1;
-      padding-left: 5rem;
-      /* Vertically centered via align-items: center on parent */
+      padding: 0 5%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     html.light-theme .hero-light-mode .hero-content h2 {
-      font-size: 1.5rem;
+      font-size: 2rem;
       color: #000000 !important;
       margin: 0;
       text-transform: uppercase;
@@ -101,34 +105,47 @@
     }
 
     html.light-theme .hero-light-mode .hero-content h1 {
-      font-size: clamp(3rem, 8vw, 5rem);
+      font-size: clamp(4rem, 10vw, 7rem);
       color: #000000 !important;
       margin: 0.5rem 0 1.5rem;
       font-weight: 800;
       line-height: 1;
+      text-align: center;
     }
 
     html.light-theme .hero-light-mode .hero-content p {
       color: #475569;
       line-height: 1.8;
-      font-size: 1.1rem;
-      max-width: 500px;
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     @media (max-width: 768px) {
       html.light-theme .hero-light-mode {
         flex-direction: column;
-        padding: 120px 20px 60px;
+        padding: 80px 0 0;
         text-align: center;
+        min-height: auto;
       }
       html.light-theme .hero-light-mode .hero-content {
-        padding-left: 0;
+        padding: 0 20px;
         margin-top: 2rem;
+      }
+      html.light-theme .hero-light-mode .hero-image {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        flex: none;
+      }
+      .experience-section {
+        margin-top: 0 !important;
       }
     }
 
     .experience-section {
-      margin-top: 80px !important;
+      margin-top: 40px !important;
       box-shadow: none !important;
     }
 
@@ -738,7 +755,7 @@
               <img src="VJS-Logo-transparent.png" alt="VJS Logo" class="footer-badge light-logo">
             </div>
 
-            <!-- Column 2: Navigation & Social -->
+            <!-- Column 2: Navigation -->
             <div class="footer-col">
               <h4>Navigation</h4>
               <ul>
@@ -749,7 +766,20 @@
                 <li><a href="centers.html">Centers</a></li>
                 <li><a href="sacred-moon-oil.html">Shop</a></li>
               </ul>
+            </div>
 
+            <!-- Column 3: Our Centers -->
+            <div class="footer-col">
+              <h4 class="footer-subheading">Our Centers</h4>
+              <ul>
+                <li>Rishikesh, India</li>
+                <li>Swiss Alps, Switzerland</li>
+                <li>Ubud, Bali</li>
+              </ul>
+            </div>
+
+            <!-- Column 4: Social Media -->
+            <div class="footer-col">
               <h4 class="footer-subheading">Social Media</h4>
               <ul>
                 <li>Facebook</li>
@@ -759,7 +789,7 @@
               </ul>
             </div>
 
-            <!-- Column 3: Contact & Locations -->
+            <!-- Column 5: Contact Us -->
             <div class="footer-col">
               <h4>Contact Us</h4>
               <div class="contact-stack">
@@ -772,13 +802,6 @@
                   +91 98765 43210
                 </a>
               </div>
-
-              <h4 class="footer-subheading">Our Centers</h4>
-              <ul>
-                <li>Rishikesh, India</li>
-                <li>Swiss Alps, Switzerland</li>
-                <li>Ubud, Bali</li>
-              </ul>
             </div>
           </div>
         </div>
