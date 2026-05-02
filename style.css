@@ -1672,12 +1672,12 @@ html.light-theme .dark-logo {
 
 /* Equal Small 3 */
 .c9 {
-  grid-area: 3 / 1 / 4 / 5;
+  grid-area: 3 / 1 / 5 / 5;
 }
 
 /* Wide Lower-Left */
 .c10 {
-  grid-area: 4 / 1 / 5 / 5;
+  grid-area: 5 / 1 / 6 / 5;
 }
 
 /* Wide Bottom-Left */
@@ -1728,11 +1728,13 @@ html.light-theme .dark-logo {
   }
 
   .c1,
+  .c9,
   .c10,
   .c12 {
     grid-row: span 2;
   }
 
+  .c9,
   .c14 {
     grid-column: span 6;
   }
