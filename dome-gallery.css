@@ -251,3 +251,21 @@ main.sphere-main {
   color: #94a3b8;
   margin: 0;
 }
+
+@media (max-width: 768px) {
+  .testimonial-content {
+    height: 25%; /* Reduced to give more room for the photo */
+    padding: 0.8rem 1.2rem;
+  }
+  .testimonial-text {
+    font-size: 0.95rem; /* Back to original size but for a larger card */
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .testimonial-author {
+    font-size: 0.85rem;
+  }
+  .testimonial-role {
+    font-size: 0.7rem;
+  }
+}

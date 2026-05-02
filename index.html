@@ -60,24 +60,53 @@
       backdrop-filter: blur(12px);
     }
 
-    /* Light Theme Hero Specific Styles */
+    /* Hero Transition Logic */
+    .hero-master-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      width: 100%;
+      position: relative;
+    }
+
+    .hero-light-rays, 
     .hero-light-mode {
-      display: none !important;
+      grid-area: 1 / 1;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s ease;
+      width: 100%;
+    }
+
+    .hero-light-mode {
+      display: flex !important;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      position: relative;
+      z-index: 1;
+      align-items: center;
+      width: 100%;
+      background: #ecf5eb;
+      padding: 80px 10% 40px 0;
+      min-height: auto;
     }
 
     html.light-theme .hero-light-mode {
-      display: flex !important;
-      align-items: center; /* Keeps text centered */
-      width: 100%;
-      background: #ecf5eb; /* Deepest background green */
-      padding: 80px 10% 40px 0; /* Reduced bottom padding */
-      min-height: auto;
-      position: relative;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
       z-index: 10;
     }
 
+    .hero-light-rays {
+      opacity: 1;
+      visibility: visible;
+      z-index: 5;
+    }
+
     html.light-theme .hero-light-rays {
-      display: none !important;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
 
     html.light-theme .hero-light-mode .hero-image {
@@ -229,53 +258,55 @@
     </div>
   </nav>
 
-  <!-- LIGHT RAYS HERO SECTION (DARK MODE) -->
-  <section class="hero-light-rays">
-    <div id="light-rays-hero" class="light-rays-container"></div>
-    <div class="hero-brand">
-      <img src="assets/logo_transparent.png" alt="Logo" class="hero-logo" 
-           onerror="this.src='https://placehold.co/400x100/2c2c3a/white?text=AHAM'">
-      <div class="hero-brand-text">
-        <h1 class="hero-brand-name">aham grham</h1>
-        <p class="hero-brand-sub">return to your inner Home</p>
+  <div class="hero-master-container">
+    <!-- LIGHT RAYS HERO SECTION (DARK MODE) -->
+    <section class="hero-light-rays">
+      <div id="light-rays-hero" class="light-rays-container"></div>
+      <div class="hero-brand">
+        <img src="assets/logo_transparent.png" alt="Logo" class="hero-logo" 
+             onerror="this.src='https://placehold.co/400x100/2c2c3a/white?text=AHAM'">
+        <div class="hero-brand-text">
+          <h1 class="hero-brand-name">aham grham</h1>
+          <p class="hero-brand-sub">return to your inner Home</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- LIGHT THEME HERO (LIGHT MODE ONLY) -->
-  <section class="hero-light-mode">
-    <div class="hero-image">
-      <svg viewBox="0 0 600 530" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <clipPath id="stripeMask" clipPathUnits="userSpaceOnUse">
-            <path d="M0,0 H260 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
-            <path d="M0,90 H410 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
-            <path d="M0,180 H560 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
-            <path d="M0,270 H460 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
-            <path d="M0,360 H510 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
-            <path d="M0,450 H360 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
-          </clipPath>
-        </defs>
+    <!-- LIGHT THEME HERO (LIGHT MODE ONLY) -->
+    <section class="hero-light-mode">
+      <div class="hero-image">
+        <svg viewBox="0 0 600 530" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="stripeMask" clipPathUnits="userSpaceOnUse">
+              <path d="M0,0 H260 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+              <path d="M0,90 H410 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+              <path d="M0,180 H560 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+              <path d="M0,270 H460 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+              <path d="M0,360 H510 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+              <path d="M0,450 H360 a40,40 0 0 1 40,40 a40,40 0 0 1 -40,40 H0 Z" />
+            </clipPath>
+          </defs>
 
-        <image
-               href="assets/AhamGraham-Web/young-women-doing-yoga-sport-2026-03-24-23-12-41-utc.jpg"
-               width="600"
-               height="530"
-               clip-path="url(#stripeMask)"
-               preserveAspectRatio="xMidYMid slice"
-               />
-      </svg>
-    </div>
+          <image
+                 href="assets/AhamGraham-Web/young-women-doing-yoga-sport-2026-03-24-23-12-41-utc.jpg"
+                 width="600"
+                 height="530"
+                 clip-path="url(#stripeMask)"
+                 preserveAspectRatio="xMidYMid slice"
+                 />
+        </svg>
+      </div>
 
-    <div class="hero-content">
-      <h2>return to your</h2>
-      <h1>inner home</h1>
-      <p>
-        precision-engineered yoga pathways designed for clinical results and spiritual depth. 
-        experience the perfect balance of neurological synchronization and community movement.
-      </p>
-    </div>
-  </section>
+      <div class="hero-content">
+        <h2>return to your</h2>
+        <h1>inner home</h1>
+        <p>
+          precision-engineered yoga pathways designed for clinical results and spiritual depth. 
+          experience the perfect balance of neurological synchronization and community movement.
+        </p>
+      </div>
+    </section>
+  </div>
 
 
 
@@ -666,18 +697,24 @@
 
         const container = document.getElementById('testimonial-dome-container');
         if (container) {
+          const isMobile = window.innerWidth <= 768;
+          // Calculate near full-screen mobile dimensions
+          const mobileWidth = Math.floor(window.innerWidth * 0.98);
+          const mobileHeight = Math.floor(window.innerHeight * 0.95);
+          
           new DomeGallery(container, {
             images: testimonialData,
-            fit: 0.8,
+            fit: isMobile ? 1.1 : 0.8, 
             fitBasis: 'width',
             minRadius: 400,
             maxRadius: 2000,
+            padFactor: isMobile ? 0.05 : 0.25, // Drastically reduce padding on mobile
             overlayBlurColor: '#05051a',
-            openedImageWidth: '300px',
-            openedImageHeight: '550px',
+            openedImageWidth: isMobile ? `${mobileWidth}px` : '300px',
+            openedImageHeight: isMobile ? `${mobileHeight}px` : '550px',
             imageBorderRadius: '30px',
             grayscale: false,
-            segments: 55
+            segments: isMobile ? 30 : 55 
           });
         }
       });
