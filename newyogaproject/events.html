@@ -47,7 +47,7 @@
     .about-hero {
       grid-column: span 12;
       min-height: 550px;
-      background: #19112b;
+      background: #000000;
       position: relative;
       border-radius: 24px;
       overflow: hidden;
@@ -77,8 +77,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.7;
+      opacity: 1;
     }
+
 
     .about-hero-content {
       position: absolute;
@@ -100,7 +101,7 @@
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #d4c9ff;
+      color: #10b981;
       font-weight: 700;
     }
 
@@ -115,9 +116,19 @@
     .about-subtitle {
       margin: 0;
       font-size: clamp(16px, 2vw, 20px);
-      color: #ebe5ff;
+      color: #ffffff; /* Changed from #ebe5ff to pure white as requested */
       line-height: 1.6;
       text-transform: none;
+    }
+
+    /* Override global light mode settings to keep hero text white and kicker green */
+    html.light-theme .about-hero-content .about-title,
+    html.light-theme .about-hero-content .about-subtitle {
+      color: #ffffff !important;
+    }
+    
+    html.light-theme .about-hero-content .about-kicker {
+      color: #10b981 !important;
     }
 
     /* Bento Grid for Events */
@@ -319,7 +330,7 @@
     <div class="about-main">
       <!-- HERO SECTION -->
       <section class="about-hero">
-        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80" alt="Meditation event">
+        <img src="assets/AhamGraham-Web/AboutUs-Page.jpg" alt="Aham Graham Events">
         <div class="about-hero-content">
           <span class="about-kicker">communal resonance</span>
           <h1 class="about-title">sacred gatherings</h1>

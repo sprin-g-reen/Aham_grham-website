@@ -55,7 +55,7 @@
     }
 
     .about-main {
-      padding: 90px 40px 40px;
+      padding: 70px 40px 40px;
     }
 
     .services-feature-shell {
@@ -75,26 +75,44 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 1;
+    }
+
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5, 5, 26, 0.6) 0%, transparent 60%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    html.light-theme .about-hero::after {
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
     }
 
     .about-hero-content {
-      position: relative;
-      z-index: 1;
-      height: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 44px;
-      max-width: 760px;
+      padding: 48px;
+      max-width: 800px;
       gap: 12px;
+    }
+
+    /* Light mode text color overrides for services hero */
+    html.light-theme .about-hero-content .about-title,
+    html.light-theme .about-hero-content .about-subtitle {
+      color: #ffffff !important;
     }
 
     .about-kicker {
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #d4c9ff;
+      color: #10b981;
       font-weight: 700;
     }
 
@@ -232,12 +250,25 @@
       .programs-grid {
         grid-template-columns: 1fr;
         gap: 16px;
-      
-      .about-main { padding: 80px 16px 20px; }
-      .services-feature-shell { padding-left: 0; padding-right: 0; margin-left: 0; margin-right: 0; }    }
-      .span-2-2, .span-2-1, .span-1-1 { grid-column: span 1; }
-      .about-hero { margin: 80px 20px 0; }
-      .programs-shell { padding: 0; }
+      }
+      .about-main { 
+        padding: 70px 16px 20px; 
+      }
+      .services-feature-shell { 
+        padding-left: 0; 
+        padding-right: 0; 
+        margin-left: 0; 
+        margin-right: 0; 
+      }
+      .span-2-2, .span-2-1, .span-1-1 { 
+        grid-column: span 1; 
+      }
+      .about-hero { 
+        margin: 0; /* Reduced margin to bring closer to nav */
+      }
+      .programs-shell { 
+        padding: 0; 
+      }
       .bento-card { 
         padding: 24px; 
         min-height: 240px;
@@ -253,10 +284,7 @@
         font-size: 11px;
       }
     }
-      .span-2-2, .span-2-1, .span-1-1 { grid-column: span 1; }
-      .about-hero { margin: 80px 20px 0; }
-      .programs-shell { padding: 22px 16px; }
-    }
+    
   </style>
 </head>
 <body>
