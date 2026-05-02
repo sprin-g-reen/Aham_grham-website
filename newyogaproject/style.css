@@ -244,8 +244,18 @@ html.light-theme .menu-buttons {
 }
 
 html.light-theme .navbar-initial .brand-name,
-html.light-theme .navbar-initial .nav-btn {
+html.light-theme .navbar-initial .nav-btn,
+html.light-theme .btn-icon {
   color: #111827 !important;
+}
+
+html.light-theme .hamburger-btn span {
+  background-color: #111827 !important;
+}
+
+html.light-theme .btn-icon {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 html.light-theme .navbar-initial .brand-sub {
@@ -552,11 +562,11 @@ body {
 }
 
 .btn-icon {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -568,8 +578,8 @@ body {
 
 .btn-icon:hover {
   background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-scrolled .btn-icon {
@@ -585,10 +595,10 @@ body {
 .hamburger-btn {
   display: none;
   background: rgba(255, 255, 255, 0.1);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
