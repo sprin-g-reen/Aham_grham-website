@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sacred Moon Oil | Aham Graham</title>
+  <title>Sacred Moon Oil | Aham Grham</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com">
@@ -282,6 +282,57 @@
 
     .close-modal:hover {
       transform: rotate(90deg);
+    }
+
+    html.light-theme .md\:col-span-8,
+    html.light-theme .md\:col-span-6,
+    html.light-theme #vessels-card,
+    html.light-theme .md\:col-span-4:not(.bg-accent-blue\/10) {
+      background: var(--bg-surface) !important;
+      border-color: rgba(0, 0, 0, 0.05) !important;
+    }
+
+    html.light-theme .text-white {
+      color: #111827 !important;
+    }
+
+    html.light-theme .text-text-secondary {
+      color: #4b5563 !important;
+    }
+
+    html.light-theme .bg-white\/5,
+    html.light-theme #vessels-card:hover {
+      background: rgba(255, 255, 255, 0.4) !important;
+    }
+
+    html.light-theme .bg-white\/5 {
+      background: var(--bg-surface) !important;
+    }
+
+    html.light-theme .group-hover\:opacity-10 {
+      opacity: 0.15 !important;
+    }
+
+    html.light-theme .opacity-5 {
+      opacity: 0.1 !important;
+    }
+
+    html.light-theme .silhouette-icon {
+      color: #5E35B1 !important; /* Slightly deeper purple */
+      opacity: 0.4 !important;
+    }
+
+    html.light-theme .group:hover .silhouette-icon {
+      opacity: 0.6 !important;
+    }
+
+    /* Target the specific container for self_improvement */
+    html.light-theme .absolute.right-0.bottom-0.opacity-5 {
+      opacity: 1 !important; /* Let the icon handle its own opacity */
+    }
+    
+    html.light-theme .group:hover .absolute.right-0.bottom-0.opacity-5 {
+      opacity: 1 !important;
     }
 
     .hidden { display: none !important; }
@@ -574,6 +625,13 @@
       color: rgba(0, 0, 0, 0.4);
     }
 
+    html.light-theme h1,
+    html.light-theme h1 span,
+    html.light-theme .text-white,
+    html.light-theme .text-accent-blue {
+      color: #000000 !important;
+    }
+
 
 
   </style>
@@ -595,7 +653,7 @@
       <div class="logo-area">
         <img src="assets/logo_transparent.png" alt="Logo" class="logo-img">
         <div class="logo-text">
-          <div class="brand-name">aham graham</div>
+          <div class="brand-name">aham grham</div>
           <div class="brand-sub">return to you inner Home</div>
         </div>
       </div>
@@ -640,7 +698,7 @@
         <!-- Product Details -->
         <div class="flex flex-col space-y-8">
           <div class="space-y-4">
-            <span class="text-xs tracking-[0.3em] uppercase text-accent-cyan font-bold">The Celestial Collection</span>
+            <span class="text-xs tracking-[0.3em] uppercase text-white font-bold">The Celestial Collection</span>
             <h1 class="text-5xl md:text-6xl font-serif text-white leading-tight">Sacred Moon Oil <br/><span class="italic text-4xl opacity-70">Ritual Grade</span></h1>
             <p class="text-2xl font-serif text-accent-blue font-bold">$78.00</p>
           </div>
@@ -670,7 +728,7 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
         <!-- Bento 1: Main Process -->
-        <div class="md:col-span-8 bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[400px] relative overflow-hidden group hover:bg-white/[0.07] transition-colors">
+        <div id="vessels-card" class="md:col-span-8 bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[400px] relative overflow-hidden group hover:bg-white/[0.07] transition-colors">
           <div class="relative z-10 space-y-8">
             <div class="space-y-4">
               <h3 class="text-4xl font-serif italic text-white">Vessels of Intention</h3>
@@ -688,13 +746,13 @@
             </ul>
           </div>
           <div class="absolute right-0 bottom-0 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
-            <span class="material-symbols-outlined text-[240px]" data-icon="self_improvement">self_improvement</span>
+            <span class="material-symbols-outlined text-[240px] silhouette-icon" data-icon="self_improvement">self_improvement</span>
           </div>
         </div>
 
         <!-- Bento 2: Note Card -->
         <div class="md:col-span-4 bg-accent-blue/10 border border-accent-blue/20 rounded-3xl p-8 flex flex-col justify-center items-center text-center space-y-6">
-          <span class="material-symbols-outlined text-5xl text-accent-blue" data-icon="nights_stay">nights_stay</span>
+          <span class="material-symbols-outlined text-5xl text-accent-blue silhouette-icon" data-icon="nights_stay">nights_stay</span>
           <h4 class="font-serif text-xl text-white italic">Lunar Synergy</h4>
           <p class="text-sm text-text-secondary leading-loose">Best used during the New Moon to manifest clarity, or the Full Moon to release what no longer serves your journey.</p>
         </div>
@@ -716,7 +774,7 @@
             <h4 class="text-[10px] uppercase tracking-widest font-bold text-accent-cyan">Eco-Conscious</h4>
             <p class="text-text-secondary">Violet Miron Glass preserves the bio-energy of our botanical extracts.</p>
           </div>
-          <span class="material-symbols-outlined text-4xl text-accent-blue/40" data-icon="recycling">recycling</span>
+          <span class="material-symbols-outlined text-4xl text-accent-blue/40 silhouette-icon" data-icon="recycling">recycling</span>
         </div>
       </div>
     </section>
@@ -1037,7 +1095,8 @@
       </div>
     </div>
 
-    <div class="footer-bottom">
+    <div class="footer-large-text">aham grham</div>
+        <div class="footer-bottom">
       <div class="bottom-content">
         <p>&copy; 2026 Aham Graham. all rights reserved.</p>
       </div>
@@ -1256,3 +1315,4 @@
 </body>
 
 </html>
+

@@ -25,7 +25,7 @@
   --text-primary: #ffffff;
   --text-secondary: #94a3b8;
   --accent-purple: #7c4dff;
-  --accent-cyan: #06b6d4;
+  --accent-cyan: #ffffff;
   --border-subtle: rgba(124, 77, 255, 0.15);
   
   --btn-book-gradient: linear-gradient(135deg, #7c4dff, #3b82f6);
@@ -34,21 +34,21 @@
 }
 
 html.light-theme {
-  --bg-deep: #ecf5eb;
-  --bg-surface: #eafae8;
+  --bg-deep: #F3EEFD;
+  --bg-surface: #F7F2FF;
   --text-primary: #111827;
   --text-secondary: #4b5563;
   --border-subtle: rgba(0, 0, 0, 0.1);
-  --about-bg: #ecf5eb;
-  --about-surface: #eafae8;
-  --about-card: #eafae8;
+  --about-bg: #F3EEFD;
+  --about-surface: #F7F2FF;
+  --about-card: #F7F2FF;
   --about-ink: #111827;
   --about-muted: #6b7280;
-  --accent-purple: #16a34a;
-  --accent-cyan: #10b981;
-  --btn-book-gradient: linear-gradient(135deg, #16a34a, #10b981);
-  --btn-desc-bg: rgba(22, 163, 74, 0.05);
-  --btn-desc-border: rgba(22, 163, 74, 0.2);
+  --accent-purple: #7C4DFF;
+  --accent-cyan: #A78BFA;
+  --btn-book-gradient: linear-gradient(135deg, #7C4DFF, #A78BFA);
+  --btn-desc-bg: rgba(124, 77, 255, 0.05);
+  --btn-desc-border: rgba(124, 77, 255, 0.2);
 }
 
 /* Card Action Buttons */
@@ -159,19 +159,95 @@ html.light-theme .btn-primary {
   background: var(--btn-book-gradient) !important;
   color: #ffffff !important;
   border: none !important;
-  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(124, 77, 255, 0.2) !important;
 }
 
 html.light-theme .btn-primary:hover {
   filter: brightness(1.05);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.3) !important;
+  box-shadow: 0 6px 16px rgba(124, 77, 255, 0.3) !important;
 }
 
 html.light-theme .exp-col span,
 html.light-theme .testimonial-controls button {
   background: #ffffff !important;
-  color: #166534 !important;
+  color: #7C4DFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html.light-theme .testimonial-controls button:hover {
+  background: #f0fdf4 !important;
+}
+
+}
+
+.btn-desc:hover {
+  background: rgba(124, 77, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+html.light-theme .btn-desc:hover {
+  background: rgba(22, 163, 74, 0.15);
+}
+
+html.light-theme .bento-item,
+html.light-theme .bento-blog-item,
+html.light-theme .bento-card,
+html.light-theme .product-card,
+html.light-theme .services-feature-shell {
+  background: var(--bg-surface) padding-box !important;
+  border-color: rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light-theme .bento-item:hover,
+html.light-theme .bento-blog-item:hover,
+html.light-theme .bento-card:hover,
+html.light-theme .product-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light-theme .bento-overlay::before,
+html.light-theme .blog-item-content::before {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.85) 0%, transparent 100%) !important;
+}
+
+html.light-theme .bento-item:hover .bento-overlay::before,
+html.light-theme .bento-blog-item:hover .blog-item-content::before {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, transparent 100%) !important;
+}
+
+html.light-theme .about-title,
+html.light-theme .about-subtitle,
+html.light-theme .about-kicker,
+html.light-theme .bento-overlay h3,
+html.light-theme .bento-overlay p,
+html.light-theme .bento-overlay span,
+html.light-theme .bento-card h3,
+html.light-theme .bento-card p,
+html.light-theme .absolute h3,
+html.light-theme .absolute p {
+  color: #111827 !important;
+}
+
+html.light-theme .btn-primary {
+  background: var(--btn-book-gradient) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(124, 77, 255, 0.2) !important;
+}
+
+html.light-theme .btn-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(124, 77, 255, 0.3) !important;
+}
+
+html.light-theme .exp-col span,
+html.light-theme .testimonial-controls button {
+  background: #ffffff !important;
+  color: #7C4DFF !important;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -180,34 +256,28 @@ html.light-theme .testimonial-controls button:hover {
 }
 
 html.light-theme .about-hero {
-  background: var(--bg-surface) !important;
+  background: var(--bg-deep) !important;
+  position: relative;
 }
 
-html.light-theme .text-white,
-html.light-theme [class*="text-white"],
-html.light-theme [style*="color: white"],
-html.light-theme [style*="color: #fff"],
-html.light-theme [style*="color: #ffffff"],
-html.light-theme .cta-section h2,
-html.light-theme .hero-brand-name,
-html.light-theme .hero-brand-sub,
-html.light-theme .brand-motto,
-html.light-theme h1:not(.about-hero-content h1),
-html.light-theme h2:not(.absolute h2),
-html.light-theme h3:not(.bento-content h3):not(.blog-item-content h3):not(.brand-card-content h3):not(.bento-overlay h3):not(.bento-card h3):not(.absolute h3),
-html.light-theme h4 {
+html.light-theme .about-hero::after {
+  display: none !important;
+}
+
+html.light-theme .about-hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+html.light-theme .about-hero-content .about-title,
+html.light-theme .about-hero-content .about-subtitle,
+html.light-theme .about-hero-content .about-kicker {
   color: #000000 !important;
+  text-shadow: none !important;
 }
 
-html.light-theme .btn-outline {
-  background: #16a34a !important;
-  color: #ffffff !important;
-  border: none !important;
-}
-
-html.light-theme .text-gray-400,
-html.light-theme [class*="text-gray-"],
-html.light-theme .cta-section p,
 html.light-theme p:not(.bento-content p):not(.blog-item-content p):not(.brand-card-content p):not(.about-hero-content p):not(.bento-overlay p):not(.bento-card p):not(.absolute p):not(.testimonial-content p) {
   color: #4b5563 !important;
 }
@@ -234,13 +304,13 @@ html.light-theme .testimonial-role {
 
 
 html.light-theme .navbar-initial {
-  background: rgba(236, 245, 235, 0.8) !important;
+  background: rgba(243, 238, 253, 0.8) !important;
   backdrop-filter: blur(12px) !important;
 }
 
 html.light-theme .menu-buttons {
-  background: rgba(0, 0, 0, 0.05) !important;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(124, 77, 255, 0.08) !important;
+  border: 1px solid rgba(124, 77, 255, 0.1) !important;
 }
 
 html.light-theme .navbar-initial .brand-name,
@@ -278,7 +348,7 @@ html.light-theme .logo-img {
 
 
 html.light-theme .navbar-scrolled .nav-indicator {
-  background: #eafae8 !important;
+  background: #F7F2FF !important;
 }
 
 html.light-theme .navbar-scrolled .nav-btn:hover {
@@ -296,7 +366,7 @@ html.light-theme .sphere-root {
 }
 
 html.light-theme .mobile-overlay {
-  background: rgba(234, 250, 232, 0.95) !important;
+  background: rgba(243, 238, 253, 0.95) !important;
 }
 
 html.light-theme .mobile-nav-link {
@@ -3270,14 +3340,93 @@ section,
   color: var(--about-primary);
 }
 
+.footer-large-text {
+  display: none;
+}
+
 .footer-bottom {
   padding: 18px 48px 20px;
 }
 
 @media (min-width: 1025px) {
-  .footer-col:not(.footer-brand-col) {
-    padding-top: 105px;
+  .footer-top {
+    padding-bottom: 20px !important;
   }
+
+  .footer-main {
+    padding-top: 10px !important;
+  }
+
+  .footer-col:not(.footer-brand-col) {
+    padding-top: 45px !important;
+  }
+
+  /* PC View: Remove Aham Grham logo and move VJS logo to top */
+  .footer-logo {
+    display: none !important;
+  }
+
+  .footer-brand-col {
+    gap: 0px !important;
+  }
+
+  .footer-badge {
+    order: -1 !important;
+    margin-top: 0 !important;
+    margin-bottom: -15px !important;
+    height: 180px !important;
+  }
+
+  .footer-large-text {
+    display: block !important;
+    font-size: 18vw !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    line-height: 1.5 !important;
+    margin-top: -80px !important;
+    margin-bottom: -20px !important;
+    padding-bottom: 20px !important;
+    
+    /* Shimmer Animation Styles */
+    color: transparent !important;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.1) 45%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(255, 255, 255, 0.1) 55%,
+      rgba(255, 255, 255, 0.1) 100%
+    ) !important;
+    background-size: 250% 100% !important;
+    background-repeat: no-repeat !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    animation: shine 6s linear infinite !important;
+    
+    width: 100% !important;
+    white-space: nowrap !important;
+    letter-spacing: -0.05em !important;
+    pointer-events: none !important;
+  }
+}
+
+@keyframes shine {
+  0% { background-position: -150% 0; }
+  100% { background-position: 150% 0; }
+}
+
+html.light-theme .footer-large-text {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.1) 45%,
+    rgba(0, 0, 0, 0.8) 50%,
+    rgba(0, 0, 0, 0.1) 55%,
+    rgba(0, 0, 0, 0.1) 100%
+  ) !important;
+  background-size: 250% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
 }
 
 @media (min-width: 701px) and (max-width: 1024px) {
@@ -3818,3 +3967,13 @@ html.light-theme .cta-section p,
 }
 
 
+/* Bento Overlay Light Mode - White Shade */
+html.light-theme .bento-overlay {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.4) 60%, transparent 100%) !important;
+}
+
+html.light-theme .bento-content h3,
+html.light-theme .bento-content p,
+html.light-theme .bento-content span {
+  color: #111827 !important;
+}
