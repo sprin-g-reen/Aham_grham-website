@@ -1772,6 +1772,12 @@ html.light-theme .dark-logo {
 
 /* Tall Far-Right */
 
+/* Wide Bottom-Right */
+.c15 {
+  grid-area: 5 / 5 / 6 / 13;
+}
+
+
 @media (max-width: 1200px) {
   .bento-blog-grid {
     grid-template-columns: repeat(6, 1fr);
@@ -1791,7 +1797,8 @@ html.light-theme .dark-logo {
   .c11,
   .c12,
   .c13,
-  .c14 {
+  .c14,
+  .c15 {
     grid-area: auto;
     grid-column: span 3;
     grid-row: span 1;
@@ -1805,7 +1812,8 @@ html.light-theme .dark-logo {
   }
 
   .c9,
-  .c14 {
+  .c14,
+  .c15 {
     grid-column: span 6;
   }
 }
@@ -1829,7 +1837,8 @@ html.light-theme .dark-logo {
   .c11,
   .c12,
   .c13,
-  .c14 {
+  .c14,
+  .c15 {
     grid-area: auto;
     grid-column: span 1;
     grid-row: span 1;
