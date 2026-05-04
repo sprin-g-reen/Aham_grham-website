@@ -35,32 +35,38 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 0; /* Minimized gap as requested */
-  transform: translateY(30px); /* Moved 30px down as requested */
-  opacity: 0.12; /* Lower default transparency for a more dramatic reveal */
-  filter: blur(2px) brightness(0.6);
+  gap: 0;
+  transform: translateY(30px);
+  opacity: 1; /* Now permanently visible */
+  filter: blur(0px) brightness(1.1); /* Slightly boosted base brightness */
   transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease, transform 0.6s ease;
   will-change: opacity, filter, transform;
 }
 
 
-.hero-brand.is-glowing {
-  opacity: 1; /* Transparents to 100 as requested */
-  filter: blur(0px) brightness(1.2);
-  transform: translateY(30px) scale(1.02);
-}
+
 
 .hero-logo {
-  width: 180px; /* Bigger in size */
+  width: 180px;
   height: auto;
-  filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
-  margin-bottom: -20px; /* Pull the text up closer to the logo's visual center */
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)); /* Base glow */
+  margin-bottom: -20px;
   transition: filter 0.4s ease;
+  animation: logo-breathing-glow 4s infinite alternate ease-in-out;
 }
 
-.hero-brand.is-glowing .hero-logo {
-  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
+@keyframes logo-breathing-glow {
+  0% {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+    transform: scale(1);
+  }
+  100% {
+    filter: drop-shadow(0 0 35px rgba(255, 255, 255, 0.5));
+    transform: scale(1.02);
+  }
 }
+
+
 
 .hero-brand-text {
   display: flex;
