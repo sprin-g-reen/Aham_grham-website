@@ -96,12 +96,12 @@ html.light-theme .btn-desc {
   background: var(--btn-book-gradient) !important;
   color: #ffffff !important;
   border: none !important;
-  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(124, 77, 255, 0.2) !important;
 }
 
 html.light-theme .btn-desc:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.3) !important;
+  box-shadow: 0 6px 16px rgba(124, 77, 255, 0.3) !important;
   filter: brightness(1.05);
 }
 
@@ -111,7 +111,7 @@ html.light-theme .btn-desc:hover {
 }
 
 html.light-theme .btn-desc:hover {
-  background: rgba(22, 163, 74, 0.15);
+  background: rgba(124, 77, 255, 0.15);
 }
 
 html.light-theme .bento-item,
@@ -252,7 +252,7 @@ html.light-theme .testimonial-controls button {
 }
 
 html.light-theme .testimonial-controls button:hover {
-  background: #f0fdf4 !important;
+  background: #F7F2FF !important;
 }
 
 html.light-theme .about-hero {
@@ -352,12 +352,12 @@ html.light-theme .navbar-scrolled .nav-indicator {
 }
 
 html.light-theme .navbar-scrolled .nav-btn:hover {
-  color: #065f46 !important;
+  color: #7c4dff !important;
   background: transparent !important;
 }
 
 html.light-theme .blog-item-content .category {
-  color: #065f46 !important;
+  color: #7c4dff !important;
 }
 
 
@@ -3868,7 +3868,7 @@ html.light-theme [class*="from-[#170529]"] {
 
 html.light-theme [class*="text-[#8c52ff]"],
 html.light-theme [class*="text-purple-"] {
-  color: #065f46 !important;
+  color: #7c4dff !important;
 }
 
 html.light-theme [class*="border-[#8c52ff]"],
