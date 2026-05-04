@@ -198,33 +198,6 @@ class LightRays {
       this.smoothMouse.y = this.smoothMouse.y * smoothing + this.mouse.y * (1 - smoothing);
       this.uniforms.mousePos.value = [this.smoothMouse.x, this.smoothMouse.y];
 
-      // Update branding glow based on rays hitting the center
-      const brandEl = document.querySelector('.hero-brand');
-      if (brandEl) {
-        // Calculate the angle of the ray pointing to the mouse
-        const dx = this.smoothMouse.x - 0.5;
-        const dy = this.smoothMouse.y - (-0.2); // Rays origin is at [0.5, -0.2]
-        const rayAngle = Math.atan2(dx, dy);
-        
-        // The logo is at [0.5, 0.5], which is straight down (angle 0)
-        // We check if the ray angle is close to 0
-        const angularDistance = Math.abs(rayAngle);
-        
-        // Threshold depends on lightSpread. Higher spread = easier to hit.
-        const threshold = 0.15 + (this.lightSpread * 0.2);
-        
-        if (angularDistance < threshold) {
-          // Add a subtle shimmer that stays very close to 100% opacity
-          const shimmer = Math.sin(this.uniforms.iTime.value * this.raysSpeed * 2.0) * 0.03 + 0.97;
-          brandEl.style.opacity = shimmer.toString();
-          brandEl.classList.add('is-glowing');
-        } else {
-          brandEl.style.opacity = ''; // Reverts to CSS default (0.12)
-          brandEl.classList.remove('is-glowing');
-        }
-
-      }
-
     }
 
     this.renderer.render({ scene: this.mesh });
