@@ -37,15 +37,29 @@
     }
 
     .about-main {
-      padding: 90px 40px 40px;
+      padding: 80px 16px 24px;
       display: grid;
-      gap: 40px; 
+      gap: 24px; 
+    }
+
+    @media (min-width: 768px) {
+      .about-main {
+        padding: 90px 40px 40px;
+        gap: 40px;
+      }
     }
 
     .about-grid {
       display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 40px; 
+      grid-template-columns: 1fr;
+      gap: 24px; 
+    }
+
+    @media (min-width: 768px) {
+      .about-grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 40px;
+      }
     }
 
     .about-card {
@@ -61,9 +75,16 @@
     }
 
     .about-hero {
-      grid-column: span 12;
-      min-height: 540px;
+      grid-column: span 1;
+      min-height: 400px;
       background: #19112b;
+    }
+
+    @media (min-width: 768px) {
+      .about-hero {
+        grid-column: span 12;
+        min-height: 540px;
+      }
     }
 
     html.light-theme .about-hero {
@@ -99,9 +120,15 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 44px;
+      padding: 24px;
       max-width: 760px;
       gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .about-hero-content {
+        padding: 44px;
+      }
     }
 
     .about-kicker {
