@@ -2,11 +2,11 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 import { 
-  getEvents, 
-  createEvent, 
-  updateEvent,
-  deleteEvent 
-} from '../controllers/eventController.js';
+  getPrograms, 
+  createProgram, 
+  deleteProgram,
+  updateProgram 
+} from '../controllers/programController.js';
 
 const router = express.Router();
 
@@ -26,11 +26,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.route('/')
-  .get(getEvents)
-  .post(upload.single('image'), createEvent);
+  .get(getPrograms)
+  .post(upload.single('image'), createProgram);
 
 router.route('/:id')
-  .delete(deleteEvent)
-  .put(upload.single('image'), updateEvent);
+  .delete(deleteProgram)
+  .put(upload.single('image'), updateProgram);
 
 export default router;

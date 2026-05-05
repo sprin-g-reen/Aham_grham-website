@@ -173,7 +173,7 @@
       height: 100%;
       object-fit: cover;
       z-index: 0;
-      opacity: 0.5;
+      opacity: 1;
       transition: transform 0.5s ease;
     }
 
@@ -185,7 +185,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(10, 10, 32, 0.9) 0%, rgba(10, 10, 32, 0.4) 50%, transparent 100%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 40%);
       z-index: 1;
     }
 
@@ -287,6 +287,7 @@
       }
     }
     
+    
   </style>
 </head>
 <body>
@@ -357,10 +358,6 @@
           <div>
             <h3>rehab & recovery</h3>
           </div>
-          <div class="card-actions">
-            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
-            <a href="#" class="btn-card btn-desc">description</a>
-          </div>
         </div>
 
         <!-- Private & Group (Large - Rows 1-2 Right) -->
@@ -368,10 +365,6 @@
           <img src="assets/AhamGraham-Web/Untitled design (4).png" alt="Private & Group">
           <div>
             <h3>private & group</h3>
-          </div>
-          <div class="card-actions">
-            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
-            <a href="#" class="btn-card btn-desc">description</a>
           </div>
         </div>
 
@@ -381,10 +374,6 @@
           <div>
             <h3>medical therapeutic</h3>
           </div>
-          <div class="card-actions">
-            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
-            <a href="#" class="btn-card btn-desc">description</a>
-          </div>
         </div>
 
         <!-- Retreats & Getaways (Small - Row 2 Left) -->
@@ -392,10 +381,6 @@
           <img src="assets/AhamGraham-Web/retreat.png" alt="Retreats">
           <div>
             <h3>retreats</h3>
-          </div>
-          <div class="card-actions">
-            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
-            <a href="#" class="btn-card btn-desc">description</a>
           </div>
         </div>
 
@@ -407,10 +392,6 @@
           <div>
             <h3>b2b</h3>
           </div>
-          <div class="card-actions">
-            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
-            <a href="#" class="btn-card btn-desc">description</a>
-          </div>
         </div>
 
         <!-- Online (Wide - Row 3 Right) -->
@@ -418,10 +399,6 @@
           <img src="assets/AhamGraham-Web/online.png" alt="Online">
           <div>
             <h3>online</h3>
-          </div>
-          <div class="card-actions">
-            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
-            <a href="#" class="btn-card btn-desc">description</a>
           </div>
         </div>
 
@@ -431,10 +408,6 @@
           <div>
             <h3>certification</h3>
           </div>
-          <div class="card-actions">
-            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
-            <a href="#" class="btn-card btn-desc">description</a>
-          </div>
         </div>
 
         <!-- Kids & Youth (Small - Row 4 Right) -->
@@ -443,15 +416,12 @@
           <div>
             <h3>kids & youth</h3>
           </div>
-          <div class="card-actions">
-            <button onclick="handleBookSessionClick(event)" class="btn-card btn-book">book now</button>
-            <a href="#" class="btn-card btn-desc">description</a>
-          </div>
         </div>
 
         </div>
       </div>
     </section>
+
 
     <!-- THE ATELIER: SHOP SECTION (Refined height) -->
     <section class="w-full px-4 mx-auto mt-10 overflow-hidden services-feature-shell">
@@ -641,7 +611,6 @@
   <script src="app.js"></script>
   <script src="scroll-velocity.js"></script>
   <script src="true-focus.js"></script>
-  <script src="auth.js"></script>
 </body>
 </html>
 

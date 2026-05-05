@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 
-const eventSchema = mongoose.Schema(
+const programSchema = mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
     },
-    eventId: {
+    programId: {
       type: String,
       required: true,
       unique: true,
@@ -15,6 +15,10 @@ const eventSchema = mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
+    },
+    category: {
+      type: String,
+      required: false,
     },
     description: {
       type: String,
@@ -28,6 +32,6 @@ const eventSchema = mongoose.Schema(
   }
 );
 
-const Event = mongoose.model('Event', eventSchema);
+const Program = mongoose.model('Program', programSchema);
 
-export default Event;
+export default Program;

@@ -233,6 +233,132 @@ function setupThemeToggle() {
 setupThemeToggle();
 
 
+/* GLOBAL DETAIL MODAL LOGIC */
+function injectDetailModal() {
+    if (document.getElementById('programModal')) return;
+    
+    const modalHTML = `
+        <div id="programModal" class="detail-modal">
+            <div class="detail-close" onclick="closeProgramModal()">
+                <span class="material-symbols-outlined">close</span>
+            </div>
+            <div class="detail-content">
+                <img id="modalImg" src="" alt="" class="detail-image">
+                <div class="detail-info">
+                    <h2 id="modalTitle">Item Title</h2>
+                    <p id="modalDesc">
+                        experience the perfect balance of neurological synchronization and community movement. our pathways are curated to align with the natural rhythms of the soul.
+                    </p>
+                    <button class="btn-primary w-fit" onclick="handleBookSessionClick(event)">book this session</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+function openProgramDetail(title, image, description) {
+    const modal = document.getElementById('programModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalImg = document.getElementById('modalImg');
+    const modalDesc = document.getElementById('modalDesc');
+    
+    if (!modal || !modalTitle || !modalImg) return;
+    
+    modalTitle.innerText = title;
+    modalImg.src = image;
+    if (modalDesc && description) {
+        modalDesc.innerText = description.toLowerCase();
+    }
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProgramModal() {
+    const modal = document.getElementById('programModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Global click listener for all display cards
+document.addEventListener('click', (e) => {
+    // Check if clicked element or its parent is a card
+    const card = e.target.closest('.bento-item, .bento-card, .bento-blog-item, .product-card');
+    if (card) {
+        // If it's a link or button inside the card, let it handle the click
+        if (e.target.closest('a, button')) return;
+
+        const titleEl = card.querySelector('h3');
+        const imgEl = card.querySelector('img');
+        const description = card.getAttribute('data-description');
+        
+        if (titleEl && imgEl) {
+            openProgramDetail(titleEl.innerText, imgEl.src, description);
+        }
+    }
+});
+
+// Initialize Dynamic Content
+async function loadProgramsToServices() {
+    const grid = document.querySelector('.programs-grid');
+    if (!grid) return;
+
+    try {
+        const response = await fetch('http://localhost:5000/api/programs');
+        const programs = await response.json();
+
+        if (programs.length > 0) {
+            // Clear static content
+            grid.innerHTML = '';
+            
+            // Bento patterns for a cycle of 8 items
+            const patterns = [
+                'span-2-1', 'span-2-2', 'span-1-1', 'span-1-1',
+                'span-2-2', 'span-2-1', 'span-1-1', 'span-1-1'
+            ];
+
+            programs.forEach((prog, i) => {
+                const patternClass = patterns[i % patterns.length];
+                const imgSrc = prog.image ? `http://localhost:5000${prog.image}` : 'assets/AhamGraham-Web/placeholder.png';
+                
+                const cardHTML = `
+                    <div class="bento-card ${patternClass}" 
+                         data-description="${prog.description || ''}">
+                        <img src="${imgSrc}" alt="${prog.name}">
+                        <div>
+                            <h3>${prog.name.toLowerCase()}</h3>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+            
+            // Re-initialize reveal animations for new items
+            initRevealAnimation();
+        }
+    } catch (error) {
+        console.error("Failed to load programs:", error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    injectDetailModal();
+    loadProgramsToServices();
+    
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeProgramModal();
+    });
+    
+    document.addEventListener('click', (e) => {
+        const modal = document.getElementById('programModal');
+        if (e.target === modal) closeProgramModal();
+    });
+});
+
+
 
 // Footer Accordion Logic
 function setupFooterAccordion() {
@@ -247,3 +373,8 @@ function setupFooterAccordion() {
   });
 }
 setupFooterAccordion();
+
+// Global hook for the "Book Session" buttons (Bypass Auth for now)
+window.handleBookSessionClick = function(event) {
+    window.location.href = 'book-session.html';
+};

@@ -10,6 +10,7 @@ import productRoutes from './routes/productRoutes.js';
 import eventRoutes from './routes/eventRoutes.js';
 import bookingRoutes from './routes/bookingRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
+import programRoutes from './routes/programRoutes.js';
 
 // Import Middleware
 import { notFound, errorHandler } from './middleware/errorHandler.js';
@@ -37,6 +38,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/api/programs', programRoutes);
 
 // Root Endpoint
 app.get('/', (req, res) => {
