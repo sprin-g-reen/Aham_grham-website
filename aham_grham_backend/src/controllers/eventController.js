@@ -17,7 +17,7 @@ export const getEvents = async (req, res) => {
 // @access  Private/Admin
 export const createEvent = async (req, res) => {
   try {
-    const { name, eventId, bookingPrice, description } = req.body;
+    const { name, eventId, bookingPrice, description, category } = req.body;
 
     const eventExists = await Event.findOne({ eventId });
 
@@ -30,6 +30,7 @@ export const createEvent = async (req, res) => {
       eventId,
       bookingPrice,
       description,
+      category,
       image: req.file ? `/uploads/${req.file.filename}` : ''
     });
 
@@ -48,7 +49,7 @@ export const createEvent = async (req, res) => {
 // @access  Private/Admin
 export const updateEvent = async (req, res) => {
   try {
-    const { name, eventId, bookingPrice, description } = req.body;
+    const { name, eventId, bookingPrice, description, category } = req.body;
     const event = await Event.findById(req.params.id);
 
     if (event) {
@@ -56,6 +57,7 @@ export const updateEvent = async (req, res) => {
       event.eventId = eventId || event.eventId;
       event.bookingPrice = bookingPrice || event.bookingPrice;
       event.description = description || event.description;
+      event.category = category || event.category;
       
       if (req.file) {
         event.image = `/uploads/${req.file.filename}`;

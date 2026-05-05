@@ -249,7 +249,7 @@ function injectDetailModal() {
                     <p id="modalDesc">
                         experience the perfect balance of neurological synchronization and community movement. our pathways are curated to align with the natural rhythms of the soul.
                     </p>
-                    <button class="btn-primary w-fit" onclick="handleBookSessionClick(event)">book this session</button>
+                    <button id="modalBookBtn" class="btn-primary w-fit" onclick="handleBookSessionClick(event)">book this session</button>
                 </div>
             </div>
         </div>
@@ -257,11 +257,12 @@ function injectDetailModal() {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
 
-function openProgramDetail(title, image, description) {
+function openProgramDetail(title, image, description, category) {
     const modal = document.getElementById('programModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalImg = document.getElementById('modalImg');
     const modalDesc = document.getElementById('modalDesc');
+    const bookBtn = document.getElementById('modalBookBtn');
     
     if (!modal || !modalTitle || !modalImg) return;
     
@@ -269,6 +270,16 @@ function openProgramDetail(title, image, description) {
     modalImg.src = image;
     if (modalDesc && description) {
         modalDesc.innerText = description.toLowerCase();
+    }
+
+    // Logic for conditional booking button
+    if (bookBtn) {
+        // Only show for Workshops and Upcoming Events (or all programs if category is not provided)
+        if (!category || category === 'Workshop' || category === 'Upcoming Event') {
+            bookBtn.style.display = 'block';
+        } else {
+            bookBtn.style.display = 'none';
+        }
     }
     
     modal.classList.add('active');
@@ -294,9 +305,10 @@ document.addEventListener('click', (e) => {
         const titleEl = card.querySelector('h3');
         const imgEl = card.querySelector('img');
         const description = card.getAttribute('data-description');
+        const category = card.getAttribute('data-category');
         
         if (titleEl && imgEl) {
-            openProgramDetail(titleEl.innerText, imgEl.src, description);
+            openProgramDetail(titleEl.innerText, imgEl.src, description, category);
         }
     }
 });
@@ -327,9 +339,9 @@ async function loadProgramsToServices() {
                 const cardHTML = `
                     <div class="bento-card ${patternClass}" 
                          data-description="${prog.description || ''}">
-                        <img src="${imgSrc}" alt="${prog.name}">
+                        <img src="${imgSrc}" alt="${prog.name || ''}">
                         <div>
-                            <h3>${prog.name.toLowerCase()}</h3>
+                            <h3>${(prog.name || '').toLowerCase()}</h3>
                         </div>
                     </div>
                 `;
@@ -344,9 +356,112 @@ async function loadProgramsToServices() {
     }
 }
 
+async function loadEventsToPage() {
+    const mainGrid = document.getElementById('main-events-grid');
+    const workshopGrid = document.getElementById('workshop-grid');
+    const upcomingGrid = document.getElementById('upcoming-events-grid');
+    const galleryContainer = document.getElementById('circular-gallery');
+
+    if (!mainGrid && !workshopGrid && !upcomingGrid) return;
+
+    try {
+        const response = await fetch('http://localhost:5000/api/events');
+        const events = await response.json();
+
+        if (events.length > 0) {
+            // Sort events by category
+            const categorized = {
+                'Main Event': [],
+                'Workshop': [],
+                'Highlight': [],
+                'Upcoming Event': []
+            };
+
+            events.forEach(ev => {
+                if (categorized[ev.category]) {
+                    categorized[ev.category].push(ev);
+                }
+            });
+
+            // Populate Main Events
+            if (mainGrid && categorized['Main Event'].length > 0) {
+                mainGrid.innerHTML = '';
+                const mainPatterns = ['span-2', 'span-1', 'span-1', 'span-3', 'span-1', 'span-1', 'span-1', 'span-2'];
+                categorized['Main Event'].forEach((ev, i) => {
+                    const pattern = mainPatterns[i % mainPatterns.length];
+                    mainGrid.insertAdjacentHTML('beforeend', createEventCard(ev, pattern));
+                });
+            }
+
+            // Populate Workshops
+            if (workshopGrid && categorized['Workshop'].length > 0) {
+                workshopGrid.innerHTML = '';
+                // Workshop structure
+                const workshopPatterns = ['sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1 lg:row-span-2', 'sm:col-span-1 lg:col-span-1'];
+                categorized['Workshop'].forEach((ev, i) => {
+                    const pattern = workshopPatterns[i % workshopPatterns.length];
+                    workshopGrid.insertAdjacentHTML('beforeend', createEventCard(ev, pattern, true));
+                });
+            }
+
+            // Populate Upcoming
+            if (upcomingGrid && categorized['Upcoming Event'].length > 0) {
+                upcomingGrid.innerHTML = '';
+                const upcomingPatterns = ['span-1 chroma-card', 'span-1 chroma-card', 'span-2 chroma-card'];
+                categorized['Upcoming Event'].forEach((ev, i) => {
+                    const pattern = upcomingPatterns[i % upcomingPatterns.length];
+                    upcomingGrid.insertAdjacentHTML('beforeend', createEventCard(ev, pattern));
+                });
+            }
+
+            // Populate Highlights (Circular Gallery)
+            if (galleryContainer && categorized['Highlight'].length > 0 && window.CircularGalleryApp) {
+                galleryContainer.innerHTML = '';
+                const highlightItems = categorized['Highlight'].map(ev => ({
+                    image: ev.image ? `http://localhost:5000${ev.image}` : 'assets/AhamGraham-Web/placeholder.png',
+                    text: ev.name
+                }));
+                new CircularGalleryApp(galleryContainer, { 
+                    items: highlightItems, 
+                    bend: 3, 
+                    textColor: '#ffffff', 
+                    borderRadius: 0.05, 
+                    scrollEase: 0.02 
+                });
+            }
+
+            // Re-initialize reveal animations
+            initRevealAnimation();
+        }
+    } catch (error) {
+        console.error("Failed to load events:", error);
+    }
+}
+
+function createEventCard(ev, patternClass, isWorkshop = false) {
+    const imgSrc = ev.image ? `http://localhost:5000${ev.image}` : 'assets/AhamGraham-Web/placeholder.png';
+    const overlayClass = isWorkshop ? '!bg-gradient-to-t !from-[#231f37]/80 !to-transparent' : '';
+    const groupClass = isWorkshop ? 'group flex flex-col h-full' : '';
+    
+    return `
+        <div class="bento-item ${patternClass} ${groupClass}" 
+             data-description="${ev.description || ''}"
+             data-category="${ev.category}">
+            <img src="${imgSrc}" alt="${ev.name || ''}" class="${isWorkshop ? 'w-full h-full object-cover rounded-[28px]' : ''}">
+            <div class="bento-overlay ${overlayClass}">
+                <div class="bento-content ${isWorkshop ? 'mt-auto' : ''}">
+                    <h3 class="${isWorkshop ? 'text-white' : ''}">${ev.name}</h3>
+                    <p class="${isWorkshop ? 'text-white/80' : ''}">${ev.description?.substring(0, 60)}${ev.description?.length > 60 ? '...' : ''}</p>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     injectDetailModal();
     loadProgramsToServices();
+    loadEventsToPage();
     
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeProgramModal();
