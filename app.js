@@ -246,9 +246,12 @@ function injectDetailModal() {
                 <img id="modalImg" src="" alt="" class="detail-image">
                 <div class="detail-info">
                     <h2 id="modalTitle">Item Title</h2>
-                    <p id="modalDesc">
-                        experience the perfect balance of neurological synchronization and community movement. our pathways are curated to align with the natural rhythms of the soul.
+                    <p id="modalDesc" class="mb-4 text-primary font-bold">
+                        Description goes here...
                     </p>
+                    <div id="modalAbout" class="text-white/60 text-sm mb-6 whitespace-pre-wrap leading-relaxed max-h-[200px] overflow-y-auto">
+                        Detailed about content goes here...
+                    </div>
                     <button id="modalBookBtn" class="btn-primary w-fit" onclick="handleBookSessionClick(event)">book this session</button>
                 </div>
             </div>
@@ -257,11 +260,12 @@ function injectDetailModal() {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
 
-function openProgramDetail(title, image, description, category) {
+function openProgramDetail(title, image, description, category, about) {
     const modal = document.getElementById('programModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalImg = document.getElementById('modalImg');
     const modalDesc = document.getElementById('modalDesc');
+    const modalAbout = document.getElementById('modalAbout');
     const bookBtn = document.getElementById('modalBookBtn');
     
     if (!modal || !modalTitle || !modalImg) return;
@@ -270,6 +274,10 @@ function openProgramDetail(title, image, description, category) {
     modalImg.src = image;
     if (modalDesc && description) {
         modalDesc.innerText = description.toLowerCase();
+    }
+    if (modalAbout) {
+        modalAbout.innerText = about || "";
+        modalAbout.style.display = about ? 'block' : 'none';
     }
 
     // Logic for conditional booking button
@@ -305,10 +313,11 @@ document.addEventListener('click', (e) => {
         const titleEl = card.querySelector('h3');
         const imgEl = card.querySelector('img');
         const description = card.getAttribute('data-description');
+        const about = card.getAttribute('data-about');
         const category = card.getAttribute('data-category');
         
         if (titleEl && imgEl) {
-            openProgramDetail(titleEl.innerText, imgEl.src, description, category);
+            openProgramDetail(titleEl.innerText, imgEl.src, description, category, about);
         }
     }
 });
@@ -360,9 +369,9 @@ async function loadEventsToPage() {
     const mainGrid = document.getElementById('main-events-grid');
     const workshopGrid = document.getElementById('workshop-grid');
     const upcomingGrid = document.getElementById('upcoming-events-grid');
-    const galleryContainer = document.getElementById('circular-gallery');
+    const highlightGrid = document.getElementById('highlights-video-grid');
 
-    if (!mainGrid && !workshopGrid && !upcomingGrid) return;
+    if (!mainGrid && !workshopGrid && !upcomingGrid && !highlightGrid) return;
 
     try {
         const response = await fetch('http://localhost:5000/api/events');
@@ -396,7 +405,6 @@ async function loadEventsToPage() {
             // Populate Workshops
             if (workshopGrid && categorized['Workshop'].length > 0) {
                 workshopGrid.innerHTML = '';
-                // Workshop structure
                 const workshopPatterns = ['sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1 lg:row-span-2', 'sm:col-span-1 lg:col-span-1'];
                 categorized['Workshop'].forEach((ev, i) => {
                     const pattern = workshopPatterns[i % workshopPatterns.length];
@@ -404,7 +412,7 @@ async function loadEventsToPage() {
                 });
             }
 
-            // Populate Upcoming
+            // Populate Upcoming (Preserving Chroma Overlays)
             if (upcomingGrid && categorized['Upcoming Event'].length > 0) {
                 upcomingGrid.innerHTML = '';
                 const upcomingPatterns = ['span-1 chroma-card', 'span-1 chroma-card', 'span-2 chroma-card'];
@@ -412,9 +420,19 @@ async function loadEventsToPage() {
                     const pattern = upcomingPatterns[i % upcomingPatterns.length];
                     upcomingGrid.insertAdjacentHTML('beforeend', createEventCard(ev, pattern));
                 });
+                
+                // Re-add Chroma Overlays that were cleared
+                upcomingGrid.insertAdjacentHTML('beforeend', `
+                    <div class="chroma-overlay"></div>
+                    <div class="chroma-fade"></div>
+                `);
+                
+                // Re-initialize chroma effect if script is present
+                if (window.initChromaEffect) window.initChromaEffect();
             }
 
             // Populate Highlights (Circular Gallery)
+            const galleryContainer = document.getElementById('circular-gallery');
             if (galleryContainer && categorized['Highlight'].length > 0 && window.CircularGalleryApp) {
                 galleryContainer.innerHTML = '';
                 const highlightItems = categorized['Highlight'].map(ev => ({
@@ -446,6 +464,7 @@ function createEventCard(ev, patternClass, isWorkshop = false) {
     return `
         <div class="bento-item ${patternClass} ${groupClass}" 
              data-description="${ev.description || ''}"
+             data-about="${ev.about || ''}"
              data-category="${ev.category}">
             <img src="${imgSrc}" alt="${ev.name || ''}" class="${isWorkshop ? 'w-full h-full object-cover rounded-[28px]' : ''}">
             <div class="bento-overlay ${overlayClass}">

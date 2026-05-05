@@ -27,10 +27,10 @@ const upload = multer({ storage });
 
 router.route('/')
   .get(getEvents)
-  .post(upload.single('image'), createEvent);
+  .post(upload.fields([{ name: 'image', maxCount: 1 }, { name: 'video', maxCount: 1 }]), createEvent);
 
 router.route('/:id')
   .delete(deleteEvent)
-  .put(upload.single('image'), updateEvent);
+  .put(upload.fields([{ name: 'image', maxCount: 1 }, { name: 'video', maxCount: 1 }]), updateEvent);
 
 export default router;

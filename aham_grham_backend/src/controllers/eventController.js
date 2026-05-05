@@ -17,7 +17,7 @@ export const getEvents = async (req, res) => {
 // @access  Private/Admin
 export const createEvent = async (req, res) => {
   try {
-    const { name, eventId, bookingPrice, description, category } = req.body;
+    const { name, eventId, bookingPrice, description, about, category } = req.body;
 
     const eventExists = await Event.findOne({ eventId });
 
@@ -28,10 +28,12 @@ export const createEvent = async (req, res) => {
     const event = await Event.create({
       name,
       eventId,
-      bookingPrice,
+      bookingPrice: category === 'Highlight' ? 0 : bookingPrice,
       description,
+      about,
       category,
-      image: req.file ? `/uploads/${req.file.filename}` : ''
+      image: req.files?.image ? `/uploads/${req.files.image[0].filename}` : '',
+      video: req.files?.video ? `/uploads/${req.files.video[0].filename}` : ''
     });
 
     if (event) {
@@ -49,7 +51,7 @@ export const createEvent = async (req, res) => {
 // @access  Private/Admin
 export const updateEvent = async (req, res) => {
   try {
-    const { name, eventId, bookingPrice, description, category } = req.body;
+    const { name, eventId, bookingPrice, description, about, category } = req.body;
     const event = await Event.findById(req.params.id);
 
     if (event) {
@@ -57,10 +59,18 @@ export const updateEvent = async (req, res) => {
       event.eventId = eventId || event.eventId;
       event.bookingPrice = bookingPrice || event.bookingPrice;
       event.description = description || event.description;
+      event.about = about || event.about;
       event.category = category || event.category;
       
-      if (req.file) {
-        event.image = `/uploads/${req.file.filename}`;
+      if (event.category === 'Highlight') {
+        event.bookingPrice = 0;
+      }
+
+      if (req.files?.image) {
+        event.image = `/uploads/${req.files.image[0].filename}`;
+      }
+      if (req.files?.video) {
+        event.video = `/uploads/${req.files.video[0].filename}`;
       }
 
       const updatedEvent = await event.save();
