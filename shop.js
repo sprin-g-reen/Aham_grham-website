@@ -4,13 +4,13 @@ function openProductModal(card) {
   const img = card.querySelector('img').src;
   const title = card.querySelector('h4').innerText;
   const priceStr = card.querySelector('p.text-text-secondary').innerText;
-  const priceNum = parseFloat(priceStr.replace('$', ''));
+  const priceNum = parseFloat(priceStr.replace('₹', ''));
   
   document.getElementById('modalImg').src = img;
   document.getElementById('modalTitle').innerText = title;
   document.getElementById('modalDetail').innerText = "Celestial Vessel of Energy.";
   document.getElementById('modalPrice').innerText = priceStr;
-  document.getElementById('modalOldPrice').innerText = '$' + (priceNum * 1.5).toFixed(0);
+  document.getElementById('modalOldPrice').innerText = '₹' + (priceNum * 1.5).toFixed(0);
   document.getElementById('modalPrice').style.display = 'block';
   document.getElementById('modalOldPrice').style.display = 'block';
   document.querySelector('.modal-badge').innerText = "Free Shipping";

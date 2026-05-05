@@ -8,7 +8,6 @@ const productSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: [true, 'Please add a price'],
     default: 0
   },
   category: {
@@ -21,6 +20,26 @@ const productSchema = new mongoose.Schema({
   image: {
     type: String,
     default: 'no-photo.jpg' // Placeholder for file path
+  },
+  isMostSelling: {
+    type: Boolean,
+    default: false
+  },
+  offer: {
+    type: String,
+    trim: true
+  },
+  sku: {
+    type: String,
+    trim: true
+  },
+  tax: {
+    type: String,
+    trim: true
+  },
+  stockStatus: {
+    type: String,
+    trim: true
   },
   createdAt: {
     type: Date,

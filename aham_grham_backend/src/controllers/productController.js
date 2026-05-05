@@ -5,14 +5,24 @@ import Product from '../models/Product.js';
 // @access  Private/Admin
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, category, description, image } = req.body;
+    const { name, price, category, description, isMostSelling, offer, sku, tax, stockStatus } = req.body;
+
+    let imagePath = 'no-photo.jpg';
+    if (req.file) {
+      imagePath = req.file.filename;
+    }
 
     const product = new Product({
       name,
       price,
       category,
       description,
-      image
+      image: imagePath,
+      isMostSelling: isMostSelling === 'true' || isMostSelling === true,
+      offer,
+      sku,
+      tax,
+      stockStatus
     });
 
     const createdProduct = await product.save();
@@ -43,6 +53,42 @@ export const getSingleProduct = async (req, res) => {
 
     if (product) {
       res.status(200).json(product);
+    } else {
+      res.status(404).json({ message: 'Product not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// @desc    Update a product
+// @route   PUT /api/products/:id
+// @access  Private/Admin
+export const updateProduct = async (req, res) => {
+  try {
+    const { name, price, category, description, isMostSelling, offer, sku, tax, stockStatus } = req.body;
+    const product = await Product.findById(req.params.id);
+
+    if (product) {
+      product.name = name || product.name;
+      product.price = price || product.price;
+      product.category = category || product.category;
+      product.description = description || product.description;
+      product.offer = offer || product.offer;
+      product.sku = sku || product.sku;
+      product.tax = tax || product.tax;
+      product.stockStatus = stockStatus || product.stockStatus;
+      
+      if (isMostSelling !== undefined) {
+        product.isMostSelling = isMostSelling === 'true' || isMostSelling === true;
+      }
+
+      if (req.file) {
+        product.image = req.file.filename;
+      }
+
+      const updatedProduct = await product.save();
+      res.status(200).json(updatedProduct);
     } else {
       res.status(404).json({ message: 'Product not found' });
     }

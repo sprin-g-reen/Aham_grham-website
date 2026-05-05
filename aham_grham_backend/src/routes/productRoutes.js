@@ -3,19 +3,21 @@ import {
   createProduct, 
   getAllProducts, 
   getSingleProduct, 
+  updateProduct,
   deleteProduct 
 } from '../controllers/productController.js';
+import upload from '../middleware/upload.js';
 
 const router = express.Router();
 
 /**
  * Route: /api/products
  * GET: Fetch all products
- * POST: Create a new product
+ * POST: Create a new product (with image upload)
  */
 router.route('/')
   .get(getAllProducts)
-  .post(createProduct);
+  .post(upload.single('image'), createProduct);
 
 /**
  * Route: /api/products/:id
@@ -24,6 +26,7 @@ router.route('/')
  */
 router.route('/:id')
   .get(getSingleProduct)
+  .put(upload.single('image'), updateProduct)
   .delete(deleteProduct);
 
 export default router;

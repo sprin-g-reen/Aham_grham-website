@@ -143,43 +143,50 @@
     }
 
     .modal-info {
-      padding: 40px;
+      padding: 50px 60px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: flex-start;
+      text-align: left;
       text-transform: none;
+      gap: 10px;
     }
 
     .modal-badge {
       display: inline-block;
       padding: 6px 16px;
-      background: #000;
+      background: rgba(255, 255, 255, 0.1);
       color: #fff;
       border-radius: 99px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      margin-bottom: 24px;
-      width: fit-content;
+      margin-bottom: 10px;
     }
 
     .modal-title {
-      font-size: 52px;
+      font-size: 48px;
       font-weight: 800;
       color: #fff;
-      line-height: 1.05;
-      margin-bottom: 12px;
+      line-height: 1.1;
+      margin-bottom: 5px;
+      letter-spacing: -0.02em;
     }
 
     .modal-detail {
-      font-size: 18px;
+      font-size: 16px;
       color: #94a3b8;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      max-width: 90%;
     }
 
     .modal-price-wrap {
-      margin-bottom: 30px;
+      margin-bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .modal-old-price {
@@ -187,10 +194,11 @@
       color: #94a3b8;
       font-size: 16px;
       margin-bottom: 4px;
+      opacity: 0.6;
     }
 
     .modal-price {
-      font-size: 56px;
+      font-size: 64px;
       font-weight: 800;
       color: #fff;
       line-height: 1;
@@ -198,25 +206,39 @@
 
     .modal-tax {
       color: #22c55e;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
-      margin-top: 4px;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-tax::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: currentColor;
+      border-radius: 50%;
     }
 
     .modal-offer {
       font-size: 14px;
       color: #94a3b8;
-      margin-top: 12px;
+      margin-top: 5px;
+      font-style: italic;
     }
 
     .modal-buy-btn {
       width: 100%;
-      padding: 16px;
+      align-self: stretch;
+      padding: 18px;
       background: linear-gradient(to right, #1e40af, #1d4ed8);
       color: #fff;
       border-radius: 12px;
       font-weight: 700;
       font-size: 18px;
+      margin-top: 10px;
       margin-bottom: 20px;
       transition: all 0.3s ease;
     }
@@ -245,6 +267,7 @@
     }
 
     .modal-actions {
+      width: 100%;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
@@ -688,7 +711,7 @@
         <!-- Image Canvas -->
         <div class="relative group">
           <div class="aspect-[5/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] border border-white/10">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo" alt="Sacred Moon Oil bottle">
+            <img id="featuredProductImage" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo" alt="Sacred Moon Oil bottle">
             <div class="absolute inset-0 bg-gradient-to-t from-accent-blue/20 to-transparent opacity-60"></div>
           </div>
           <!-- Decorative Element -->
@@ -698,19 +721,15 @@
         <!-- Product Details -->
         <div class="flex flex-col space-y-8">
           <div class="space-y-4">
-            <span class="text-xs tracking-[0.3em] uppercase text-white font-bold">The Celestial Collection</span>
-            <h1 class="text-5xl md:text-6xl font-serif text-white leading-tight">Sacred Moon Oil <br/><span class="italic text-4xl opacity-70">Ritual Grade</span></h1>
-            <p class="text-2xl font-serif text-accent-blue font-bold">$78.00</p>
+
+            <h1 id="featuredProductName" class="text-5xl md:text-6xl font-serif text-white leading-tight">Sacred Moon Oil <br/><span class="italic text-4xl opacity-70">Ritual Grade</span></h1>
+            <p id="featuredProductPrice" class="text-2xl font-serif text-accent-blue font-bold">₹78.00</p>
           </div>
           <div class="space-y-6">
-            <p class="text-lg leading-relaxed text-text-secondary font-light">
+            <p id="featuredProductDesc" class="text-lg leading-relaxed text-text-secondary font-light">
               Harvested during the peak of the lunar cycle, this ethereal blend combines cold-pressed jasmine, violet leaf, and rare moonstone essence. A sensory bridge to the subconscious, designed to anchor your evening meditation and quiet the spirit.
             </p>
-            <div class="flex flex-wrap gap-3">
-              <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] uppercase tracking-wider text-text-secondary">Wild Harvested</span>
-              <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] uppercase tracking-wider text-text-secondary">Cold Pressed</span>
-              <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] uppercase tracking-wider text-text-secondary">Vegan</span>
-            </div>
+
           </div>
           <button class="btn-primary py-5 px-10 rounded-full text-sm uppercase tracking-widest font-bold cta-glow flex items-center justify-center space-x-3 w-full md:w-max group">
             <span>Add to Sanctuary</span>
@@ -793,123 +812,125 @@
         </div>
         
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Review Card 1 -->
-        <div class="space-y-6 group review-card cursor-pointer">
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY9_v9UU0OyVFB3Ql3CTjzuH04qnfSEcvoXrYB-h6DwXmzWS0SYUtNmZjouJDmXSFdtP2vqA5T5QU0w3vgDgu6Pw9X3aiAVTv9phbw2Dq6wL6nhCTIxc0UDzWu7M_s41xwPe-5g-8-JpJemRJfcTLe4KE6sfpQHtNTcpi1RWjFYFsNoRO4Hdc873cARXIJMRNT0iUyY0hfD61ov8Nqu6BXvaKYsqYStf4ScOaG9iuvhneIybW7hLcH45f-V80OZYv2w2OZqWdmxw8" alt="Practice scene">
-            
-          </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
-          </div>
+      <div id="dynamic-product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Products will load here dynamically -->
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- FOOTER -->
+  <!-- MOBILE OVERLAY -->
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">home</a></li>
+      <li><a href="services.html" class="mobile-nav-link">services</a></li>
+      <li><a href="events.html" class="mobile-nav-link">events</a></li>
+      <li><a href="centers.html" class="mobile-nav-link">centers</a></li>
+      <li><a href="sacred-moon-oil.html" class="mobile-nav-link">products</a></li>
+      <li><a href="about.html" class="mobile-nav-link">about us</a></li>
+      <li><a href="book-session.html" class="btn-primary mt-4">book session</a></li>
+    </ul>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-top overflow-hidden">
+      <div id="marquee-1" class="velocity-marquee">
+        <div class="marquee-content">
+          <span class="footer-tag">Neurological Sync</span>
+          <span class="footer-tag">Cellular Resonance</span>
+          <span class="footer-tag">Prana Flow</span>
+          <span class="footer-tag">Ancestral Healing</span>
+          <span class="footer-tag">Somatic Reset</span>
+          <span class="footer-tag">Astral Projection</span>
+          <span class="footer-tag">Nervous System Ease</span>
         </div>
-        <!-- Review Card 2 -->
-        <div class="space-y-6 group review-card cursor-pointer">
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyUTSbFfYOTgAqU-Or9SC7F6nKd8CSOGX8uVC0UPT7h2hfo5ZUHmE1HnWr4o0Pj9DzgfuTQ0_yU1ZwpW_jt1PYqRSeOLcnFuLpADqM8E8KZd2SdAfdkYqQdu_Dv6jnO6lc3-uxjcC7o2THJoiBhJPuuEEeG30eEmBhtzbeb6KYYYrRG91cpm-lDFBDJELu9jWUBxCuFcTHyFG-9gNfVmcE_5H2nTv2btYrABgrT8aMyREMpKaQF8diW7pVYZmqzL657aCQLFo8bQE" alt="Bedside setup">
-            
-          </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
-          </div>
+      </div>
+      <div id="marquee-2" class="velocity-marquee">
+        <div class="marquee-content">
+          <span class="footer-tag">Quantum Mindfulness</span>
+          <span class="footer-tag">Bio-Dynamic Flow</span>
+          <span class="footer-tag">Vedic Wisdom</span>
+          <span class="footer-tag">Inner Sanctuary</span>
+          <span class="footer-tag">Harmonic Balance</span>
+          <span class="footer-tag">Solar Vitality</span>
+          <span class="footer-tag">Breath Intelligence</span>
         </div>
-        <!-- Review Card 3 -->
-        <div class="space-y-6 group review-card cursor-pointer">
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfL-HxfF2T2tR2ZTzfhHY-Yv58ym0VEtMty3dom4LH2IlViWms31mzmAd0ZQ06HNTeO5BauiFq82hGsiZ56uaCpqFUBCXBqVE4fIkWQs2VVAnIM7iO3mdcCN8gADLx2nhvVY3rOjIITvGPOROwXJLzX-pzetKicwfvzt2WU_GpxGnAV8Q8t_L3tkBiNUBQ1AzBCAsNkS5C7fmsWzNm_vG1hhC75LzxTfFOriLoD0kjPi45a7biKHNFCccnD1n40STEiL1c1HSO7DI" alt="Crystal detail">
-            
+      </div>
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-container">
+        <div class="footer-col footer-brand-col">
+          <img src="Untitled design (2).png" alt="Aham Graham Logo" class="footer-logo">
+          <div class="footer-quote-wrap">
+            <p class="footer-quote">
+              bridging ancient wisdom with modern neurological insights.<br>
+              your path to biological transcendence begins here.
+            </p>
           </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
+          <img src="Copy of VJS-Logo (1).png" alt="VJS Logo" class="footer-badge dark-logo">
+          <img src="VJS-Logo-transparent.png" alt="VJS Logo" class="footer-badge light-logo">
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">about us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="centers.html">Centers</a></li>
+            <li><a href="sacred-moon-oil.html">Products</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-subheading">Our Centers</h4>
+          <ul>
+            <li>Rishikesh, India</li>
+            <li>Swiss Alps, Switzerland</li>
+            <li>Ubud, Bali</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-subheading">Social Media</h4>
+          <ul>
+            <li>Facebook</li>
+            <li>Instagram</li>
+            <li>YouTube</li>
+            <li>LinkedIn</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-stack">
+            <a href="mailto:contact@ahamgraham.com" class="contact-link">
+              <span class="material-symbols-outlined">mail</span>
+              contact@ahamgraham.com
+            </a>
+            <a href="tel:+919876543210" class="contact-link">
+              <span class="material-symbols-outlined">call</span>
+              +91 98765 43210
+            </a>
           </div>
         </div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-        <!-- Review Card 4 -->
-        <div class="space-y-6 group review-card cursor-pointer">
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Meditation scene">
-            
-          </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Review Card 5 -->
-        <div class="space-y-6 group review-card cursor-pointer">
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1512438248406-306ad8d273af?auto=format&fit=crop&w=800&q=80" alt="Candle and crystals">
-            
-          </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Review Card 6 -->
-        <div class="space-y-6 group review-card cursor-pointer">
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1528642463367-8d7bd31da3cd?auto=format&fit=crop&w=800&q=80" alt="Sound bath tools">
-            
-          </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Review Card 7 -->
-        <div class="space-y-6 group review-card cursor-pointer">
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1599447421416-3414502d18a5?auto=format&fit=crop&w=800&q=80" alt="Yoga mat and stones">
-            
-          </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Review Card 8 -->
-        <div class="space-y-6 group review-card cursor-pointer">
+    </div>
+
+    <div class="footer-large-text">aham grham</div>
+        <div class="footer-bottom">
+      <div class="bottom-content">
+        <p>&copy; 2026 Aham Graham. all rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="gsap.min.js"></script>
+  <script src="app.js"></script>
           <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&w=800&q=80" alt="Botanical extracts">
             
@@ -1123,33 +1144,21 @@
       <div class="modal-info">
         <!-- PRODUCT INFO VIEW -->
         <div id="productInfoView">
-          <span class="modal-badge">Free Shipping</span>
           <h2 class="modal-title" id="modalTitle">Product Name</h2>
           <p class="modal-detail" id="modalDetail">Celestial Vessel of Energy.</p>
           
           <div class="modal-price-wrap">
-            <p class="modal-old-price" id="modalOldPrice">$000</p>
+            <p class="modal-old-price" id="modalOldPrice" style="display: none;">$000</p>
             <p class="modal-price" id="modalPrice">$000</p>
             <p class="modal-tax">inclusive of all taxes</p>
             <p class="modal-offer">This offer is valid until July 4th</p>
           </div>
           
-          <button class="modal-buy-btn">Buy</button>
+          <button class="modal-buy-btn">Buy Now</button>
           
           <div class="modal-stock">
             <div class="stock-dot"></div>
             <span>20+ pcs. in stock</span>
-          </div>
-          
-          <div class="modal-actions">
-            <button class="modal-action-btn">
-              <span class="material-symbols-outlined text-sm">shopping_cart</span>
-              Add to cart
-            </button>
-            <button class="modal-action-btn">
-              <span class="material-symbols-outlined text-sm">favorite</span>
-              Wishlist
-            </button>
           </div>
         </div>
       </div>
@@ -1205,42 +1214,6 @@
           
           <p class="text-text-secondary italic leading-relaxed text-sm">"The energy of this vessel is unmatched. I felt an immediate shift in my evening ritual after just one use. The aromatic profile helps me enter a state of deep somatic ease almost instantly."</p>
         </div>
-
-        <!-- Type 2: Just Text -->
-        <div class="review-type-card">
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <h4 class="text-white font-bold text-lg">Marcus T.</h4>
-              <div class="flex text-accent-blue gap-1 mt-1">
-                <span class="material-symbols-outlined text-sm">star</span>
-                <span class="material-symbols-outlined text-sm">star</span>
-                <span class="material-symbols-outlined text-sm">star</span>
-                <span class="material-symbols-outlined text-sm">star</span>
-                <span class="material-symbols-outlined text-sm">star</span>
-              </div>
-            </div>
-            <span class="text-xs text-text-secondary">2 days ago</span>
-          </div>
-          <p class="text-text-secondary leading-relaxed text-sm">"An incredible addition to my nightly routine. The subtle scent and the grounding effect are truly remarkable. Highly recommended for anyone on a healing path."</p>
-        </div>
-
-        <!-- Another Text Review -->
-        <div class="review-type-card">
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <h4 class="text-white font-bold text-lg">Chloe R.</h4>
-              <div class="flex text-accent-blue gap-1 mt-1">
-                <span class="material-symbols-outlined text-sm">star</span>
-                <span class="material-symbols-outlined text-sm">star</span>
-                <span class="material-symbols-outlined text-sm">star</span>
-                <span class="material-symbols-outlined text-sm">star</span>
-                <span class="material-symbols-outlined text-sm">star</span>
-              </div>
-            </div>
-            <span class="text-xs text-text-secondary">Verified Purchase</span>
-          </div>
-          <p class="text-text-secondary leading-relaxed text-sm">"I've gifted this to three friends already. It's the perfect companion for anyone seeking deeper rest and spiritual alignment. The quality is exceptional."</p>
-        </div>
       </div>
     </div>
   </div>
@@ -1264,17 +1237,26 @@
       const modal = document.getElementById('productModal');
       const img = card.querySelector('img').src;
       
+      const title = card.getAttribute('data-name') || 'Aham Graham Essential';
+      const detail = card.getAttribute('data-desc') || 'Celestial Vessel of Energy.';
+      const price = card.getAttribute('data-price') || '₹45.00';
+      const offer = card.getAttribute('data-offer') || 'Special offer available';
+
       document.getElementById('modalImg').src = img;
-      document.getElementById('modalTitle').innerText = 'Aham Graham Essential';
-      document.getElementById('modalDetail').innerText = 'Celestial Vessel of Energy.';
-      document.getElementById('modalPrice').innerText = '$45.00';
-      document.getElementById('modalOldPrice').innerText = '$68.00';
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDetail').innerText = detail;
+      document.getElementById('modalPrice').innerText = price.startsWith('₹') ? price : `₹${price}`;
+      document.getElementById('modalOldPrice').style.display = 'none';
       document.getElementById('modalPrice').style.display = 'block';
-      document.getElementById('modalOldPrice').style.display = 'block';
-      document.querySelector(".modal-badge").innerText = 'Free Shipping';
-      document.querySelector(".modal-buy-btn").innerText = 'Buy';
+      
+      const offerEl = document.querySelector(".modal-offer");
+      if (offerEl) {
+          offerEl.innerText = offer;
+          offerEl.style.display = offer ? 'block' : 'none';
+      }
+
+      document.querySelector(".modal-buy-btn").innerText = 'Buy Now';
       document.querySelector(".modal-tax").style.display = 'block';
-      document.querySelector(".modal-offer").style.display = 'block';
       document.querySelector(".modal-stock").style.display = 'flex';
       
       modal.classList.add('active');
@@ -1312,7 +1294,7 @@
       }
     });
   </script>
+  <script src="dynamic-products.js"></script>
 </body>
 
 </html>
-
