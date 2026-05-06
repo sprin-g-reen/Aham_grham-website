@@ -40,17 +40,7 @@ const AuthHelper = {
         const user = this.getUser();
         const isLoggedIn = this.isLoggedIn();
 
-        // 1. Handle Navbar Login Button
-        const loginBtns = document.querySelectorAll('button.nav-btn, a.nav-btn');
-        loginBtns.forEach(btn => {
-            if (btn.textContent.toLowerCase().includes('login')) {
-                if (isLoggedIn) {
-                    btn.style.display = 'none';
-                } else {
-                    btn.style.display = 'block';
-                }
-            }
-        });
+        // 1. Handle Navbar Login Button (Removed)
 
         // 2. Handle Navbar CTA Button (Book Session)
         // This is handled via the click handler, but we can update the text if needed.

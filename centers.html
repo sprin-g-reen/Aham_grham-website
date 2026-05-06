@@ -273,27 +273,11 @@
       </section>
 
       <!-- Bento Grid of Sanctuaries -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div id="centers-container" class="grid grid-cols-1 md:grid-cols-12 gap-8">
         <!-- Sanctuary Card 1: Large Featured -->
         <div class="md:col-span-8 group relative overflow-hidden rounded-3xl bg-[#170529] shadow-2xl transition-all">
           <div class="aspect-[16/9] w-full overflow-hidden">
             <img alt="The Midnight Grove" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAj3gUat_UqDuRkvashlbnAbLnHttO3Iu3V490jZUriJlSqPruIS32r3YvtWnXimc_eSfyxV58FkZJz4to8oGxnO22u8VoyjO1c0dCxvRm81chgifdXoXGGX0ERq9v19ad_XKHpxJlXUQ-zEd1P9URzAArpQJ6Je09oAxtDfF8bBc8T553GHCGVQKQDXUn_Fst_4D1S1nVl-LPs__VfriWBITmGu3BV6WihNA1PaiLfHXeb4Gh_pbEbAI0jJpb8QXAXUo-HKo_a8E" />
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-[#170529] via-transparent to-transparent opacity-80"></div>
-          <div class="absolute bottom-0 p-8 w-full">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <div class="text-white">
-                <h3 class="text-3xl font-headline font-semibold mb-2">The Midnight Grove</h3>
-                <p class="flex items-center gap-2 text-purple-200 italic mb-4">
-                  <span class="material-symbols-outlined text-sm">location_on</span> 442 Obsidian Way, Seattle, WA
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-purple-500/20 text-purple-200 px-3 py-1 rounded-full text-[0.70rem] uppercase tracking-widest">Infrared Sauna</span>
-                  <span class="bg-purple-500/20 text-purple-200 px-3 py-1 rounded-full text-[0.70rem] uppercase tracking-widest">Ceremonial Matcha Bar</span>
-                </div>
-              </div>
-
-            </div>
           </div>
         </div>
 
@@ -339,16 +323,6 @@
         <!-- Sanctuary Card 4: Image Focus - MATCHING HEIGHT -->
         <div class="md:col-span-7 group relative rounded-3xl overflow-hidden shadow-xl h-[480px]">
           <img alt="Aether Hall" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkUsbfCCL0UUZ_4aNMr5KXE2eiKbjtSp2isovouTH_XxWfZ1foTglkUPl7mA0Sth1_NegAolYG3DhkSpyPEIYosxskK2eak-xlEcbugmWa4_LqPLAc0w2NLpU31Q_oEFdomNJ0w0tpk2-NnnqquluT9aEQRSuaPd9i7Bn5jiV7Vr1SDsUXzjjogP1r7fV0NP6jIuX1QlwD3Wo2j6O8SWV5AyxzXpGy44cRDi9cpMFiz3nzfcoUDjMAKq-7thSmNelQp0Bxf-pcyRU" />
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500"></div>
-          <div class="absolute inset-0 p-10 flex flex-col justify-end">
-            <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 max-w-sm">
-              <h3 class="text-2xl font-headline mb-2 text-white">Aether Hall</h3>
-              <p class="text-sm text-white/80 mb-4">99 Luminary Drive, New York City, NY</p>
-              <button class="text-white text-xs uppercase tracking-widest font-bold flex items-center gap-2 group-hover:gap-4 transition-all">
-                View Schedule <span class="material-symbols-outlined text-sm">arrow_forward</span>
-              </button>
-            </div>
-          </div>
         </div>
         </div>
       </div>
@@ -382,7 +356,6 @@
       <li><a href="centers.html" class="mobile-nav-link">centers</a></li>
       <li><a href="sacred-moon-oil.html" class="mobile-nav-link">shop</a></li>
       <li><a href="about.html" class="mobile-nav-link">about us</a></li>
-      <li><a href="auth.html" class="mobile-nav-link">login</a></li>
       <li><button onclick="handleAddToCartClick(event)" class="btn-secondary mt-4 w-full flex items-center justify-center gap-2">
         <span class="material-symbols-outlined">shopping_cart</span>
         add to cart
@@ -392,28 +365,13 @@
   </div>
 
   <footer class="footer">
-      <div class="footer-top overflow-hidden">
+      <!-- Row 1: AI Tags Marquee (Dynamic) -->
+      <div class="footer-top">
         <div id="marquee-1" class="velocity-marquee">
-          <div class="marquee-content">
-            <span class="footer-tag">Neurological Sync</span>
-            <span class="footer-tag">Cellular Resonance</span>
-            <span class="footer-tag">Prana Flow</span>
-            <span class="footer-tag">Ancestral Healing</span>
-            <span class="footer-tag">Somatic Reset</span>
-            <span class="footer-tag">Astral Projection</span>
-            <span class="footer-tag">Nervous System Ease</span>
-          </div>
+          <div class="marquee-content"></div>
         </div>
         <div id="marquee-2" class="velocity-marquee">
-          <div class="marquee-content">
-            <span class="footer-tag">Quantum Mindfulness</span>
-            <span class="footer-tag">Bio-Dynamic Flow</span>
-            <span class="footer-tag">Vedic Wisdom</span>
-            <span class="footer-tag">Inner Sanctuary</span>
-            <span class="footer-tag">Harmonic Balance</span>
-            <span class="footer-tag">Solar Vitality</span>
-            <span class="footer-tag">Breath Intelligence</span>
-          </div>
+          <div class="marquee-content"></div>
         </div>
       </div>
 
@@ -495,6 +453,7 @@
   <script src="gsap.min.js"></script>
   <script src="app.js"></script>
   <script src="scroll-velocity.js"></script>
+  <script src="ai-tags.js"></script>
   <script src="true-focus.js"></script>
 
 </body>

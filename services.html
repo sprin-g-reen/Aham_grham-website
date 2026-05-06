@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="assets/logo_transparent.png" />
   <title>Our Services | Aham Graham</title>
 
   <!-- Tailwind CSS -->
@@ -212,6 +213,10 @@
       animation: rotate 10s linear infinite;
     }
 
+    .product-card .p-6 {
+      padding-top: 20px !important;
+    }
+
     /* ELEGANT WHITE PROGRAM TITLES - FORCED FOR BOTH MODES */
     .programs-grid .bento-card h3,
     html.light-theme .programs-grid .bento-card h3,
@@ -241,11 +246,14 @@
     }
 
     /* Light Mode Section Header Overrides */
-    html.light-theme .programs-shell h2,
-    html.light-theme .tracking-tight,
+    html.light-theme h1,
+    html.light-theme h1 span,
+    html.light-theme h2,
+    html.light-theme h3,
+    html.light-theme h4,
     html.light-theme .product-card h3,
     html.light-theme .product-card p {
-      color: #111827 !important;
+      color: #000000 !important;
     }
 
     .icon-row {
@@ -368,7 +376,6 @@
         <button class="nav-btn" onclick="window.location.href='centers.html'">centers</button>
         <button class="nav-btn" onclick="window.location.href='sacred-moon-oil.html'">shop</button>
         <button class="nav-btn" onclick="window.location.href='about.html'">about us</button>
-        <button class="nav-btn" onclick="window.location.href='auth.html'">login</button>
       </div>
 
       <div class="cta-wrapper">
@@ -492,13 +499,27 @@
             <img src="https://images.unsplash.com/photo-1592179900431-1e021ea5c783?auto=format&fit=crop&q=80" alt="Sacred Cork Mat" class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">
             <div class="p-6">
               <h3 class="text-white text-xl font-bold mb-1">Sacred Cork Mat</h3>
-              <p class="text-gray-400 italic text-xs mb-4">Antimicrobial & Natural Grip</p>
+              <p class="text-gray-400 text-xs mb-4">Antimicrobial & Natural Grip</p>
               <div class="flex justify-between items-center">
                 <p class="text-white font-bold text-xl">$120</p>
                 <div class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center group-hover:bg-[#3b82f6] transition-colors duration-300">
                   <span class="material-symbols-outlined text-[#3b82f6] group-hover:text-white text-sm">shopping_bag</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </main>
+
+  <!-- SCRIPTS -->
+  <script src="gsap.min.js"></script>
+  <script src="app.js"></script>
+  <script src="scroll-velocity.js"></script>
+  <script src="ai-tags.js"></script>
+  <script src="true-focus.js"></script>
+  <script src="dynamic-products.js"></script>
 
   <!-- FOOTER -->
   <!-- MOBILE OVERLAY -->
@@ -515,36 +536,19 @@
   </div>
 
   <footer class="footer">
-    <!-- SECTION 1: AI TAGS (Integrated) -->
     <div class="footer-top overflow-hidden">
       <div id="marquee-1" class="velocity-marquee">
-        <div class="marquee-content">
-          <span class="footer-tag">Neurological Sync</span>
-          <span class="footer-tag">Cellular Resonance</span>
-          <span class="footer-tag">Prana Flow</span>
-          <span class="footer-tag">Ancestral Healing</span>
-          <span class="footer-tag">Somatic Reset</span>
-          <span class="footer-tag">Astral Projection</span>
-          <span class="footer-tag">Nervous System Ease</span>
-        </div>
+        <div class="marquee-content"></div>
       </div>
       <div id="marquee-2" class="velocity-marquee">
-        <div class="marquee-content">
-          <span class="footer-tag">Quantum Mindfulness</span>
-          <span class="footer-tag">Bio-Dynamic Flow</span>
-          <span class="footer-tag">Vedic Wisdom</span>
-          <span class="footer-tag">Inner Sanctuary</span>
-          <span class="footer-tag">Harmonic Balance</span>
-          <span class="footer-tag">Solar Vitality</span>
-          <span class="footer-tag">Breath Intelligence</span>
-        </div>
+        <div class="marquee-content"></div>
       </div>
     </div>
 
     <div class="footer-main">
       <div class="footer-container">
         <div class="footer-col footer-brand-col">
-          <img src="Untitled%20design%20(2).png" alt="Aham Graham Logo" class="footer-logo">
+          <img src="Untitled design (2).png" alt="Aham Graham Logo" class="footer-logo">
           <div class="footer-quote-wrap">
             <p class="footer-quote">
               bridging ancient wisdom with modern neurological insights.<br>
@@ -609,11 +613,6 @@
       </div>
     </div>
   </footer>
-
-  <script src="gsap.min.js"></script>
-  <script src="app.js"></script>
-  <script src="scroll-velocity.js"></script>
-  <script src="true-focus.js"></script>
 </body>
-
 </html>
+

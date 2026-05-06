@@ -8,6 +8,13 @@ class ScrollVelocity {
     this.container = document.querySelector(containerSelector);
     if (!this.container) return;
 
+    // Prevent multiple initializations on the same element
+    if (this.container.dataset.velocityInitialized) {
+      console.warn('ScrollVelocity already initialized on', containerSelector);
+      return;
+    }
+    this.container.dataset.velocityInitialized = 'true';
+
     this.options = {
       velocity: options.velocity || 1,
       direction: options.direction || 1, 
@@ -76,29 +83,38 @@ class ScrollVelocity {
   }
 
   animate() {
+    // 1. Calculate target velocity based on scroll
     const velocityEffect = Math.abs(this.scrollVelocity) * this.options.velocityMultiplier;
     this.targetVelocity = this.options.velocity + velocityEffect;
+    
+    // 2. Smoothly interpolate velocity
     this.currentVelocity += (this.targetVelocity - this.currentVelocity) * this.options.damping;
-    this.scrollVelocity *= 0.95;
-
+    
+    // 3. Move X
     this.x -= this.currentVelocity * this.options.direction;
     
-    // Seamless wrap
+    // 4. Handle seamless wrapping
     if (this.x > 0) {
       this.x -= this.copyWidth;
     } else if (this.x < -this.copyWidth) {
       this.x += this.copyWidth;
     }
 
-    // Use translate3d for hardware acceleration and sub-pixel smoothing
-    this.track.style.transform = `translate3d(${this.x}px, 0, 0)`;
+    // 5. Apply transform with high precision
+    // Using toFixed(3) prevents sub-pixel jitter and 'stuck' feelings
+    this.track.style.transform = `translate3d(${this.x.toFixed(3)}px, 0, 0)`;
+
+    // 6. Decay scroll velocity
+    this.scrollVelocity *= 0.92;
 
     requestAnimationFrame(() => this.animate());
-
   }
 }
 
+window.ScrollVelocity = ScrollVelocity;
 
+
+/**
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   // Row 1: Left
@@ -113,4 +129,5 @@ document.addEventListener('DOMContentLoaded', () => {
     direction: -1
   });
 });
+**/
 

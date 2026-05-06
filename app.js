@@ -2,6 +2,11 @@ window.addEventListener("load", () => {
   document.body.classList.add("page-ready");
 });
 
+function handleBookSessionClick(e) {
+  if (e) e.preventDefault();
+  window.location.href = 'book-session.html';
+}
+
 const nav = document.querySelector(".menu-buttons");
 const indicator = document.querySelector(".nav-indicator");
 const buttons = document.querySelectorAll(".nav-btn");
@@ -150,24 +155,26 @@ function initRevealAnimation() {
 }
 
 // Mobile Menu Toggle
-const hamburger = document.querySelector(".hamburger-btn");
-const mobileOverlay = document.querySelector(".mobile-overlay");
-const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+function setupMobileMenu() {
+  const hamburger = document.querySelector(".hamburger-btn");
+  const mobileOverlay = document.querySelector(".mobile-overlay");
+  const mobileLinks = document.querySelectorAll(".mobile-nav-link");
 
-if (hamburger && mobileOverlay) {
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    mobileOverlay.classList.toggle("active");
-    document.body.style.overflow = mobileOverlay.classList.contains("active") ? "hidden" : "";
-  });
-
-  mobileLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      mobileOverlay.classList.remove("active");
-      document.body.style.overflow = "";
+  if (hamburger && mobileOverlay) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      mobileOverlay.classList.toggle("active");
+      document.body.style.overflow = mobileOverlay.classList.contains("active") ? "hidden" : "";
     });
-  });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        mobileOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+      });
+    });
+  }
 }
 
 // Initialize
@@ -814,6 +821,67 @@ async function loadAboutToPage() {
         console.error("Failed to load about content:", error);
     }
 }
+/**
+ * Loads dynamic centers into the Centers page
+ */
+async function loadCentersToPage() {
+    const centersContainer = document.getElementById('centers-container');
+    if (!centersContainer) return;
+
+    try {
+        const response = await fetch('http://localhost:5000/api/centers');
+        const centers = await response.json();
+
+        if (centers && centers.length > 0) {
+            centersContainer.innerHTML = centers.map((center, index) => {
+                const isReversed = index % 2 !== 0;
+                const hasImage = !!center.image;
+                const imageUrl = hasImage ? 'http://localhost:5000' + center.image : 'https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&w=1920&q=80';
+
+                // Image Card (8 columns)
+                const imageCard = `
+                    <div class="md:col-span-8 group relative overflow-hidden rounded-[32px] bg-[#170529] shadow-2xl transition-all h-[480px]">
+                        <img src="${imageUrl}" alt="${center.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#170529]/40 to-transparent opacity-60"></div>
+                    </div>
+                `;
+
+                // Info Card (4 columns)
+                const infoCard = `
+                    <div class="md:col-span-4 group flex flex-col bg-[#170529] rounded-[32px] overflow-hidden shadow-xl border border-white/5 h-[480px]">
+                        <div class="p-10 flex-grow flex flex-col justify-center text-center text-white">
+                            <div class="flex justify-center mb-6">
+                                <span class="material-symbols-outlined text-4xl text-[#8c52ff]">architecture</span>
+                            </div>
+                            
+                            <h3 class="text-2xl font-headline font-semibold mb-4 tracking-tight">${center.name}</h3>
+                            
+                            <p class="text-purple-200/70 text-sm italic leading-relaxed mb-8 line-clamp-6">
+                                "${center.description}"
+                            </p>
+                            
+                            <div class="h-px w-16 bg-white/10 mx-auto mb-8"></div>
+                            
+                            <div class="space-y-4">
+                                <p class="text-white/60 text-[0.7rem] uppercase tracking-[0.2em] flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">location_on</span> ${center.location}
+                                </p>
+                                <span class="inline-block px-4 py-1.5 rounded-full text-[0.65rem] uppercase tracking-widest font-bold bg-white/5 border border-white/10 ${center.status === 'opened' ? 'text-blue-400' : 'text-red-400'}">
+                                    ${center.status}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Combine them in the correct order
+                return isReversed ? (infoCard + imageCard) : (imageCard + infoCard);
+            }).join('');
+        }
+    } catch (err) {
+        console.error("Error loading centers:", err);
+    }
+}
 
 function createEventCard(ev, patternClass, isWorkshop = false) {
     const imgSrc = ev.image ? `http://localhost:5000${ev.image}` : 'assets/AhamGraham-Web/placeholder.png';
@@ -863,7 +931,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTestimonialsToHome();
     loadProductsToServices();
     loadAboutToPage();
-    
+    loadCentersToPage();
+
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeProgramModal();
     });

@@ -7,11 +7,10 @@ export const getHero = async (req, res) => {
 
     // Provide sensible defaults based on page name
     const defaults = {
-      about: { kicker: 'our story', title: 'heritage of stillness', subtitle: 'preserving the sacred geometry of the soul through rigorous practice.' },
-      services: { kicker: 'precision yoga', title: 'your path to healing', subtitle: 'clinical wisdom meets ancestral lineage.' },
-      events: { kicker: 'sacred gatherings', title: 'connect in stillness', subtitle: 'immersive experiences for the modern seeker.' },
-      centers: { kicker: 'physical sanctuaries', title: 'spaces of light', subtitle: 'visit our physical locations for deep immersion.' },
-      shop: { kicker: 'sacred apothecary', title: 'tools for the soul', subtitle: 'hand-crafted oils and traditional tools.' },
+      about: { kicker: 'foundation of spirit', title: 'the inner landscape', subtitle: 'we are more than a yoga space. we are a living lineage where ancient breath science meets modern healing rhythm, one mindful step at a time.' },
+      services: { kicker: 'experience transcendence', title: 'find your inner stillness', subtitle: 'precision-engineered yoga pathways designed for clinical results and spiritual depth.' },
+      events: { kicker: 'communal resonance', title: 'sacred gatherings', subtitle: 'from global summits to intimate retreats, join us in spaces designed for collective awakening and profound clinical stillness.' },
+      centers: { kicker: 'sanctuary network', title: 'our centers', subtitle: 'discover a network of portals designed to elevate your spirit. each sanctuary is a living manifestation of peace, blending sacred geometry with modern neurological hospitality.' },
       home: { kicker: 'experience stillness', title: 'the journey back to yourself', subtitle: 'a sanctuary for deep practice.' }
     };
 
@@ -25,8 +24,14 @@ export const getHero = async (req, res) => {
         subtitle: pageDefaults.subtitle,
         buttonText: 'explore our path'
       });
-    } else if (hero.title === 'the journey back to yourself' && page !== 'home') {
-      // Auto-fix stale default record
+    } else if ((hero.title === 'the journey back to yourself' || 
+                 hero.title === 'your story' || 
+                 hero.title === 'heritage of stillness' ||
+                 hero.title === 'spaces of light' ||
+                 hero.title === 'your path to healing' ||
+                 hero.title === 'sacred apothecary' ||
+                 hero.title === 'connect in stillness') && page !== 'home') {
+      // Auto-fix stale default record with actual website content
       hero.kicker = pageDefaults.kicker;
       hero.title = pageDefaults.title;
       hero.subtitle = pageDefaults.subtitle;
