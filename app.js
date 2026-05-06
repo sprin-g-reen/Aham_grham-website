@@ -305,7 +305,7 @@ function closeProgramModal() {
 // Global click listener for all display cards
 document.addEventListener('click', (e) => {
     // Check if clicked element or its parent is a card
-    const card = e.target.closest('.bento-item, .bento-card, .bento-blog-item, .product-card');
+    const card = e.target.closest('.bento-item, .bento-card, .bento-blog-item');
     if (card) {
         // If it's a link or button inside the card, let it handle the click
         if (e.target.closest('a, button')) return;
@@ -471,6 +471,74 @@ async function loadEventsToBlog() {
     }
 }
 
+async function loadTestimonialsToHome() {
+    const container = document.getElementById('testimonial-dome-container');
+    if (!container || !window.DomeGallery) return;
+
+    try {
+        const response = await fetch('http://localhost:5000/api/testimonials');
+        const dbTestimonials = await response.json();
+
+        let baseTestimonials = [];
+        
+        if (dbTestimonials.length > 0) {
+            baseTestimonials = dbTestimonials.map(t => ({
+                src: t.image ? `http://localhost:5000${t.image}` : 'https://placehold.co/400x600/2c2c3a/white?text=' + t.name.charAt(0),
+                name: t.name,
+                role: t.role,
+                text: t.content,
+                alt: t.name
+            }));
+        } else {
+            // Fallback to original static data if none in DB
+            baseTestimonials = [
+                {
+                    src: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=776&auto=format&fit=crop',
+                    name: 'Dr. Leila Ahmadi',
+                    role: 'Clinical Research Director',
+                    text: 'Every session is a data point. Our students don\'t just feel better - they can prove it with numbers.',
+                    alt: 'Dr. Leila Ahmadi'
+                },
+                {
+                    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=774&auto=format&fit=crop',
+                    name: 'Marcus Thorne',
+                    role: 'Professional Athlete',
+                    text: 'The neurological synchronization techniques here transformed my recovery process completely.',
+                    alt: 'Marcus Thorne'
+                }
+            ];
+        }
+
+        // Duplicate the data to fill the dense grid (min 20 items recommended for Dome)
+        let testimonialData = [...baseTestimonials];
+        while (testimonialData.length < 20) {
+            testimonialData = [...testimonialData, ...baseTestimonials];
+        }
+
+        const isMobile = window.innerWidth <= 768;
+        const mobileWidth = Math.floor(window.innerWidth * 0.98);
+        const mobileHeight = Math.floor(window.innerHeight * 0.95);
+        
+        new DomeGallery(container, {
+            images: testimonialData,
+            fit: isMobile ? 1.1 : 0.8, 
+            fitBasis: 'width',
+            minRadius: 400,
+            maxRadius: 2000,
+            padFactor: isMobile ? 0.05 : 0.25,
+            overlayBlurColor: '#05051a',
+            openedImageWidth: isMobile ? `${mobileWidth}px` : '300px',
+            openedImageHeight: isMobile ? `${mobileHeight}px` : '550px',
+            imageBorderRadius: '30px',
+            grayscale: false,
+            segments: isMobile ? 30 : 55 
+        });
+
+    } catch (error) {
+        console.error("Failed to load testimonials:", error);
+    }
+}
+
 async function loadEventsToPage() {
     const mainGrid = document.getElementById('main-events-grid');
     const workshopGrid = document.getElementById('workshop-grid');
@@ -562,6 +630,162 @@ async function loadEventsToPage() {
     }
 }
 
+async function loadProductsToServices() {
+    const grid = document.getElementById('dynamic-services-products');
+    if (!grid) return;
+
+    try {
+        const response = await fetch('http://localhost:5000/api/products');
+        const products = await response.json();
+
+        // Filter products for service page
+        const serviceProducts = products.filter(p => p.isServicePage);
+
+        if (serviceProducts.length > 0) {
+            grid.innerHTML = '';
+            
+            serviceProducts.forEach(product => {
+                const imgSrc = product.image && product.image !== 'no-photo.jpg' 
+                    ? `http://localhost:5000/uploads/${product.image}` 
+                    : 'https://images.unsplash.com/photo-1592179900431-1e021ea5c783?auto=format&fit=crop&q=80';
+                
+                const cardHTML = `
+                    <div class="group cursor-pointer product-card rounded-[32px] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col"
+                         onclick="window.location.href='sacred-moon-oil.html'"
+                         data-description="${product.description || ''}">
+                        <img src="${imgSrc}" alt="${product.name}" class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">
+                        <div class="p-6">
+                            <h3 class="text-white text-xl font-bold mb-1">${product.name}</h3>
+                            <p class="text-gray-400 italic text-xs mb-4">${product.category || ''}</p>
+                            <div class="flex justify-between items-center">
+                                <p class="text-white font-bold text-xl">₹${product.price}</p>
+                                <div class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center group-hover:bg-[#3b82f6] transition-colors duration-300">
+                                    <span class="material-symbols-outlined text-[#3b82f6] group-hover:text-white text-sm">shopping_bag</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+            
+            initRevealAnimation();
+        }
+    } catch (error) {
+        console.error("Failed to load service products:", error);
+    }
+}
+
+async function loadAboutToPage() {
+    const heroTitle = document.getElementById('about-hero-title');
+    if (!heroTitle) return;
+
+    try {
+        const response = await fetch('http://localhost:5000/api/about');
+        const about = await response.json();
+
+        if (about) {
+            // Hero
+            if (about.hero) {
+                const kicker = document.getElementById('about-hero-kicker');
+                const subtitle = document.getElementById('about-hero-subtitle');
+                const img = document.getElementById('about-hero-img');
+                
+                if (kicker) kicker.innerText = about.hero.kicker;
+                if (heroTitle) heroTitle.innerText = about.hero.title;
+                if (subtitle) subtitle.innerText = about.hero.subtitle;
+                if (img && about.hero.image) {
+                    img.src = about.hero.image.startsWith('/') ? `http://localhost:5000${about.hero.image}` : `assets/AhamGraham-Web/${about.hero.image}`;
+                }
+            }
+
+            // Half Sections
+            const halfContainer = document.getElementById('about-half-container');
+            if (halfContainer && about.halfSections && about.halfSections.length > 0) {
+                halfContainer.innerHTML = about.halfSections.map(section => `
+                    <section class="about-card about-half">
+                        <div>
+                            <h2>${section.title}</h2>
+                            <p>${section.content}</p>
+                        </div>
+                    </section>
+                `).join('');
+            }
+
+            // Core Philosophy
+            if (about.corePhilosophy) {
+                const coreTitle = document.getElementById('about-core-title');
+                const coreContent = document.getElementById('about-core-content');
+                if (coreTitle) coreTitle.innerText = about.corePhilosophy.title;
+                if (coreContent) coreContent.innerText = about.corePhilosophy.content;
+            }
+
+            // Lineage Voice
+            if (about.lineageVoice) {
+                const quoteTitle = document.getElementById('about-quote-title');
+                const quoteText = document.getElementById('about-quote-text');
+                const quoteAuthor = document.getElementById('about-quote-author');
+                if (quoteTitle) quoteTitle.innerText = about.lineageVoice.title;
+                if (quoteText) quoteText.innerText = about.lineageVoice.quote;
+                if (quoteAuthor) quoteAuthor.innerText = about.lineageVoice.author;
+            }
+
+            // Ancient Lineage
+            if (about.ancientLineage) {
+                const miniKicker = document.getElementById('about-mini-kicker');
+                const miniContent = document.getElementById('about-mini-content');
+                if (miniKicker) miniKicker.innerText = about.ancientLineage.kicker;
+                if (miniContent) miniContent.innerText = about.ancientLineage.content;
+            }
+
+            // Faculties
+            if (about.faculties) {
+                const facTitle = document.getElementById('about-faculties-title');
+                const facSubtitle = document.getElementById('about-faculties-subtitle');
+                const facGrid = document.getElementById('about-faculties-grid');
+
+                if (facTitle) facTitle.innerText = about.faculties.title;
+                if (facSubtitle) facSubtitle.innerText = about.faculties.subtitle;
+                if (facGrid && about.faculties.guides) {
+                    const displayGuides = about.faculties.guides.slice(0, 3);
+                    facGrid.innerHTML = displayGuides.map(guide => `
+                        <article class="guide-card">
+                            <img src="${guide.image.startsWith('http') || guide.image.startsWith('/') ? guide.image : 'assets/' + guide.image}" alt="${guide.name}">
+                            <div class="guide-content">
+                                <h3>${guide.name}</h3>
+                                <span class="guide-role">${guide.role}</span>
+                                <p>${guide.bio}</p>
+                            </div>
+                        </article>
+                    `).join('');
+                }
+            }
+
+            // CTA
+            if (about.cta) {
+                const ctaTitle = document.getElementById('about-cta-title');
+                const ctaSubtitle = document.getElementById('about-cta-subtitle');
+                const ctaButton = document.getElementById('about-cta-button');
+                const ctaSection = document.getElementById('about-cta-section');
+
+                if (ctaTitle) ctaTitle.innerText = about.cta.title;
+                if (ctaSubtitle) ctaSubtitle.innerText = about.cta.subtitle;
+                if (ctaButton) ctaButton.innerText = about.cta.buttonText;
+                if (ctaSection && about.cta.image) {
+                    const imgUrl = about.cta.image.startsWith('/') ? `http://localhost:5000${about.cta.image}` : `assets/AhamGraham-Web/${about.cta.image}`;
+                    ctaSection.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${imgUrl})`;
+                    ctaSection.style.backgroundSize = 'cover';
+                    ctaSection.style.backgroundPosition = 'center';
+                }
+            }
+            
+            initRevealAnimation();
+        }
+    } catch (error) {
+        console.error("Failed to load about content:", error);
+    }
+}
+
 function createEventCard(ev, patternClass, isWorkshop = false) {
     const imgSrc = ev.image ? `http://localhost:5000${ev.image}` : 'assets/AhamGraham-Web/placeholder.png';
     const overlayClass = isWorkshop ? '!bg-gradient-to-t !from-[#231f37]/80 !to-transparent' : '';
@@ -589,6 +813,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loadProgramsToHome();
     loadEventsToBlog();
     loadEventsToPage();
+    loadTestimonialsToHome();
+    loadProductsToServices();
+    loadAboutToPage();
     
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeProgramModal();

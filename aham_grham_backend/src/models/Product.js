@@ -25,6 +25,10 @@ const productSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  isServicePage: {
+    type: Boolean,
+    default: false
+  },
   offer: {
     type: String,
     trim: true
