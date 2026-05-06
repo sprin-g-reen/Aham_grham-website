@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +18,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
   <!-- External CSS -->
@@ -25,8 +27,6 @@
   <link rel="stylesheet" href="scroll-velocity.css" />
   <link rel="stylesheet" href="true-focus.css" />
   <link rel="stylesheet" href="auth.css" />
-  <script src="auth-helper.js"></script>
-
 
 
   <style>
@@ -50,7 +50,8 @@
     .about-hero {
       grid-column: span 12;
       min-height: 540px;
-      background: #05051a !important; /* Force dark background always */
+      background: #05051a !important;
+      /* Force dark background always */
       position: relative;
       border-radius: 24px;
       overflow: hidden;
@@ -63,7 +64,7 @@
 
     .services-feature-shell {
       background: linear-gradient(var(--about-card), var(--about-card)) padding-box,
-                  conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
       border: 1.5px solid transparent;
       animation: rotate 8s linear infinite;
       border-radius: 28px;
@@ -194,7 +195,7 @@
       z-index: 1;
     }
 
-    .bento-card > div {
+    .bento-card>div {
       position: relative;
       z-index: 2;
     }
@@ -206,7 +207,7 @@
 
     .product-card {
       background: linear-gradient(var(--about-surface), var(--about-surface)) padding-box,
-                  conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
       border: 1.5px solid transparent;
       animation: rotate 10s linear infinite;
     }
@@ -219,7 +220,7 @@
       font-weight: 400 !important;
       color: #ffffff !important;
       margin-bottom: 12px !important;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
       letter-spacing: 0.02em !important;
       position: relative !important;
       z-index: 10 !important;
@@ -265,15 +266,30 @@
       background: rgba(155, 135, 245, 0.1);
     }
 
-    .span-2-2 { grid-column: span 2; grid-row: span 2; }
-    .span-2-1 { grid-column: span 2; grid-row: span 1; }
-    .span-1-1 { grid-column: span 1; grid-row: span 1; }
+    .span-2-2 {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .span-2-1 {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .span-1-1 {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
 
     @media (max-width: 1024px) {
       .programs-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      .span-2-2, .span-2-1 { grid-column: span 2; }
+
+      .span-2-2,
+      .span-2-1 {
+        grid-column: span 2;
+      }
     }
 
     @media (max-width: 640px) {
@@ -281,43 +297,54 @@
         grid-template-columns: 1fr;
         gap: 16px;
       }
-      .about-main { 
-        padding: 70px 16px 20px; 
+
+      .about-main {
+        padding: 70px 16px 20px;
       }
-      .services-feature-shell { 
-        padding-left: 0; 
-        padding-right: 0; 
-        margin-left: 0; 
-        margin-right: 0; 
+
+      .services-feature-shell {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
       }
-      .span-2-2, .span-2-1, .span-1-1 { 
-        grid-column: span 1; 
+
+      .span-2-2,
+      .span-2-1,
+      .span-1-1 {
+        grid-column: span 1;
       }
-      .about-hero { 
-        margin: 0; /* Reduced margin to bring closer to nav */
+
+      .about-hero {
+        margin: 0;
+        /* Reduced margin to bring closer to nav */
       }
-      .programs-shell { 
-        padding: 0; 
+
+      .programs-shell {
+        padding: 0;
       }
-      .bento-card { 
-        padding: 24px; 
+
+      .bento-card {
+        padding: 24px;
         min-height: 240px;
       }
+
       .bento-card h3 {
         font-size: 24px;
       }
+
       .card-actions {
         gap: 8px;
       }
+
       .btn-card {
         padding: 8px 10px;
         font-size: 11px;
       }
     }
-    
-    
   </style>
 </head>
+
 <body>
   <div id="focus-loader"></div>
 
@@ -341,12 +368,10 @@
         <button class="nav-btn" onclick="window.location.href='centers.html'">centers</button>
         <button class="nav-btn" onclick="window.location.href='sacred-moon-oil.html'">shop</button>
         <button class="nav-btn" onclick="window.location.href='about.html'">about us</button>
+        <button class="nav-btn" onclick="window.location.href='auth.html'">login</button>
       </div>
 
       <div class="cta-wrapper">
-        <button class="btn-secondary" onclick="handleAddToCartClick(event)">
-          <span class="material-symbols-outlined">shopping_cart</span>
-        </button>
         <button class="btn-primary" onclick="handleBookSessionClick(event)">book session</button>
         <button class="btn-icon"><span class="material-symbols-outlined">light_mode</span></button>
         <button class="btn-icon"><span class="material-symbols-outlined">dark_mode</span></button>
@@ -364,166 +389,189 @@
       <div class="about-grid">
         <!-- HERO SECTION (About-style structure) -->
         <section class="about-hero services-feature-shell">
-      <img src="assets/AhamGraham-Web/yoga-class-group-of-young-sporty-people-meditatin-2026-01-08-23-23-32-utc.jpg" alt="Yoga practice">
-      <div class="about-hero-content">
-        <span class="about-kicker">experience transcendence</span>
-        <h1 class="about-title">find your inner stillness</h1>
-        <p class="about-subtitle">our services are curated to align with the natural rhythms of the soul. from restorative moon-flow to energizing solar vinyasa, find the path that speaks to you.</p>
-      </div>
-    </section>
-
-    <!-- OUR PROGRAMS SECTION -->
-    <section class="w-full px-4 mx-auto mt-10 py-10 services-feature-shell">
-      <div class="programs-shell">
-        <div class="text-center mb-8">
-          <h2 class="text-4xl font-extrabold text-white mb-4">Our Programs</h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">precision-engineered yoga pathways designed for clinical results and spiritual depth.</p>
-        </div>
-
-        <div class="programs-grid">
-        <!-- ROW 1-2: FLIPPED (Large on Right) -->
-        
-        <!-- Rehab & Recovery (Wide - Row 1 Left) -->
-        <div class="bento-card span-2-1">
-          <img src="assets/AhamGraham-Web/re.png" alt="Rehab & Recovery">
-          <div>
-            <h3>rehab & recovery</h3>
+          <img src="assets/AhamGraham-Web/yoga-class-group-of-young-sporty-people-meditatin-2026-01-08-23-23-32-utc.jpg"
+            alt="Yoga practice">
+          <div class="about-hero-content">
+            <span class="about-kicker">experience transcendence</span>
+            <h1 class="about-title">find your inner stillness</h1>
+            <p class="about-subtitle">our services are curated to align with the natural rhythms of the soul. from
+              restorative moon-flow to energizing solar vinyasa, find the path that speaks to you.</p>
           </div>
-        </div>
+        </section>
 
-        <!-- Private & Group (Large - Rows 1-2 Right) -->
-        <div class="bento-card span-2-2">
-          <img src="assets/AhamGraham-Web/Untitled design (4).png" alt="Private & Group">
-          <div>
-            <h3>private & group</h3>
+        <!-- OUR PROGRAMS SECTION -->
+        <section class="w-full px-4 mx-auto mt-10 py-10 services-feature-shell">
+          <div class="programs-shell">
+            <div class="text-center mb-8">
+              <h2 class="text-4xl font-extrabold text-white mb-4">Our Programs</h2>
+              <p class="text-gray-400 max-w-2xl mx-auto">precision-engineered yoga pathways designed for clinical
+                results and spiritual depth.</p>
+            </div>
+
+            <div class="programs-grid">
+              <!-- ROW 1-2: FLIPPED (Large on Right) -->
+
+              <!-- Rehab & Recovery (Wide - Row 1 Left) -->
+              <div class="bento-card span-2-1">
+                <img src="assets/AhamGraham-Web/re.png" alt="Rehab & Recovery">
+                <div>
+                  <h3>rehab & recovery</h3>
+                </div>
+              </div>
+
+              <!-- Private & Group (Large - Rows 1-2 Right) -->
+              <div class="bento-card span-2-2">
+                <img src="assets/AhamGraham-Web/Untitled design (4).png" alt="Private & Group">
+                <div>
+                  <h3>private & group</h3>
+                </div>
+              </div>
+
+              <!-- Medical Therapeutic (Small - Row 2 Left) -->
+              <div class="bento-card span-1-1">
+                <img src="assets/AhamGraham-Web/medical.png" alt="Medical Therapeutic">
+                <div>
+                  <h3>medical therapeutic</h3>
+                </div>
+              </div>
+
+              <!-- Retreats & Getaways (Small - Row 2 Left) -->
+              <div class="bento-card span-1-1">
+                <img src="assets/AhamGraham-Web/retreat.png" alt="Retreats">
+                <div>
+                  <h3>retreats</h3>
+                </div>
+              </div>
+
+              <!-- ROW 3-4: FLIPPED Pattern (Large on Left) -->
+
+              <!-- B2B (Large - Rows 3-4 Left) -->
+              <div class="bento-card span-2-2">
+                <img src="assets/AhamGraham-Web/b2bpc.png" alt="B2B">
+                <div>
+                  <h3>b2b</h3>
+                </div>
+              </div>
+
+              <!-- Online (Wide - Row 3 Right) -->
+              <div class="bento-card span-2-1">
+                <img src="assets/AhamGraham-Web/online.png" alt="Online">
+                <div>
+                  <h3>online</h3>
+                </div>
+              </div>
+
+              <!-- Certification (Small - Row 4 Right) -->
+              <div class="bento-card span-1-1">
+                <img src="assets/AhamGraham-Web/certification.png" alt="Certification">
+                <div>
+                  <h3>certification</h3>
+                </div>
+              </div>
+
+              <!-- Kids & Youth (Small - Row 4 Right) -->
+              <div class="bento-card span-1-1">
+                <img src="assets/AhamGraham-Web/y&k.png" alt="Kids & Youth">
+                <div>
+                  <h3>kids & youth</h3>
+                </div>
+              </div>
+
+            </div>
           </div>
-        </div>
-
-        <!-- Medical Therapeutic (Small - Row 2 Left) -->
-        <div class="bento-card span-1-1">
-          <img src="assets/AhamGraham-Web/medical.png" alt="Medical Therapeutic">
-          <div>
-            <h3>medical therapeutic</h3>
-          </div>
-        </div>
-
-        <!-- Retreats & Getaways (Small - Row 2 Left) -->
-        <div class="bento-card span-1-1">
-          <img src="assets/AhamGraham-Web/retreat.png" alt="Retreats">
-          <div>
-            <h3>retreats</h3>
-          </div>
-        </div>
-
-        <!-- ROW 3-4: FLIPPED Pattern (Large on Left) -->
-
-        <!-- B2B (Large - Rows 3-4 Left) -->
-        <div class="bento-card span-2-2">
-          <img src="assets/AhamGraham-Web/b2bpc.png" alt="B2B">
-          <div>
-            <h3>b2b</h3>
-          </div>
-        </div>
-
-        <!-- Online (Wide - Row 3 Right) -->
-        <div class="bento-card span-2-1">
-          <img src="assets/AhamGraham-Web/online.png" alt="Online">
-          <div>
-            <h3>online</h3>
-          </div>
-        </div>
-
-        <!-- Certification (Small - Row 4 Right) -->
-        <div class="bento-card span-1-1">
-          <img src="assets/AhamGraham-Web/certification.png" alt="Certification">
-          <div>
-            <h3>certification</h3>
-          </div>
-        </div>
-
-        <!-- Kids & Youth (Small - Row 4 Right) -->
-        <div class="bento-card span-1-1">
-          <img src="assets/AhamGraham-Web/y&k.png" alt="Kids & Youth">
-          <div>
-            <h3>kids & youth</h3>
-          </div>
-        </div>
-
-        </div>
-      </div>
-    </section>
+        </section>
 
 
-    <!-- THE ATELIER: SHOP SECTION (Refined height) -->
-    <section class="w-full px-4 mx-auto mt-10 overflow-hidden services-feature-shell">
-      <div class="max-w-[95%] mx-auto py-16">
-        <div class="text-center mb-12">
-          <h2 class="text-5xl md:text-7xl font-bold text-white tracking-tight">products</h2>
-        </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- Item 1 -->
-          <div class="group cursor-pointer product-card rounded-[32px] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col">
-            <img src="https://images.unsplash.com/photo-1592179900431-1e021ea5c783?auto=format&fit=crop&q=80" alt="Sacred Cork Mat" class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">
-            <div class="p-6">
-              <h3 class="text-white text-xl font-bold mb-1">Sacred Cork Mat</h3>
-              <p class="text-gray-400 italic text-xs mb-4">Antimicrobial & Natural Grip</p>
-              <div class="flex justify-between items-center">
-                <p class="text-white font-bold text-xl">$120</p>
-                <div class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center group-hover:bg-[#3b82f6] transition-colors duration-300">
-                  <span class="material-symbols-outlined text-[#3b82f6] group-hover:text-white text-sm">shopping_bag</span>
+        <!-- THE ATELIER: SHOP SECTION (Refined height) -->
+        <section class="w-full px-4 mx-auto mt-10 overflow-hidden services-feature-shell">
+          <div class="max-w-[95%] mx-auto py-16">
+            <div class="text-center mb-12">
+              <h2 class="text-5xl md:text-7xl font-bold text-white tracking-tight">products</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <!-- Item 1 -->
+              <div
+                class="group cursor-pointer product-card rounded-[32px] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col">
+                <img src="https://images.unsplash.com/photo-1592179900431-1e021ea5c783?auto=format&fit=crop&q=80"
+                  alt="Sacred Cork Mat"
+                  class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">
+                <div class="p-6">
+                  <h3 class="text-white text-xl font-bold mb-1">Sacred Cork Mat</h3>
+                  <p class="text-gray-400 italic text-xs mb-4">Antimicrobial & Natural Grip</p>
+                  <div class="flex justify-between items-center">
+                    <p class="text-white font-bold text-xl">$120</p>
+                    <div
+                      class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center group-hover:bg-[#3b82f6] transition-colors duration-300">
+                      <span
+                        class="material-symbols-outlined text-[#3b82f6] group-hover:text-white text-sm">shopping_bag</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div
+                class="group cursor-pointer product-card rounded-[32px] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col">
+                <img src="https://images.unsplash.com/photo-1616670868412-2c6b3e94a317?auto=format&fit=crop&q=80"
+                  alt="Twilight Lavender Mist"
+                  class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">
+                <div class="p-6">
+                  <h3 class="text-white text-xl font-bold mb-1">Twilight Lavender Mist</h3>
+                  <p class="text-gray-400 italic text-xs mb-4">Organic Essential Oils</p>
+                  <div class="flex justify-between items-center">
+                    <p class="text-white font-bold text-xl">$34</p>
+                    <div
+                      class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center group-hover:bg-[#3b82f6] transition-colors duration-300">
+                      <span
+                        class="material-symbols-outlined text-[#3b82f6] group-hover:text-white text-sm">shopping_bag</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div
+                class="group cursor-pointer product-card rounded-[32px] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col">
+                <img src="https://images.unsplash.com/photo-1545209123-5e921dcdfed0?auto=format&fit=crop&q=80"
+                  alt="Velvet Support Bolster"
+                  class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">
+                <div class="p-6">
+                  <h3 class="text-white text-xl font-bold mb-1">Velvet Support Bolster</h3>
+                  <p class="text-gray-400 italic text-xs mb-4">Buckwheat Hull Filling</p>
+                  <div class="flex justify-between items-center">
+                    <p class="text-white font-bold text-xl">$85</p>
+                    <div
+                      class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center group-hover:bg-[#3b82f6] transition-colors duration-300">
+                      <span
+                        class="material-symbols-outlined text-[#3b82f6] group-hover:text-white text-sm">shopping_bag</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div
+                class="group cursor-pointer product-card rounded-[32px] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col">
+                <img src="https://images.unsplash.com/photo-1602853185549-923f05359a35?auto=format&fit=crop&q=80"
+                  alt="Dusk Incense Burner"
+                  class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">
+                <div class="p-6">
+                  <h3 class="text-white text-xl font-bold mb-1">Dusk Incense Burner</h3>
+                  <p class="text-gray-400 italic text-xs mb-4">Handcrafted Brass</p>
+                  <div class="flex justify-between items-center">
+                    <p class="text-white font-bold text-xl">$48</p>
+                    <div
+                      class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center group-hover:bg-[#3b82f6] transition-colors duration-300">
+                      <span
+                        class="material-symbols-outlined text-[#3b82f6] group-hover:text-white text-sm">shopping_bag</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Item 2 -->
-          <div class="group cursor-pointer product-card rounded-[32px] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col">
-            <img src="https://images.unsplash.com/photo-1616670868412-2c6b3e94a317?auto=format&fit=crop&q=80" alt="Twilight Lavender Mist" class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">
-            <div class="p-6">
-              <h3 class="text-white text-xl font-bold mb-1">Twilight Lavender Mist</h3>
-              <p class="text-gray-400 italic text-xs mb-4">Organic Essential Oils</p>
-              <div class="flex justify-between items-center">
-                <p class="text-white font-bold text-xl">$34</p>
-                <div class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center group-hover:bg-[#3b82f6] transition-colors duration-300">
-                  <span class="material-symbols-outlined text-[#3b82f6] group-hover:text-white text-sm">shopping_bag</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="group cursor-pointer product-card rounded-[32px] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col">
-            <img src="https://images.unsplash.com/photo-1545209123-5e921dcdfed0?auto=format&fit=crop&q=80" alt="Velvet Support Bolster" class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">
-            <div class="p-6">
-              <h3 class="text-white text-xl font-bold mb-1">Velvet Support Bolster</h3>
-              <p class="text-gray-400 italic text-xs mb-4">Buckwheat Hull Filling</p>
-              <div class="flex justify-between items-center">
-                <p class="text-white font-bold text-xl">$85</p>
-                <div class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center group-hover:bg-[#3b82f6] transition-colors duration-300">
-                  <span class="material-symbols-outlined text-[#3b82f6] group-hover:text-white text-sm">shopping_bag</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="group cursor-pointer product-card rounded-[32px] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col">
-            <img src="https://images.unsplash.com/photo-1602853185549-923f05359a35?auto=format&fit=crop&q=80" alt="Dusk Incense Burner" class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">
-            <div class="p-6">
-              <h3 class="text-white text-xl font-bold mb-1">Dusk Incense Burner</h3>
-              <p class="text-gray-400 italic text-xs mb-4">Handcrafted Brass</p>
-              <div class="flex justify-between items-center">
-                <p class="text-white font-bold text-xl">$48</p>
-                <div class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center group-hover:bg-[#3b82f6] transition-colors duration-300">
-                  <span class="material-symbols-outlined text-[#3b82f6] group-hover:text-white text-sm">shopping_bag</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
       </div>
     </div>
   </main>
@@ -538,108 +586,104 @@
       <li><a href="centers.html" class="mobile-nav-link">centers</a></li>
       <li><a href="sacred-moon-oil.html" class="mobile-nav-link">shop</a></li>
       <li><a href="about.html" class="mobile-nav-link">about us</a></li>
-      <li><button onclick="handleAddToCartClick(event)" class="btn-secondary mt-4 w-full flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined">shopping_cart</span>
-        add to cart
-      </button></li>
       <li><button onclick="handleBookSessionClick(event)" class="btn-primary mt-4 w-full">book session</button></li>
     </ul>
   </div>
 
   <footer class="footer">
-      <!-- SECTION 1: AI TAGS (Integrated) -->
-      <div class="footer-top overflow-hidden">
-        <div id="marquee-1" class="velocity-marquee">
-          <div class="marquee-content">
-            <span class="footer-tag">Neurological Sync</span>
-            <span class="footer-tag">Cellular Resonance</span>
-            <span class="footer-tag">Prana Flow</span>
-            <span class="footer-tag">Ancestral Healing</span>
-            <span class="footer-tag">Somatic Reset</span>
-            <span class="footer-tag">Astral Projection</span>
-            <span class="footer-tag">Nervous System Ease</span>
-          </div>
+    <!-- SECTION 1: AI TAGS (Integrated) -->
+    <div class="footer-top overflow-hidden">
+      <div id="marquee-1" class="velocity-marquee">
+        <div class="marquee-content">
+          <span class="footer-tag">Neurological Sync</span>
+          <span class="footer-tag">Cellular Resonance</span>
+          <span class="footer-tag">Prana Flow</span>
+          <span class="footer-tag">Ancestral Healing</span>
+          <span class="footer-tag">Somatic Reset</span>
+          <span class="footer-tag">Astral Projection</span>
+          <span class="footer-tag">Nervous System Ease</span>
         </div>
-        <div id="marquee-2" class="velocity-marquee">
-          <div class="marquee-content">
-            <span class="footer-tag">Quantum Mindfulness</span>
-            <span class="footer-tag">Bio-Dynamic Flow</span>
-            <span class="footer-tag">Vedic Wisdom</span>
-            <span class="footer-tag">Inner Sanctuary</span>
-            <span class="footer-tag">Harmonic Balance</span>
-            <span class="footer-tag">Solar Vitality</span>
-            <span class="footer-tag">Breath Intelligence</span>
+      </div>
+      <div id="marquee-2" class="velocity-marquee">
+        <div class="marquee-content">
+          <span class="footer-tag">Quantum Mindfulness</span>
+          <span class="footer-tag">Bio-Dynamic Flow</span>
+          <span class="footer-tag">Vedic Wisdom</span>
+          <span class="footer-tag">Inner Sanctuary</span>
+          <span class="footer-tag">Harmonic Balance</span>
+          <span class="footer-tag">Solar Vitality</span>
+          <span class="footer-tag">Breath Intelligence</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-container">
+        <div class="footer-col footer-brand-col">
+          <img src="Untitled%20design%20(2).png" alt="Aham Graham Logo" class="footer-logo">
+          <div class="footer-quote-wrap">
+            <p class="footer-quote">
+              bridging ancient wisdom with modern neurological insights.<br>
+              your path to biological transcendence begins here.
+            </p>
+          </div>
+          <img src="Copy of VJS-Logo (1).png" alt="VJS Logo" class="footer-badge dark-logo">
+          <img src="VJS-Logo-transparent.png" alt="VJS Logo" class="footer-badge light-logo">
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">about us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="centers.html">Centers</a></li>
+            <li><a href="sacred-moon-oil.html">Shop</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-subheading">Our Centers</h4>
+          <ul>
+            <li>Rishikesh, India</li>
+            <li>Swiss Alps, Switzerland</li>
+            <li>Ubud, Bali</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-subheading">Social Media</h4>
+          <ul>
+            <li>Facebook</li>
+            <li>Instagram</li>
+            <li>YouTube</li>
+            <li>LinkedIn</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-stack">
+            <a href="mailto:contact@ahamgraham.com" class="contact-link">
+              <span class="material-symbols-outlined">mail</span>
+              contact@ahamgraham.com
+            </a>
+            <a href="tel:+919876543210" class="contact-link">
+              <span class="material-symbols-outlined">call</span>
+              +91 98765 43210
+            </a>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="footer-main">
-        <div class="footer-container">
-          <div class="footer-col footer-brand-col">
-            <img src="Untitled%20design%20(2).png" alt="Aham Graham Logo" class="footer-logo">
-            <div class="footer-quote-wrap">
-              <p class="footer-quote">
-                bridging ancient wisdom with modern neurological insights.<br>
-                your path to biological transcendence begins here.
-              </p>
-            </div>
-            <img src="Copy of VJS-Logo (1).png" alt="VJS Logo" class="footer-badge dark-logo">
-            <img src="VJS-Logo-transparent.png" alt="VJS Logo" class="footer-badge light-logo">
-          </div>
-
-          <div class="footer-col">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">about us</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="events.html">Events</a></li>
-              <li><a href="centers.html">Centers</a></li>
-              <li><a href="sacred-moon-oil.html">Shop</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h4 class="footer-subheading">Our Centers</h4>
-            <ul>
-              <li>Rishikesh, India</li>
-              <li>Swiss Alps, Switzerland</li>
-              <li>Ubud, Bali</li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h4 class="footer-subheading">Social Media</h4>
-            <ul>
-              <li>Facebook</li>
-              <li>Instagram</li>
-              <li>YouTube</li>
-              <li>LinkedIn</li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h4>Contact Us</h4>
-            <div class="contact-stack">
-              <a href="mailto:contact@ahamgraham.com" class="contact-link">
-                <span class="material-symbols-outlined">mail</span>
-                contact@ahamgraham.com
-              </a>
-              <a href="tel:+919876543210" class="contact-link">
-                <span class="material-symbols-outlined">call</span>
-                +91 98765 43210
-              </a>
-            </div>
-          </div>
-        </div>
+    <div class="footer-large-text">aham grham</div>
+    <div class="footer-bottom">
+      <div class="bottom-content">
+        <p>&copy; 2026 Aham Graham. all rights reserved.</p>
       </div>
-
-      <div class="footer-large-text">aham grham</div>
-        <div class="footer-bottom">
-        <div class="bottom-content">
-          <p>&copy; 2026 Aham Graham. all rights reserved.</p>
-        </div>
-      </div>
+    </div>
   </footer>
 
   <script src="gsap.min.js"></script>
@@ -647,5 +691,5 @@
   <script src="scroll-velocity.js"></script>
   <script src="true-focus.js"></script>
 </body>
-</html>
 
+</html>

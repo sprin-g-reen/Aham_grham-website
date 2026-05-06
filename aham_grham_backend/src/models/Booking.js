@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
 const bookingSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: true
+  },
   name: {
     type: String,
     required: [true, 'Please add your name'],
@@ -14,15 +19,24 @@ const bookingSchema = new mongoose.Schema({
       'Please add a valid email'
     ]
   },
+  itemType: {
+    type: String,
+    enum: ['program', 'event'],
+    required: true
+  },
   eventId: {
     type: mongoose.Schema.ObjectId,
     ref: 'Event',
-    required: true
+    required: function() { return this.itemType === 'event'; }
+  },
+  programId: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Program',
+    required: function() { return this.itemType === 'program'; }
   },
   numberOfPeople: {
     type: Number,
-    required: [true, 'Please specify the number of people'],
-    min: [1, 'At least 1 person is required']
+    default: 1
   },
   createdAt: {
     type: Date,

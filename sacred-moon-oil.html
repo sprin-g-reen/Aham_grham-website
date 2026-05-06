@@ -50,21 +50,22 @@
   </script>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
 
   <!-- External CSS -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="true-focus.css" />
-  <script src="auth-helper.js"></script>
-
 
   <style>
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
-    
+
     .product-hero-gradient {
       background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
     }
@@ -72,7 +73,7 @@
     .cta-glow {
       box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
     }
-    
+
     .glass-card-product {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(12px);
@@ -113,7 +114,7 @@
       height: 500px !important;
       min-height: 500px !important;
       background: #0a0a20 padding-box,
-                  conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
       border: 2px solid transparent;
       border-radius: 40px;
       animation: rotate 10s linear infinite;
@@ -343,7 +344,8 @@
     }
 
     html.light-theme .silhouette-icon {
-      color: #5E35B1 !important; /* Slightly deeper purple */
+      color: #5E35B1 !important;
+      /* Slightly deeper purple */
       opacity: 0.4 !important;
     }
 
@@ -353,14 +355,17 @@
 
     /* Target the specific container for self_improvement */
     html.light-theme .absolute.right-0.bottom-0.opacity-5 {
-      opacity: 1 !important; /* Let the icon handle its own opacity */
+      opacity: 1 !important;
+      /* Let the icon handle its own opacity */
     }
-    
+
     html.light-theme .group:hover .absolute.right-0.bottom-0.opacity-5 {
       opacity: 1 !important;
     }
 
-    .hidden { display: none !important; }
+    .hidden {
+      display: none !important;
+    }
 
     /* Reviews List View Styles */
     #reviewsListView {
@@ -453,20 +458,24 @@
         max-height: 90vh;
         overflow-y: auto;
       }
+
       .modal-img-wrap {
         height: 300px;
       }
+
       .modal-info {
         padding: 30px;
       }
+
       .modal-title {
         font-size: 32px;
       }
+
       .modal-price {
         font-size: 36px;
       }
     }
-  
+
     /* REVIEWS MODAL STYLES */
     #reviewsModal {
       position: fixed;
@@ -594,7 +603,7 @@
       letter-spacing: 0.1em;
     }
 
-      .search-container {
+    .search-container {
       position: relative;
       width: 100%;
       max-width: 400px;
@@ -630,9 +639,10 @@
       transition: color 0.3s ease;
     }
 
-    .search-input:focus + .search-icon {
+    .search-input:focus+.search-icon {
       color: #3b82f6;
     }
+
     html.light-theme .search-input {
       background: rgba(0, 0, 0, 0.05);
       border-color: rgba(0, 0, 0, 0.1);
@@ -642,6 +652,7 @@
     html.light-theme .search-icon {
       color: rgba(0, 0, 0, 0.3);
     }
+
     .search-input::placeholder {
       color: rgba(255, 255, 255, 0.4);
     }
@@ -656,9 +667,6 @@
     html.light-theme .text-accent-blue {
       color: #000000 !important;
     }
-
-
-
   </style>
 </head>
 
@@ -694,9 +702,6 @@
       </div>
 
       <div class="cta-wrapper">
-        <button class="btn-secondary" onclick="handleAddToCartClick(event)">
-          <span class="material-symbols-outlined">shopping_cart</span>
-        </button>
         <button class="btn-primary" onclick="window.location.href='book-session.html'">book session</button>
         <button class="btn-icon"><span class="material-symbols-outlined">light_mode</span></button>
         <button class="btn-icon"><span class="material-symbols-outlined">dark_mode</span></button>
@@ -715,30 +720,40 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center">
         <!-- Image Canvas -->
         <div class="relative group">
-          <div class="aspect-[5/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] border border-white/10">
-            <img id="featuredProductImage" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo" alt="Sacred Moon Oil bottle">
+          <div
+            class="aspect-[5/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] border border-white/10">
+            <img id="featuredProductImage" class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo"
+              alt="Sacred Moon Oil bottle">
             <div class="absolute inset-0 bg-gradient-to-t from-accent-blue/20 to-transparent opacity-60"></div>
           </div>
           <!-- Decorative Element -->
-          <div class="absolute -bottom-6 -left-6 w-32 h-32 border-l border-b border-accent-blue/30 rounded-bl-3xl hidden md:block"></div>
+          <div
+            class="absolute -bottom-6 -left-6 w-32 h-32 border-l border-b border-accent-blue/30 rounded-bl-3xl hidden md:block">
+          </div>
         </div>
 
         <!-- Product Details -->
         <div class="flex flex-col space-y-8">
           <div class="space-y-4">
 
-            <h1 id="featuredProductName" class="text-5xl md:text-6xl font-serif text-white leading-tight">Sacred Moon Oil <br/><span class="italic text-4xl opacity-70">Ritual Grade</span></h1>
+            <h1 id="featuredProductName" class="text-5xl md:text-6xl font-serif text-white leading-tight">Sacred Moon
+              Oil <br /><span class="italic text-4xl opacity-70">Ritual Grade</span></h1>
             <p id="featuredProductPrice" class="text-2xl font-serif text-accent-blue font-bold">₹78.00</p>
           </div>
           <div class="space-y-6">
             <p id="featuredProductDesc" class="text-lg leading-relaxed text-text-secondary font-light">
-              Harvested during the peak of the lunar cycle, this ethereal blend combines cold-pressed jasmine, violet leaf, and rare moonstone essence. A sensory bridge to the subconscious, designed to anchor your evening meditation and quiet the spirit.
+              Harvested during the peak of the lunar cycle, this ethereal blend combines cold-pressed jasmine, violet
+              leaf, and rare moonstone essence. A sensory bridge to the subconscious, designed to anchor your evening
+              meditation and quiet the spirit.
             </p>
 
           </div>
-          <button class="btn-primary py-5 px-10 rounded-full text-sm uppercase tracking-widest font-bold cta-glow flex items-center justify-center space-x-3 w-full md:w-max group">
+          <button
+            class="btn-primary py-5 px-10 rounded-full text-sm uppercase tracking-widest font-bold cta-glow flex items-center justify-center space-x-3 w-full md:w-max group">
             <span>Add to Sanctuary</span>
-            <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform" data-icon="auto_awesome">auto_awesome</span>
+            <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform"
+              data-icon="auto_awesome">auto_awesome</span>
           </button>
         </div>
       </div>
@@ -752,39 +767,52 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
         <!-- Bento 1: Main Process -->
-        <div id="vessels-card" class="md:col-span-8 bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[400px] relative overflow-hidden group hover:bg-white/[0.07] transition-colors">
+        <div id="vessels-card"
+          class="md:col-span-8 bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[400px] relative overflow-hidden group hover:bg-white/[0.07] transition-colors">
           <div class="relative z-10 space-y-8">
             <div class="space-y-4">
               <h3 class="text-4xl font-serif italic text-white">Vessels of Intention</h3>
-              <p class="text-text-secondary max-w-md">Warm three drops between the palms of your hands. Close your eyes and inhale deeply for a count of four, hold for two, and release for six.</p>
+              <p class="text-text-secondary max-w-md">Warm three drops between the palms of your hands. Close your eyes
+                and inhale deeply for a count of four, hold for two, and release for six.</p>
             </div>
             <ul class="space-y-4">
               <li class="flex items-start space-x-4">
-                <span class="w-8 h-8 rounded-full bg-accent-blue/20 flex items-center justify-center text-accent-blue font-bold text-xs shrink-0">01</span>
-                <p class="text-text-secondary">Apply to the pulse points at the wrists and behind the ears before stillness.</p>
+                <span
+                  class="w-8 h-8 rounded-full bg-accent-blue/20 flex items-center justify-center text-accent-blue font-bold text-xs shrink-0">01</span>
+                <p class="text-text-secondary">Apply to the pulse points at the wrists and behind the ears before
+                  stillness.</p>
               </li>
               <li class="flex items-start space-x-4">
-                <span class="w-8 h-8 rounded-full bg-accent-blue/20 flex items-center justify-center text-accent-blue font-bold text-xs shrink-0">02</span>
-                <p class="text-text-secondary">Massage into the soles of the feet to ground your energy for dreamwork.</p>
+                <span
+                  class="w-8 h-8 rounded-full bg-accent-blue/20 flex items-center justify-center text-accent-blue font-bold text-xs shrink-0">02</span>
+                <p class="text-text-secondary">Massage into the soles of the feet to ground your energy for dreamwork.
+                </p>
               </li>
             </ul>
           </div>
-          <div class="absolute right-0 bottom-0 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
-            <span class="material-symbols-outlined text-[240px] silhouette-icon" data-icon="self_improvement">self_improvement</span>
+          <div
+            class="absolute right-0 bottom-0 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
+            <span class="material-symbols-outlined text-[240px] silhouette-icon"
+              data-icon="self_improvement">self_improvement</span>
           </div>
         </div>
 
         <!-- Bento 2: Note Card -->
-        <div class="md:col-span-4 bg-accent-blue/10 border border-accent-blue/20 rounded-3xl p-8 flex flex-col justify-center items-center text-center space-y-6">
-          <span class="material-symbols-outlined text-5xl text-accent-blue silhouette-icon" data-icon="nights_stay">nights_stay</span>
+        <div
+          class="md:col-span-4 bg-accent-blue/10 border border-accent-blue/20 rounded-3xl p-8 flex flex-col justify-center items-center text-center space-y-6">
+          <span class="material-symbols-outlined text-5xl text-accent-blue silhouette-icon"
+            data-icon="nights_stay">nights_stay</span>
           <h4 class="font-serif text-xl text-white italic">Lunar Synergy</h4>
-          <p class="text-sm text-text-secondary leading-loose">Best used during the New Moon to manifest clarity, or the Full Moon to release what no longer serves your journey.</p>
+          <p class="text-sm text-text-secondary leading-loose">Best used during the New Moon to manifest clarity, or the
+            Full Moon to release what no longer serves your journey.</p>
         </div>
 
         <!-- Bento 3: Sensory Card -->
         <div class="md:col-span-6 bg-white/5 border border-white/10 rounded-3xl p-8 flex items-center space-x-8">
           <div class="w-24 h-24 rounded-full overflow-hidden shrink-0 border border-white/10">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBie2Fpl4QHo0CN376kgufZCJ9BEoROhNzJSZhvYco63dtHcbUeKBl_Ne_F4Drh41BmS0fzoxDyE4aSz2rfy4paCDdisTT4toxIPOXURa0H3i7ZrNvQsEUReQjjtnBAdAmqh9t3ZNjUXe91M8OwCHOIOWuUfbEZaV_TotuG1WeAhbfS9jk9aPET9hTuIQQa6NX5BKJhaxdM8bT7bIyQ9YyNsNKJUtf8a1mFc_yunLGq-YvWH5q1Thr-JBbOTdeyyZ4fLGvFw8OD8s" alt="Violet petals">
+            <img class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBie2Fpl4QHo0CN376kgufZCJ9BEoROhNzJSZhvYco63dtHcbUeKBl_Ne_F4Drh41BmS0fzoxDyE4aSz2rfy4paCDdisTT4toxIPOXURa0H3i7ZrNvQsEUReQjjtnBAdAmqh9t3ZNjUXe91M8OwCHOIOWuUfbEZaV_TotuG1WeAhbfS9jk9aPET9hTuIQQa6NX5BKJhaxdM8bT7bIyQ9YyNsNKJUtf8a1mFc_yunLGq-YvWH5q1Thr-JBbOTdeyyZ4fLGvFw8OD8s"
+              alt="Violet petals">
           </div>
           <div>
             <h4 class="text-[10px] uppercase tracking-widest font-bold text-accent-cyan mb-1">Olfactory Notes</h4>
@@ -798,7 +826,8 @@
             <h4 class="text-[10px] uppercase tracking-widest font-bold text-accent-cyan">Eco-Conscious</h4>
             <p class="text-text-secondary">Violet Miron Glass preserves the bio-energy of our botanical extracts.</p>
           </div>
-          <span class="material-symbols-outlined text-4xl text-accent-blue/40 silhouette-icon" data-icon="recycling">recycling</span>
+          <span class="material-symbols-outlined text-4xl text-accent-blue/40 silhouette-icon"
+            data-icon="recycling">recycling</span>
         </div>
       </div>
     </section>
@@ -815,7 +844,7 @@
           <h2 class="text-3xl font-serif mb-2 text-white">Products</h2>
           <p class="text-text-secondary">Shared moments of peace from our community.</p>
         </div>
-        
+
       </div>
       <div id="dynamic-product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Products will load here dynamically -->
@@ -835,10 +864,6 @@
       <li><a href="centers.html" class="mobile-nav-link">centers</a></li>
       <li><a href="sacred-moon-oil.html" class="mobile-nav-link">products</a></li>
       <li><a href="about.html" class="mobile-nav-link">about us</a></li>
-      <li><button onclick="handleAddToCartClick(event)" class="btn-secondary mt-4 w-full flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined">shopping_cart</span>
-        add to cart
-      </button></li>
       <li><a href="book-session.html" class="btn-primary mt-4">book session</a></li>
     </ul>
   </div>
@@ -931,7 +956,7 @@
     </div>
 
     <div class="footer-large-text">aham grham</div>
-        <div class="footer-bottom">
+    <div class="footer-bottom">
       <div class="bottom-content">
         <p>&copy; 2026 Aham Graham. all rights reserved.</p>
       </div>
@@ -940,86 +965,126 @@
 
   <script src="gsap.min.js"></script>
   <script src="app.js"></script>
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&w=800&q=80" alt="Botanical extracts">
-            
-          </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Review Card 9 -->
-        <div class="space-y-6 group review-card cursor-pointer">
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Meditation cushions">
-            
-          </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Review Card 10 -->
-        <div class="space-y-6 group review-card cursor-pointer">
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Meditation practice">
-            
-          </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Review Card 11 -->
-        <div class="space-y-6 group review-card cursor-pointer">
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="Crystal healing">
-            
-          </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Review Card 12 -->
-        <div class="space-y-6 group review-card cursor-pointer">
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Nature meditation">
-            
-          </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="flex flex-col gap-2 w-full">
-              <button class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors" onclick="event.stopPropagation();">Buy Now</button>
-              <div class="flex gap-2">
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Add to Cart</button>
-                <button class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors" onclick="event.stopPropagation();">Reviews</button>
-              </div>
-            </div>
-          </div>
+  <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
+    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+      src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&w=800&q=80"
+      alt="Botanical extracts">
+
+  </div>
+  <div class="space-y-3 w-full mt-4 z-20 relative">
+    <div class="flex flex-col gap-2 w-full">
+      <button
+        class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors"
+        onclick="event.stopPropagation();">Buy Now</button>
+      <div class="flex gap-2">
+        <button
+          class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+          onclick="event.stopPropagation();">Add to Cart</button>
+        <button
+          class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+          onclick="event.stopPropagation();">Reviews</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Review Card 9 -->
+  <div class="space-y-6 group review-card cursor-pointer">
+    <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
+      <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
+        alt="Meditation cushions">
+
+    </div>
+    <div class="space-y-3 w-full mt-4 z-20 relative">
+      <div class="flex flex-col gap-2 w-full">
+        <button
+          class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors"
+          onclick="event.stopPropagation();">Buy Now</button>
+        <div class="flex gap-2">
+          <button
+            class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+            onclick="event.stopPropagation();">Add to Cart</button>
+          <button
+            class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+            onclick="event.stopPropagation();">Reviews</button>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+  <!-- Review Card 10 -->
+  <div class="space-y-6 group review-card cursor-pointer">
+    <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
+      <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"
+        alt="Meditation practice">
+
+    </div>
+    <div class="space-y-3 w-full mt-4 z-20 relative">
+      <div class="flex flex-col gap-2 w-full">
+        <button
+          class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors"
+          onclick="event.stopPropagation();">Buy Now</button>
+        <div class="flex gap-2">
+          <button
+            class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+            onclick="event.stopPropagation();">Add to Cart</button>
+          <button
+            class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+            onclick="event.stopPropagation();">Reviews</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Review Card 11 -->
+  <div class="space-y-6 group review-card cursor-pointer">
+    <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
+      <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80"
+        alt="Crystal healing">
+
+    </div>
+    <div class="space-y-3 w-full mt-4 z-20 relative">
+      <div class="flex flex-col gap-2 w-full">
+        <button
+          class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors"
+          onclick="event.stopPropagation();">Buy Now</button>
+        <div class="flex gap-2">
+          <button
+            class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+            onclick="event.stopPropagation();">Add to Cart</button>
+          <button
+            class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+            onclick="event.stopPropagation();">Reviews</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Review Card 12 -->
+  <div class="space-y-6 group review-card cursor-pointer">
+    <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
+      <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80"
+        alt="Nature meditation">
+
+    </div>
+    <div class="space-y-3 w-full mt-4 z-20 relative">
+      <div class="flex flex-col gap-2 w-full">
+        <button
+          class="w-full py-2 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-colors"
+          onclick="event.stopPropagation();">Buy Now</button>
+        <div class="flex gap-2">
+          <button
+            class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+            onclick="event.stopPropagation();">Add to Cart</button>
+          <button
+            class="flex-1 py-2 bg-white/5 border border-white/10 text-white rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+            onclick="event.stopPropagation();">Reviews</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </section>
   </main>
 
 
@@ -1126,7 +1191,7 @@
     </div>
 
     <div class="footer-large-text">aham grham</div>
-        <div class="footer-bottom">
+    <div class="footer-bottom">
       <div class="bottom-content">
         <p>&copy; 2026 Aham Graham. all rights reserved.</p>
       </div>
@@ -1137,7 +1202,7 @@
   <script src="app.js"></script>
   <script src="true-focus.js"></script>
 
-  
+
   <!-- PRODUCT DETAIL MODAL -->
   <div id="productModal">
     <div class="modal-overlay" onclick="closeProductModal()"></div>
@@ -1145,26 +1210,26 @@
       <div class="close-modal" onclick="closeProductModal()">
         <span class="material-symbols-outlined text-3xl">close</span>
       </div>
-      
+
       <div class="modal-img-wrap">
         <img id="modalImg" src="" alt="Product">
       </div>
-      
+
       <div class="modal-info">
         <!-- PRODUCT INFO VIEW -->
         <div id="productInfoView">
           <h2 class="modal-title" id="modalTitle">Product Name</h2>
           <p class="modal-detail" id="modalDetail">Celestial Vessel of Energy.</p>
-          
+
           <div class="modal-price-wrap">
             <p class="modal-old-price" id="modalOldPrice" style="display: none;">$000</p>
             <p class="modal-price" id="modalPrice">$000</p>
             <p class="modal-tax">inclusive of all taxes</p>
             <p class="modal-offer">This offer is valid until July 4th</p>
           </div>
-          
+
           <button class="modal-buy-btn">Buy Now</button>
-          
+
           <div class="modal-stock">
             <div class="stock-dot"></div>
             <span>20+ pcs. in stock</span>
@@ -1209,19 +1274,25 @@
             </div>
             <span class="text-xs text-text-secondary">Verified Purchase</span>
           </div>
-          
+
           <div class="before-after-grid">
             <div class="before-after-item">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyUTSbFfYOTgAqU-Or9SC7F6nKd8CSOGX8uVC0UPT7h2hfo5ZUHmE1HnWr4o0Pj9DzgfuTQ0_yU1ZwpW_jt1PYqRSeOLcnFuLpADqM8E8KZd2SdAfdkYqQdu_Dv6jnO6lc3-uxjcC7o2THJoiBhJPuuEEeG30eEmBhtzbeb6KYYYrRG91cpm-lDFBDJELu9jWUBxCuFcTHyFG-9gNfVmcE_5H2nTv2btYrABgrT8aMyREMpKaQF8diW7pVYZmqzL657aCQLFo8bQE" alt="Before">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyUTSbFfYOTgAqU-Or9SC7F6nKd8CSOGX8uVC0UPT7h2hfo5ZUHmE1HnWr4o0Pj9DzgfuTQ0_yU1ZwpW_jt1PYqRSeOLcnFuLpADqM8E8KZd2SdAfdkYqQdu_Dv6jnO6lc3-uxjcC7o2THJoiBhJPuuEEeG30eEmBhtzbeb6KYYYrRG91cpm-lDFBDJELu9jWUBxCuFcTHyFG-9gNfVmcE_5H2nTv2btYrABgrT8aMyREMpKaQF8diW7pVYZmqzL657aCQLFo8bQE"
+                alt="Before">
               <span class="before-after-label">Initial State</span>
             </div>
             <div class="before-after-item">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfL-HxfF2T2tR2ZTzfhHY-Yv58ym0VEtMty3dom4LH2IlViWms31mzmAd0ZQ06HNTeO5BauiFq82hGsiZ56uaCpqFUBCXBqVE4fIkWQs2VVAnIM7iO3mdcCN8gADLx2nhvVY3rOjIITvGPOROwXJLzX-pzetKicwfvzt2WU_GpxGnAV8Q8t_L3tkBiNUBQ1AzBCAsNkS5C7fmsWzNm_vG1hhC75LzxTfFOriLoD0kjPi45a7biKHNFCccnD1n40STEiL1c1HSO7DI" alt="After">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfL-HxfF2T2tR2ZTzfhHY-Yv58ym0VEtMty3dom4LH2IlViWms31mzmAd0ZQ06HNTeO5BauiFq82hGsiZ56uaCpqFUBCXBqVE4fIkWQs2VVAnIM7iO3mdcCN8gADLx2nhvVY3rOjIITvGPOROwXJLzX-pzetKicwfvzt2WU_GpxGnAV8Q8t_L3tkBiNUBQ1AzBCAsNkS5C7fmsWzNm_vG1hhC75LzxTfFOriLoD0kjPi45a7biKHNFCccnD1n40STEiL1c1HSO7DI"
+                alt="After">
               <span class="before-after-label">Transcendence</span>
             </div>
           </div>
-          
-          <p class="text-text-secondary italic leading-relaxed text-sm">"The energy of this vessel is unmatched. I felt an immediate shift in my evening ritual after just one use. The aromatic profile helps me enter a state of deep somatic ease almost instantly."</p>
+
+          <p class="text-text-secondary italic leading-relaxed text-sm">"The energy of this vessel is unmatched. I felt
+            an immediate shift in my evening ritual after just one use. The aromatic profile helps me enter a state of
+            deep somatic ease almost instantly."</p>
         </div>
       </div>
     </div>
@@ -1245,7 +1316,7 @@
     function openProductModal(card) {
       const modal = document.getElementById('productModal');
       const img = card.querySelector('img').src;
-      
+
       const title = card.getAttribute('data-name') || 'Aham Graham Essential';
       const detail = card.getAttribute('data-desc') || 'Celestial Vessel of Energy.';
       const price = card.getAttribute('data-price') || '₹45.00';
@@ -1257,19 +1328,19 @@
       document.getElementById('modalPrice').innerText = price.startsWith('₹') ? price : `₹${price}`;
       document.getElementById('modalOldPrice').style.display = 'none';
       document.getElementById('modalPrice').style.display = 'block';
-      
+
       const offerEl = document.querySelector(".modal-offer");
       if (offerEl) {
-          offerEl.innerText = offer;
-          offerEl.style.display = offer ? 'block' : 'none';
+        offerEl.innerText = offer;
+        offerEl.style.display = offer ? 'block' : 'none';
       }
 
       document.querySelector(".modal-buy-btn").innerText = 'Buy Now';
       document.querySelector(".modal-tax").style.display = 'block';
       document.querySelector(".modal-stock").style.display = 'flex';
-      
+
       modal.classList.add('active');
-      document.body.style.overflow = 'hidden'; 
+      document.body.style.overflow = 'hidden';
     }
 
     function closeProductModal() {

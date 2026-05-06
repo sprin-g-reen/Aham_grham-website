@@ -58,22 +58,27 @@ const AuthHelper = {
         // 3. Handle Account Details in book-session.html
         const accountSection = document.querySelector('.sidebar-footer');
         if (accountSection && isLoggedIn) {
-            const userNameEl = document.getElementById('pass-user-name'); // From modal or other places
-            // Update sidebar profile if it exists
+            // Update "Account details" to the user's name
             const accountBtn = accountSection.querySelector('.nav-item');
-            if (accountBtn && user) {
-                accountBtn.querySelector('span:last-child').textContent = user.name.toLowerCase();
+            if (accountBtn && user && user.name) {
+                const nameLabel = accountBtn.querySelector('span:last-child');
+                if (nameLabel) {
+                    nameLabel.textContent = user.name.toLowerCase();
+                }
             }
 
             // Add Logout Button if not present
             if (!document.getElementById('logout-btn')) {
-                const logoutHTML = `
-                    <div class="nav-item text-red-400 mt-2" id="logout-btn" onclick="AuthHelper.logout()">
-                        <span class="material-symbols-outlined">logout</span>
-                        <span>logout</span>
-                    </div>
+                const logoutDiv = document.createElement('div');
+                logoutDiv.id = 'logout-btn';
+                logoutDiv.className = 'nav-item text-red-400 mt-2 hover:bg-red-500/10 cursor-pointer';
+                logoutDiv.style.color = '#f87171'; // Tailwind red-400
+                logoutDiv.innerHTML = `
+                    <span class="material-symbols-outlined">logout</span>
+                    <span>logout</span>
                 `;
-                accountSection.insertAdjacentHTML('beforeend', logoutHTML);
+                logoutDiv.onclick = () => AuthHelper.logout();
+                accountSection.appendChild(logoutDiv);
             }
         }
     },
@@ -91,6 +96,11 @@ const AuthHelper = {
 document.addEventListener('DOMContentLoaded', () => {
     AuthHelper.updateGlobalUI();
     
+    // Redirect if on book-session.html and not logged in
+    if (window.location.pathname.includes('book-session.html') && !AuthHelper.isLoggedIn()) {
+        window.location.href = 'auth.html';
+    }
+
     // Override handleBookSessionClick if it exists
     window.handleBookSessionClick = (event) => {
         if (event) event.preventDefault();

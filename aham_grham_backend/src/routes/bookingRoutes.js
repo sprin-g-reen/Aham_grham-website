@@ -1,15 +1,13 @@
 import express from 'express';
-import { createBooking, getAllBookings } from '../controllers/bookingController.js';
+import { createBooking, getAllBookings, getUserBookings } from '../controllers/bookingController.js';
+import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-/**
- * Route: /api/bookings
- * POST: Submit a new booking (Public)
- * GET: Fetch all bookings (Admin)
- */
 router.route('/')
-  .post(createBooking)
-  .get(getAllBookings);
+  .post(protect, createBooking)
+  .get(protect, getAllBookings);
+
+router.get('/my', protect, getUserBookings);
 
 export default router;
