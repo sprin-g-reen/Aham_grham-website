@@ -218,14 +218,9 @@ html.light-theme .bento-blog-item:hover .blog-item-content::before {
   background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, transparent 100%) !important;
 }
 
-html.light-theme .about-title,
-html.light-theme .about-subtitle,
-html.light-theme .about-kicker,
 html.light-theme .bento-overlay h3,
 html.light-theme .bento-overlay p,
 html.light-theme .bento-overlay span,
-html.light-theme .bento-card h3,
-html.light-theme .bento-card p,
 html.light-theme .absolute h3,
 html.light-theme .absolute p {
   color: #111827 !important;

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Authentication | Aham Grham</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'yoga-bg': '#05051a',
+            'yoga-surface': '#0a0a20',
+            'yoga-primary': '#3b82f6',
+            'yoga-accent': '#a855f7',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --accent: #a855f7;
+      --bg: #05051a;
+      --glass: rgba(15, 15, 48, 0.6);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: #ffffff;
+      font-family: 'IBM Plex Sans', sans-serif;
+      text-transform: lowercase;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Background Glow */
+    .glow-sphere {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(168, 85, 247, 0.05) 50%, transparent 70%);
+      filter: blur(80px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-input {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+    }
+
+    .auth-tab.active {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .auth-tab {
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .btn-glow:hover {
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden-form {
+      display: none;
+    }
+
+    /* Logo Glow Effect */
+    .logo-container img {
+      filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center p-6">
+  
+  <div class="glow-sphere -top-48 -left-48"></div>
+  <div class="glow-sphere -bottom-48 -right-48"></div>
+
+  <div class="w-full max-w-md fade-in">
+    <!-- Logo -->
+    <div class="logo-container flex justify-center mb-10">
+      <a href="index.html">
+        <img src="Untitled%20design%20(2).png" alt="Aham Grham" class="h-20 object-contain">
+      </a>
+    </div>
+
+    <div class="glass-card rounded-[32px] overflow-hidden p-8 md:p-10">
+      <!-- Tabs -->
+      <div class="flex gap-8 mb-10 border-b border-white/5">
+        <div id="loginTab" class="auth-tab active pb-4" onclick="toggleAuth('login')">Login</div>
+        <div id="signupTab" class="auth-tab pb-4 text-white/40" onclick="toggleAuth('signup')">Sign Up</div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="space-y-6">
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-white/50 ml-1">Email Address</label>
+          <input type="email" required placeholder="name@domain.com" 
+                 class="form-input w-full px-5 py-4 rounded-2xl text-white outline-none">
+        </div>
+        
+        <div class="space-y-2">
+          <div class="flex justify-between items-center">
+            <label class="text-xs font-bold uppercase tracking-widest text-white/50 ml-1">Password</label>
+            <a href="#" class="text-[10px] text-yoga-primary hover:underline">Forgot?</a>
+          </div>
+          <input type="password" required placeholder="••••••••" 
+                 class="form-input w-full px-5 py-4 rounded-2xl text-white outline-none">
+        </div>
+
+        <button type="submit" class="btn-glow w-full bg-yoga-primary py-4 rounded-2xl font-bold uppercase tracking-widest text-sm mt-4">
+          Access Portal
+        </button>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signupForm" class="space-y-6 hidden-form">
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-white/50 ml-1">Full Name</label>
+          <input type="text" required placeholder="prakriti sharma" 
+                 class="form-input w-full px-5 py-4 rounded-2xl text-white outline-none">
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-white/50 ml-1">WhatsApp Number</label>
+          <input type="tel" required placeholder="+91 98765 43210" 
+                 class="form-input w-full px-5 py-4 rounded-2xl text-white outline-none">
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-white/50 ml-1">Email</label>
+          <input type="email" required placeholder="name@domain.com" 
+                 class="form-input w-full px-5 py-4 rounded-2xl text-white outline-none">
+        </div>
+        
+        <div class="space-y-2">
+          <label class="text-xs font-bold uppercase tracking-widest text-white/50 ml-1">Create Password</label>
+          <input type="password" required placeholder="••••••••" 
+                 class="form-input w-full px-5 py-4 rounded-2xl text-white outline-none">
+        </div>
+
+        <button type="submit" class="btn-glow w-full bg-gradient-to-r from-yoga-primary to-yoga-accent py-4 rounded-2xl font-bold uppercase tracking-widest text-sm mt-4">
+          Begin Journey
+        </button>
+      </form>
+
+      <div class="mt-8 text-center">
+        <p class="text-xs text-white/30 tracking-wide">
+          By continuing, you agree to our <a href="#" class="text-white/50 hover:text-white underline">Terms of Resonance</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Back to Home -->
+    <div class="text-center mt-8">
+      <a href="index.html" class="inline-flex items-center gap-2 text-white/40 hover:text-white transition-colors text-xs font-semibold uppercase tracking-[0.2em]">
+        <span class="material-symbols-outlined text-sm">arrow_back</span>
+        Return to stillness
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function toggleAuth(type) {
+      const loginForm = document.getElementById('loginForm');
+      const signupForm = document.getElementById('signupForm');
+      const loginTab = document.getElementById('loginTab');
+      const signupTab = document.getElementById('signupTab');
+
+      if (type === 'login') {
+        loginForm.classList.remove('hidden-form');
+        signupForm.classList.add('hidden-form');
+        loginTab.classList.add('active', 'text-white');
+        loginTab.classList.remove('text-white/40');
+        signupTab.classList.remove('active', 'text-white');
+        signupTab.classList.add('text-white/40');
+      } else {
+        loginForm.classList.add('hidden-form');
+        signupForm.classList.remove('hidden-form');
+        signupTab.classList.add('active', 'text-white');
+        signupTab.classList.remove('text-white/40');
+        loginTab.classList.remove('active', 'text-white');
+        loginTab.classList.add('text-white/40');
+      }
+    }
+  </script>
+</body>
+</html>

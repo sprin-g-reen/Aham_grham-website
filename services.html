@@ -48,7 +48,7 @@
     .about-hero {
       grid-column: span 12;
       min-height: 540px;
-      background: #19112b;
+      background: #05051a !important; /* Force dark background always */
       position: relative;
       border-radius: 24px;
       overflow: hidden;
@@ -103,11 +103,14 @@
       gap: 12px;
     }
 
-    /* Light mode text color overrides for services hero */
-    html.light-theme .about-hero-content .about-title,
-    html.light-theme .about-hero-content .about-subtitle,
-    html.light-theme .about-hero-content .about-kicker {
+    /* UNIVERSAL WHITE LOCKDOWN FOR HERO SECTION */
+    .about-hero .about-hero-content,
+    .about-hero .about-hero-content *,
+    html.light-theme .about-hero .about-hero-content,
+    html.light-theme .about-hero .about-hero-content * {
       color: #ffffff !important;
+      opacity: 1 !important;
+      visibility: visible !important;
     }
 
     .about-kicker {
@@ -185,7 +188,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 40%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
       z-index: 1;
     }
 
@@ -206,17 +209,40 @@
       animation: rotate 10s linear infinite;
     }
 
-    .bento-card h3 {
-      font-size: clamp(24px, 3vw, 32px);
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--about-ink);
+    /* ELEGANT WHITE PROGRAM TITLES - FORCED FOR BOTH MODES */
+    .programs-grid .bento-card h3,
+    html.light-theme .programs-grid .bento-card h3,
+    html.light-theme .bento-card h3 {
+      font-size: clamp(24px, 3vw, 30px) !important;
+      font-weight: 400 !important;
+      color: #ffffff !important;
+      margin-bottom: 12px !important;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+      letter-spacing: 0.02em !important;
+      position: relative !important;
+      z-index: 10 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Ensure dark overlay persists in light mode for contrast */
+    html.light-theme .bento-card::after {
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%) !important;
+      opacity: 1 !important;
     }
 
     .bento-card p {
       font-size: 16px;
       color: var(--about-muted);
       line-height: 1.6;
+    }
+
+    /* Light Mode Section Header Overrides */
+    html.light-theme .programs-shell h2,
+    html.light-theme .tracking-tight,
+    html.light-theme .product-card h3,
+    html.light-theme .product-card p {
+      color: #111827 !important;
     }
 
     .icon-row {
@@ -313,6 +339,7 @@
         <button class="nav-btn" onclick="window.location.href='centers.html'">centers</button>
         <button class="nav-btn" onclick="window.location.href='sacred-moon-oil.html'">shop</button>
         <button class="nav-btn" onclick="window.location.href='about.html'">about us</button>
+        <button class="nav-btn" onclick="window.location.href='auth.html'">login</button>
       </div>
 
       <div class="cta-wrapper">
