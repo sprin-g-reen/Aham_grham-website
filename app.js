@@ -676,6 +676,35 @@ async function loadProductsToServices() {
     }
 }
 
+/**
+ * Fetches and injects hero data for a specific page
+ */
+async function loadHeroForPage(pageName) {
+    try {
+        const response = await fetch(`http://localhost:5000/api/hero?page=${pageName}`);
+        const hero = await response.json();
+
+        if (hero) {
+            const img = document.getElementById(`${pageName}-hero-image`);
+            const kicker = document.getElementById(`${pageName}-hero-kicker`);
+            const title = document.getElementById(`${pageName}-hero-title`);
+            const subtitle = document.getElementById(`${pageName}-hero-subtitle`);
+
+            if (img && hero.image) {
+                img.src = hero.image.startsWith('/') ? `http://localhost:5000${hero.image}` : `assets/AhamGraham-Web/${hero.image}`;
+            }
+            if (kicker) kicker.innerText = hero.kicker;
+            if (title) title.innerText = hero.title;
+            if (subtitle) subtitle.innerText = hero.subtitle;
+        }
+    } catch (err) {
+        console.error(`Error loading hero for ${pageName}:`, err);
+    }
+}
+
+/**
+ * Loads dynamic content into the About page
+ */
 async function loadAboutToPage() {
     const heroTitle = document.getElementById('about-hero-title');
     if (!heroTitle) return;
@@ -808,6 +837,24 @@ function createEventCard(ev, patternClass, isWorkshop = false) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Determine which page we are on and load appropriate hero
+    const path = window.location.pathname;
+    const page = path.includes('about.html') ? 'about' :
+                 path.includes('services.html') ? 'services' :
+                 path.includes('events.html') ? 'events' :
+                 path.includes('centers.html') ? 'centers' :
+                 path.includes('shop.html') || path.includes('sacred-moon-oil.html') ? 'shop' : null;
+
+    if (page) {
+        loadHeroForPage(page);
+    }
+
+    if (path.includes('about.html')) {
+        loadAboutToPage();
+    }
+    
+    // Existing setup
+    setupMobileMenu();
     injectDetailModal();
     loadProgramsToServices();
     loadProgramsToHome();
