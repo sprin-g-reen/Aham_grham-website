@@ -692,6 +692,9 @@
       </div>
 
       <div class="cta-wrapper">
+        <button class="btn-secondary" onclick="handleAddToCartClick(event)">
+          <span class="material-symbols-outlined">shopping_cart</span>
+        </button>
         <button class="btn-primary" onclick="window.location.href='book-session.html'">book session</button>
         <button class="btn-icon"><span class="material-symbols-outlined">light_mode</span></button>
         <button class="btn-icon"><span class="material-symbols-outlined">dark_mode</span></button>
@@ -830,6 +833,10 @@
       <li><a href="centers.html" class="mobile-nav-link">centers</a></li>
       <li><a href="sacred-moon-oil.html" class="mobile-nav-link">products</a></li>
       <li><a href="about.html" class="mobile-nav-link">about us</a></li>
+      <li><button onclick="handleAddToCartClick(event)" class="btn-secondary mt-4 w-full flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">shopping_cart</span>
+        add to cart
+      </button></li>
       <li><a href="book-session.html" class="btn-primary mt-4">book session</a></li>
     </ul>
   </div>

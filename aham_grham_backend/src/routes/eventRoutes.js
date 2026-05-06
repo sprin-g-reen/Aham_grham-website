@@ -5,7 +5,8 @@ import {
   getEvents, 
   createEvent, 
   updateEvent,
-  deleteEvent 
+  deleteEvent,
+  toggleBlogStatus
 } from '../controllers/eventController.js';
 
 const router = express.Router();
@@ -32,5 +33,7 @@ router.route('/')
 router.route('/:id')
   .delete(deleteEvent)
   .put(upload.fields([{ name: 'image', maxCount: 1 }, { name: 'video', maxCount: 1 }]), updateEvent);
+
+router.patch('/:id/toggle-blog', toggleBlogStatus);
 
 export default router;

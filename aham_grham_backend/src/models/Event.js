@@ -32,6 +32,10 @@ const eventSchema = mongoose.Schema(
     },
     video: {
       type: String,
+    },
+    isBlog: {
+      type: Boolean,
+      default: false
     }
   },
   {

@@ -17,7 +17,7 @@ export const getEvents = async (req, res) => {
 // @access  Private/Admin
 export const createEvent = async (req, res) => {
   try {
-    const { name, eventId, bookingPrice, description, about, category } = req.body;
+    const { name, eventId, bookingPrice, description, about, category, isBlog } = req.body;
 
     const eventExists = await Event.findOne({ eventId });
 
@@ -32,6 +32,7 @@ export const createEvent = async (req, res) => {
       description,
       about,
       category,
+      isBlog: isBlog === 'true' || isBlog === true,
       image: req.files?.image ? `/uploads/${req.files.image[0].filename}` : '',
       video: req.files?.video ? `/uploads/${req.files.video[0].filename}` : ''
     });
@@ -51,7 +52,7 @@ export const createEvent = async (req, res) => {
 // @access  Private/Admin
 export const updateEvent = async (req, res) => {
   try {
-    const { name, eventId, bookingPrice, description, about, category } = req.body;
+    const { name, eventId, bookingPrice, description, about, category, isBlog } = req.body;
     const event = await Event.findById(req.params.id);
 
     if (event) {
@@ -61,6 +62,7 @@ export const updateEvent = async (req, res) => {
       event.description = description || event.description;
       event.about = about || event.about;
       event.category = category || event.category;
+      event.isBlog = isBlog !== undefined ? isBlog : event.isBlog;
       
       if (event.category === 'Highlight') {
         event.bookingPrice = 0;
@@ -81,6 +83,24 @@ export const updateEvent = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+// @desc    Toggle blog status
+// @route   PATCH /api/events/:id/toggle-blog
+// @access  Private/Admin
+export const toggleBlogStatus = async (req, res) => {
+    try {
+        const event = await Event.findById(req.params.id);
+        if (event) {
+            event.isBlog = !event.isBlog;
+            const updatedEvent = await event.save();
+            res.json(updatedEvent);
+        } else {
+            res.status(404).json({ message: 'Event not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
 
 // @desc    Delete an event

@@ -365,6 +365,110 @@ async function loadProgramsToServices() {
     }
 }
 
+async function loadProgramsToHome() {
+    const grid = document.querySelector('.bento-grid');
+    if (!grid || document.querySelector('.programs-grid')) return; // Avoid running on services page
+
+    try {
+        const response = await fetch('http://localhost:5000/api/programs');
+        const programs = await response.json();
+
+        if (programs.length > 0) {
+            // Clear static content
+            grid.innerHTML = '';
+            
+            // Bento patterns for index page
+            const patterns = [
+                'row-2', 'span-2', '', '', 
+                'span-2 row-2 brand-card', // Brand card placeholder (we'll handle it)
+                '', '', 'row-2', '', 'span-2'
+            ];
+
+            const brandCardHTML = `
+                <div class="bento-item span-2 row-2 brand-card">
+                  <div class="brand-card-content">
+                    <img src="assets/logo_transparent.png" alt="Aham Graham Logo" class="brand-logo-large">
+                    <p class="brand-motto">return to your inner home</p>
+                  </div>
+                </div>
+            `;
+
+            let progIndex = 0;
+            for (let i = 0; i < 10; i++) {
+                if (i === 4) { // Insert brand card at 5th position
+                    grid.insertAdjacentHTML('beforeend', brandCardHTML);
+                    continue;
+                }
+
+                if (progIndex < programs.length) {
+                    const prog = programs[progIndex];
+                    const patternClass = patterns[i] || '';
+                    const imgSrc = prog.image ? `http://localhost:5000${prog.image}` : 'assets/AhamGraham-Web/placeholder.png';
+                    
+                    const cardHTML = `
+                        <div class="bento-item ${patternClass}" 
+                             data-description="${prog.description || ''}">
+                            <img src="${imgSrc}" alt="${prog.name || ''}">
+                            <div class="bento-overlay">
+                                <div class="bento-content">
+                                    <h3>${(prog.name || '').toLowerCase()}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    grid.insertAdjacentHTML('beforeend', cardHTML);
+                    progIndex++;
+                }
+            }
+            
+            // Re-initialize reveal animations for new items
+            initRevealAnimation();
+        }
+    } catch (error) {
+        console.error("Failed to load programs for home:", error);
+    }
+}
+
+async function loadEventsToBlog() {
+    const grid = document.querySelector('.bento-blog-grid');
+    if (!grid) return;
+
+    try {
+        const response = await fetch('http://localhost:5000/api/events');
+        const events = await response.json();
+
+        // Filter events that have isBlog set to true
+        const blogEvents = events.filter(ev => ev.isBlog);
+
+        if (blogEvents.length > 0) {
+            // Clear static content
+            grid.innerHTML = '';
+            
+            blogEvents.forEach((ev, i) => {
+                const index = (i % 15) + 1; // 15 unique layouts c1-c15
+                const imgSrc = ev.image ? `http://localhost:5000${ev.image}` : 'assets/AhamGraham-Web/placeholder.png';
+                
+                const cardHTML = `
+                    <article class="bento-blog-item c${index}">
+                        <img src="${imgSrc}" alt="${ev.name || ''}">
+                        <div class="blog-item-content">
+                            <span class="category">${ev.category || 'Event'}</span>
+                            <h3>${ev.name}</h3>
+                            <p>${ev.description || ''}</p>
+                        </div>
+                    </article>
+                `;
+                grid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+            
+            // Re-initialize reveal animations
+            initRevealAnimation();
+        }
+    } catch (error) {
+        console.error("Failed to load blog events:", error);
+    }
+}
+
 async function loadEventsToPage() {
     const mainGrid = document.getElementById('main-events-grid');
     const workshopGrid = document.getElementById('workshop-grid');
@@ -480,6 +584,8 @@ function createEventCard(ev, patternClass, isWorkshop = false) {
 document.addEventListener('DOMContentLoaded', () => {
     injectDetailModal();
     loadProgramsToServices();
+    loadProgramsToHome();
+    loadEventsToBlog();
     loadEventsToPage();
     
     window.addEventListener('keydown', (e) => {
@@ -511,4 +617,8 @@ setupFooterAccordion();
 // Global hook for the "Book Session" buttons (Bypass Auth for now)
 window.handleBookSessionClick = function(event) {
     window.location.href = 'book-session.html';
+};
+
+window.handleAddToCartClick = function(event) {
+    window.location.href = 'sacred-moon-oil.html';
 };
