@@ -299,6 +299,11 @@ html.light-theme .about-hero-content {
   bottom: 0;
   left: 0;
   z-index: 2;
+  pointer-events: none;
+}
+
+.bento-content {
+  pointer-events: auto;
 }
 
 html.light-theme .about-hero-content .about-title,
@@ -4008,6 +4013,8 @@ html.light-theme .cta-section p,
 
 /* Bento Overlay Light Mode - White Shade */
 html.light-theme .bento-overlay {
+  pointer-events: none;
+  pointer-events: none;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.4) 60%, transparent 100%) !important;
 }
 

@@ -408,8 +408,8 @@ async function loadProgramsToHome() {
                     const cardHTML = `
                         <div class="bento-item ${patternClass}" 
                              data-description="${prog.description || ''}">
-                            <img src="${imgSrc}" alt="${prog.name || ''}">
-                            <div class="bento-overlay">
+                            <img src="${imgSrc}" alt="${prog.name || ''}" style="cursor: pointer;">
+                            <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services.html'" style="cursor: pointer;">
                                 <div class="bento-content">
                                     <h3>${(prog.name || '').toLowerCase()}</h3>
                                 </div>
@@ -450,11 +450,13 @@ async function loadEventsToBlog() {
                 
                 const cardHTML = `
                     <article class="bento-blog-item c${index}">
-                        <img src="${imgSrc}" alt="${ev.name || ''}">
-                        <div class="blog-item-content">
-                            <span class="category">${ev.category || 'Event'}</span>
-                            <h3>${ev.name}</h3>
-                            <p>${ev.description || ''}</p>
+                        <img src="${imgSrc}" alt="${ev.name || ''}" style="cursor: pointer;">
+                        <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services.html'" style="cursor: pointer;">
+                            <div class="blog-item-content">
+                                <span class="category">${ev.category || 'Event'}</span>
+                                <h3>${ev.name}</h3>
+                                <p>${ev.description || ''}</p>
+                            </div>
                         </div>
                     </article>
                 `;
