@@ -25,6 +25,8 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script src="auth-helper.js"></script>
+
 
   <style>
     :root {
@@ -151,10 +153,11 @@
         <div class="space-y-2">
           <div class="flex justify-between items-center">
             <label class="text-xs font-bold uppercase tracking-widest text-white/50 ml-1">Password</label>
-            <a href="#" class="text-[10px] text-yoga-primary hover:underline">Forgot?</a>
+            <a href="#" onclick="toggleAuth('forgot')" class="text-[10px] text-yoga-primary hover:underline">Forgot?</a>
           </div>
           <input type="password" required placeholder="••••••••" 
                  class="form-input w-full px-5 py-4 rounded-2xl text-white outline-none">
+          <div id="loginError" class="text-red-500 text-[10px] font-bold mt-1 ml-1 hidden"></div>
         </div>
 
         <button type="submit" class="btn-glow w-full bg-yoga-primary py-4 rounded-2xl font-bold uppercase tracking-widest text-sm mt-4">
@@ -186,11 +189,50 @@
           <label class="text-xs font-bold uppercase tracking-widest text-white/50 ml-1">Create Password</label>
           <input type="password" required placeholder="••••••••" 
                  class="form-input w-full px-5 py-4 rounded-2xl text-white outline-none">
+          <div id="signupError" class="text-red-500 text-[10px] font-bold mt-1 ml-1 hidden"></div>
         </div>
 
         <button type="submit" class="btn-glow w-full bg-gradient-to-r from-yoga-primary to-yoga-accent py-4 rounded-2xl font-bold uppercase tracking-widest text-sm mt-4">
           Begin Journey
         </button>
+      </form>
+      
+      <!-- Forgot Password Form -->
+      <form id="forgotForm" class="space-y-6 hidden-form">
+        <!-- Step 1: Verify Email -->
+        <div id="forgotStep1" class="space-y-6">
+          <div class="space-y-2">
+            <label class="text-xs font-bold uppercase tracking-widest text-white/50 ml-1">Registered Email</label>
+            <input type="email" id="forgotEmail" required placeholder="name@domain.com" 
+                   class="form-input w-full px-5 py-4 rounded-2xl text-white outline-none">
+            <div id="forgotEmailError" class="text-red-500 text-[10px] font-bold mt-1 ml-1 hidden"></div>
+          </div>
+          <button type="button" onclick="verifyResetEmail()" class="btn-glow w-full bg-yoga-primary py-4 rounded-2xl font-bold uppercase tracking-widest text-sm mt-4">
+            Verify Email
+          </button>
+        </div>
+
+        <!-- Step 2: Reset Password -->
+        <div id="forgotStep2" class="space-y-6 hidden">
+          <div class="space-y-2">
+            <label class="text-xs font-bold uppercase tracking-widest text-white/50 ml-1">New Password</label>
+            <input type="password" id="newPassword" required placeholder="••••••••" 
+                   class="form-input w-full px-5 py-4 rounded-2xl text-white outline-none">
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs font-bold uppercase tracking-widest text-white/50 ml-1">Confirm New Password</label>
+            <input type="password" id="confirmPassword" required placeholder="••••••••" 
+                   class="form-input w-full px-5 py-4 rounded-2xl text-white outline-none">
+            <div id="resetError" class="text-red-500 text-[10px] font-bold mt-1 ml-1 hidden"></div>
+          </div>
+          <button type="button" onclick="handlePasswordReset()" class="btn-glow w-full bg-gradient-to-r from-yoga-primary to-yoga-accent py-4 rounded-2xl font-bold uppercase tracking-widest text-sm mt-4">
+            Update Password
+          </button>
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="#" onclick="toggleAuth('login')" class="text-[10px] text-yoga-primary hover:underline uppercase tracking-widest font-bold">Back to Login</a>
+        </div>
       </form>
 
       <div class="mt-8 text-center">
@@ -210,28 +252,170 @@
   </div>
 
   <script>
+    async function handleAuth(event, type) {
+      event.preventDefault();
+      const form = event.target;
+      const errorDiv = document.getElementById(type === 'login' ? 'loginError' : 'signupError');
+      
+      // Hide error div initially
+      if (errorDiv) {
+        errorDiv.classList.add('hidden');
+        errorDiv.innerText = '';
+      }
+
+      const endpoint = type === 'login' ? 'http://localhost:5000/api/users/login' : 'http://localhost:5000/api/users';
+      
+      const payload = type === 'login' ? {
+        email: form.querySelector('input[type="email"]').value,
+        password: form.querySelector('input[type="password"]').value
+      } : {
+        name: form.querySelector('input[placeholder="prakriti sharma"]').value,
+        whatsappNumber: form.querySelector('input[type="tel"]').value,
+        email: form.querySelector('input[type="email"]').value,
+        password: form.querySelector('input[type="password"]').value
+      };
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          AuthHelper.saveAuth(result.token, result);
+          window.location.href = 'book-session.html';
+        } else {
+          // Show error in red below password
+          if (errorDiv) {
+            errorDiv.innerText = result.message || 'Authentication failed';
+            errorDiv.classList.remove('hidden');
+          }
+        }
+      } catch (error) {
+        console.error('Auth error:', error);
+        if (errorDiv) {
+          errorDiv.innerText = 'Could not connect to the server.';
+          errorDiv.classList.remove('hidden');
+        }
+      }
+    }
+
+
     function toggleAuth(type) {
       const loginForm = document.getElementById('loginForm');
       const signupForm = document.getElementById('signupForm');
+      const forgotForm = document.getElementById('forgotForm');
       const loginTab = document.getElementById('loginTab');
       const signupTab = document.getElementById('signupTab');
 
       if (type === 'login') {
         loginForm.classList.remove('hidden-form');
         signupForm.classList.add('hidden-form');
+        forgotForm.classList.add('hidden-form');
         loginTab.classList.add('active', 'text-white');
         loginTab.classList.remove('text-white/40');
         signupTab.classList.remove('active', 'text-white');
         signupTab.classList.add('text-white/40');
-      } else {
+      } else if (type === 'signup') {
         loginForm.classList.add('hidden-form');
         signupForm.classList.remove('hidden-form');
+        forgotForm.classList.add('hidden-form');
         signupTab.classList.add('active', 'text-white');
         signupTab.classList.remove('text-white/40');
         loginTab.classList.remove('active', 'text-white');
         loginTab.classList.add('text-white/40');
+      } else if (type === 'forgot') {
+        loginForm.classList.add('hidden-form');
+        signupForm.classList.add('hidden-form');
+        forgotForm.classList.remove('hidden-form');
+        // Reset forgot steps
+        document.getElementById('forgotStep1').classList.remove('hidden');
+        document.getElementById('forgotStep2').classList.add('hidden');
       }
     }
+
+    async function verifyResetEmail() {
+      const email = document.getElementById('forgotEmail').value;
+      const errorDiv = document.getElementById('forgotEmailError');
+      
+      if (!email) return;
+
+      errorDiv.classList.add('hidden');
+
+      try {
+        const response = await fetch('http://localhost:5000/api/users/verify-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          // Move to Step 2
+          document.getElementById('forgotStep1').classList.add('hidden');
+          document.getElementById('forgotStep2').classList.remove('hidden');
+        } else {
+          errorDiv.innerText = result.message || 'Email not found';
+          errorDiv.classList.remove('hidden');
+        }
+      } catch (error) {
+        errorDiv.innerText = 'Server error. Try again.';
+        errorDiv.classList.remove('hidden');
+      }
+    }
+
+    async function handlePasswordReset() {
+      const email = document.getElementById('forgotEmail').value;
+      const password = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const errorDiv = document.getElementById('resetError');
+
+      if (!password || password.length < 6) {
+        errorDiv.innerText = 'Password must be at least 6 characters';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        errorDiv.innerText = 'Passwords do not match';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/api/users/reset-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        if (response.ok) {
+          alert('Password reset successful! Please login.');
+          toggleAuth('login');
+        } else {
+          const result = await response.json();
+          errorDiv.innerText = result.message || 'Reset failed';
+          errorDiv.classList.remove('hidden');
+        }
+      } catch (error) {
+        errorDiv.innerText = 'Server error. Try again.';
+        errorDiv.classList.remove('hidden');
+      }
+    }
+
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => handleAuth(e, 'login'));
+    document.getElementById('signupForm').addEventListener('submit', (e) => handleAuth(e, 'signup'));
+
+    // Check if already logged in
+    if (AuthHelper.isLoggedIn()) {
+      window.location.href = 'book-session.html';
+    }
+
   </script>
 </body>
 </html>

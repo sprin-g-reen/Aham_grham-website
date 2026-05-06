@@ -17,6 +17,13 @@
   <!-- External CSS -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="true-focus.css" />
+  <script src="auth-helper.js"></script>
+  <script>
+    if (!AuthHelper.isLoggedIn()) {
+      window.location.href = 'auth.html';
+    }
+  </script>
+
 
   <title>Book Session | Aham Graham</title>
 
