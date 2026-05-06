@@ -19,6 +19,7 @@ export const createProduct = async (req, res) => {
       description,
       image: imagePath,
       isMostSelling: isMostSelling === 'true' || isMostSelling === true,
+      isServicePage: req.body.isServicePage === 'true' || req.body.isServicePage === true,
       offer,
       sku,
       tax,
@@ -81,6 +82,10 @@ export const updateProduct = async (req, res) => {
       
       if (isMostSelling !== undefined) {
         product.isMostSelling = isMostSelling === 'true' || isMostSelling === true;
+      }
+
+      if (req.body.isServicePage !== undefined) {
+        product.isServicePage = req.body.isServicePage === 'true' || req.body.isServicePage === true;
       }
 
       if (req.file) {

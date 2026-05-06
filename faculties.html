@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Faculties - Aham Grham</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="about.css">
+  <style>
+    .faculties-hero {
+      padding: 120px 5% 60px;
+      text-align: center;
+      background: linear-gradient(to bottom, #1a1625, #0f0c15);
+    }
+    .faculties-hero h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .faculties-hero p {
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faculties-grid-container {
+      padding: 60px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .guide-grid-full {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+  </style>
+</head>
+<body class="dark-theme">
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="VJS-Logo-transparent.png" alt="Aham Grham Logo">
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="services.html">Services</a>
+        <a href="events.html">Events</a>
+        <a href="book-session.html">Book Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="faculties-hero">
+      <h1 id="page-title">our faculties</h1>
+      <p id="page-subtitle">the dedicated experts carrying our lineage and guiding your journey.</p>
+    </section>
+
+    <section class="faculties-grid-container">
+      <div id="full-faculties-grid" class="guide-grid-full">
+        <!-- Dynamic content -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <!-- Simplified footer -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 Aham Grham. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/about');
+        const about = await response.json();
+        
+        if (about && about.faculties) {
+          document.getElementById('page-title').innerText = about.faculties.title;
+          document.getElementById('page-subtitle').innerText = about.faculties.subtitle;
+          
+          const grid = document.getElementById('full-faculties-grid');
+          if (grid && about.faculties.guides) {
+            grid.innerHTML = about.faculties.guides.map(guide => `
+              <article class="guide-card">
+                <img src="${guide.image.startsWith('http') || guide.image.startsWith('/') ? guide.image : 'assets/' + guide.image}" alt="${guide.name}">
+                <div class="guide-content">
+                  <h3>${guide.name}</h3>
+                  <span class="guide-role">${guide.role}</span>
+                  <p>${guide.bio}</p>
+                </div>
+              </article>
+            `).join('');
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load faculties:", err);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -12,6 +12,8 @@ import bookingRoutes from './routes/bookingRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import programRoutes from './routes/programRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import testimonialRoutes from './routes/testimonialRoutes.js';
+import aboutRoutes from './routes/aboutRoutes.js';
 
 
 // Import Middleware
@@ -42,6 +44,8 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/programs', programRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/testimonials', testimonialRoutes);
+app.use('/api/about', aboutRoutes);
 
 
 // Root Endpoint
