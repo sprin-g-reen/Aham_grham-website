@@ -89,7 +89,7 @@
       position: fixed;
       inset: 0;
       z-index: 9999;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
@@ -99,6 +99,7 @@
     }
 
     #productModal.active {
+      display: flex;
       opacity: 1;
       pointer-events: auto;
     }
@@ -486,7 +487,7 @@
       position: fixed;
       inset: 0;
       z-index: 10000;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
@@ -496,6 +497,7 @@
     }
 
     #reviewsModal.active {
+      display: flex;
       opacity: 1;
       pointer-events: auto;
     }
@@ -710,6 +712,10 @@
       </div>
 
       <div class="cta-wrapper">
+        <button class="btn-secondary" onclick="handleAddToCartClick(event)">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <span class="cart-badge" style="display: none;">0</span>
+        </button>
         <button class="btn-primary" onclick="window.location.href='book-session.html'">book session</button>
         <button class="btn-icon"><span class="material-symbols-outlined">light_mode</span></button>
         <button class="btn-icon"><span class="material-symbols-outlined">dark_mode</span></button>
@@ -724,7 +730,7 @@
 
   <main class="pt-32 pb-8 relative z-10">
     <!-- Hero Product Section -->
-    <section class="relative px-6 md:px-12 lg:px-24 mb-32">
+    <section class="relative px-6 md:px-12 lg:px-24 mb-32 services-feature-shell">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center">
         <!-- Image Canvas -->
         <div class="relative group">
@@ -757,12 +763,17 @@
             </p>
 
           </div>
-          <button
-            class="btn-primary py-5 px-10 rounded-full text-sm uppercase tracking-widest font-bold cta-glow flex items-center justify-center space-x-3 w-full md:w-max group" onclick="handleBookSessionClick(event)">
-            <span>Add to Sanctuary</span>
-            <span class="material-symbols-outlined text-lg group-hover:rotate-12 transition-transform"
-              data-icon="auto_awesome">auto_awesome</span>
-          </button>
+          <div class="grid grid-cols-3 gap-3 w-full md:w-max">
+            <button class="btn-primary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold cta-glow flex items-center justify-center" onclick="openProductModal(document.querySelector('.services-feature-shell'))">
+              <span>Buy</span>
+            </button>
+            <button class="btn-secondary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold flex items-center justify-center" onclick="addToCart('Sacred Moon Oil', 78, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo')">
+              <span>Cart</span>
+            </button>
+            <button class="btn-secondary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold flex items-center justify-center" onclick="openReviewModal(document.querySelector('.services-feature-shell'))">
+              <span>Review</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -872,6 +883,11 @@
       <li><a href="centers.html" class="mobile-nav-link">centers</a></li>
       <li><a href="sacred-moon-oil.html" class="mobile-nav-link">products</a></li>
       <li><a href="about.html" class="mobile-nav-link">about us</a></li>
+      <li><button onclick="handleAddToCartClick(event)" class="btn-secondary mt-4 w-full flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">shopping_cart</span>
+        add to cart
+        <span class="cart-badge" style="display: none;">0</span>
+      </button></li>
       <li><a href="book-session.html" class="btn-primary mt-4">book session</a></li>
     </ul>
   </div>
@@ -955,7 +971,7 @@
   <script src="dynamic-products.js"></script>
 
   <!-- PRODUCT DETAIL MODAL -->
-  <div id="productModal">
+  <div id="productModal" style="display: none;">
     <div class="modal-overlay" onclick="closeProductModal()"></div>
     <div class="modal-card">
       <div class="close-modal" onclick="closeProductModal()">
@@ -990,7 +1006,7 @@
   </div>
 
   <!-- REVIEWS MODAL -->
-  <div id="reviewsModal">
+  <div id="reviewsModal" style="display: none;">
     <div class="modal-overlay" onclick="closeReviewsModal()"></div>
     <div class="reviews-modal-card">
       <div class="close-modal" onclick="closeReviewsModal()">
@@ -1019,6 +1035,7 @@
       const modal = document.getElementById('reviewsModal');
       const img = card.querySelector('img').src;
       document.getElementById('reviewsModalProductImg').src = img;
+      modal.style.display = 'flex';
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -1026,6 +1043,7 @@
     function closeReviewsModal() {
       const modal = document.getElementById('reviewsModal');
       modal.classList.remove('active');
+      modal.style.display = 'none';
       document.body.style.overflow = '';
     }
 
@@ -1055,6 +1073,7 @@
       document.querySelector(".modal-tax").style.display = 'block';
       document.querySelector(".modal-stock").style.display = 'flex';
 
+      modal.style.display = 'flex';
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -1062,6 +1081,7 @@
     function closeProductModal() {
       const modal = document.getElementById('productModal');
       modal.classList.remove('active');
+      modal.style.display = 'none';
       document.body.style.overflow = '';
     }
 

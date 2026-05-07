@@ -18,7 +18,7 @@ class ScrollVelocity {
     this.options = {
       velocity: options.velocity || 1,
       direction: options.direction || 1, 
-      numCopies: options.numCopies || 6, // Increased copies to ensure coverage
+      numCopies: options.numCopies || 10, // Increased for smoother coverage
       damping: 0.1,
       velocityMultiplier: 0.2,
       ...options
@@ -51,6 +51,9 @@ class ScrollVelocity {
     this.track.style.display = 'flex';
     this.track.style.width = 'max-content';
     this.track.style.willChange = 'transform';
+    this.track.style.backfaceVisibility = 'hidden';
+    this.track.style.perspective = '1000px';
+    this.track.style.transformStyle = 'preserve-3d';
     
     // Clear and clone
     const content = original.innerHTML;
@@ -64,48 +67,46 @@ class ScrollVelocity {
       this.track.appendChild(copy);
     }
     
+    this.track.style.width = '100000px'; // Set a very large width to prevent accidental wrapping
+    
     this.container.appendChild(this.track);
     
-    // Measure true width of one copy
-    const firstCopy = this.track.firstElementChild;
-    this.copyWidth = firstCopy.getBoundingClientRect().width;
-    
-    this.animate();
-    this.listen();
+    // Small delay to ensure layout is computed before measuring
+    requestAnimationFrame(() => {
+      const firstCopy = this.track.firstElementChild;
+      if (firstCopy) {
+        this.copyWidth = firstCopy.getBoundingClientRect().width;
+        
+        window.addEventListener('resize', () => {
+          const firstCopy = this.track.firstElementChild;
+          if (firstCopy) {
+            this.copyWidth = firstCopy.getBoundingClientRect().width;
+          }
+        });
+
+        this.animate();
+        this.listen();
+      }
+    });
   }
 
   listen() {
-    window.addEventListener('scroll', () => {
-      const currentScrollY = window.scrollY;
-      this.scrollVelocity = currentScrollY - this.lastScrollY;
-      this.lastScrollY = currentScrollY;
-    }, { passive: true });
+    // Scroll tracking disabled to maintain constant speed
   }
 
   animate() {
-    // 1. Calculate target velocity based on scroll
-    const velocityEffect = Math.abs(this.scrollVelocity) * this.options.velocityMultiplier;
-    this.targetVelocity = this.options.velocity + velocityEffect;
-    
-    // 2. Smoothly interpolate velocity
-    this.currentVelocity += (this.targetVelocity - this.currentVelocity) * this.options.damping;
-    
-    // 3. Move X
-    this.x -= this.currentVelocity * this.options.direction;
-    
-    // 4. Handle seamless wrapping
-    if (this.x > 0) {
-      this.x -= this.copyWidth;
-    } else if (this.x < -this.copyWidth) {
+    // Move X
+    this.x -= this.options.velocity * this.options.direction;
+
+    // 6. Loop X seamlessly - using a more stable conditional wrap
+    if (this.x <= -this.copyWidth) {
       this.x += this.copyWidth;
+    } else if (this.x > 0) {
+      this.x -= this.copyWidth;
     }
 
-    // 5. Apply transform with high precision
-    // Using toFixed(3) prevents sub-pixel jitter and 'stuck' feelings
+    // 7. Apply transform
     this.track.style.transform = `translate3d(${this.x.toFixed(3)}px, 0, 0)`;
-
-    // 6. Decay scroll velocity
-    this.scrollVelocity *= 0.92;
 
     requestAnimationFrame(() => this.animate());
   }

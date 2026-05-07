@@ -245,7 +245,7 @@ function injectDetailModal() {
     if (document.getElementById('programModal')) return;
     
     const modalHTML = `
-        <div id="programModal" class="detail-modal">
+        <div id="programModal" class="detail-modal" style="display: none;">
             <div class="detail-close" onclick="closeProgramModal()">
                 <span class="material-symbols-outlined">close</span>
             </div>
@@ -297,6 +297,7 @@ function openProgramDetail(title, image, description, category, about) {
         }
     }
     
+    modal.style.display = 'flex';
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -305,6 +306,7 @@ function closeProgramModal() {
     const modal = document.getElementById('programModal');
     if (modal) {
         modal.classList.remove('active');
+        modal.style.display = 'none';
         document.body.style.overflow = '';
     }
 }
@@ -965,5 +967,43 @@ window.handleBookSessionClick = function(event) {
 };
 
 window.handleAddToCartClick = function(event) {
-    window.location.href = 'sacred-moon-oil.html';
+    window.location.href = 'cart.html';
 };
+
+// --- CART SYSTEM ---
+
+window.addToCart = function(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem('aham_cart') || '[]');
+    cart.push({ name, price, image, id: Date.now() });
+    localStorage.setItem('aham_cart', JSON.stringify(cart));
+    
+    // Update UI
+    window.updateCartBadge();
+    
+    // Optional: Visual feedback
+    const badge = document.getElementById('cart-count');
+    if (badge) {
+        badge.classList.add('bump');
+        setTimeout(() => badge.classList.remove('bump'), 300);
+    }
+};
+
+window.updateCartBadge = function() {
+    try {
+        const cart = JSON.parse(localStorage.getItem('aham_cart') || '[]');
+        const count = Array.isArray(cart) ? cart.length : 0;
+        
+        const badges = document.querySelectorAll('.cart-badge');
+        badges.forEach(badge => {
+            badge.innerText = count;
+            badge.style.display = count > 0 ? 'flex' : 'none';
+        });
+    } catch (e) {
+        console.error("Cart update failed:", e);
+    }
+};
+
+// Initialize cart on load
+document.addEventListener('DOMContentLoaded', () => {
+    window.updateCartBadge();
+});

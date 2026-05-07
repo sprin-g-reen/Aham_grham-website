@@ -10,7 +10,31 @@
   }
 }
 
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff4d4d;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #111827; /* Match nav bg */
+  z-index: 10;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cart-badge.bump {
+  transform: scale(1.4);
+}
+
 .btn-secondary {
+  position: relative;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 8px 12px;
@@ -26,6 +50,7 @@
   justify-content: center;
   text-transform: lowercase;
   margin-right: 8px;
+  opacity: 1;
 }
 
 .btn-secondary:hover {
@@ -62,7 +87,7 @@ html.light-theme .btn-secondary:hover {
   --accent-purple: #7c4dff;
   --accent-cyan: #ffffff;
   --border-subtle: rgba(124, 77, 255, 0.15);
-  
+
   --btn-book-gradient: linear-gradient(135deg, #7c4dff, #3b82f6);
   --btn-desc-bg: rgba(124, 77, 255, 0.1);
   --btn-desc-border: rgba(124, 77, 255, 0.3);
@@ -204,8 +229,7 @@ html.light-theme .btn-primary:hover {
 }
 
 html.light-theme .exp-col span,
-html.light-theme .testimonial-controls button {
-}
+html.light-theme .testimonial-controls button {}
 
 .btn-desc:hover {
   background: rgba(124, 77, 255, 0.2);
@@ -393,7 +417,7 @@ html.light-theme .testimonial-text {
 }
 
 html.light-theme .testimonial-author {
-  color: #ffffff !important; 
+  color: #ffffff !important;
 }
 
 html.light-theme .testimonial-role {
@@ -1053,6 +1077,7 @@ body {
     order: -1;
     margin-bottom: 30px;
   }
+
   .exp-center img {
     height: 450px;
     max-width: 90%;
@@ -1067,12 +1092,16 @@ body {
   }
 
   .nav-container .btn-primary {
-    display: none; /* Hide desktop book button */
+    display: none;
+    /* Hide desktop book button */
   }
+
   .exp-col span {
     display: none !important;
   }
-  .exp-col.left li, .exp-col.right li {
+
+  .exp-col.left li,
+  .exp-col.right li {
     display: block !important;
     text-align: center !important;
   }
@@ -1383,7 +1412,8 @@ body {
 
 /* SECTION 1: TAGS - Updated for ScrollVelocity */
 .footer-top {
-  padding: 12px 0 40px; /* Reduced side padding for edge-to-edge marquee */
+  padding: 12px 0 10px;
+  /* Reduced bottom padding to move footer-main content up */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1392,7 +1422,8 @@ body {
 }
 
 .tag-row {
-  display: block; /* Replaced by .velocity-marquee */
+  display: block;
+  /* Replaced by .velocity-marquee */
 }
 
 /* SECTION 2: THREE COLUMNS */
@@ -1431,8 +1462,7 @@ body {
   width: auto;
   object-fit: contain;
   margin-top: auto;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
+  opacity: 1;
 }
 
 /* Theme-aware logo toggling */
@@ -1448,9 +1478,6 @@ html.light-theme .dark-logo {
   display: none !important;
 }
 
-.footer-badge:hover {
-  opacity: 1;
-}
 
 /* Quote Styling */
 .footer-quote-wrap {
@@ -1578,17 +1605,21 @@ html.light-theme .dark-logo {
     gap: 24px;
     padding: 56px 24px;
   }
+
   .footer-brand-col {
     grid-column: auto;
     align-items: flex-start;
     text-align: left;
   }
+
   .footer-logo {
     height: 60px;
   }
+
   .footer-quote {
     font-size: 15px;
   }
+
   .footer-badge {
     height: 90px;
     margin-top: auto;
@@ -1683,7 +1714,7 @@ html.light-theme .dark-logo {
 .bento-blog-item {
   position: relative;
   background: linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box,
-              conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
+    conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
   border: 1.5px solid transparent !important;
   border-radius: 16px;
   overflow: hidden;
@@ -2090,7 +2121,7 @@ html.light-theme .dark-logo {
 .bento-item {
   position: relative;
   background: linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box,
-              conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
+    conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
   border: 1.5px solid transparent !important;
   border-radius: 28px;
   overflow: hidden;
@@ -2560,7 +2591,7 @@ img {
 
 .testimonial-card {
   background: linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box,
-              conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
+    conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
   border: 1.5px solid transparent !important;
   border-radius: 22px;
   animation: rotate 4s linear infinite;
@@ -3446,6 +3477,7 @@ section,
 
   .footer-brand-col {
     gap: 0px !important;
+    margin-top: -60px !important;
   }
 
   .footer-badge {
@@ -3464,23 +3496,21 @@ section,
     margin-top: -80px !important;
     margin-bottom: -40px !important;
     padding-bottom: 10px !important;
-    
+
     /* Shimmer Animation Styles */
     color: transparent !important;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.1) 45%,
-      rgba(255, 255, 255, 0.9) 50%,
-      rgba(255, 255, 255, 0.1) 55%,
-      rgba(255, 255, 255, 0.1) 100%
-    ) !important;
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.1) 45%,
+        rgba(255, 255, 255, 0.9) 50%,
+        rgba(255, 255, 255, 0.1) 55%,
+        rgba(255, 255, 255, 0.1) 100%) !important;
     background-size: 250% 100% !important;
     background-repeat: no-repeat !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
     animation: shine 6s linear infinite !important;
-    
+
     width: 100% !important;
     white-space: nowrap !important;
     letter-spacing: -0.05em !important;
@@ -3489,19 +3519,22 @@ section,
 }
 
 @keyframes shine {
-  0% { background-position: -150% 0; }
-  100% { background-position: 150% 0; }
+  0% {
+    background-position: -150% 0;
+  }
+
+  100% {
+    background-position: 150% 0;
+  }
 }
 
 html.light-theme .footer-large-text {
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.1) 45%,
-    rgba(0, 0, 0, 0.8) 50%,
-    rgba(0, 0, 0, 0.1) 55%,
-    rgba(0, 0, 0, 0.1) 100%
-  ) !important;
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.1) 45%,
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.1) 55%,
+      rgba(0, 0, 0, 0.1) 100%) !important;
   background-size: 250% 100% !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
@@ -3517,6 +3550,7 @@ html.light-theme .footer-large-text {
     padding-left: 24px;
     padding-right: 24px;
   }
+
   .footer-top {
     padding-left: 0;
     padding-right: 0;
@@ -3527,11 +3561,32 @@ html.light-theme .footer-large-text {
     gap: 60px;
     padding-bottom: 28px;
   }
+
   .footer-brand-col {
     grid-column: span 5;
     text-align: center;
     align-items: center;
     margin-bottom: 20px;
+    margin-top: -60px;
+    transform: translateY(-20px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-badge {
+    margin-top: 10px !important;
+  }
+
+  .footer-logo {
+    order: 1;
+  }
+
+  .footer-quote-wrap {
+    order: 2;
+  }
+
+  .footer-badge {
+    order: 3;
   }
 
   .footer-quote {
@@ -3556,28 +3611,49 @@ html.light-theme .footer-large-text {
     font-size: 18px;
     line-height: 1.5;
   }
+
   .footer-main {
     padding: 60px 24px;
   }
-  
+
   .footer-container {
     grid-template-columns: 1fr !important;
     gap: 0 !important;
     text-align: center;
   }
-  
+
   .footer-col {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
+
   .footer-brand-col {
     margin-bottom: 40px;
-    margin-top: 0 !important;
+    margin-top: -100px !important;
+    transform: translateY(-30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
+  .footer-brand-col .footer-badge {
+    margin-top: 10px !important;
+  }
+
+  .footer-brand-col .footer-logo {
+    order: 1;
+  }
+
+  .footer-brand-col .footer-quote-wrap {
+    order: 2;
+  }
+
+  .footer-brand-col .footer-badge {
+    order: 3;
+  }
+
   .footer-col:not(.footer-brand-col) h4,
   .footer-col:not(.footer-brand-col) .footer-subheading {
     width: 100%;
@@ -3589,19 +3665,19 @@ html.light-theme .footer-large-text {
     border-bottom: 1px solid rgba(127, 119, 221, 0.2);
     cursor: pointer;
   }
-  
+
   .footer-col:not(.footer-brand-col) h4::after,
   .footer-col:not(.footer-brand-col) .footer-subheading::after {
     content: '+';
     font-size: 20px;
     font-weight: 300;
   }
-  
+
   .footer-col.active h4::after,
   .footer-col.active .footer-subheading::after {
     content: '−';
   }
-  
+
   .footer-col ul,
   .footer-col .contact-stack {
     display: none;
@@ -3609,7 +3685,7 @@ html.light-theme .footer-large-text {
     padding: 20px 0;
     margin: 0;
   }
-  
+
   .footer-col.active ul,
   .footer-col.active .contact-stack {
     display: flex;
@@ -3637,306 +3713,432 @@ body,
 }
 
 @media (min-width: 701px) {
-.justify-between { justify-content: space-between; }
-.grid { display: grid; }
-.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-.gap-6 { gap: 1.5rem; }
-.block { display: block; }
-.hidden { display: none; }
-.relative { position: relative; }
-.absolute { position: absolute; }
-.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+  .justify-between {
+    justify-content: space-between;
+  }
 
-/* Typography */
-.text-center { text-align: center; }
-.text-5xl { font-size: 3rem; line-height: 1; }
-.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-.text-\[10px\] { font-size: 10px; }
-.font-bold { font-weight: 700; }
-.uppercase { text-transform: uppercase; }
-.tracking-tight { letter-spacing: -0.025em; }
-.tracking-widest { letter-spacing: 0.1em; }
-.tracking-\[0\.3em\] { letter-spacing: 0.3em; }
+  .grid {
+    display: grid;
+  }
 
-/* Colors */
-.text-white { color: #ffffff; }
-.text-gray-400 { color: #9ca3af; }
-.text-purple-400 { color: #c084fc; }
-.text-\[\#3b82f6\] { color: #3b82f6; }
-.text-\[\#06b6d4\] { color: #06b6d4; }
-.opacity-80 { opacity: 0.8; }
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 
-/* Utilities */
-.object-cover { object-fit: cover; }
-.rounded-\[28px\] { border-radius: 28px; }
+  .gap-6 {
+    gap: 1.5rem;
+  }
 
-/* Responsive (Mobile/Tablet) */
-@media (min-width: 768px) {
-  .md\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-  .md\:row-span-2 { grid-row: span 2 / span 2; }
-  .md\:col-span-1 { grid-column: span 1 / span 1; }
-  .md\:col-span-2 { grid-column: span 2 / span 2; }
-  .md\:col-span-4 { grid-column: span 4 / span 4; }
-}
+  .block {
+    display: block;
+  }
 
-/* Light Theme Centers Page Overrides */
-html.light-theme [class*="bg-[#170529]"],
-html.light-theme [class*="bg-[#250e3a]"],
-html.light-theme [class*="bg-[#0a0a20]"] {
-  background-color: var(--bg-surface) !important;
-  border: 1px solid rgba(0,0,0,0.05) !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
-}
+  .hidden {
+    display: none;
+  }
 
-html.light-theme [class*="from-[#170529]"] {
-  --tw-gradient-from: transparent !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
+  .relative {
+    position: relative;
+  }
 
-html.light-theme [class*="text-[#8c52ff]"],
-html.light-theme [class*="text-purple-"] {
-  color: #7c4dff !important;
-}
+  .absolute {
+    position: absolute;
+  }
 
-html.light-theme [class*="border-[#8c52ff]"],
-html.light-theme [class*="border-white"] {
-  border-color: rgba(0, 0, 0, 0.1) !important;
-}
+  .inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 
-html.light-theme [class*="bg-[#8c52ff]"],
-html.light-theme [class*="bg-[#1e40af]"] {
-  background-color: #ffffff !important;
-  color: #111827 !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  text-shadow: none !important;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important;
-}
+  /* Typography */
+  .text-center {
+    text-align: center;
+  }
 
-html.light-theme [class*="bg-purple-"] {
-  background-color: rgba(6, 95, 70, 0.1) !important;
-}
+  .text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
 
-/* Modal Light Theme Overrides */
-html.light-theme .modal-card {
-  background: var(--bg-surface) padding-box,
-              conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15) !important;
-}
-html.light-theme .modal-review-item {
-  background: var(--bg-deep) !important;
-  border-color: rgba(0,0,0,0.1) !important;
-}
-html.light-theme .modal-review-user {
-  color: var(--text-primary) !important;
-}
-html.light-theme .modal-review-text {
-  color: var(--text-secondary) !important;
-}
-html.light-theme .modal-title,
-html.light-theme .modal-price,
-html.light-theme .modal-detail,
-html.light-theme .modal-offer,
-html.light-theme .modal-stock span {
-  color: var(--text-primary) !important;
-}
-html.light-theme .close-modal {
-  color: var(--text-primary) !important;
-}
-html.light-theme .modal-old-price {
-  color: var(--text-secondary) !important;
-}
+  .text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 
-/* Custom Background for Healing Path CTA */
-.home-page .cta-section {
-  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
-              url('assets/AhamGraham-Web/multinational-women-doing-breathing-exercises-or-y-2026-01-08-23-11-26-utc.jpg') center/cover no-repeat !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 28px !important;
-  animation: none !important;
-  margin: 16px 10px 0 !important;
-  overflow: hidden !important;
-  backdrop-filter: none !important;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5) !important;
-}
+  .text-\[10px\] {
+    font-size: 10px;
+  }
 
-/* Light Mode override - remove dark shade and keep same image */
-html.light-theme .home-page .cta-section {
-  background: url('assets/AhamGraham-Web/multinational-women-doing-breathing-exercises-or-y-2026-01-08-23-11-26-utc.jpg') center/cover no-repeat !important;
-}
+  .font-bold {
+    font-weight: 700;
+  }
 
-/* Force white text for CTA in both themes with high specificity */
-.cta-section h2,
-.cta-section p,
-html.light-theme .cta-section h2,
-html.light-theme .cta-section p,
-.home-page .cta-section h2,
-.home-page .cta-section p {
-  color: #ffffff !important;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.4); /* Stronger shadow for readability */
-}
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  .tracking-tight {
+    letter-spacing: -0.025em;
+  }
+
+  .tracking-widest {
+    letter-spacing: 0.1em;
+  }
+
+  .tracking-\[0\.3em\] {
+    letter-spacing: 0.3em;
+  }
+
+  /* Colors */
+  .text-white {
+    color: #ffffff;
+  }
+
+  .text-gray-400 {
+    color: #9ca3af;
+  }
+
+  .text-purple-400 {
+    color: #c084fc;
+  }
+
+  .text-\[\#3b82f6\] {
+    color: #3b82f6;
+  }
+
+  .text-\[\#06b6d4\] {
+    color: #06b6d4;
+  }
+
+  .opacity-80 {
+    opacity: 0.8;
+  }
+
+  /* Utilities */
+  .object-cover {
+    object-fit: cover;
+  }
+
+  .rounded-\[28px\] {
+    border-radius: 28px;
+  }
+
+  /* Responsive (Mobile/Tablet) */
+  @media (min-width: 768px) {
+    .md\:grid-cols-5 {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .md\:row-span-2 {
+      grid-row: span 2 / span 2;
+    }
+
+    .md\:col-span-1 {
+      grid-column: span 1 / span 1;
+    }
+
+    .md\:col-span-2 {
+      grid-column: span 2 / span 2;
+    }
+
+    .md\:col-span-4 {
+      grid-column: span 4 / span 4;
+    }
+  }
+
+  /* Light Theme Centers Page Overrides */
+  html.light-theme [class*="bg-[#170529]"],
+  html.light-theme [class*="bg-[#250e3a]"],
+  html.light-theme [class*="bg-[#0a0a20]"] {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  html.light-theme [class*="from-[#170529]"] {
+    --tw-gradient-from: transparent !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  }
+
+  html.light-theme [class*="text-[#8c52ff]"],
+  html.light-theme [class*="text-purple-"] {
+    color: #7c4dff !important;
+  }
+
+  html.light-theme [class*="border-[#8c52ff]"],
+  html.light-theme [class*="border-white"] {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  html.light-theme [class*="bg-[#8c52ff]"],
+  html.light-theme [class*="bg-[#1e40af]"] {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    text-shadow: none !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  html.light-theme [class*="bg-purple-"] {
+    background-color: rgba(6, 95, 70, 0.1) !important;
+  }
+
+  /* Modal Light Theme Overrides */
+  html.light-theme .modal-card {
+    background: var(--bg-surface) padding-box,
+      conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  html.light-theme .modal-review-item {
+    background: var(--bg-deep) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  html.light-theme .modal-review-user {
+    color: var(--text-primary) !important;
+  }
+
+  html.light-theme .modal-review-text {
+    color: var(--text-secondary) !important;
+  }
+
+  html.light-theme .modal-title,
+  html.light-theme .modal-price,
+  html.light-theme .modal-detail,
+  html.light-theme .modal-offer,
+  html.light-theme .modal-stock span {
+    color: var(--text-primary) !important;
+  }
+
+  html.light-theme .close-modal {
+    color: var(--text-primary) !important;
+  }
+
+  html.light-theme .modal-old-price {
+    color: var(--text-secondary) !important;
+  }
+
+  /* Custom Background for Healing Path CTA */
+  .home-page .cta-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+      url('assets/AhamGraham-Web/multinational-women-doing-breathing-exercises-or-y-2026-01-08-23-11-26-utc.jpg') center/cover no-repeat !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 28px !important;
+    animation: none !important;
+    margin: 16px 10px 0 !important;
+    overflow: hidden !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Light Mode override - remove dark shade and keep same image */
+  html.light-theme .home-page .cta-section {
+    background: url('assets/AhamGraham-Web/multinational-women-doing-breathing-exercises-or-y-2026-01-08-23-11-26-utc.jpg') center/cover no-repeat !important;
+  }
+
+  /* Force white text for CTA in both themes with high specificity */
+  .cta-section h2,
+  .cta-section p,
+  html.light-theme .cta-section h2,
+  html.light-theme .cta-section p,
+  .home-page .cta-section h2,
+  .home-page .cta-section p {
+    color: #ffffff !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    /* Stronger shadow for readability */
+  }
 
 
-/* Fix for horizontal footer alignment */
-.footer .footer-subheading { margin-top: 0 !important; }
+  /* Fix for horizontal footer alignment */
+  .footer .footer-subheading {
+    margin-top: 0 !important;
+  }
 
-/* Global Footer Text Centering */
-.footer-container, 
-.footer-quote, 
-.footer-col h4, 
-.footer-subheading, 
-.footer-col ul li, 
-.contact-link {
-  text-align: center !important;
-}
+  /* Global Footer Text Centering */
+  .footer-container,
+  .footer-quote,
+  .footer-col h4,
+  .footer-subheading,
+  .footer-col ul li,
+  .contact-link {
+    text-align: center !important;
+  }
 
-/* Align items to center only when visible */
-.footer-col ul, 
-.contact-stack {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
+  /* Align items to center only when visible */
+  .footer-col ul,
+  .contact-stack {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
 
-.footer-col ul li {
-  width: 100%;
-}
+  .footer-col ul li {
+    width: 100%;
+  }
 
 
-/* Bento Overlay Light Mode - White Shade */
-html.light-theme .bento-overlay {
-  pointer-events: none;
-  pointer-events: none;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.4) 60%, transparent 100%) !important;
-}
+  /* Bento Overlay Light Mode - White Shade */
+  html.light-theme .bento-overlay {
+    pointer-events: none;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.4) 60%, transparent 100%) !important;
+  }
 
-html.light-theme .bento-content h3,
-html.light-theme .bento-content p,
-html.light-theme .bento-content span {
-  color: #111827 !important;
-}
+  html.light-theme .bento-content h3,
+  html.light-theme .bento-content p,
+  html.light-theme .bento-content span {
+    color: #111827 !important;
+  }
 
-/* Global Detail Modal CSS */
-.detail-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(5, 5, 26, 0.85);
-  backdrop-filter: blur(20px);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
-}
+  /* Global Detail Modal CSS */
+  .detail-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(5, 5, 26, 0.85);
+    backdrop-filter: blur(20px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
+  }
 
-.detail-modal.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
+  .detail-modal.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
 
-.detail-content {
-  background: var(--bg-surface);
-  width: 100%;
-  max-width: 1100px;
-  height: 650px;
-  border-radius: 40px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-  transform: translateY(30px) scale(0.95);
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
-}
-
-.detail-modal.active .detail-content {
-  transform: translateY(0) scale(1);
-}
-
-.detail-info h2, .detail-info p, .detail-info button {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.detail-modal.active .detail-info h2 { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
-.detail-modal.active .detail-info p { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
-.detail-modal.active .detail-info button { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
-
-.detail-image {
-  width: 100%;
-  height: 100%;
-  min-height: 500px;
-  object-fit: cover;
-}
-
-.detail-info {
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow-y: auto;
-}
-
-.detail-info h2 {
-  font-size: 56px;
-  margin-bottom: 24px;
-  color: var(--text-primary);
-  text-transform: lowercase;
-}
-
-.detail-info p {
-  font-size: 20px;
-  color: var(--text-secondary);
-  line-height: 1.8;
-  margin-bottom: 40px;
-  text-transform: lowercase;
-}
-
-.detail-close {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  color: #fff;
-  transition: background 0.3s;
-  z-index: 10001;
-}
-
-.detail-close:hover {
-  background: rgba(255,255,255,0.2);
-}
-
-@media (max-width: 850px) {
   .detail-content {
-    grid-template-columns: 1fr;
-    max-height: 90vh;
+    background: var(--bg-surface);
+    width: 100%;
+    max-width: 1100px;
+    height: 650px;
+    border-radius: 40px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+    transform: translateY(30px) scale(0.95);
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+  }
+
+  .detail-modal.active .detail-content {
+    transform: translateY(0) scale(1);
+  }
+
+  .detail-info h2,
+  .detail-info p,
+  .detail-info button {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .detail-modal.active .detail-info h2 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+
+  .detail-modal.active .detail-info p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+  }
+
+  .detail-modal.active .detail-info button {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+  }
+
+  .detail-image {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    object-fit: cover;
+  }
+
+  .detail-info {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     overflow-y: auto;
   }
-  .detail-image {
-    min-height: 250px;
-  }
-  .detail-info {
-    padding: 30px;
-  }
+
   .detail-info h2 {
-    font-size: 32px;
+    font-size: 56px;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+    text-transform: lowercase;
   }
+
+  .detail-info p {
+    font-size: 20px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    text-transform: lowercase;
+  }
+
   .detail-close {
-    top: 20px;
-    right: 20px;
-    width: 44px;
-    height: 44px;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.3s;
+    z-index: 10001;
   }
-}
+
+  .detail-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 850px) {
+    .detail-content {
+      grid-template-columns: 1fr;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .detail-image {
+      min-height: 250px;
+    }
+
+    .detail-info {
+      padding: 30px;
+    }
+
+    .detail-info h2 {
+      font-size: 32px;
+    }
+
+    .detail-close {
+      top: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+    }
+  }
