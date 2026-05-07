@@ -210,6 +210,8 @@ html.light-theme .bento-overlay p,
 html.light-theme .bento-overlay span,
 html.light-theme .bento-card h3,
 html.light-theme .bento-card p,
+html.light-theme .blog-item-content h3,
+html.light-theme .blog-item-content p,
 html.light-theme .absolute h3,
 html.light-theme .absolute p {
   color: #111827 !important;
@@ -276,6 +278,8 @@ html.light-theme .bento-overlay p,
 html.light-theme .bento-overlay span,
 html.light-theme .bento-card h3,
 html.light-theme .bento-card p,
+html.light-theme .blog-item-content h3,
+html.light-theme .blog-item-content p,
 html.light-theme .absolute h3,
 html.light-theme .absolute p {
   color: #111827 !important;

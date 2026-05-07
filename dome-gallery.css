@@ -185,6 +185,16 @@ main.sphere-main {
   filter: var(--image-filter, none);
 }
 
+.overlay {
+  background-image: radial-gradient(rgba(235, 235, 235, 0) 65%, var(--overlay-blur-color, #05051a) 100%);
+}
+
+.overlay--blur {
+  -webkit-mask-image: radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, #05051a) 90%);
+  mask-image: radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, #05051a) 90%);
+  backdrop-filter: blur(3px);
+}
+
 .edge-fade {
   position: absolute;
   left: 0;
