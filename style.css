@@ -1417,7 +1417,7 @@ body {
 }
 
 .footer-brand-col {
-  gap: 24px;
+  gap: 12px;
 }
 
 .footer-logo {
@@ -1465,6 +1465,11 @@ html.light-theme .dark-logo {
   line-height: 1.5;
   font-style: italic;
   position: relative;
+  max-width: 450px !important;
+  margin: 0 auto !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  display: block !important;
 }
 
 .quote-mark {
