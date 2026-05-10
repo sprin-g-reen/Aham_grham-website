@@ -7,6 +7,7 @@ const HeroSchema = new mongoose.Schema({
   subtitle: { type: String, default: 'a sanctuary for deep practice, clinical wisdom, and the preservation of ancestral lineages.' },
   buttonText: { type: String, default: 'explore our path' },
   image: { type: String, default: '' },
+  sections: { type: mongoose.Schema.Types.Mixed, default: {} },
   updatedAt: { type: Date, default: Date.now }
 });
 
