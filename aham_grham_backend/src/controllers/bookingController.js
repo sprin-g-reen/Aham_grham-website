@@ -49,3 +49,25 @@ export const getAllBookings = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+// @desc    Delete a booking
+// @route   DELETE /api/bookings/:id
+// @access  Private
+export const deleteBooking = async (req, res) => {
+  try {
+    const booking = await Booking.findById(req.params.id);
+
+    if (!booking) {
+      return res.status(404).json({ message: 'Booking not found' });
+    }
+
+    // Check if the booking belongs to the user
+    if (booking.user.toString() !== req.user._id.toString()) {
+      return res.status(401).json({ message: 'Not authorized' });
+    }
+
+    await booking.deleteOne();
+    res.status(200).json({ message: 'Booking removed' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
