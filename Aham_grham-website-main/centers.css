@@ -1,0 +1,160 @@
+:root {
+  --about-bg: #05051a;
+  --about-surface: #0a0a20;
+  --about-card: #0f0f30;
+  --about-ink: #ffffff;
+  --about-muted: #94a3b8;
+  --about-primary: #3b82f6;
+  --about-primary-2: #06b6d4;
+}
+
+body {
+  background: var(--about-bg);
+  color: var(--about-ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  text-transform: lowercase;
+}
+
+.about-main {
+  padding: 80px 16px 24px;
+  display: grid;
+  gap: 24px; 
+}
+
+@media (min-width: 768px) {
+  .about-main {
+    padding: 90px 40px 40px;
+    gap: 40px;
+  }
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px; 
+}
+
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 40px;
+  }
+}
+
+.about-card {
+  border-radius: 24px;
+  background: linear-gradient(var(--about-surface), var(--about-surface)) padding-box,
+              conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+  border: 1.5px solid transparent;
+  animation: rotate 6s linear infinite;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.about-hero {
+  grid-column: span 1;
+  min-height: 400px;
+  background: #19112b;
+}
+
+@media (min-width: 768px) {
+  .about-hero {
+    grid-column: span 12;
+    min-height: 540px;
+  }
+}
+
+.about-hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.52;
+}
+
+.about-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 12, 35, 0.16) 0%, rgba(20, 12, 35, 0.85) 88%);
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  max-width: 760px;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .about-hero-content {
+    padding: 44px;
+  }
+}
+
+.about-kicker {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d4c9ff;
+  font-weight: 700;
+}
+
+.about-title {
+  margin: 0;
+  line-height: 1.06;
+  font-size: clamp(38px, 6vw, 76px);
+  font-weight: 800;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+
+.about-subtitle {
+  font-size: 18px;
+  color: #dfd8ff;
+  max-width: 600px;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+/* Centers Bento Grid Specific Styles */
+.centers-shell {
+  background: linear-gradient(var(--about-card), var(--about-card)) padding-box,
+              conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+  border: 1.5px solid transparent;
+  animation: rotate 8s linear infinite;
+  border-radius: 28px;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.4);
+  padding: clamp(24px, 4vw, 44px);
+}
+.glass-card {
+  background: linear-gradient(rgba(51, 24, 77, 0.6), rgba(51, 24, 77, 0.6)) padding-box,
+              conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+  border: 1.5px solid transparent;
+  animation: rotate 10s linear infinite;
+  backdrop-filter: blur(24px);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.footer {
+  font-family: 'IBM Plex Sans', sans-serif !important;
+  text-transform: lowercase;
+}
