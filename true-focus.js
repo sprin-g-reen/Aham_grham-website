@@ -113,7 +113,11 @@ window.addEventListener('DOMContentLoaded', () => {
     pauseBetweenAnimations: 0.5
   });
 
-  window.addEventListener('load', () => {
+  let isHiding = false;
+  const hideLoader = () => {
+    if (isHiding) return;
+    isHiding = true;
+    
     // Give it a moment to show the animation
     setTimeout(() => {
       const loaderEl = document.getElementById('focus-loader');
@@ -124,6 +128,11 @@ window.addEventListener('DOMContentLoaded', () => {
           loaderEl.remove();
         }, 800); // Wait for transition
       }
-    }, 2000); // Minimum display time for impact
-  });
+    }, 1000); // Minimum display time for impact
+  };
+
+  window.addEventListener('load', hideLoader);
+  
+  // Fallback: hide loader after 5 seconds regardless of load event
+  setTimeout(hideLoader, 5000);
 });

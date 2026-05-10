@@ -7,25 +7,27 @@
   <title>Sacred Moon Oil | Aham Grham</title>
 
   <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
     // Search functionality
-    const searchInput = document.querySelector('.search-input');
-    const productCards = document.querySelectorAll('.review-card');
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.querySelector('.search-input');
+      const productCards = document.querySelectorAll('.review-card');
 
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        productCards.forEach(card => {
-          const altText = card.querySelector('img')?.alt?.toLowerCase() || '';
-          if (altText.includes(searchTerm)) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const searchTerm = e.target.value.toLowerCase();
+          productCards.forEach(card => {
+            const altText = card.querySelector('img')?.alt?.toLowerCase() || '';
+            if (altText.includes(searchTerm)) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
         });
-      });
-    }
-
+      }
+    });
   </script>
   <script>
     tailwind.config = {
@@ -1032,9 +1034,12 @@
 
   <script>
     function openReviewsModal(card) {
+      if (!card) return;
       const modal = document.getElementById('reviewsModal');
-      const img = card.querySelector('img').src;
-      document.getElementById('reviewsModalProductImg').src = img;
+      const imgEl = card.querySelector('img');
+      if (imgEl) {
+        document.getElementById('reviewsModalProductImg').src = imgEl.src;
+      }
       modal.style.display = 'flex';
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -1048,9 +1053,12 @@
     }
 
     function openProductModal(card) {
+      if (!card) return;
       const modal = document.getElementById('productModal');
-      const img = card.querySelector('img').src;
-
+      const imgEl = card.querySelector('img');
+      if (!imgEl) return;
+      
+      const img = imgEl.src;
       const title = card.getAttribute('data-name') || 'Aham Graham Essential';
       const detail = card.getAttribute('data-desc') || 'Celestial Vessel of Energy.';
       const price = card.getAttribute('data-price') || '₹45.00';
@@ -1085,51 +1093,33 @@
       document.body.style.overflow = '';
     }
 
-    // Initialize product interactions
+    // Initialize interactions using Event Delegation
     document.addEventListener('DOMContentLoaded', () => {
+        // 1. Handle clicks in the dynamic product grid
         const grid = document.getElementById('dynamic-product-grid');
         if (grid) {
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (mutation.addedNodes.length) {
-                        setupProductListeners();
-                    }
-                });
-            });
-            observer.observe(grid, { childList: true });
-        }
-
-        function setupProductListeners() {
-            document.querySelectorAll('.review-card').forEach(card => {
-                // Remove existing listeners to avoid duplicates by cloning
-                const newCard = card.cloneNode(true);
-                card.parentNode.replaceChild(newCard, card);
+            grid.addEventListener('click', (e) => {
+                const button = e.target.closest('button');
+                if (!button) return;
                 
-                const buttons = newCard.querySelectorAll('button');
-                if (buttons.length >= 3) {
-                    const buyBtn = buttons[0];
-                    const addCartBtn = buttons[1];
-                    const reviewsBtn = buttons[2];
+                const card = button.closest('.review-card');
+                if (!card) return;
 
-                    buyBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        openProductModal(newCard);
-                    });
-
-                    addCartBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        openProductModal(newCard);
-                    });
-
-                    reviewsBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        openReviewsModal(newCard);
-                    });
+                const btnText = button.innerText.trim().toLowerCase();
+                
+                if (btnText === 'buy') {
+                    e.stopPropagation();
+                    openProductModal(card);
+                } else if (btnText === 'review') {
+                    e.stopPropagation();
+                    openReviewModal(card); // Assuming openReviewModal is defined or meant to be openReviewsModal
                 }
+                // 'Cart' is handled by its own inline onclick in dynamic-products.js
             });
         }
-        
-        setupProductListeners();
+
+        // 2. Fix the specific issue where openReviewModal was called but openReviewsModal was defined
+        window.openReviewModal = openReviewsModal;
     });
   </script>
 </body>

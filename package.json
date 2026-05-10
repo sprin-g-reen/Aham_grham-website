@@ -1,0 +1,8 @@
+{
+  "name": "aham-grham-frontend",
+  "version": "1.0.0",
+  "description": "Static frontend for Aham Grham",
+  "scripts": {
+    "dev": "npx serve -p 3000 ."
+  }
+}
