@@ -16,9 +16,9 @@ function renderCart() {
     if (!Array.isArray(cart) || cart.length === 0) {
         container.innerHTML = `
             <div class="empty-cart" style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 20px; text-align: center;">
-                <span class="material-symbols-outlined" style="font-size: 64px; opacity: 0.2; margin-bottom: 20px;">shopping_cart_off</span>
-                <h2 style="font-size: 24px; margin-bottom: 10px;">your sanctuary cart is empty</h2>
-                <p style="color: rgba(255,255,255,0.5); margin-bottom: 30px;">prepare for your ritual tools and vessels by exploring our collection.</p>
+                <span class="material-symbols-outlined empty-cart-icon">shopping_cart_off</span>
+                <h2 class="empty-cart-title">your sanctuary cart is empty</h2>
+                <p class="empty-cart-text">prepare for your ritual tools and vessels by exploring our collection.</p>
                 <button class="btn-primary" style="padding: 12px 32px; border-radius: 999px;" onclick="window.location.href='sacred-moon-oil.html'">explore shop</button>
             </div>
         `;

@@ -58,7 +58,8 @@ async function fetchProducts() {
           : 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80';
 
         productCard.innerHTML = `
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl">
+          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl cursor-pointer" 
+            onclick="openProductModal(this.closest('.review-card'));">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${imageUrl}" alt="${product.name}">
           </div>
           <div class="space-y-3 w-full mt-4 z-20 relative">

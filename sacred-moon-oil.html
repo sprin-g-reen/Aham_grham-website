@@ -12,15 +12,19 @@
     // Search functionality
     document.addEventListener('DOMContentLoaded', () => {
       const searchInput = document.querySelector('.search-input');
-      const productCards = document.querySelectorAll('.review-card');
 
       if (searchInput) {
         searchInput.addEventListener('input', (e) => {
           const searchTerm = e.target.value.toLowerCase();
+          // Query cards inside the listener because they are loaded dynamically
+          const productCards = document.querySelectorAll('.review-card');
+          
           productCards.forEach(card => {
-            const altText = card.querySelector('img')?.alt?.toLowerCase() || '';
-            if (altText.includes(searchTerm)) {
-              card.style.display = '';
+            const productName = card.getAttribute('data-name')?.toLowerCase() || '';
+            const productDesc = card.getAttribute('data-desc')?.toLowerCase() || '';
+            
+            if (productName.includes(searchTerm) || productDesc.includes(searchTerm)) {
+              card.style.display = ''; // Revert to default (block/flex as defined in CSS)
             } else {
               card.style.display = 'none';
             }
@@ -315,6 +319,56 @@
 
     .close-modal:hover {
       transform: rotate(90deg);
+    }
+
+    /* LIGHT THEME MODAL ADJUSTMENTS */
+    html.light-theme .modal-card {
+      background: #ffffff padding-box,
+        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
+    }
+
+    html.light-theme .modal-title {
+      color: #111827 !important;
+    }
+
+    html.light-theme .modal-detail {
+      color: #4b5563;
+    }
+
+    html.light-theme .modal-price {
+      color: #111827;
+    }
+
+    html.light-theme .modal-old-price {
+      color: #94a3b8;
+    }
+
+    html.light-theme .modal-stock {
+      color: #4b5563;
+    }
+
+    html.light-theme .modal-action-btn {
+      color: #4b5563;
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    html.light-theme .modal-action-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: #111827;
+    }
+
+    html.light-theme .modal-img-wrap {
+      background: #f9fafb;
+    }
+
+    html.light-theme .modal-badge {
+      background: rgba(0, 0, 0, 0.05);
+      color: #4b5563;
+    }
+
+    html.light-theme #productModal .modal-overlay {
+      background: rgba(243, 238, 253, 0.85);
     }
 
     html.light-theme .md\:col-span-8,
@@ -672,7 +726,7 @@
 
     html.light-theme h1,
     html.light-theme h1 span,
-    html.light-theme h2,
+    html.light-theme h2:not(.modal-title),
     html.light-theme h3,
     html.light-theme h4,
     html.light-theme .text-white,
@@ -737,7 +791,8 @@
         <!-- Image Canvas -->
         <div class="relative group">
           <div
-            class="aspect-[5/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] border border-white/10">
+            class="aspect-[5/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] border border-white/10 cursor-pointer"
+            onclick="openProductModal(document.querySelector('.services-feature-shell'))">
             <img id="featuredProductImage" class="w-full h-full object-cover"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo"
               alt="Sacred Moon Oil bottle">

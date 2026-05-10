@@ -4,6 +4,7 @@ import Product from '../models/Product.js';
 // @route   POST /api/products
 // @access  Private/Admin
 export const createProduct = async (req, res) => {
+  console.log('📦 Create Product Request:', req.body);
   try {
     const { name, price, category, description, isMostSelling, offer, sku, tax, stockStatus } = req.body;
 
@@ -37,6 +38,7 @@ export const createProduct = async (req, res) => {
 // @route   GET /api/products
 // @access  Public
 export const getAllProducts = async (req, res) => {
+  console.log('🔍 Get All Products Request');
   try {
     const products = await Product.find({});
     res.status(200).json(products);

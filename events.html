@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +18,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
   <!-- External CSS -->
@@ -63,7 +65,7 @@
 
     .services-feature-shell {
       background: linear-gradient(var(--about-card), var(--about-card)) padding-box,
-                  conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
       border: 1.5px solid transparent;
       animation: rotate 8s linear infinite;
       border-radius: 28px;
@@ -118,7 +120,8 @@
     .about-subtitle {
       margin: 0;
       font-size: clamp(16px, 2vw, 20px);
-      color: #ffffff; /* Changed from #ebe5ff to pure white as requested */
+      color: #ffffff;
+      /* Changed from #ebe5ff to pure white as requested */
       line-height: 1.6;
       text-transform: none;
     }
@@ -139,24 +142,47 @@
       padding: 40px 0;
     }
 
-    .span-2 { grid-column: span 2; }
-    .span-3 { grid-column: span 3; }
-    .span-1 { grid-column: span 1; }
+    .span-2 {
+      grid-column: span 2;
+    }
+
+    .span-3 {
+      grid-column: span 3;
+    }
+
+    .span-1 {
+      grid-column: span 1;
+    }
 
     @media (max-width: 1024px) {
       .events-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      .span-3, .span-2 { grid-column: span 2; }
+
+      .span-3,
+      .span-2 {
+        grid-column: span 2;
+      }
     }
 
     @media (max-width: 640px) {
       .events-grid {
         grid-template-columns: 1fr;
       }
-      .span-3, .span-2, .span-1 { grid-column: span 1; }
-      .about-hero { margin: 80px 20px 0; }
-      .about-main { padding: 40px 20px; }
+
+      .span-3,
+      .span-2,
+      .span-1 {
+        grid-column: span 1;
+      }
+
+      .about-hero {
+        margin: 80px 20px 0;
+      }
+
+      .about-main {
+        padding: 40px 20px;
+      }
     }
 
     /* CHROMA GRID INTEGRATION */
@@ -192,28 +218,24 @@
       background: transparent;
       border-radius: 28px;
 
-      mask-image: radial-gradient(
-        circle var(--r) at var(--x) var(--y),
-        transparent 0%,
-        transparent 15%,
-        rgba(0, 0, 0, 0.1) 30%,
-        rgba(0, 0, 0, 0.22) 45%,
-        rgba(0, 0, 0, 0.35) 60%,
-        rgba(0, 0, 0, 0.5) 75%,
-        rgba(0, 0, 0, 0.68) 88%,
-        white 100%
-      );
-      -webkit-mask-image: radial-gradient(
-        circle var(--r) at var(--x) var(--y),
-        transparent 0%,
-        transparent 15%,
-        rgba(0, 0, 0, 0.1) 30%,
-        rgba(0, 0, 0, 0.22) 45%,
-        rgba(0, 0, 0, 0.35) 60%,
-        rgba(0, 0, 0, 0.5) 75%,
-        rgba(0, 0, 0, 0.68) 88%,
-        white 100%
-      );
+      mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
+          transparent 0%,
+          transparent 15%,
+          rgba(0, 0, 0, 0.1) 30%,
+          rgba(0, 0, 0, 0.22) 45%,
+          rgba(0, 0, 0, 0.35) 60%,
+          rgba(0, 0, 0, 0.5) 75%,
+          rgba(0, 0, 0, 0.68) 88%,
+          white 100%);
+      -webkit-mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
+          transparent 0%,
+          transparent 15%,
+          rgba(0, 0, 0, 0.1) 30%,
+          rgba(0, 0, 0, 0.22) 45%,
+          rgba(0, 0, 0, 0.35) 60%,
+          rgba(0, 0, 0, 0.5) 75%,
+          rgba(0, 0, 0, 0.68) 88%,
+          white 100%);
     }
 
     .chroma-fade {
@@ -226,28 +248,24 @@
       background: transparent;
       border-radius: 28px;
 
-      mask-image: radial-gradient(
-        circle var(--r) at var(--x) var(--y),
-        white 0%,
-        white 15%,
-        rgba(255, 255, 255, 0.9) 30%,
-        rgba(255, 255, 255, 0.78) 45%,
-        rgba(255, 255, 255, 0.65) 60%,
-        rgba(255, 255, 255, 0.5) 75%,
-        rgba(255, 255, 255, 0.32) 88%,
-        transparent 100%
-      );
-      -webkit-mask-image: radial-gradient(
-        circle var(--r) at var(--x) var(--y),
-        white 0%,
-        white 15%,
-        rgba(255, 255, 255, 0.9) 30%,
-        rgba(255, 255, 255, 0.78) 45%,
-        rgba(255, 255, 255, 0.65) 60%,
-        rgba(255, 255, 255, 0.5) 75%,
-        rgba(255, 255, 255, 0.32) 88%,
-        transparent 100%
-      );
+      mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
+          white 0%,
+          white 15%,
+          rgba(255, 255, 255, 0.9) 30%,
+          rgba(255, 255, 255, 0.78) 45%,
+          rgba(255, 255, 255, 0.65) 60%,
+          rgba(255, 255, 255, 0.5) 75%,
+          rgba(255, 255, 255, 0.32) 88%,
+          transparent 100%);
+      -webkit-mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
+          white 0%,
+          white 15%,
+          rgba(255, 255, 255, 0.9) 30%,
+          rgba(255, 255, 255, 0.78) 45%,
+          rgba(255, 255, 255, 0.65) 60%,
+          rgba(255, 255, 255, 0.5) 75%,
+          rgba(255, 255, 255, 0.32) 88%,
+          transparent 100%);
 
       opacity: 1;
       transition: opacity 0.25s ease;
@@ -267,6 +285,7 @@
     .bento-item.chroma-card:hover::before {
       opacity: 1;
     }
+
     .circular-gallery {
       width: 100%;
       height: 100%;
@@ -285,11 +304,13 @@
       position: relative;
       margin-top: 20px;
     }
+
     html.light-theme .events-section-title {
       color: #000000 !important;
     }
   </style>
 </head>
+
 <body>
   <div id="focus-loader"></div>
 
@@ -298,7 +319,8 @@
   <nav id="mainNavbar" class="fixed-nav navbar-initial">
     <div class="nav-container">
       <div class="logo-area">
-        <img src="assets/logo_transparent.png" alt="Logo" class="logo-img" onerror="this.src='https://placehold.co/400x100/2c2c3a/white?text=AHAM'">
+        <img src="assets/logo_transparent.png" alt="Logo" class="logo-img"
+          onerror="this.src='https://placehold.co/400x100/2c2c3a/white?text=AHAM'">
         <div class="logo-text">
           <div class="brand-name">aham grham</div>
           <div class="brand-sub">return to you inner Home</div>
@@ -340,7 +362,8 @@
         <div class="about-hero-content">
           <span id="events-hero-kicker" class="about-kicker">communal resonance</span>
           <h1 id="events-hero-title" class="about-title">sacred gatherings</h1>
-          <p id="events-hero-subtitle" class="about-subtitle">from global summits to intimate retreats, join us in spaces designed for collective awakening and profound clinical stillness.</p>
+          <p id="events-hero-subtitle" class="about-subtitle">from global summits to intimate retreats, join us in
+            spaces designed for collective awakening and profound clinical stillness.</p>
         </div>
       </section>
 
@@ -348,16 +371,19 @@
       <section class="services-feature-shell py-12 px-4 mt-4 mx-auto w-full">
         <div class="text-center mb-8">
           <h2 class="text-5xl font-bold events-section-title mb-2">Main Events</h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">curated experiences that bridge ancient wisdom with modern neurological transformation.</p>
+          <p class="text-gray-400 max-w-2xl mx-auto">curated experiences that bridge ancient wisdom with modern
+            neurological transformation.</p>
         </div>
 
         <div id="main-events-grid" class="events-grid px-6 pt-4">
           <!-- Main Events Bento Items (2, 1, 1, 3, 1, 1, 1, 2 structure) -->
           <div class="bento-item span-2">
-            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80" alt="Global Summit">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80"
+              alt="Global Summit">
             <div class="bento-overlay">
               <div class="bento-content">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Global Event</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Global
+                  Event</span>
                 <h3>Wellness Summit 2026</h3>
                 <p>Join world leaders in neuroscience and spirituality for a 5-day immersion.</p>
 
@@ -365,7 +391,8 @@
             </div>
           </div>
           <div class="bento-item span-1">
-            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80" alt="Meditation">
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80"
+              alt="Meditation">
             <div class="bento-overlay">
               <div class="bento-content">
                 <h3>Moonlight Flow</h3>
@@ -374,7 +401,8 @@
             </div>
           </div>
           <div class="bento-item span-1">
-            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80" alt="Training">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80"
+              alt="Training">
             <div class="bento-overlay">
               <div class="bento-content">
                 <h3>Breathwork Mastery</h3>
@@ -383,10 +411,12 @@
             </div>
           </div>
           <div class="bento-item span-3">
-            <img src="https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&q=80" alt="Retreat">
+            <img src="https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&q=80"
+              alt="Retreat">
             <div class="bento-overlay">
               <div class="bento-content">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Featured Retreat</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Featured
+                  Retreat</span>
                 <h3>Himalayan Ascent 2026</h3>
                 <p>A 14-day spiritual and clinical journey into the heart of the high Himalayas.</p>
 
@@ -394,7 +424,8 @@
             </div>
           </div>
           <div class="bento-item span-1">
-            <img src="https://images.unsplash.com/photo-1599447421416-3414502d18a5?auto=format&fit=crop&q=80" alt="Workshop">
+            <img src="https://images.unsplash.com/photo-1599447421416-3414502d18a5?auto=format&fit=crop&q=80"
+              alt="Workshop">
             <div class="bento-overlay">
               <div class="bento-content">
                 <h3>Somatic Reset</h3>
@@ -403,7 +434,8 @@
             </div>
           </div>
           <div class="bento-item span-1">
-            <img src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&q=80" alt="Spine">
+            <img src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&q=80"
+              alt="Spine">
             <div class="bento-overlay">
               <div class="bento-content">
                 <h3>Spinal Sync</h3>
@@ -412,7 +444,8 @@
             </div>
           </div>
           <div class="bento-item span-1">
-            <img src="https://images.unsplash.com/photo-1512438248406-306ad8d273af?auto=format&fit=crop&q=80" alt="Rituals">
+            <img src="https://images.unsplash.com/photo-1512438248406-306ad8d273af?auto=format&fit=crop&q=80"
+              alt="Rituals">
             <div class="bento-overlay">
               <div class="bento-content">
                 <h3>Daily Rituals</h3>
@@ -421,10 +454,12 @@
             </div>
           </div>
           <div class="bento-item span-2">
-            <img src="https://images.unsplash.com/photo-1528642463367-8d7bd31da3cd?auto=format&fit=crop&q=80" alt="Sound Healing">
+            <img src="https://images.unsplash.com/photo-1528642463367-8d7bd31da3cd?auto=format&fit=crop&q=80"
+              alt="Sound Healing">
             <div class="bento-overlay">
               <div class="bento-content">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Immersive</span>
+                <span
+                  class="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Immersive</span>
                 <h3>Sonic Resonance Path</h3>
                 <p>Advanced workshop exploring the science of 432Hz harmonic patterns.</p>
 
@@ -438,7 +473,8 @@
       <section class="services-feature-shell py-12 px-4 mt-8 mx-auto w-full mb-10">
         <div class="text-center mb-8">
           <h2 class="text-5xl font-bold events-section-title mb-2">Highlights</h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">glimpses into the energy and resonance of our recent gatherings.</p>
+          <p class="text-gray-400 max-w-2xl mx-auto">glimpses into the energy and resonance of our recent gatherings.
+          </p>
         </div>
 
         <div class="gallery-container">
@@ -455,7 +491,8 @@
 
         <div id="workshop-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6 auto-rows-[240px]">
           <div class="bento-item sm:col-span-2 lg:col-span-2 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80" alt="Vedic Alignment" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80"
+              alt="Vedic Alignment" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/80 !to-transparent">
               <div class="bento-content mt-auto">
                 <h3 class="text-white">Vedic Alignment</h3>
@@ -464,7 +501,8 @@
             </div>
           </div>
           <div class="bento-item sm:col-span-1 lg:col-span-1 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80" alt="Zen Path" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80"
+              alt="Zen Path" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/80 !to-transparent">
               <div class="bento-content mt-auto">
                 <h3 class="text-white">Zen Path</h3>
@@ -472,17 +510,20 @@
             </div>
           </div>
           <div class="bento-item sm:col-span-1 lg:col-span-1 lg:row-span-2 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80" alt="Neurological Sync" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80"
+              alt="Neurological Sync" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/90 !to-transparent">
               <div class="bento-content mt-auto">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Immersive</span>
+                <span
+                  class="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Immersive</span>
                 <h3 class="text-white">Neurological Sync</h3>
                 <p class="text-white/80">brain-state optimization.</p>
               </div>
             </div>
           </div>
           <div class="bento-item sm:col-span-1 lg:col-span-1 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1599447421416-3414502d18a5?auto=format&fit=crop&q=80" alt="Flow State" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1599447421416-3414502d18a5?auto=format&fit=crop&q=80"
+              alt="Flow State" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/80 !to-transparent">
               <div class="bento-content mt-auto">
                 <h3 class="text-white">Flow State</h3>
@@ -490,7 +531,8 @@
             </div>
           </div>
           <div class="bento-item sm:col-span-1 lg:col-span-1 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&q=80" alt="Clinical Somatics" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&q=80"
+              alt="Clinical Somatics" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/80 !to-transparent">
               <div class="bento-content mt-auto">
                 <h3 class="text-white">Clinical Somatics</h3>
@@ -498,7 +540,8 @@
             </div>
           </div>
           <div class="bento-item sm:col-span-1 lg:col-span-1 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80" alt="Primal Breath" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80"
+              alt="Primal Breath" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/80 !to-transparent">
               <div class="bento-content mt-auto">
                 <h3 class="text-white">Primal Breath</h3>
@@ -506,7 +549,8 @@
             </div>
           </div>
           <div class="bento-item sm:col-span-2 lg:col-span-2 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&q=80" alt="The Architecture of Silence" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&q=80"
+              alt="The Architecture of Silence" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/80 !to-transparent">
               <div class="bento-content mt-auto">
                 <h3 class="text-white">The Architecture of Silence</h3>
@@ -515,7 +559,8 @@
             </div>
           </div>
           <div class="bento-item sm:col-span-1 lg:col-span-1 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1512438248406-306ad8d273af?auto=format&fit=crop&q=80" alt="Bio Rhythm" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1512438248406-306ad8d273af?auto=format&fit=crop&q=80"
+              alt="Bio Rhythm" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/80 !to-transparent">
               <div class="bento-content mt-auto">
                 <h3 class="text-white">Bio Rhythm</h3>
@@ -523,7 +568,8 @@
             </div>
           </div>
           <div class="bento-item sm:col-span-1 lg:col-span-1 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?auto=format&fit=crop&q=80" alt="Aura Scan" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?auto=format&fit=crop&q=80"
+              alt="Aura Scan" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/80 !to-transparent">
               <div class="bento-content mt-auto">
                 <h3 class="text-white">Aura Scan</h3>
@@ -531,17 +577,20 @@
             </div>
           </div>
           <div class="bento-item sm:col-span-2 lg:col-span-2 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1528642463367-8d7bd31da3cd?auto=format&fit=crop&q=80" alt="The Harmonic Protocol" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1528642463367-8d7bd31da3cd?auto=format&fit=crop&q=80"
+              alt="The Harmonic Protocol" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/90 !to-transparent">
               <div class="bento-content mt-auto">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Advanced Workshop</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Advanced
+                  Workshop</span>
                 <h3 class="text-white">The Harmonic Protocol</h3>
                 <p class="text-white/80">biological resonance immersion.</p>
               </div>
             </div>
           </div>
           <div class="bento-item sm:col-span-1 lg:col-span-1 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80" alt="Cellular Ease" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80"
+              alt="Cellular Ease" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/80 !to-transparent">
               <div class="bento-content mt-auto">
                 <h3 class="text-white">Cellular Ease</h3>
@@ -549,7 +598,8 @@
             </div>
           </div>
           <div class="bento-item sm:col-span-1 lg:col-span-1 group flex flex-col h-full">
-            <img src="https://images.unsplash.com/photo-1447433589675-4aaa56a4010a?auto=format&fit=crop&q=80" alt="Aether Flow" class="w-full h-full object-cover rounded-[28px]">
+            <img src="https://images.unsplash.com/photo-1447433589675-4aaa56a4010a?auto=format&fit=crop&q=80"
+              alt="Aether Flow" class="w-full h-full object-cover rounded-[28px]">
             <div class="bento-overlay !bg-gradient-to-t !from-[#231f37]/80 !to-transparent">
               <div class="bento-content mt-auto">
                 <h3 class="text-white">Aether Flow</h3>
@@ -564,13 +614,15 @@
         <div class="max-w-[1400px] mx-auto">
           <div class="text-center mb-12">
             <h2 class="text-4xl md:text-5xl font-bold events-section-title mb-2 tracking-tight">upcoming events</h2>
-            <p class="text-[#3b82f6] uppercase tracking-[0.3em] text-[10px] font-bold opacity-80">Synchronize with our next gatherings</p>
+            <p class="text-[#3b82f6] uppercase tracking-[0.3em] text-[10px] font-bold opacity-80">Synchronize with our
+              next gatherings</p>
           </div>
-          
+
           <div id="upcoming-events-grid" class="events-grid px-6 pt-4 chroma-grid-container">
             <!-- Row 1 Flipped: 1, 1, 2 -->
             <div class="bento-item span-1 chroma-card">
-              <img src="https://images.unsplash.com/photo-1512438248406-306ad8d273af?auto=format&fit=crop&q=80" alt="Rituals">
+              <img src="https://images.unsplash.com/photo-1512438248406-306ad8d273af?auto=format&fit=crop&q=80"
+                alt="Rituals">
               <div class="bento-overlay">
                 <div class="bento-content">
                   <h3>Aura Scan</h3>
@@ -579,7 +631,8 @@
               </div>
             </div>
             <div class="bento-item span-1 chroma-card">
-              <img src="https://images.unsplash.com/photo-1599447421416-3414502d18a5?auto=format&fit=crop&q=80" alt="Workshop">
+              <img src="https://images.unsplash.com/photo-1599447421416-3414502d18a5?auto=format&fit=crop&q=80"
+                alt="Workshop">
               <div class="bento-overlay">
                 <div class="bento-content">
                   <h3>Bio-Tuning</h3>
@@ -588,10 +641,12 @@
               </div>
             </div>
             <div class="bento-item span-2 chroma-card">
-              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80" alt="Mountain Retreat">
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80"
+                alt="Mountain Retreat">
               <div class="bento-overlay">
                 <div class="bento-content">
-                  <span class="text-[#06b6d4] text-[10px] font-bold uppercase tracking-widest mb-2 block">Featured</span>
+                  <span
+                    class="text-[#06b6d4] text-[10px] font-bold uppercase tracking-widest mb-2 block">Featured</span>
                   <h3>Mountain Silence Retreat</h3>
                   <p>June 15-22, 2026 â€¢ Deep immersion into neurological stillness.</p>
                 </div>
@@ -600,7 +655,8 @@
 
             <!-- Row 2 Flipped: 1, 3 -->
             <div class="bento-item span-1 chroma-card">
-              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80" alt="Training">
+              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80"
+                alt="Training">
               <div class="bento-overlay">
                 <div class="bento-content">
                   <h3>Breath Mastery</h3>
@@ -609,10 +665,12 @@
               </div>
             </div>
             <div class="bento-item span-3 chroma-card">
-              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80" alt="Global Summit">
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80"
+                alt="Global Summit">
               <div class="bento-overlay">
                 <div class="bento-content">
-                  <span class="text-[#06b6d4] text-[10px] font-bold uppercase tracking-widest mb-2 block">Global Portal</span>
+                  <span class="text-[#06b6d4] text-[10px] font-bold uppercase tracking-widest mb-2 block">Global
+                    Portal</span>
                   <h3>World Wellness Summit 2026</h3>
                   <p>Join world leaders in neuroscience for a transformative immersion.</p>
                 </div>
@@ -621,17 +679,20 @@
 
             <!-- Row 3 Flipped: 2, 1, 1 -->
             <div class="bento-item span-2 chroma-card">
-              <img src="https://images.unsplash.com/photo-1528642463367-8d7bd31da3cd?auto=format&fit=crop&q=80" alt="Sound Healing">
+              <img src="https://images.unsplash.com/photo-1528642463367-8d7bd31da3cd?auto=format&fit=crop&q=80"
+                alt="Sound Healing">
               <div class="bento-overlay">
                 <div class="bento-content">
-                  <span class="text-[#06b6d4] text-[10px] font-bold uppercase tracking-widest mb-2 block">Immersive</span>
+                  <span
+                    class="text-[#06b6d4] text-[10px] font-bold uppercase tracking-widest mb-2 block">Immersive</span>
                   <h3>Sonic Resonance Path</h3>
                   <p>Science of harmonic patterns.</p>
                 </div>
               </div>
             </div>
             <div class="bento-item span-1 chroma-card">
-              <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80" alt="Meditation">
+              <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80"
+                alt="Meditation">
               <div class="bento-overlay">
                 <div class="bento-content">
                   <h3>Lunar Flow</h3>
@@ -640,7 +701,8 @@
               </div>
             </div>
             <div class="bento-item span-1 chroma-card">
-              <img src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&q=80" alt="Spine">
+              <img src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&q=80"
+                alt="Spine">
               <div class="bento-overlay">
                 <div class="bento-content">
                   <h3>Spinal Sync</h3>
@@ -685,162 +747,163 @@
       <li><a href="centers.html" class="mobile-nav-link">centers</a></li>
       <li><a href="sacred-moon-oil.html" class="mobile-nav-link">shop</a></li>
       <li><a href="about.html" class="mobile-nav-link">about us</a></li>
-      <li><button onclick="handleAddToCartClick(event)" class="btn-secondary mt-4 w-full flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined">shopping_cart</span>
-        add to cart
-        <span class="cart-badge" style="display: none;">0</span>
-      </button></li>
+      <li><button onclick="handleAddToCartClick(event)"
+          class="btn-secondary mt-4 w-full flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          add to cart
+          <span class="cart-badge" style="display: none;">0</span>
+        </button></li>
       <li><a href="book-session.html" class="btn-primary mt-4">book session</a></li>
     </ul>
   </div>
 
   <footer class="footer">
-      <!-- SECTION 1: AI TAGS (Integrated) -->
-      <!-- Row 1: AI Tags Marquee (Dynamic) -->
-      <div class="footer-top">
-        <div id="marquee-1" class="velocity-marquee">
-          <div class="marquee-content"></div>
+    <!-- SECTION 1: AI TAGS (Integrated) -->
+    <!-- Row 1: AI Tags Marquee (Dynamic) -->
+    <div class="footer-top">
+      <div id="marquee-1" class="velocity-marquee">
+        <div class="marquee-content"></div>
+      </div>
+      <div id="marquee-2" class="velocity-marquee">
+        <div class="marquee-content"></div>
+      </div>
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-container">
+        <div class="footer-col footer-brand-col">
+          <div class="footer-quote-wrap">
+            <p class="footer-quote" id="footer-slogan">
+              bridging ancient wisdom with modern neurological insights.<br>
+              your path to biological transcendence begins here.
+            </p>
+          </div>
+          <img src="Untitled%20design%20(2).png" alt="Aham Graham Logo" class="footer-logo">
+          <img src="Copy of VJS-Logo (1).png" alt="VJS Logo" class="footer-badge dark-logo">
+          <img src="VJS-Logo-transparent.png" alt="VJS Logo" class="footer-badge light-logo">
         </div>
-        <div id="marquee-2" class="velocity-marquee">
-          <div class="marquee-content"></div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">about us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="centers.html">Centers</a></li>
+            <li><a href="sacred-moon-oil.html">Shop</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-subheading">Our Centers</h4>
+          <ul id="footer-centers-list">
+            <li>Rishikesh, India</li>
+            <li>Swiss Alps, Switzerland</li>
+            <li>Ubud, Bali</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-subheading">Social Media</h4>
+          <ul id="footer-social-list">
+            <li>Facebook</li>
+            <li>Instagram</li>
+            <li>YouTube</li>
+            <li>LinkedIn</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-stack">
+            <a href="mailto:contact@ahamgraham.com" class="contact-link" id="footer-contact-email">
+              <span class="material-symbols-outlined">mail</span>
+              contact@ahamgraham.com
+            </a>
+            <a href="tel:+919876543210" class="contact-link" id="footer-contact-phone">
+              <span class="material-symbols-outlined">call</span>
+              +91 98765 43210
+            </a>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="footer-main">
-        <div class="footer-container">
-          <div class="footer-col footer-brand-col">
-            <div class="footer-quote-wrap">
-              <p class="footer-quote" id="footer-slogan">
-                bridging ancient wisdom with modern neurological insights.<br>
-                your path to biological transcendence begins here.
-              </p>
-            </div>
-            <img src="Untitled%20design%20(2).png" alt="Aham Graham Logo" class="footer-logo">
-            <img src="Copy of VJS-Logo (1).png" alt="VJS Logo" class="footer-badge dark-logo">
-            <img src="VJS-Logo-transparent.png" alt="VJS Logo" class="footer-badge light-logo">
-          </div>
-
-          <div class="footer-col">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">about us</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="events.html">Events</a></li>
-              <li><a href="centers.html">Centers</a></li>
-              <li><a href="sacred-moon-oil.html">Shop</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h4 class="footer-subheading">Our Centers</h4>
-            <ul id="footer-centers-list">
-              <li>Rishikesh, India</li>
-              <li>Swiss Alps, Switzerland</li>
-              <li>Ubud, Bali</li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h4 class="footer-subheading">Social Media</h4>
-            <ul id="footer-social-list">
-              <li>Facebook</li>
-              <li>Instagram</li>
-              <li>YouTube</li>
-              <li>LinkedIn</li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h4>Contact Us</h4>
-            <div class="contact-stack">
-              <a href="mailto:contact@ahamgraham.com" class="contact-link" id="footer-contact-email">
-                <span class="material-symbols-outlined">mail</span>
-                contact@ahamgraham.com
-              </a>
-              <a href="tel:+919876543210" class="contact-link" id="footer-contact-phone">
-                <span class="material-symbols-outlined">call</span>
-                +91 98765 43210
-              </a>
-            </div>
-          </div>
-        </div>
+    <div class="footer-large-text">aham grham</div>
+    <div class="footer-bottom">
+      <div class="bottom-content">
+        <p>&copy; 2026 Aham Graham. all rights reserved.</p>
       </div>
-
-      <div class="footer-large-text">aham grham</div>
-        <div class="footer-bottom">
-        <div class="bottom-content">
-          <p>&copy; 2026 Aham Graham. all rights reserved.</p>
-        </div>
-      </div>
+    </div>
   </footer>
 
-    <!-- EXTERNALIZED SCRIPTS -->
-    <script src="gsap.min.js"></script>
-    <script src="chroma.js"></script>
-    <script src="ogl.js"></script>
-    <script>
-      const { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } = ogl;
+  <!-- EXTERNALIZED SCRIPTS -->
+  <script src="gsap.min.js"></script>
+  <script src="chroma.js"></script>
+  <script src="ogl.js"></script>
+  <script>
+    const { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } = ogl;
 
-      // --- UTILS ---
-      function debounce(func, wait) {
-        let timeout;
-        return function (...args) {
-          clearTimeout(timeout);
-          timeout = setTimeout(() => func.apply(this, args), wait);
-        };
-      }
+    // --- UTILS ---
+    function debounce(func, wait) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
 
-      function lerp(p1, p2, t) {
-        return p1 + (p2 - p1) * t;
-      }
+    function lerp(p1, p2, t) {
+      return p1 + (p2 - p1) * t;
+    }
 
-      function autoBind(instance) {
-        const proto = Object.getPrototypeOf(instance);
-        Object.getOwnPropertyNames(proto).forEach(key => {
-          if (key !== 'constructor' && typeof instance[key] === 'function') {
-            instance[key] = instance[key].bind(instance);
-          }
-        });
-      }
-
-      function createTextTexture(gl, text, font = 'bold 30px IBM Plex Sans', color = 'black') {
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        context.font = font;
-        const metrics = context.measureText(text);
-        const textWidth = Math.ceil(metrics.width);
-        const textHeight = Math.ceil(parseInt(font, 10) * 1.2);
-        canvas.width = textWidth + 20;
-        canvas.height = textHeight + 20;
-        context.font = font;
-        context.fillStyle = color;
-        context.textBaseline = 'middle';
-        context.textAlign = 'center';
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.fillText(text, canvas.width / 2, canvas.height / 2);
-        const texture = new Texture(gl, { generateMipmaps: false });
-        texture.image = canvas;
-        return { texture, width: canvas.width, height: canvas.height };
-      }
-
-      // --- CLASSES ---
-      class Title {
-        constructor({ gl, plane, renderer, text, textColor = '#ffffff', font = 'bold 30px IBM Plex Sans' }) {
-          autoBind(this);
-          this.gl = gl;
-          this.plane = plane;
-          this.renderer = renderer;
-          this.text = text;
-          this.textColor = textColor;
-          this.font = font;
-          this.createMesh();
+    function autoBind(instance) {
+      const proto = Object.getPrototypeOf(instance);
+      Object.getOwnPropertyNames(proto).forEach(key => {
+        if (key !== 'constructor' && typeof instance[key] === 'function') {
+          instance[key] = instance[key].bind(instance);
         }
-        createMesh() {
-          const { texture, width, height } = createTextTexture(this.gl, this.text, this.font, this.textColor);
-          const geometry = new Plane(this.gl);
-          const program = new Program(this.gl, {
-            vertex: `
+      });
+    }
+
+    function createTextTexture(gl, text, font = 'bold 30px IBM Plex Sans', color = 'black') {
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      context.font = font;
+      const metrics = context.measureText(text);
+      const textWidth = Math.ceil(metrics.width);
+      const textHeight = Math.ceil(parseInt(font, 10) * 1.2);
+      canvas.width = textWidth + 20;
+      canvas.height = textHeight + 20;
+      context.font = font;
+      context.fillStyle = color;
+      context.textBaseline = 'middle';
+      context.textAlign = 'center';
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.fillText(text, canvas.width / 2, canvas.height / 2);
+      const texture = new Texture(gl, { generateMipmaps: false });
+      texture.image = canvas;
+      return { texture, width: canvas.width, height: canvas.height };
+    }
+
+    // --- CLASSES ---
+    class Title {
+      constructor({ gl, plane, renderer, text, textColor = '#ffffff', font = 'bold 30px IBM Plex Sans' }) {
+        autoBind(this);
+        this.gl = gl;
+        this.plane = plane;
+        this.renderer = renderer;
+        this.text = text;
+        this.textColor = textColor;
+        this.font = font;
+        this.createMesh();
+      }
+      createMesh() {
+        const { texture, width, height } = createTextTexture(this.gl, this.text, this.font, this.textColor);
+        const geometry = new Plane(this.gl);
+        const program = new Program(this.gl, {
+          vertex: `
               attribute vec3 position;
               attribute vec2 uv;
               uniform mat4 modelViewMatrix;
@@ -851,7 +914,7 @@
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
               }
             `,
-            fragment: `
+          fragment: `
               precision highp float;
               uniform sampler2D tMap;
               varying vec2 vUv;
@@ -861,48 +924,48 @@
                 gl_FragColor = color;
               }
             `,
-            uniforms: { tMap: { value: texture } },
-            transparent: true
-          });
-          this.mesh = new Mesh(this.gl, { geometry, program });
-          const aspect = width / height;
-          const textHeight = this.plane.scale.y * 0.15;
-          const textWidth = textHeight * aspect;
-          this.mesh.scale.set(textWidth, textHeight, 1);
-          this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeight * 0.5 - 0.05;
-          this.mesh.setParent(this.plane);
-        }
+          uniforms: { tMap: { value: texture } },
+          transparent: true
+        });
+        this.mesh = new Mesh(this.gl, { geometry, program });
+        const aspect = width / height;
+        const textHeight = this.plane.scale.y * 0.15;
+        const textWidth = textHeight * aspect;
+        this.mesh.scale.set(textWidth, textHeight, 1);
+        this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeight * 0.5 - 0.05;
+        this.mesh.setParent(this.plane);
       }
+    }
 
-      class Media {
-        constructor({
-          geometry, gl, image, index, length, renderer, scene, screen, text, viewport, bend, textColor, borderRadius = 0, font
-        }) {
-          this.extra = 0;
-          this.geometry = geometry;
-          this.gl = gl;
-          this.image = image;
-          this.index = index;
-          this.length = length;
-          this.renderer = renderer;
-          this.scene = scene;
-          this.screen = screen;
-          this.text = text;
-          this.viewport = viewport;
-          this.bend = bend;
-          this.textColor = textColor;
-          this.borderRadius = borderRadius;
-          this.font = font;
-          this.createShader();
-          this.createMesh();
-          this.createTitle();
-          this.onResize();
-        }
-        createShader() {
-          const texture = new Texture(this.gl, { generateMipmaps: true });
-          this.program = new Program(this.gl, {
-            depthTest: false, depthWrite: false,
-            vertex: `
+    class Media {
+      constructor({
+        geometry, gl, image, index, length, renderer, scene, screen, text, viewport, bend, textColor, borderRadius = 0, font
+      }) {
+        this.extra = 0;
+        this.geometry = geometry;
+        this.gl = gl;
+        this.image = image;
+        this.index = index;
+        this.length = length;
+        this.renderer = renderer;
+        this.scene = scene;
+        this.screen = screen;
+        this.text = text;
+        this.viewport = viewport;
+        this.bend = bend;
+        this.textColor = textColor;
+        this.borderRadius = borderRadius;
+        this.font = font;
+        this.createShader();
+        this.createMesh();
+        this.createTitle();
+        this.onResize();
+      }
+      createShader() {
+        const texture = new Texture(this.gl, { generateMipmaps: true });
+        this.program = new Program(this.gl, {
+          depthTest: false, depthWrite: false,
+          vertex: `
               precision highp float;
               attribute vec3 position;
               attribute vec2 uv;
@@ -918,7 +981,7 @@
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
               }
             `,
-            fragment: `
+          fragment: `
               precision highp float;
               uniform vec2 uImageSizes;
               uniform vec2 uPlaneSizes;
@@ -946,192 +1009,192 @@
                 gl_FragColor = vec4(color.rgb, alpha);
               }
             `,
-            uniforms: {
-              tMap: { value: texture },
-              uPlaneSizes: { value: [0, 0] },
-              uImageSizes: { value: [0, 0] },
-              uSpeed: { value: 0 },
-              uTime: { value: 100 * Math.random() },
-              uBorderRadius: { value: this.borderRadius }
-            },
-            transparent: true
-          });
-          const img = new Image();
-          img.crossOrigin = 'anonymous';
-          img.src = this.image;
-          img.onload = () => {
-            texture.image = img;
-            this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
-          };
-        }
-        createMesh() {
-          this.plane = new Mesh(this.gl, { geometry: this.geometry, program: this.program });
-          this.plane.setParent(this.scene);
-        }
-        createTitle() {
-          this.title = new Title({
-            gl: this.gl, plane: this.plane, renderer: this.renderer,
-            text: this.text, textColor: this.textColor, font: this.font
-          });
-        }
-        update(scroll, direction) {
-          this.plane.position.x = this.x - scroll.current - this.extra;
-          const x = this.plane.position.x;
-          const H = this.viewport.width / 2;
-          if (this.bend !== 0) {
-            const B_abs = Math.abs(this.bend);
-            const R = (H * H + B_abs * B_abs) / (2 * B_abs);
-            const effectiveX = Math.min(Math.abs(x), H);
-            const arc = R - Math.sqrt(R * R - effectiveX * effectiveX);
-            if (this.bend > 0) {
-              this.plane.position.y = -arc;
-              this.plane.rotation.z = -Math.sign(x) * Math.asin(effectiveX / R);
-            } else {
-              this.plane.position.y = arc;
-              this.plane.rotation.z = Math.sign(x) * Math.asin(effectiveX / R);
-            }
-          }
-          this.speed = scroll.current - scroll.last;
-          this.program.uniforms.uTime.value += 0.04;
-          this.program.uniforms.uSpeed.value = this.speed;
-          const planeOffset = this.plane.scale.x / 2;
-          const viewportOffset = this.viewport.width / 2;
-          if (direction === 'right' && this.plane.position.x + planeOffset < -viewportOffset) this.extra -= this.widthTotal;
-          if (direction === 'left' && this.plane.position.x - planeOffset > viewportOffset) this.extra += this.widthTotal;
-        }
-        onResize({ screen, viewport } = {}) {
-          if (screen) this.screen = screen;
-          if (viewport) {
-            this.viewport = viewport;
-            if (this.plane.program.uniforms.uViewportSizes) {
-              this.plane.program.uniforms.uViewportSizes.value = [this.viewport.width, this.viewport.height];
-            }
-          }
-          this.scale = this.screen.height / 1500;
-          this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
-          this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
-          this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
-          this.padding = 2;
-          this.width = this.plane.scale.x + this.padding;
-          this.widthTotal = this.width * this.length;
-          this.x = this.width * this.index;
-        }
+          uniforms: {
+            tMap: { value: texture },
+            uPlaneSizes: { value: [0, 0] },
+            uImageSizes: { value: [0, 0] },
+            uSpeed: { value: 0 },
+            uTime: { value: 100 * Math.random() },
+            uBorderRadius: { value: this.borderRadius }
+          },
+          transparent: true
+        });
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.src = this.image;
+        img.onload = () => {
+          texture.image = img;
+          this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+        };
       }
-
-      class CircularGalleryApp {
-        constructor(container, { items, bend, textColor = '#ffffff', borderRadius = 0.05, font = 'bold 30px Figtree', scrollSpeed = 2, scrollEase = 0.05 } = {}) {
-          this.container = container;
-          this.scrollSpeed = scrollSpeed;
-          this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
-          this.onCheckDebounce = debounce(this.onCheck, 200);
-          this.createRenderer();
-          this.createCamera();
-          this.createScene();
-          this.onResize();
-          this.createGeometry();
-          this.createMedias(items, bend, textColor, borderRadius, font);
-          this.update();
-          this.addEventListeners();
-        }
-        createRenderer() {
-          this.renderer = new Renderer({ alpha: true, antialias: true, dpr: Math.min(window.devicePixelRatio || 1, 2) });
-          this.gl = this.renderer.gl;
-          this.container.appendChild(this.gl.canvas);
-        }
-        createCamera() {
-          this.camera = new Camera(this.gl);
-          this.camera.fov = 45;
-          this.camera.position.z = 20;
-        }
-        createScene() { this.scene = new Transform(); }
-        createGeometry() { this.planeGeometry = new Plane(this.gl, { heightSegments: 50, widthSegments: 100 }); }
-        createMedias(items, bend, textColor, borderRadius, font) {
-          const galleryItems = items;
-          this.mediasImages = galleryItems.concat(galleryItems);
-          this.medias = this.mediasImages.map((data, index) => new Media({
-            geometry: this.planeGeometry, gl: this.gl, image: data.image, index, length: this.mediasImages.length,
-            renderer: this.renderer, scene: this.scene, screen: this.screen, text: data.text, viewport: this.viewport,
-            bend, textColor, borderRadius, font
-          }));
-        }
-        onTouchDown(e) {
-          this.isDown = true;
-          this.scroll.position = this.scroll.current;
-          this.start = e.touches ? e.touches[0].clientX : e.clientX;
-        }
-        onTouchMove(e) {
-          if (!this.isDown) return;
-          const x = e.touches ? e.touches[0].clientX : e.clientX;
-          const distance = (this.start - x) * (this.scrollSpeed * 0.025);
-          this.scroll.target = this.scroll.position + distance;
-        }
-        onTouchUp() { this.isDown = false; this.onCheck(); }
-        onWheel(e) {
-          const delta = e.deltaY || e.wheelDelta || e.detail;
-          this.scroll.target += (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
-          this.onCheckDebounce();
-        }
-        onCheck() {
-          if (!this.medias || !this.medias[0]) return;
-          const width = this.medias[0].width;
-          const itemIndex = Math.round(Math.abs(this.scroll.target) / width);
-          this.scroll.target = (this.scroll.target < 0 ? -1 : 1) * width * itemIndex;
-        }
-        onResize() {
-          this.screen = { width: this.container.clientWidth, height: this.container.clientHeight };
-          this.renderer.setSize(this.screen.width, this.screen.height);
-          this.camera.perspective({ aspect: this.screen.width / this.screen.height });
-          const fov = (this.camera.fov * Math.PI) / 180;
-          const height = 2 * Math.tan(fov / 2) * this.camera.position.z;
-          this.viewport = { width: height * this.camera.aspect, height };
-          if (this.medias) this.medias.forEach(m => m.onResize({ screen: this.screen, viewport: this.viewport }));
-        }
-        update() {
-          this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
-          const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
-          if (this.medias) this.medias.forEach(m => m.update(this.scroll, direction));
-          this.renderer.render({ scene: this.scene, camera: this.camera });
-          this.scroll.last = this.scroll.current;
-          this.raf = window.requestAnimationFrame(this.update.bind(this));
-        }
-        addEventListeners() {
-          window.addEventListener('resize', this.onResize.bind(this));
-          window.addEventListener('wheel', this.onWheel.bind(this));
-          window.addEventListener('mousedown', this.onTouchDown.bind(this));
-          window.addEventListener('mousemove', this.onTouchMove.bind(this));
-          window.addEventListener('mouseup', this.onTouchUp.bind(this));
-          window.addEventListener('touchstart', this.onTouchDown.bind(this));
-          window.addEventListener('touchmove', this.onTouchMove.bind(this));
-          window.addEventListener('touchend', this.onTouchUp.bind(this));
-        }
+      createMesh() {
+        this.plane = new Mesh(this.gl, { geometry: this.geometry, program: this.program });
+        this.plane.setParent(this.scene);
       }
-
-      // --- INITIALIZATION ---
-      const items = [
-        { image: 'assets/22.jpg', text: 'Primal Breath' },
-        { image: 'assets/23.jpg', text: 'Lunar Gaze' },
-        { image: 'assets/24.jpg', text: 'Desert Stillness' },
-        { image: 'assets/25.jpg', text: 'Forest Flow' },
-        { image: 'assets/26.jpg', text: 'Urban Reset' }
-      ];
-
-      const container = document.getElementById('circular-gallery');
-      if (container) {
-        new CircularGalleryApp(container, { 
-          items, 
-          bend: 3, 
-          textColor: '#ffffff', 
-          borderRadius: 0.05, 
-          scrollEase: 0.02 
+      createTitle() {
+        this.title = new Title({
+          gl: this.gl, plane: this.plane, renderer: this.renderer,
+          text: this.text, textColor: this.textColor, font: this.font
         });
       }
-    </script>
-    <script src="app.js"></script>
-    <script src="scroll-velocity.js"></script>
-    <script src="ai-tags.js"></script>
-    <script src="footer-sync.js"></script>
-    <script src="true-focus.js"></script>
+      update(scroll, direction) {
+        this.plane.position.x = this.x - scroll.current - this.extra;
+        const x = this.plane.position.x;
+        const H = this.viewport.width / 2;
+        if (this.bend !== 0) {
+          const B_abs = Math.abs(this.bend);
+          const R = (H * H + B_abs * B_abs) / (2 * B_abs);
+          const effectiveX = Math.min(Math.abs(x), H);
+          const arc = R - Math.sqrt(R * R - effectiveX * effectiveX);
+          if (this.bend > 0) {
+            this.plane.position.y = -arc;
+            this.plane.rotation.z = -Math.sign(x) * Math.asin(effectiveX / R);
+          } else {
+            this.plane.position.y = arc;
+            this.plane.rotation.z = Math.sign(x) * Math.asin(effectiveX / R);
+          }
+        }
+        this.speed = scroll.current - scroll.last;
+        this.program.uniforms.uTime.value += 0.04;
+        this.program.uniforms.uSpeed.value = this.speed;
+        const planeOffset = this.plane.scale.x / 2;
+        const viewportOffset = this.viewport.width / 2;
+        if (direction === 'right' && this.plane.position.x + planeOffset < -viewportOffset) this.extra -= this.widthTotal;
+        if (direction === 'left' && this.plane.position.x - planeOffset > viewportOffset) this.extra += this.widthTotal;
+      }
+      onResize({ screen, viewport } = {}) {
+        if (screen) this.screen = screen;
+        if (viewport) {
+          this.viewport = viewport;
+          if (this.plane.program.uniforms.uViewportSizes) {
+            this.plane.program.uniforms.uViewportSizes.value = [this.viewport.width, this.viewport.height];
+          }
+        }
+        this.scale = this.screen.height / 1500;
+        this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
+        this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
+        this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
+        this.padding = 2;
+        this.width = this.plane.scale.x + this.padding;
+        this.widthTotal = this.width * this.length;
+        this.x = this.width * this.index;
+      }
+    }
+
+    class CircularGalleryApp {
+      constructor(container, { items, bend, textColor = '#ffffff', borderRadius = 0.05, font = 'bold 30px Figtree', scrollSpeed = 2, scrollEase = 0.05 } = {}) {
+        this.container = container;
+        this.scrollSpeed = scrollSpeed;
+        this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
+        this.onCheckDebounce = debounce(this.onCheck, 200);
+        this.createRenderer();
+        this.createCamera();
+        this.createScene();
+        this.onResize();
+        this.createGeometry();
+        this.createMedias(items, bend, textColor, borderRadius, font);
+        this.update();
+        this.addEventListeners();
+      }
+      createRenderer() {
+        this.renderer = new Renderer({ alpha: true, antialias: true, dpr: Math.min(window.devicePixelRatio || 1, 2) });
+        this.gl = this.renderer.gl;
+        this.container.appendChild(this.gl.canvas);
+      }
+      createCamera() {
+        this.camera = new Camera(this.gl);
+        this.camera.fov = 45;
+        this.camera.position.z = 20;
+      }
+      createScene() { this.scene = new Transform(); }
+      createGeometry() { this.planeGeometry = new Plane(this.gl, { heightSegments: 50, widthSegments: 100 }); }
+      createMedias(items, bend, textColor, borderRadius, font) {
+        const galleryItems = items;
+        this.mediasImages = galleryItems.concat(galleryItems);
+        this.medias = this.mediasImages.map((data, index) => new Media({
+          geometry: this.planeGeometry, gl: this.gl, image: data.image, index, length: this.mediasImages.length,
+          renderer: this.renderer, scene: this.scene, screen: this.screen, text: data.text, viewport: this.viewport,
+          bend, textColor, borderRadius, font
+        }));
+      }
+      onTouchDown(e) {
+        this.isDown = true;
+        this.scroll.position = this.scroll.current;
+        this.start = e.touches ? e.touches[0].clientX : e.clientX;
+      }
+      onTouchMove(e) {
+        if (!this.isDown) return;
+        const x = e.touches ? e.touches[0].clientX : e.clientX;
+        const distance = (this.start - x) * (this.scrollSpeed * 0.025);
+        this.scroll.target = this.scroll.position + distance;
+      }
+      onTouchUp() { this.isDown = false; this.onCheck(); }
+      onWheel(e) {
+        const delta = e.deltaY || e.wheelDelta || e.detail;
+        this.scroll.target += (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
+        this.onCheckDebounce();
+      }
+      onCheck() {
+        if (!this.medias || !this.medias[0]) return;
+        const width = this.medias[0].width;
+        const itemIndex = Math.round(Math.abs(this.scroll.target) / width);
+        this.scroll.target = (this.scroll.target < 0 ? -1 : 1) * width * itemIndex;
+      }
+      onResize() {
+        this.screen = { width: this.container.clientWidth, height: this.container.clientHeight };
+        this.renderer.setSize(this.screen.width, this.screen.height);
+        this.camera.perspective({ aspect: this.screen.width / this.screen.height });
+        const fov = (this.camera.fov * Math.PI) / 180;
+        const height = 2 * Math.tan(fov / 2) * this.camera.position.z;
+        this.viewport = { width: height * this.camera.aspect, height };
+        if (this.medias) this.medias.forEach(m => m.onResize({ screen: this.screen, viewport: this.viewport }));
+      }
+      update() {
+        this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
+        const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
+        if (this.medias) this.medias.forEach(m => m.update(this.scroll, direction));
+        this.renderer.render({ scene: this.scene, camera: this.camera });
+        this.scroll.last = this.scroll.current;
+        this.raf = window.requestAnimationFrame(this.update.bind(this));
+      }
+      addEventListeners() {
+        window.addEventListener('resize', this.onResize.bind(this));
+        window.addEventListener('wheel', this.onWheel.bind(this));
+        window.addEventListener('mousedown', this.onTouchDown.bind(this));
+        window.addEventListener('mousemove', this.onTouchMove.bind(this));
+        window.addEventListener('mouseup', this.onTouchUp.bind(this));
+        window.addEventListener('touchstart', this.onTouchDown.bind(this));
+        window.addEventListener('touchmove', this.onTouchMove.bind(this));
+        window.addEventListener('touchend', this.onTouchUp.bind(this));
+      }
+    }
+
+    // --- INITIALIZATION ---
+    const items = [
+      { image: 'assets/22.jpg', text: 'Primal Breath' },
+      { image: 'assets/23.jpg', text: 'Lunar Gaze' },
+      { image: 'assets/24.jpg', text: 'Desert Stillness' },
+      { image: 'assets/25.jpg', text: 'Forest Flow' },
+      { image: 'assets/26.jpg', text: 'Urban Reset' }
+    ];
+
+    const container = document.getElementById('circular-gallery');
+    if (container) {
+      new CircularGalleryApp(container, {
+        items,
+        bend: 3,
+        textColor: '#ffffff',
+        borderRadius: 0.05,
+        scrollEase: 0.02
+      });
+    }
+  </script>
+  <script src="app.js"></script>
+  <script src="scroll-velocity.js"></script>
+  <script src="ai-tags.js"></script>
+  <script src="footer-sync.js"></script>
+  <script src="true-focus.js"></script>
 
 </body>
-</html>
 
+</html>
