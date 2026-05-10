@@ -1,10 +1,10 @@
 window.addEventListener("load", () => {
-  document.body.classList.add("page-ready");
+    document.body.classList.add("page-ready");
 });
 
 function handleBookSessionClick(e) {
-  if (e) e.preventDefault();
-  window.location.href = 'book-session.html';
+    if (e) e.preventDefault();
+    window.location.href = 'book-session.html';
 }
 
 const nav = document.querySelector(".menu-buttons");
@@ -12,63 +12,63 @@ const indicator = document.querySelector(".nav-indicator");
 const buttons = document.querySelectorAll(".nav-btn");
 
 function updateIndicator(el) {
-  if (!nav || !indicator) return;
+    if (!nav || !indicator) return;
 
-  if (!el) {
-    indicator.classList.remove("visible");
-    return;
-  }
-  const rect = el.getBoundingClientRect();
-  const parentRect = nav.getBoundingClientRect();
+    if (!el) {
+        indicator.classList.remove("visible");
+        return;
+    }
+    const rect = el.getBoundingClientRect();
+    const parentRect = nav.getBoundingClientRect();
 
-  indicator.style.width = `${rect.width}px`;
-  indicator.style.left = `${rect.left - parentRect.left}px`;
-  indicator.classList.add("visible");
+    indicator.style.width = `${rect.width}px`;
+    indicator.style.left = `${rect.left - parentRect.left}px`;
+    indicator.classList.add("visible");
 }
 
 buttons.forEach((btn) => {
-  btn.addEventListener("mouseenter", () => updateIndicator(btn));
-  btn.addEventListener("click", () => {
-    buttons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-  });
+    btn.addEventListener("mouseenter", () => updateIndicator(btn));
+    btn.addEventListener("click", () => {
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+    });
 });
 
 if (nav) {
-  nav.addEventListener("mouseleave", () => {
-    updateIndicator(null);
-  });
+    nav.addEventListener("mouseleave", () => {
+        updateIndicator(null);
+    });
 }
 
 const testimonials = [
-  {
-    text: "Every session is a data point. Our students don't just feel better - they can prove it with numbers.",
-    name: "Dr. Leila Ahmadi",
-    role: "Clinical Research Director",
-    initials: "LA",
-    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1600&q=80"
-  },
-  {
-    text: "The teachers here hold space with such grace. I've found a stillness I never thought possible in my hectic city life.",
-    name: "Dr. Arjun Graham",
-    role: "Director of Neuroscience",
-    initials: "AG",
-    image: "https://images.unsplash.com/photo-1469571486292-b53601020f09?auto=format&fit=crop&w=1600&q=80"
-  },
-  {
-    text: "Every session guides me back to clarity. My posture improved, but more importantly, my mind became quieter and lighter.",
-    name: "Dr. Priya Nair",
-    role: "Head of Biomechanics",
-    initials: "PN",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1600&q=80"
-  },
-  {
-    text: "The blend of breathwork and mindful flow gave me back my focus. I now carry that calm into every part of my day.",
-    name: "James Whitfield",
-    role: "Lead Breathwork Researcher",
-    initials: "JW",
-    image: "https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=1600&q=80"
-  }
+    {
+        text: "Every session is a data point. Our students don't just feel better - they can prove it with numbers.",
+        name: "Dr. Leila Ahmadi",
+        role: "Clinical Research Director",
+        initials: "LA",
+        image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1600&q=80"
+    },
+    {
+        text: "The teachers here hold space with such grace. I've found a stillness I never thought possible in my hectic city life.",
+        name: "Dr. Arjun Graham",
+        role: "Director of Neuroscience",
+        initials: "AG",
+        image: "https://images.unsplash.com/photo-1469571486292-b53601020f09?auto=format&fit=crop&w=1600&q=80"
+    },
+    {
+        text: "Every session guides me back to clarity. My posture improved, but more importantly, my mind became quieter and lighter.",
+        name: "Dr. Priya Nair",
+        role: "Head of Biomechanics",
+        initials: "PN",
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1600&q=80"
+    },
+    {
+        text: "The blend of breathwork and mindful flow gave me back my focus. I now carry that calm into every part of my day.",
+        name: "James Whitfield",
+        role: "Lead Breathwork Researcher",
+        initials: "JW",
+        image: "https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=1600&q=80"
+    }
 ];
 
 let index = 0;
@@ -76,105 +76,105 @@ let testimonialTimer = null;
 let autoSwitchInterval = null;
 
 function renderFacultyIndicators() {
-  const indicatorEl = document.getElementById("facultyIndicators");
-  if (!indicatorEl) return;
+    const indicatorEl = document.getElementById("facultyIndicators");
+    if (!indicatorEl) return;
 
-  indicatorEl.innerHTML = testimonials
-    .map((_, i) => {
-      const isActive = i === index ? " active" : "";
-      return `<button class="faculty-dot${isActive}" type="button" aria-label="show testimonial ${i + 1}" onclick="setTestimonial(${i})"></button>`;
-    })
-    .join("");
+    indicatorEl.innerHTML = testimonials
+        .map((_, i) => {
+            const isActive = i === index ? " active" : "";
+            return `<button class="faculty-dot${isActive}" type="button" aria-label="show testimonial ${i + 1}" onclick="setTestimonial(${i})"></button>`;
+        })
+        .join("");
 }
 
 function updateTestimonial() {
-  const textEl = document.getElementById("testimonialText");
-  const nameEl = document.getElementById("userName");
-  const roleEl = document.getElementById("userRole");
-  const quoteCard = document.getElementById("facultyQuoteCard");
+    const textEl = document.getElementById("testimonialText");
+    const nameEl = document.getElementById("userName");
+    const roleEl = document.getElementById("userRole");
+    const quoteCard = document.getElementById("facultyQuoteCard");
 
-  if (!textEl || !nameEl || !roleEl || !quoteCard) return;
+    if (!textEl || !nameEl || !roleEl || !quoteCard) return;
 
-  if (testimonialTimer) {
-    clearTimeout(testimonialTimer);
-  }
+    if (testimonialTimer) {
+        clearTimeout(testimonialTimer);
+    }
 
-  quoteCard.classList.add("is-switching");
+    quoteCard.classList.add("is-switching");
 
-  testimonialTimer = setTimeout(() => {
-    textEl.innerText = testimonials[index].text;
-    nameEl.innerText = testimonials[index].name;
-    roleEl.innerText = testimonials[index].role;
-    quoteCard.style.backgroundImage = `url("${testimonials[index].image}")`;
-    renderFacultyIndicators();
-    quoteCard.classList.remove("is-switching");
-    testimonialTimer = null;
-  }, 180);
+    testimonialTimer = setTimeout(() => {
+        textEl.innerText = testimonials[index].text;
+        nameEl.innerText = testimonials[index].name;
+        roleEl.innerText = testimonials[index].role;
+        quoteCard.style.backgroundImage = `url("${testimonials[index].image}")`;
+        renderFacultyIndicators();
+        quoteCard.classList.remove("is-switching");
+        testimonialTimer = null;
+    }, 180);
 }
 
 function startAutoSwitch() {
-  stopAutoSwitch();
-  autoSwitchInterval = setInterval(() => {
-    setTestimonial(index + 1);
-  }, 5000);
+    stopAutoSwitch();
+    autoSwitchInterval = setInterval(() => {
+        setTestimonial(index + 1);
+    }, 5000);
 }
 
 function stopAutoSwitch() {
-  if (autoSwitchInterval) {
-    clearInterval(autoSwitchInterval);
-    autoSwitchInterval = null;
-  }
+    if (autoSwitchInterval) {
+        clearInterval(autoSwitchInterval);
+        autoSwitchInterval = null;
+    }
 }
 
 function setTestimonial(nextIndex) {
-  index = ((nextIndex % testimonials.length) + testimonials.length) % testimonials.length;
-  updateTestimonial();
-  startAutoSwitch(); // Reset timer on manual switch
+    index = ((nextIndex % testimonials.length) + testimonials.length) % testimonials.length;
+    updateTestimonial();
+    startAutoSwitch(); // Reset timer on manual switch
 }
 
 function initRevealAnimation() {
-  const targets = document.querySelectorAll(
-    "section, .footer, .bento-item, .bento-blog-item"
-  );
+    const targets = document.querySelectorAll(
+        "section, .footer, .bento-item, .bento-blog-item"
+    );
 
-  targets.forEach((el) => el.setAttribute("data-reveal", ""));
+    targets.forEach((el) => el.setAttribute("data-reveal", ""));
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-  );
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
 
-  targets.forEach((el) => observer.observe(el));
+    targets.forEach((el) => observer.observe(el));
 }
 
 // Mobile Menu Toggle
 function setupMobileMenu() {
-  const hamburger = document.querySelector(".hamburger-btn");
-  const mobileOverlay = document.querySelector(".mobile-overlay");
-  const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+    const hamburger = document.querySelector(".hamburger-btn");
+    const mobileOverlay = document.querySelector(".mobile-overlay");
+    const mobileLinks = document.querySelectorAll(".mobile-nav-link");
 
-  if (hamburger && mobileOverlay) {
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active");
-      mobileOverlay.classList.toggle("active");
-      document.body.style.overflow = mobileOverlay.classList.contains("active") ? "hidden" : "";
-    });
+    if (hamburger && mobileOverlay) {
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            mobileOverlay.classList.toggle("active");
+            document.body.style.overflow = mobileOverlay.classList.contains("active") ? "hidden" : "";
+        });
 
-    mobileLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        hamburger.classList.remove("active");
-        mobileOverlay.classList.remove("active");
-        document.body.style.overflow = "";
-      });
-    });
-  }
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                mobileOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+            });
+        });
+    }
 }
 
 // Initialize
@@ -184,58 +184,58 @@ initRevealAnimation();
 
 // Theme Toggle Logic
 function setupThemeToggle() {
-  const icons = document.querySelectorAll('.material-symbols-outlined');
-  let lightBtn = null;
-  let darkBtn = null;
+    const icons = document.querySelectorAll('.material-symbols-outlined');
+    let lightBtn = null;
+    let darkBtn = null;
 
-  icons.forEach(icon => {
-    if (icon.textContent.trim() === 'light_mode') lightBtn = icon.parentElement;
-    if (icon.textContent.trim() === 'dark_mode') darkBtn = icon.parentElement;
-  });
+    icons.forEach(icon => {
+        if (icon.textContent.trim() === 'light_mode') lightBtn = icon.parentElement;
+        if (icon.textContent.trim() === 'dark_mode') darkBtn = icon.parentElement;
+    });
 
-  if (!lightBtn || !darkBtn) return;
+    if (!lightBtn || !darkBtn) return;
 
-  function setTheme(isLight) {
-    if (isLight) {
-      document.documentElement.classList.add('light-theme');
-      localStorage.setItem('theme', 'light');
-      lightBtn.style.display = 'none';
-      darkBtn.style.display = 'flex';
-    } else {
-      document.documentElement.classList.remove('light-theme');
-      localStorage.setItem('theme', 'dark');
-      lightBtn.style.display = 'flex';
-      darkBtn.style.display = 'none';
+    function setTheme(isLight) {
+        if (isLight) {
+            document.documentElement.classList.add('light-theme');
+            localStorage.setItem('theme', 'light');
+            lightBtn.style.display = 'none';
+            darkBtn.style.display = 'flex';
+        } else {
+            document.documentElement.classList.remove('light-theme');
+            localStorage.setItem('theme', 'dark');
+            lightBtn.style.display = 'flex';
+            darkBtn.style.display = 'none';
+        }
+
+        // Force redraw for canvas-based elements (like light-rays)
+        // Multiple dispatches to ensure complex animations catch the visibility change
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+            if (window.lightRays) window.lightRays.onResize();
+        }, 50);
+
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+            if (window.lightRays) window.lightRays.onResize();
+        }, 150);
+
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+            if (window.lightRays) window.lightRays.onResize();
+        }, 300);
+
     }
-    
-    // Force redraw for canvas-based elements (like light-rays)
-    // Multiple dispatches to ensure complex animations catch the visibility change
-    setTimeout(() => {
-      window.dispatchEvent(new Event('resize'));
-      if (window.lightRays) window.lightRays.onResize();
-    }, 50);
-    
-    setTimeout(() => {
-      window.dispatchEvent(new Event('resize'));
-      if (window.lightRays) window.lightRays.onResize();
-    }, 150);
-    
-    setTimeout(() => {
-      window.dispatchEvent(new Event('resize'));
-      if (window.lightRays) window.lightRays.onResize();
-    }, 300);
 
-  }
+    lightBtn.addEventListener('click', () => setTheme(true));
+    darkBtn.addEventListener('click', () => setTheme(false));
 
-  lightBtn.addEventListener('click', () => setTheme(true));
-  darkBtn.addEventListener('click', () => setTheme(false));
-
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'light') {
-    setTheme(true);
-  } else {
-    setTheme(false);
-  }
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        setTheme(true);
+    } else {
+        setTheme(false);
+    }
 }
 setupThemeToggle();
 
@@ -243,7 +243,7 @@ setupThemeToggle();
 /* GLOBAL DETAIL MODAL LOGIC */
 function injectDetailModal() {
     if (document.getElementById('programModal')) return;
-    
+
     const modalHTML = `
         <div id="programModal" class="detail-modal" style="display: none;">
             <div class="detail-close" onclick="closeProgramModal()">
@@ -274,9 +274,9 @@ function openProgramDetail(title, image, description, category, about) {
     const modalDesc = document.getElementById('modalDesc');
     const modalAbout = document.getElementById('modalAbout');
     const bookBtn = document.getElementById('modalBookBtn');
-    
+
     if (!modal || !modalTitle || !modalImg) return;
-    
+
     modalTitle.innerText = title;
     modalImg.src = image;
     if (modalDesc && description) {
@@ -296,7 +296,7 @@ function openProgramDetail(title, image, description, category, about) {
             bookBtn.style.display = 'none';
         }
     }
-    
+
     modal.style.display = 'flex';
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -324,7 +324,7 @@ document.addEventListener('click', (e) => {
         const description = card.getAttribute('data-description');
         const about = card.getAttribute('data-about');
         const category = card.getAttribute('data-category');
-        
+
         if (titleEl && imgEl) {
             openProgramDetail(titleEl.innerText, imgEl.src, description, category, about);
         }
@@ -343,7 +343,7 @@ async function loadProgramsToServices() {
         if (programs.length > 0) {
             // Clear static content
             grid.innerHTML = '';
-            
+
             // Bento patterns for a cycle of 8 items
             const patterns = [
                 'span-2-1', 'span-2-2', 'span-1-1', 'span-1-1',
@@ -353,7 +353,7 @@ async function loadProgramsToServices() {
             programs.forEach((prog, i) => {
                 const patternClass = patterns[i % patterns.length];
                 const imgSrc = prog.image ? `http://localhost:5000${prog.image}` : 'assets/AhamGraham-Web/placeholder.png';
-                
+
                 const cardHTML = `
                     <div class="bento-card ${patternClass}" 
                          data-description="${prog.description || ''}">
@@ -365,7 +365,7 @@ async function loadProgramsToServices() {
                 `;
                 grid.insertAdjacentHTML('beforeend', cardHTML);
             });
-            
+
             // Re-initialize reveal animations for new items
             initRevealAnimation();
         }
@@ -385,10 +385,10 @@ async function loadProgramsToHome() {
         if (programs.length > 0) {
             // Clear static content
             grid.innerHTML = '';
-            
+
             // Bento patterns for index page
             const patterns = [
-                'row-2', 'span-2', '', '', 
+                'row-2', 'span-2', '', '',
                 'span-2 row-2 brand-card', // Brand card placeholder (we'll handle it)
                 '', '', 'row-2', '', 'span-2'
             ];
@@ -413,7 +413,7 @@ async function loadProgramsToHome() {
                     const prog = programs[progIndex];
                     const patternClass = patterns[i] || '';
                     const imgSrc = prog.image ? `http://localhost:5000${prog.image}` : 'assets/AhamGraham-Web/placeholder.png';
-                    
+
                     const cardHTML = `
                         <div class="bento-item ${patternClass}" 
                              data-description="${prog.description || ''}">
@@ -429,7 +429,7 @@ async function loadProgramsToHome() {
                     progIndex++;
                 }
             }
-            
+
             // Re-initialize reveal animations for new items
             initRevealAnimation();
         }
@@ -452,11 +452,11 @@ async function loadEventsToBlog() {
         if (blogEvents.length > 0) {
             // Clear static content
             grid.innerHTML = '';
-            
+
             blogEvents.forEach((ev, i) => {
                 const index = (i % 15) + 1; // 15 unique layouts c1-c15
                 const imgSrc = ev.image ? `http://localhost:5000${ev.image}` : 'assets/AhamGraham-Web/placeholder.png';
-                
+
                 const cardHTML = `
                     <article class="bento-blog-item c${index}">
                         <img src="${imgSrc}" alt="${ev.name || ''}" style="cursor: pointer;">
@@ -471,7 +471,7 @@ async function loadEventsToBlog() {
                 `;
                 grid.insertAdjacentHTML('beforeend', cardHTML);
             });
-            
+
             // Re-initialize reveal animations
             initRevealAnimation();
         }
@@ -489,7 +489,7 @@ async function loadTestimonialsToHome() {
         const dbTestimonials = await response.json();
 
         let baseTestimonials = [];
-        
+
         if (dbTestimonials.length > 0) {
             baseTestimonials = dbTestimonials.map(t => ({
                 src: t.image ? `http://localhost:5000${t.image}` : 'https://placehold.co/400x600/2c2c3a/white?text=' + t.name.charAt(0),
@@ -527,10 +527,10 @@ async function loadTestimonialsToHome() {
         const isMobile = window.innerWidth <= 768;
         const mobileWidth = Math.floor(window.innerWidth * 0.98);
         const mobileHeight = Math.floor(window.innerHeight * 0.95);
-        
+
         new DomeGallery(container, {
             images: testimonialData,
-            fit: isMobile ? 1.1 : 0.8, 
+            fit: isMobile ? 1.1 : 0.8,
             fitBasis: 'width',
             minRadius: 400,
             maxRadius: 2000,
@@ -540,7 +540,7 @@ async function loadTestimonialsToHome() {
             openedImageHeight: isMobile ? `${mobileHeight}px` : '550px',
             imageBorderRadius: '30px',
             grayscale: false,
-            segments: isMobile ? 30 : 55 
+            segments: isMobile ? 30 : 55
         });
 
     } catch (error) {
@@ -603,13 +603,13 @@ async function loadEventsToPage() {
                     const pattern = upcomingPatterns[i % upcomingPatterns.length];
                     upcomingGrid.insertAdjacentHTML('beforeend', createEventCard(ev, pattern));
                 });
-                
+
                 // Re-add Chroma Overlays that were cleared
                 upcomingGrid.insertAdjacentHTML('beforeend', `
                     <div class="chroma-overlay"></div>
                     <div class="chroma-fade"></div>
                 `);
-                
+
                 // Re-initialize chroma effect if script is present
                 if (window.initChromaEffect) window.initChromaEffect();
             }
@@ -622,12 +622,12 @@ async function loadEventsToPage() {
                     image: ev.image ? `http://localhost:5000${ev.image}` : 'assets/AhamGraham-Web/placeholder.png',
                     text: ev.name
                 }));
-                new CircularGalleryApp(galleryContainer, { 
-                    items: highlightItems, 
-                    bend: 3, 
-                    textColor: '#ffffff', 
-                    borderRadius: 0.05, 
-                    scrollEase: 0.02 
+                new CircularGalleryApp(galleryContainer, {
+                    items: highlightItems,
+                    bend: 3,
+                    textColor: '#ffffff',
+                    borderRadius: 0.05,
+                    scrollEase: 0.02
                 });
             }
 
@@ -652,12 +652,12 @@ async function loadProductsToServices() {
 
         if (serviceProducts.length > 0) {
             grid.innerHTML = '';
-            
+
             serviceProducts.forEach(product => {
-                const imgSrc = product.image && product.image !== 'no-photo.jpg' 
-                    ? `http://localhost:5000/uploads/${product.image}` 
+                const imgSrc = product.image && product.image !== 'no-photo.jpg'
+                    ? `http://localhost:5000/uploads/${product.image}`
                     : 'https://images.unsplash.com/photo-1592179900431-1e021ea5c783?auto=format&fit=crop&q=80';
-                
+
                 const cardHTML = `
                     <div class="group cursor-pointer product-card rounded-[32px] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col"
                          onclick="window.location.href='sacred-moon-oil.html'"
@@ -677,7 +677,7 @@ async function loadProductsToServices() {
                 `;
                 grid.insertAdjacentHTML('beforeend', cardHTML);
             });
-            
+
             initRevealAnimation();
         }
     } catch (error) {
@@ -728,7 +728,7 @@ async function loadAboutToPage() {
                 const kicker = document.getElementById('about-hero-kicker');
                 const subtitle = document.getElementById('about-hero-subtitle');
                 const img = document.getElementById('about-hero-img');
-                
+
                 if (kicker) kicker.innerText = about.hero.kicker;
                 if (heroTitle) heroTitle.innerText = about.hero.title;
                 if (subtitle) subtitle.innerText = about.hero.subtitle;
@@ -816,7 +816,7 @@ async function loadAboutToPage() {
                     ctaSection.style.backgroundPosition = 'center';
                 }
             }
-            
+
             initRevealAnimation();
         }
     } catch (error) {
@@ -889,7 +889,7 @@ function createEventCard(ev, patternClass, isWorkshop = false) {
     const imgSrc = ev.image ? `http://localhost:5000${ev.image}` : 'assets/AhamGraham-Web/placeholder.png';
     const overlayClass = isWorkshop ? '!bg-gradient-to-t !from-[#231f37]/80 !to-transparent' : '';
     const groupClass = isWorkshop ? 'group flex flex-col h-full' : '';
-    
+
     return `
         <div class="bento-item ${patternClass} ${groupClass}" 
              data-description="${ev.description || ''}"
@@ -910,10 +910,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Determine which page we are on and load appropriate hero
     const path = window.location.pathname;
     const page = path.includes('about.html') ? 'about' :
-                 path.includes('services.html') ? 'services' :
-                 path.includes('events.html') ? 'events' :
-                 path.includes('centers.html') ? 'centers' :
-                 path.includes('shop.html') || path.includes('sacred-moon-oil.html') ? 'shop' : null;
+        path.includes('services.html') ? 'services' :
+            path.includes('events.html') ? 'events' :
+                path.includes('centers.html') ? 'centers' :
+                    path.includes('shop.html') || path.includes('sacred-moon-oil.html') ? 'shop' : null;
 
     if (page) {
         loadHeroForPage(page);
@@ -922,7 +922,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (path.includes('about.html')) {
         loadAboutToPage();
     }
-    
+
     // Existing setup
     setupMobileMenu();
     injectDetailModal();
@@ -938,7 +938,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeProgramModal();
     });
-    
+
     document.addEventListener('click', (e) => {
         const modal = document.getElementById('programModal');
         if (e.target === modal) closeProgramModal();
@@ -949,37 +949,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Footer Accordion Logic
 function setupFooterAccordion() {
-  const headers = document.querySelectorAll('.footer-col h4');
-  headers.forEach(header => {
-    header.addEventListener('click', () => {
-      if (window.innerWidth <= 700) {
-        const col = header.parentElement;
-        col.classList.toggle('active');
-      }
+    const headers = document.querySelectorAll('.footer-col h4');
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            if (window.innerWidth <= 700) {
+                const col = header.parentElement;
+                col.classList.toggle('active');
+            }
+        });
     });
-  });
 }
 setupFooterAccordion();
 
 // Global hook for the "Book Session" buttons (Bypass Auth for now)
-window.handleBookSessionClick = function(event) {
+window.handleBookSessionClick = function (event) {
     window.location.href = 'book-session.html';
 };
 
-window.handleAddToCartClick = function(event) {
+window.handleAddToCartClick = function (event) {
     window.location.href = 'cart.html';
 };
 
 // --- CART SYSTEM ---
 
-window.addToCart = function(name, price, image) {
+window.addToCart = function (name, price, image) {
     let cart = JSON.parse(localStorage.getItem('aham_cart') || '[]');
     cart.push({ name, price, image, id: Date.now() });
     localStorage.setItem('aham_cart', JSON.stringify(cart));
-    
+
     // Update UI
     window.updateCartBadge();
-    
+
     // Optional: Visual feedback
     const badge = document.getElementById('cart-count');
     if (badge) {
@@ -988,11 +988,11 @@ window.addToCart = function(name, price, image) {
     }
 };
 
-window.updateCartBadge = function() {
+window.updateCartBadge = function () {
     try {
         const cart = JSON.parse(localStorage.getItem('aham_cart') || '[]');
         const count = Array.isArray(cart) ? cart.length : 0;
-        
+
         const badges = document.querySelectorAll('.cart-badge');
         badges.forEach(badge => {
             badge.innerText = count;

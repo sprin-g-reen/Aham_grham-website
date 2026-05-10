@@ -24,7 +24,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #111827; /* Match nav bg */
+  border: 2px solid #111827;
+  /* Match nav bg */
   z-index: 10;
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -230,8 +231,6 @@ html.light-theme .btn-primary:hover {
   box-shadow: 0 6px 16px rgba(124, 77, 255, 0.3) !important;
 }
 
-html.light-theme .exp-col span,
-html.light-theme .testimonial-controls button {}
 
 .btn-desc:hover {
   background: rgba(124, 77, 255, 0.2);
@@ -538,9 +537,6 @@ html.light-theme .footer-tag:hover {
   box-sizing: border-box;
 }
 
-html {
-  /* Only scroll-smooth from index.html remains relevant */
-}
 
 body {
   background: var(--bg-deep);
@@ -4146,3 +4142,11 @@ body,
       height: 44px;
     }
   }
+
+  .detail-close {
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+  }
+}

@@ -41,6 +41,22 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+// --- Static Folder for Frontend ---
+// Redirect .html requests to clean URLs
+app.use((req, res, next) => {
+  if (req.path.endsWith('.html')) {
+    const cleanPath = req.path.replace(/\.html$/, '');
+    if (cleanPath === '/index') {
+      return res.redirect(301, '/');
+    }
+    return res.redirect(301, cleanPath);
+  }
+  next();
+});
+
+// Serve static files with .html extension support
+app.use(express.static(path.join(__dirname, '../../'), { extensions: ['html'] }));
+
 // --- API Routes ---
 app.use('/api/products', productRoutes);
 app.use('/api/events', eventRoutes);
@@ -56,8 +72,8 @@ app.use('/api/aitags', aiTagRoutes);
 app.use('/api/footer', footerRoutes);
 
 
-// Root Endpoint
-app.get('/', (req, res) => {
+// Health Check Endpoint
+app.get('/api', (req, res) => {
   res.send('🚀 Aham Grham API is running...');
 });
 
