@@ -677,11 +677,68 @@
     html.light-theme .text-accent-blue {
       color: #000000 !important;
     }
+    /* Premium Shop Buttons */
+    .shop-btn-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .shop-btn {
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shop-btn-primary {
+      background: linear-gradient(135deg, #7c4dff 0%, #3b82f6 100%);
+      color: white;
+      border: none;
+      box-shadow: 0 4px 15px rgba(124, 77, 255, 0.25);
+    }
+
+    .shop-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(124, 77, 255, 0.4);
+      filter: brightness(1.1);
+    }
+
+    .shop-btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .shop-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    html.light-theme .shop-btn-secondary {
+      background: rgba(124, 77, 255, 0.05);
+      border-color: rgba(124, 77, 255, 0.1);
+      color: #7c4dff;
+    }
+
+    html.light-theme .shop-btn-secondary:hover {
+      background: rgba(124, 77, 255, 0.1);
+      border-color: rgba(124, 77, 255, 0.2);
+    }
   </style>
 </head>
 
 <body class="bg-bg-deep text-text-primary selection:bg-accent-blue/30">
-  <div id="focus-loader"></div>
 
   <!-- BG Mesh -->
   <div class="bg-mesh">
@@ -697,7 +754,7 @@
         <img src="assets/logo_transparent.png" alt="Logo" class="logo-img">
         <div class="logo-text">
           <div class="brand-name">aham grham</div>
-          <div class="brand-sub">return to you inner Home</div>
+          <div class="brand-sub">return to your inner home</div>
         </div>
       </div>
 
@@ -730,7 +787,7 @@
 
   <main class="pt-32 pb-8 relative z-10">
     <!-- Hero Product Section -->
-    <section class="relative px-6 md:px-12 lg:px-24 mb-32 services-feature-shell">
+    <section class="relative px-6 md:px-12 lg:px-24 mb-32">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center">
         <!-- Image Canvas -->
         <div class="relative group">
@@ -763,14 +820,14 @@
             </p>
 
           </div>
-          <div class="grid grid-cols-3 gap-3 w-full md:w-max">
-            <button class="btn-primary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold cta-glow flex items-center justify-center" onclick="openProductModal(document.querySelector('.services-feature-shell'))">
+          <div class="shop-btn-group">
+            <button class="shop-btn shop-btn-primary" onclick="openProductModal(this.closest('section'))">
               <span>Buy</span>
             </button>
-            <button class="btn-secondary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold flex items-center justify-center" onclick="addToCart('Sacred Moon Oil', 78, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo')">
+            <button class="shop-btn shop-btn-secondary" onclick="addToCart('Sacred Moon Oil', 78, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo')">
               <span>Cart</span>
             </button>
-            <button class="btn-secondary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold flex items-center justify-center" onclick="openReviewModal(document.querySelector('.services-feature-shell'))">
+            <button class="shop-btn shop-btn-secondary" onclick="openReviewsModal(this.closest('section'))">
               <span>Review</span>
             </button>
           </div>
@@ -954,7 +1011,6 @@
       </div>
     </div>
 
-    <div class="footer-large-text">aham grham</div>
     <div class="footer-bottom">
       <div class="bottom-content">
         <p>&copy; 2026 Aham Graham. all rights reserved.</p>
@@ -967,7 +1023,6 @@
   <script src="app.js"></script>
   <script src="scroll-velocity.js"></script>
   <script src="footer-sync.js"></script>
-  <script src="true-focus.js"></script>
   <script src="dynamic-products.js"></script>
 
   <!-- PRODUCT DETAIL MODAL -->

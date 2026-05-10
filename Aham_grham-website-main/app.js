@@ -464,7 +464,6 @@ async function loadEventsToBlog() {
                             <div class="blog-item-content">
                                 <span class="category">${ev.category || 'Event'}</span>
                                 <h3>${ev.name}</h3>
-                                <p>${ev.description || ''}</p>
                             </div>
                         </div>
                     </article>

@@ -454,8 +454,18 @@ html.light-theme .btn-icon {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
-html.light-theme .navbar-initial .brand-sub {
-  color: #4b5563 !important;
+html.light-theme .brand-sub,
+html.light-theme .brand-motto,
+html.light-theme .hero-brand-sub,
+html.light-theme #footer-slogan,
+html.light-theme .footer-quote {
+  color: #000000 !important;
+  opacity: 1 !important;
+}
+
+html.light-theme .footer-logo,
+html.light-theme .brand-logo-large {
+  filter: brightness(0) invert(0) !important;
 }
 
 /* Light Theme Nav Indicator & Hover States */

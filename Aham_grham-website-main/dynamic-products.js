@@ -63,15 +63,15 @@ async function fetchProducts() {
           </div>
           <div class="space-y-3 w-full mt-4 z-20 relative">
             <div class="grid grid-cols-3 gap-2 w-full">
-              <button class="py-2.5 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-xl text-[10px] uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-all" 
+              <button class="shop-btn shop-btn-primary !py-2.5 !px-0 !text-[10px]" 
                 onclick="event.stopPropagation(); openProductModal(this.closest('.review-card'));">Buy</button>
-              <button class="py-2.5 bg-white/5 border border-white/10 text-white rounded-xl text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-all" 
+              <button class="shop-btn shop-btn-secondary !py-2.5 !px-0 !text-[10px]" 
                 data-name="${product.name.replace(/"/g, '&quot;')}"
                 data-price="${product.price}"
                 data-image="${imageUrl}"
                 onclick="event.stopPropagation(); const d=this.dataset; addToCart(d.name, parseFloat(d.price), d.image);">Cart</button>
-              <button class="py-2.5 bg-white/5 border border-white/10 text-white rounded-xl text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-all" 
-                onclick="event.stopPropagation(); openReviewModal(this.closest('.review-card'));">Review</button>
+              <button class="shop-btn shop-btn-secondary !py-2.5 !px-0 !text-[10px]" 
+                onclick="event.stopPropagation(); openReviewsModal(this.closest('.review-card'));">Review</button>
             </div>
           </div>
         `;
