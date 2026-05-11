@@ -34,8 +34,8 @@ export const createEvent = async (req, res) => {
       about,
       category,
       isBlog: isBlog === 'true' || isBlog === true,
-      image: req.files?.image ? `/uploads/${req.files.image[0].filename}` : '',
-      video: req.files?.video ? `/uploads/${req.files.video[0].filename}` : ''
+      image: req.body.image || (req.files?.image ? `/uploads/${req.files.image[0].filename}` : ''),
+      video: req.body.video || (req.files?.video ? `/uploads/${req.files.video[0].filename}` : '')
     });
 
     if (event) {
@@ -74,10 +74,15 @@ export const updateEvent = async (req, res) => {
         event.bookingPrice = 0;
       }
 
-      if (req.files?.image) {
+      if (req.body.image) {
+        event.image = req.body.image;
+      } else if (req.files?.image) {
         event.image = `/uploads/${req.files.image[0].filename}`;
       }
-      if (req.files?.video) {
+
+      if (req.body.video) {
+        event.video = req.body.video;
+      } else if (req.files?.video) {
         event.video = `/uploads/${req.files.video[0].filename}`;
       }
 

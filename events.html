@@ -309,6 +309,121 @@
     html.light-theme .events-section-title {
       color: #000000 !important;
     }
+
+    /* HIGHLIGHTS MODAL (SHORTS STYLE) */
+    .highlights-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .highlights-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .highlights-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(15px);
+    }
+
+    .highlights-content-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .shorts-container {
+      width: min(400px, 90vw);
+      height: min(711px, 85vh); /* 9:16 aspect ratio roughly */
+      background: #0d0d0d;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shorts-loading {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 14px;
+      display: none;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .highlights-modal.active .shorts-container {
+      transform: translateY(0);
+    }
+
+    .shorts-container img, 
+    .shorts-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .shorts-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 40px 24px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      pointer-events: none;
+    }
+
+    .shorts-overlay h3 {
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+      text-transform: none;
+    }
+
+    .highlights-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .highlights-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
   </style>
 </head>
 
@@ -451,8 +566,8 @@
         </div>
       </section>
 
-      <!-- HIGHLIGHTS SECTION (REMOVED IMAGES) -->
-      <section class="services-feature-shell py-12 px-4 mt-8 mx-auto w-full mb-10 hidden">
+      <!-- HIGHLIGHTS SECTION -->
+      <section class="services-feature-shell py-12 px-4 mt-8 mx-auto w-full mb-10">
         <div class="text-center mb-8">
           <h2 class="text-5xl font-bold events-section-title mb-2">Highlights</h2>
           <p class="text-gray-400 max-w-2xl mx-auto">glimpses into the energy and resonance of our recent gatherings.
@@ -676,6 +791,8 @@
 
 
     </div>
+
+    </div>
   </main>
 
   <!-- FOOTER -->
@@ -784,7 +901,11 @@
   <script src="chroma.js"></script>
   <script src="ogl.js"></script>
   <script>
-    const { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } = ogl;
+    // --- OGL COMPONENTS ---
+    let Camera, Mesh, Plane, Program, Renderer, Texture, Transform;
+    if (typeof ogl !== 'undefined') {
+      ({ Camera, Mesh, Plane, Program, Renderer, Texture, Transform } = ogl);
+    }
 
     // --- UTILS ---
     function debounce(func, wait) {
@@ -880,7 +1001,7 @@
 
     class Media {
       constructor({
-        geometry, gl, image, index, length, renderer, scene, screen, text, viewport, bend, textColor, borderRadius = 0, font
+        geometry, gl, image, index, length, renderer, scene, screen, text, viewport, bend, textColor, borderRadius = 0, font, description, about, category
       }) {
         this.extra = 0;
         this.geometry = geometry;
@@ -897,6 +1018,9 @@
         this.textColor = textColor;
         this.borderRadius = borderRadius;
         this.font = font;
+        this.description = description;
+        this.about = about;
+        this.category = category;
         this.createShader();
         this.createMesh();
         this.createTitle();
@@ -967,6 +1091,9 @@
           texture.image = img;
           this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
         };
+        img.onerror = () => {
+          img.src = 'assets/AhamGraham-Web/AboutUs-Page.jpg';
+        };
       }
       createMesh() {
         this.plane = new Mesh(this.gl, { geometry: this.geometry, program: this.program });
@@ -1027,6 +1154,7 @@
         this.container = container;
         this.scrollSpeed = scrollSpeed;
         this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
+        this.mouse = { x: 0, y: 0 };
         this.onCheckDebounce = debounce(this.onCheck, 200);
         this.createRenderer();
         this.createCamera();
@@ -1055,13 +1183,14 @@
         this.medias = this.mediasImages.map((data, index) => new Media({
           geometry: this.planeGeometry, gl: this.gl, image: data.image, index, length: this.mediasImages.length,
           renderer: this.renderer, scene: this.scene, screen: this.screen, text: data.text, viewport: this.viewport,
-          bend, textColor, borderRadius, font
+          bend, textColor, borderRadius, font, description: data.description, about: data.about, category: data.category
         }));
       }
       onTouchDown(e) {
         this.isDown = true;
         this.scroll.position = this.scroll.current;
         this.start = e.touches ? e.touches[0].clientX : e.clientX;
+        this.mouseStart = { x: this.start, y: e.touches ? e.touches[0].clientY : e.clientY };
       }
       onTouchMove(e) {
         if (!this.isDown) return;
@@ -1069,7 +1198,50 @@
         const distance = (this.start - x) * (this.scrollSpeed * 0.025);
         this.scroll.target = this.scroll.position + distance;
       }
-      onTouchUp() { this.isDown = false; this.onCheck(); }
+      onTouchUp(e) { 
+        this.isDown = false; 
+        this.onCheck(); 
+        
+        const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+        const endY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+        const dist = Math.hypot(endX - this.mouseStart.x, endY - this.mouseStart.y);
+        
+        if (dist < 5) {
+          this.onClick(endX, endY);
+        }
+      }
+      onClick(x, y) {
+        // Get container bounds to adjust client coordinates
+        const rect = this.container.getBoundingClientRect();
+        const localX = x - rect.left;
+        const localY = y - rect.top;
+        
+        // Convert local coordinates to normalized device coordinates (-1 to 1)
+        const normX = (localX / this.screen.width) * 2 - 1;
+        const normY = -(localY / this.screen.height) * 2 + 1;
+        
+        // Convert NDC to world coordinates
+        const worldX = (normX * this.viewport.width) / 2;
+        const worldY = (normY * this.viewport.height) / 2;
+        
+        // Find the clicked media
+        this.medias.forEach(media => {
+          const plane = media.plane;
+          const halfWidth = plane.scale.x / 2;
+          const halfHeight = plane.scale.y / 2;
+          
+          if (
+            worldX >= plane.position.x - halfWidth &&
+            worldX <= plane.position.x + halfWidth &&
+            worldY >= plane.position.y - halfHeight &&
+            worldY <= plane.position.y + halfHeight
+          ) {
+            if (window.openProgramDetail) {
+              window.openProgramDetail(media.text, media.image, media.description, media.category, media.about);
+            }
+          }
+        });
+      }
       onWheel(e) {
         const delta = e.deltaY || e.wheelDelta || e.detail;
         this.scroll.target += (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
@@ -1109,26 +1281,9 @@
         window.addEventListener('touchend', this.onTouchUp.bind(this));
       }
     }
+    window.CircularGalleryApp = CircularGalleryApp;
 
-    // --- INITIALIZATION ---
-    const items = [
-      { image: 'assets/22.jpg', text: 'Primal Breath' },
-      { image: 'assets/23.jpg', text: 'Lunar Gaze' },
-      { image: 'assets/24.jpg', text: 'Desert Stillness' },
-      { image: 'assets/25.jpg', text: 'Forest Flow' },
-      { image: 'assets/26.jpg', text: 'Urban Reset' }
-    ];
-
-    const container = document.getElementById('circular-gallery');
-    if (container) {
-      new CircularGalleryApp(container, {
-        items,
-        bend: 3,
-        textColor: '#ffffff',
-        borderRadius: 0.05,
-        scrollEase: 0.02
-      });
-    }
+    // Dynamic initialization is handled in app.js
   </script>
   <script src="gsap.min.js"></script>
   <script src="app.js"></script>

@@ -40,7 +40,7 @@ if (nav) {
     });
 }
 
-const testimonials = [
+let testimonials = [
     {
         text: "Every session is a data point. Our students don't just feel better - they can prove it with numbers.",
         name: "Dr. Leila Ahmadi",
@@ -321,6 +321,9 @@ function closeProgramModal() {
     }
 }
 
+window.openProgramDetail = openProgramDetail;
+window.closeProgramModal = closeProgramModal;
+
 // Global click listener for all display cards
 document.addEventListener('click', (e) => {
     // Check if clicked element or its parent is a card
@@ -422,7 +425,7 @@ async function loadProgramsToHome() {
                 if (progIndex < programs.length) {
                     const prog = programs[progIndex];
                     const patternClass = patterns[i] || '';
-                    const imgSrc = prog.image ? `http://localhost:5000${prog.image}` : 'assets/AhamGraham-Web/placeholder.png';
+                    const imgSrc = prog.image ? (prog.image.startsWith('data:') ? prog.image : `http://localhost:5000${prog.image}`) : 'assets/AhamGraham-Web/placeholder.png';
 
                     const cardHTML = `
                         <div class="bento-item ${patternClass}" 
@@ -465,7 +468,7 @@ async function loadEventsToBlog() {
 
             blogEvents.forEach((ev, i) => {
                 const index = (i % 15) + 1; // 15 unique layouts c1-c15
-                const imgSrc = ev.image ? `http://localhost:5000${ev.image}` : 'assets/AhamGraham-Web/placeholder.png';
+                const imgSrc = ev.image ? (ev.image.startsWith('data:') ? ev.image : `http://localhost:5000${ev.image}`) : 'assets/AhamGraham-Web/placeholder.png';
 
                 const cardHTML = `
                     <article class="bento-blog-item c${index}">
@@ -502,8 +505,8 @@ async function loadTestimonialsToHome() {
         
         if (dbTestimonials && dbTestimonials.length > 0) {
             baseTestimonials = dbTestimonials.map((t, i) => ({
-                src: testimonialImages[i % testimonialImages.length],
-                image: testimonialImages[i % testimonialImages.length],
+                src: t.image ? (t.image.startsWith('data:') ? t.image : `http://localhost:5000${t.image}`) : testimonialImages[i % testimonialImages.length],
+                image: t.image ? (t.image.startsWith('data:') ? t.image : `http://localhost:5000${t.image}`) : testimonialImages[i % testimonialImages.length],
                 name: t.name,
                 role: t.role,
                 text: t.content,
@@ -521,7 +524,11 @@ async function loadTestimonialsToHome() {
         }
         
         // Update global testimonials array for the quote card
+        testimonials = baseTestimonials;
         window.testimonials = baseTestimonials;
+        index = 0;
+        updateTestimonial();
+        renderFacultyIndicators();
 
         // Duplicate the data to fill the dense grid (min 20 items recommended for Dome)
         let testimonialData = [...baseTestimonials];
@@ -621,19 +628,42 @@ async function loadEventsToPage() {
 
             // Populate Highlights (Circular Gallery)
             const galleryContainer = document.getElementById('circular-gallery');
-            if (galleryContainer && categorized['Highlight'].length > 0 && window.CircularGalleryApp) {
-                galleryContainer.innerHTML = '';
-                const highlightItems = categorized['Highlight'].map(ev => ({
-                    image: ev.image ? `http://localhost:5000${ev.image}` : 'assets/AhamGraham-Web/placeholder.png',
-                    text: ev.name
-                }));
-                new CircularGalleryApp(galleryContainer, {
-                    items: highlightItems,
-                    bend: 3,
-                    textColor: '#ffffff',
-                    borderRadius: 0.05,
-                    scrollEase: 0.02
-                });
+            const highlightsSection = galleryContainer?.closest('section');
+            if (galleryContainer && window.CircularGalleryApp) {
+                if (categorized['Highlight'].length > 0) {
+                    if (highlightsSection) highlightsSection.style.display = 'block';
+                    galleryContainer.innerHTML = '';
+                    
+                    let highlightData = categorized['Highlight'];
+                    // Circular Gallery needs a few items to look good and function correctly
+                    while (highlightData.length < 5) {
+                        highlightData = [...highlightData, ...categorized['Highlight']];
+                    }
+
+                    const highlightItems = highlightData.map(ev => {
+                        return {
+                            image: ev.image ? (ev.image.startsWith('data:') ? ev.image : `http://localhost:5000${ev.image}`) : 'assets/AhamGraham-Web/AboutUs-Page.jpg',
+                            text: ev.name,
+                            description: ev.description,
+                            about: ev.about,
+                            category: ev.category
+                        };
+                    });
+                    try {
+                        new CircularGalleryApp(galleryContainer, {
+                            items: highlightItems,
+                            bend: 3,
+                            textColor: '#ffffff',
+                            borderRadius: 0.05,
+                            scrollEase: 0.02
+                        });
+                    } catch (galleryError) {
+                        console.error("Circular Gallery initialization failed:", galleryError);
+                        galleryContainer.innerHTML = '<p class="text-center text-muted-foreground py-20">interactive gallery unavailable. please refresh.</p>';
+                    }
+                } else {
+                    if (highlightsSection) highlightsSection.style.display = 'none';
+                }
             }
 
             // Re-initialize reveal animations
@@ -660,7 +690,7 @@ async function loadProductsToServices() {
 
             serviceProducts.forEach(product => {
                 const imgSrc = product.image && product.image !== 'no-photo.jpg'
-                    ? `http://localhost:5000/uploads/${product.image}`
+                    ? (product.image.startsWith('data:') ? product.image : `http://localhost:5000/uploads/${product.image}`)
                     : 'https://images.unsplash.com/photo-1592179900431-1e021ea5c783?auto=format&fit=crop&q=80';
 
                 const cardHTML = `
@@ -891,7 +921,7 @@ async function loadCentersToPage() {
 }
 
 function createEventCard(ev, patternClass, isWorkshop = false) {
-    const imgSrc = ev.image ? `http://localhost:5000${ev.image}` : 'assets/AhamGraham-Web/placeholder.png';
+    const imgSrc = ev.image ? (ev.image.startsWith('data:') ? ev.image : `http://localhost:5000${ev.image}`) : 'assets/AhamGraham-Web/placeholder.png';
     const overlayClass = isWorkshop ? '!bg-gradient-to-t !from-[#231f37]/80 !to-transparent' : '';
     const groupClass = isWorkshop ? 'group flex flex-col h-full' : '';
 
