@@ -1,4 +1,5 @@
 import Program from '../models/Program.js';
+import { logActivity } from '../utils/logger.js';
 
 // @desc    Get all programs
 // @route   GET /api/programs
@@ -35,6 +36,11 @@ export const createProgram = async (req, res) => {
     });
 
     if (program) {
+      await logActivity({
+        action: 'CREATE',
+        module: 'Programs',
+        description: `Created program ${name} (${programId})`
+      });
       res.status(201).json(program);
     } else {
       res.status(400).json({ message: 'Invalid program data' });
@@ -52,7 +58,13 @@ export const deleteProgram = async (req, res) => {
     const program = await Program.findById(req.params.id);
 
     if (program) {
+      const { name, programId } = program;
       await program.deleteOne();
+      await logActivity({
+        action: 'DELETE',
+        module: 'Programs',
+        description: `Deleted program ${name} (${programId})`
+      });
       res.json({ message: 'Program removed' });
     } else {
       res.status(404).json({ message: 'Program not found' });
@@ -80,6 +92,11 @@ export const updateProgram = async (req, res) => {
       }
 
       const updatedProgram = await program.save();
+      await logActivity({
+        action: 'UPDATE',
+        module: 'Programs',
+        description: `Updated program ${updatedProgram.name} (${updatedProgram.programId})`
+      });
       res.json(updatedProgram);
     } else {
       res.status(404).json({ message: 'Program not found' });

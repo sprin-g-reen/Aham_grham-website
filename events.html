@@ -358,11 +358,11 @@
     <div class="about-main">
       <!-- HERO SECTION -->
       <section id="events-hero-section" class="about-hero">
-        <img id="events-hero-image" src="assets/AhamGraham-Web/AboutUs-Page.jpg" alt="Aham Graham Events">
+        <img data-content="hero-image" src="assets/AhamGraham-Web/AboutUs-Page.jpg" alt="Aham Graham Events">
         <div class="about-hero-content">
-          <span id="events-hero-kicker" class="about-kicker">communal resonance</span>
-          <h1 id="events-hero-title" class="about-title">sacred gatherings</h1>
-          <p id="events-hero-subtitle" class="about-subtitle">from global summits to intimate retreats, join us in
+          <span data-content="hero-kicker" class="about-kicker">communal resonance</span>
+          <h1 data-content="hero-title" class="about-title">sacred gatherings</h1>
+          <p data-content="hero-subtitle" class="about-subtitle">from global summits to intimate retreats, join us in
             spaces designed for collective awakening and profound clinical stillness.</p>
         </div>
       </section>
@@ -370,8 +370,8 @@
       <!-- MAIN EVENTS SECTION -->
       <section class="services-feature-shell py-12 px-4 mt-4 mx-auto w-full">
         <div class="text-center mb-8">
-          <h2 class="text-5xl font-bold events-section-title mb-2">Main Events</h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">curated experiences that bridge ancient wisdom with modern
+          <h2 class="text-5xl font-bold events-section-title mb-2" data-content="section-mainEvents-title">Main Events</h2>
+          <p class="text-gray-400 max-w-2xl mx-auto" data-content="section-mainEvents-description">curated experiences that bridge ancient wisdom with modern
             neurological transformation.</p>
         </div>
 
@@ -1198,11 +1198,12 @@
         scrollEase: 0.02
       });
     }
-  </script>
+  <script src="gsap.min.js"></script>
   <script src="app.js"></script>
   <script src="scroll-velocity.js"></script>
   <script src="ai-tags.js"></script>
   <script src="footer-sync.js"></script>
+  <script src="page-content-sync.js"></script>
   <script src="true-focus.js"></script>
 
 </body>

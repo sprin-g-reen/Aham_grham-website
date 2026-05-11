@@ -1,4 +1,5 @@
 import Footer from '../models/Footer.js';
+import { logActivity } from '../utils/logger.js';
 
 // @desc    Get footer data
 // @route   GET /api/footer
@@ -48,6 +49,11 @@ export const updateFooter = async (req, res) => {
       footer.updatedAt = Date.now();
       
       const updatedFooter = await footer.save();
+      await logActivity({
+        action: 'UPDATE',
+        module: 'Footer & Branding',
+        description: `Updated footer settings and branding info`
+      });
       res.json(updatedFooter);
     } else {
       const newFooter = await Footer.create({

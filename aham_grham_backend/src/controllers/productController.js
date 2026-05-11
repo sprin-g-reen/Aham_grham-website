@@ -1,4 +1,5 @@
 import Product from '../models/Product.js';
+import { logActivity } from '../utils/logger.js';
 
 // @desc    Create a product
 // @route   POST /api/products
@@ -28,6 +29,11 @@ export const createProduct = async (req, res) => {
     });
 
     const createdProduct = await product.save();
+    await logActivity({
+      action: 'CREATE',
+      module: 'Products',
+      description: `Created product ${name} (SKU: ${sku})`
+    });
     res.status(201).json(createdProduct);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -95,6 +101,11 @@ export const updateProduct = async (req, res) => {
       }
 
       const updatedProduct = await product.save();
+      await logActivity({
+        action: 'UPDATE',
+        module: 'Products',
+        description: `Updated product ${updatedProduct.name} (SKU: ${updatedProduct.sku})`
+      });
       res.status(200).json(updatedProduct);
     } else {
       res.status(404).json({ message: 'Product not found' });
@@ -112,7 +123,13 @@ export const deleteProduct = async (req, res) => {
     const product = await Product.findById(req.params.id);
 
     if (product) {
+      const { name, sku } = product;
       await Product.deleteOne({ _id: product._id });
+      await logActivity({
+        action: 'DELETE',
+        module: 'Products',
+        description: `Deleted product ${name} (SKU: ${sku})`
+      });
       res.status(200).json({ message: 'Product removed' });
     } else {
       res.status(404).json({ message: 'Product not found' });

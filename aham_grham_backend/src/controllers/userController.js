@@ -1,5 +1,6 @@
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
+import { logActivity } from '../utils/logger.js';
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -10,6 +11,14 @@ const authUser = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
+    await logActivity({
+      user: user.name,
+      action: 'LOGIN',
+      module: 'Authentication',
+      description: `User ${user.name} logged in`,
+      ip: req.ip
+    });
+
     res.json({
       _id: user._id,
       name: user.name,
@@ -44,6 +53,13 @@ const registerUser = async (req, res) => {
   });
 
   if (user) {
+    await logActivity({
+      user: user.name,
+      action: 'CREATE',
+      module: 'Authentication',
+      description: `New user account created: ${user.name} (${user.email})`
+    });
+
     res.status(201).json({
       _id: user._id,
       name: user.name,
@@ -113,4 +129,21 @@ const generateToken = (id) => {
   });
 };
 
-export { authUser, registerUser, getUserProfile, verifyEmail, resetPassword };
+// @desc    Logout user & clear cookie
+// @route   POST /api/users/logout
+// @access  Private
+const logoutUser = async (req, res) => {
+  const { name } = req.body;
+  
+  await logActivity({
+    user: name || 'Admin',
+    action: 'LOGOUT',
+    module: 'Authentication',
+    description: `User ${name || 'Admin'} logged out`,
+    ip: req.ip
+  });
+
+  res.status(200).json({ message: 'Logged out successfully' });
+};
+
+export { authUser, registerUser, getUserProfile, verifyEmail, resetPassword, logoutUser };

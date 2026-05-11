@@ -5,6 +5,7 @@ import {
   createTestimonial,
   deleteTestimonial,
   updateTestimonial,
+  bulkCreateTestimonials,
 } from '../controllers/testimonialController.js';
 import multer from 'multer';
 import path from 'path';
@@ -27,6 +28,8 @@ const upload = multer({ storage });
 router.route('/')
   .get(getTestimonials)
   .post(upload.single('image'), createTestimonial);
+
+router.post('/bulk', bulkCreateTestimonials);
 
 router.route('/:id')
   .delete(deleteTestimonial)

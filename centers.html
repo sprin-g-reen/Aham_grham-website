@@ -291,11 +291,11 @@
     <div class="about-main">
       <div class="about-grid">
         <section class="about-card about-hero">
-          <img alt="Our Centers Hero" src="https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&w=1920&q=80" />
+          <img data-content="hero-image" alt="Our Centers Hero" src="https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&w=1920&q=80" />
           <div class="about-hero-content">
-            <span class="about-kicker">sanctuary network</span>
-            <h1 class="about-title">our centers</h1>
-            <p class="about-subtitle">discover a network of portals designed to elevate your spirit. each sanctuary is a living manifestation of peace, blending sacred geometry with modern neurological hospitality.</p>
+            <span data-content="hero-kicker" class="about-kicker">sanctuary network</span>
+            <h1 data-content="hero-title" class="about-title">our centers</h1>
+            <p data-content="hero-subtitle" class="about-subtitle">discover a network of portals designed to elevate your spirit. each sanctuary is a living manifestation of peace, blending sacred geometry with modern neurological hospitality.</p>
           </div>
         </section>
       </div>
@@ -306,17 +306,17 @@
       <div class="centers-shell">
       <section class="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div class="max-w-2xl">
-          <h2 class="text-4xl font-headline font-medium tracking-tight mb-4 text-white centers-adaptive-title">Our Centers</h2>
-          <p class="text-gray-400 text-lg leading-relaxed">Each of our physical locations is meticulously engineered to
+          <h2 class="text-4xl font-headline font-medium tracking-tight mb-4 text-white centers-adaptive-title" data-content="section-mainCenters-title">Our Centers</h2>
+          <p class="text-gray-400 text-lg leading-relaxed" data-content="section-mainCenters-description">Each of our physical locations is meticulously engineered to
             provide biological synchronization and spiritual depth.</p>
         </div>
         <div class="flex gap-4">
           <div class="bg-[#0a0a20] px-6 py-4 rounded-lg text-center border border-[#3b82f6]/20 min-w-[120px] shadow-sm">
-            <span class="text-2xl font-bold text-[#3b82f6]">12</span>
+            <span class="text-2xl font-bold text-[#3b82f6]" data-content="section-stats-active">12</span>
             <p class="text-[0.65rem] uppercase tracking-widest text-gray-400">Active Portals</p>
           </div>
           <div class="bg-[#0a0a20] px-6 py-4 rounded-lg text-center border border-[#3b82f6]/20 min-w-[120px] shadow-sm">
-            <span class="text-2xl font-bold text-[#3b82f6]">4</span>
+            <span class="text-2xl font-bold text-[#3b82f6]" data-content="section-stats-soon">4</span>
             <p class="text-[0.65rem] uppercase tracking-widest text-gray-400">Opening Soon</p>
           </div>
         </div>
@@ -382,10 +382,10 @@
   <!-- DIGITAL SANCTUARY CTA SECTION -->
   <section class="w-full px-4">
     <div class="max-w-[98%] mx-auto bg-[#170529] rounded-[32px] py-20 px-6 text-center shadow-2xl border border-white/5 html-light-theme-bg-white">
-      <h2 class="text-4xl md:text-6xl font-headline font-medium text-white mb-6 tracking-tight centers-adaptive-title">
+      <h2 class="text-4xl md:text-6xl font-headline font-medium text-white mb-6 tracking-tight centers-adaptive-title" data-content="section-cta-title">
         Find Your Sanctuary Anywhere
       </h2>
-      <p class="text-purple-200/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-serif italic">
+      <p class="text-purple-200/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-serif italic" data-content="section-cta-description">
         Our digital classes and guided meditations are available worldwide for those who cannot visit our physical portals.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -506,6 +506,7 @@
   <script src="scroll-velocity.js"></script>
   <script src="ai-tags.js"></script>
   <script src="footer-sync.js"></script>
+  <script src="page-content-sync.js"></script>
   <script src="true-focus.js"></script>
 
 </body>

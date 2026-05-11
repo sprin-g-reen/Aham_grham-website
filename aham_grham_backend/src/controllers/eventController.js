@@ -1,4 +1,5 @@
 import Event from '../models/Event.js';
+import { logActivity } from '../utils/logger.js';
 
 // @desc    Get all events
 // @route   GET /api/events
@@ -38,6 +39,11 @@ export const createEvent = async (req, res) => {
     });
 
     if (event) {
+      await logActivity({
+        action: 'CREATE',
+        module: 'Events',
+        description: `Created event ${name} (${eventId})`
+      });
       res.status(201).json(event);
     } else {
       res.status(400).json({ message: 'Invalid event data' });
@@ -76,6 +82,11 @@ export const updateEvent = async (req, res) => {
       }
 
       const updatedEvent = await event.save();
+      await logActivity({
+        action: 'UPDATE',
+        module: 'Events',
+        description: `Updated event ${updatedEvent.name} (${updatedEvent.eventId})`
+      });
       res.json(updatedEvent);
     } else {
       res.status(404).json({ message: 'Event not found' });
@@ -94,6 +105,11 @@ export const toggleBlogStatus = async (req, res) => {
         if (event) {
             event.isBlog = !event.isBlog;
             const updatedEvent = await event.save();
+            await logActivity({
+                action: 'UPDATE',
+                module: 'Events',
+                description: `${updatedEvent.isBlog ? 'Added' : 'Removed'} event ${updatedEvent.name} ${updatedEvent.isBlog ? 'to' : 'from'} Blog`
+            });
             res.json(updatedEvent);
         } else {
             res.status(404).json({ message: 'Event not found' });
@@ -111,7 +127,13 @@ export const deleteEvent = async (req, res) => {
     const event = await Event.findById(req.params.id);
 
     if (event) {
+      const { name, eventId } = event;
       await event.deleteOne();
+      await logActivity({
+        action: 'DELETE',
+        module: 'Events',
+        description: `Deleted event ${name} (${eventId})`
+      });
       res.json({ message: 'Event removed' });
     } else {
       res.status(404).json({ message: 'Event not found' });

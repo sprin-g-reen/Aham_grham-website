@@ -1,4 +1,5 @@
 import Hero from '../models/Hero.js';
+import { logActivity } from '../utils/logger.js';
 
 export const getHero = async (req, res) => {
   try {
@@ -147,6 +148,13 @@ export const updateHero = async (req, res) => {
 
     hero.updatedAt = Date.now();
     const updatedHero = await hero.save();
+    
+    await logActivity({
+      action: 'UPDATE',
+      module: 'Page Content',
+      description: `Updated content for the ${page} page`
+    });
+
     res.json(updatedHero);
   } catch (error) {
     res.status(500).json({ message: error.message });
