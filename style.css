@@ -195,7 +195,7 @@ html.light-theme .product-card:hover {
 
 html.light-theme .bento-overlay::before,
 html.light-theme .blog-item-content::before {
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.85) 0%, transparent 100%) !important;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.45) 0%, transparent 70%) !important;
 }
 
 html.light-theme .bento-item:hover .bento-overlay::before,
@@ -259,15 +259,7 @@ html.light-theme .product-card:hover {
   border-color: rgba(0, 0, 0, 0.1) !important;
 }
 
-html.light-theme .bento-overlay::before,
-html.light-theme .blog-item-content::before {
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.85) 0%, transparent 100%) !important;
-}
-
-html.light-theme .bento-item:hover .bento-overlay::before,
-html.light-theme .bento-blog-item:hover .blog-item-content::before {
-  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, transparent 100%) !important;
-}
+/* Removed duplicate block */
 
 html.light-theme .about-title,
 html.light-theme .about-subtitle,
@@ -335,15 +327,7 @@ html.light-theme .product-card:hover {
   border-color: rgba(0, 0, 0, 0.1) !important;
 }
 
-html.light-theme .bento-overlay::before,
-html.light-theme .blog-item-content::before {
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.85) 0%, transparent 100%) !important;
-}
-
-html.light-theme .bento-item:hover .bento-overlay::before,
-html.light-theme .bento-blog-item:hover .blog-item-content::before {
-  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, transparent 100%) !important;
-}
+/* Removed duplicate block */
 
 html.light-theme .bento-overlay h3,
 html.light-theme .bento-overlay p,
@@ -3986,8 +3970,7 @@ body,
   /* Bento Overlay Light Mode - White Shade */
   html.light-theme .bento-overlay {
     pointer-events: none;
-    pointer-events: none;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.4) 60%, transparent 100%) !important;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.45) 0%, transparent 70%) !important;
   }
 
   html.light-theme .bento-content h3,
