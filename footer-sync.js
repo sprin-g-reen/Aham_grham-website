@@ -5,7 +5,7 @@
 
 async function initFooterSync() {
   try {
-    const response = await fetch('https://aham-grham-website.vercel.app/api/footer');
+    const response = await fetch('/api/footer');
     if (!response.ok) throw new Error('Failed to fetch footer data');
     const data = await response.json();
     

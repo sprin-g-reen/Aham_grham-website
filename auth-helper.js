@@ -4,7 +4,7 @@
  */
 
 const AUTH_CONFIG = {
-    API_BASE_URL: 'https://aham-grham-website.vercel.app/api/users',
+    API_BASE_URL: '/api/users',
     TOKEN_KEY: 'aham_grham_token',
     USER_KEY: 'aham_grham_user'
 };

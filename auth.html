@@ -263,7 +263,7 @@
         errorDiv.innerText = '';
       }
 
-      const endpoint = type === 'login' ? 'https://aham-grham-website.vercel.app/api/users/login' : 'https://aham-grham-website.vercel.app/api/users';
+      const endpoint = type === 'login' ? '/api/users/login' : '/api/users';
       
       const payload = type === 'login' ? {
         email: form.querySelector('input[type="email"]').value,
@@ -346,7 +346,7 @@
       errorDiv.classList.add('hidden');
 
       try {
-        const response = await fetch('https://aham-grham-website.vercel.app/api/users/verify-email', {
+        const response = await fetch('/api/users/verify-email', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email })
@@ -387,7 +387,7 @@
       }
 
       try {
-        const response = await fetch('https://aham-grham-website.vercel.app/api/users/reset-password', {
+        const response = await fetch('/api/users/reset-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })

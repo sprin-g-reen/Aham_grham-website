@@ -1,5 +1,5 @@
-const API_URL = 'https://aham-grham-website.vercel.app/api';
-const UPLOADS_URL = 'https://aham-grham-website.vercel.app/uploads';
+const API_URL = '/api';
+const UPLOADS_URL = '/uploads';
 
 async function fetchProducts() {
   const nameEl = document.getElementById('featuredProductName');

@@ -4,7 +4,7 @@
  */
 
 (function() {
-    const API_URL = 'https://aham-grham-website.vercel.app/api/analytics/track';
+    const API_URL = '/api/analytics/track';
     
     async function track(type) {
         try {
