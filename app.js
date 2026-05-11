@@ -883,7 +883,9 @@ async function loadCentersToPage() {
             centersContainer.innerHTML = centers.map((center, index) => {
                 const isReversed = index % 2 !== 0;
                 const hasImage = !!center.image;
-                const imageUrl = hasImage ? 'http://localhost:5000' + center.image : 'https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&w=1920&q=80';
+                const imageUrl = hasImage 
+                    ? (center.image.startsWith('http') || center.image.startsWith('data:') ? center.image : `http://localhost:5000${center.image}`)
+                    : 'https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&w=1920&q=80';
 
                 // Image Card (8 columns)
                 const imageCard = `

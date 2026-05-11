@@ -1,6 +1,10 @@
 import Center from '../models/Center.js';
 import { logActivity } from '../utils/logger.js';
+import { uploadToCloudinary } from '../utils/cloudinary.js';
 
+// @desc    Get all centers
+// @route   GET /api/centers
+// @access  Public
 export const getCenters = async (req, res) => {
   try {
     const centers = await Center.find().sort({ createdAt: -1 });
@@ -10,17 +14,28 @@ export const getCenters = async (req, res) => {
   }
 };
 
+// @desc    Create a center
+// @route   POST /api/centers
+// @access  Private/Admin
 export const createCenter = async (req, res) => {
   try {
-    const { name, location, description, status } = req.body;
-    const image = req.file ? `/uploads/${req.file.filename}` : '';
+    console.log('🏗️ Creating center with body:', { ...req.body, image: req.body.image ? 'Base64 data...' : 'None' });
+    const { name, location, description, status, image } = req.body;
+    
+    let imageUrl = image || '';
+    if (imageUrl && imageUrl.startsWith('data:')) {
+      console.log('☁️ Uploading center image to Cloudinary...');
+      imageUrl = await uploadToCloudinary(imageUrl);
+    }
+
+    console.log('✅ Final imageUrl for center:', imageUrl);
 
     const center = new Center({
       name,
       location,
       description,
       status,
-      image
+      image: imageUrl
     });
 
     const savedCenter = await center.save();
@@ -35,28 +50,49 @@ export const createCenter = async (req, res) => {
   }
 };
 
+// @desc    Update a center
+// @route   PUT /api/centers/:id
+// @access  Private/Admin
 export const updateCenter = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, location, description, status } = req.body;
+    const { name, location, description, status, image } = req.body;
 
-    const updateData = { name, location, description, status };
-    if (req.file) {
-      updateData.image = `/uploads/${req.file.filename}`;
+    const center = await Center.findById(id);
+    if (center) {
+      console.log('🔄 Updating center:', center.name);
+      center.name = name || center.name;
+      center.location = location || center.location;
+      center.description = description || center.description;
+      center.status = status || center.status;
+      
+      if (image && image.startsWith('data:')) {
+        console.log('☁️ Uploading updated center image to Cloudinary...');
+        center.image = await uploadToCloudinary(image);
+      } else if (image) {
+        center.image = image;
+      }
+
+      console.log('✅ Updated center imageUrl:', center.image);
+
+      const updatedCenter = await center.save();
+      await logActivity({
+        action: 'UPDATE',
+        module: 'Centers',
+        description: `Updated center: ${updatedCenter.name}`
+      });
+      res.json(updatedCenter);
+    } else {
+      res.status(404).json({ message: 'Center not found' });
     }
-
-    const updatedCenter = await Center.findByIdAndUpdate(id, updateData, { new: true });
-    await logActivity({
-      action: 'UPDATE',
-      module: 'Centers',
-      description: `Updated center: ${updatedCenter.name}`
-    });
-    res.json(updatedCenter);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
+// @desc    Delete a center
+// @route   DELETE /api/centers/:id
+// @access  Private/Admin
 export const deleteCenter = async (req, res) => {
   try {
     const { id } = req.params;
