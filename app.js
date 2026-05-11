@@ -477,7 +477,7 @@ async function loadEventsToBlog() {
                              data-category="${ev.category}">
                         <img src="${imgSrc}" alt="${ev.name}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services.html'" 
-                             style="cursor: pointer; position: absolute; inset: 0; opacity: 1; visibility: visible; background: linear-gradient(to top, rgba(15, 7, 34, 0.9) 0%, rgba(15, 7, 34, 0.2) 100%);">
+                             style="cursor: pointer; position: absolute; inset: 0; opacity: 1; visibility: visible; background: transparent;">
                             <div class="blog-item-content">
                                 <span class="category">${ev.category || 'Event'}</span>
                                 <h3>${ev.name}</h3>
