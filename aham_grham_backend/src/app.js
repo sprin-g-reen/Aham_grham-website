@@ -18,6 +18,7 @@ import aboutRoutes from './routes/aboutRoutes.js';
 import heroRoutes from './routes/heroRoutes.js';
 import centerRoutes from './routes/centerRoutes.js';
 import aiTagRoutes from './routes/aiTagRoutes.js';
+import analyticsRoutes from './routes/analyticsRoutes.js';
 import footerRoutes from './routes/footerRoutes.js';
 import activityRoutes from './routes/activityRoutes.js';
 
@@ -74,6 +75,7 @@ app.use('/api/admins', adminRoutes);
 app.use('/api/testimonials', testimonialRoutes);
 app.use('/api/about', aboutRoutes);
 app.use('/api/hero', heroRoutes);
+app.use('/api/analytics', analyticsRoutes);
 app.use('/api/centers', centerRoutes);
 app.use('/api/aitags', aiTagRoutes);
 app.use('/api/footer', footerRoutes);

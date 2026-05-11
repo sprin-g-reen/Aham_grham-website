@@ -900,6 +900,7 @@ function createEventCard(ev, patternClass, isWorkshop = false) {
              data-description="${ev.description || ''}"
              data-about="${ev.about || ''}"
              data-category="${ev.category}">
+            <img src="${imgSrc}" alt="${ev.name}" class="w-full h-full object-cover">
             <div class="bento-overlay ${overlayClass}" style="position: relative; opacity: 1; visibility: visible; background: var(--bg-surface);">
                 <div class="bento-content ${isWorkshop ? 'mt-auto' : ''}">
                     <h3 class="${isWorkshop ? 'text-white' : ''}">${ev.name}</h3>
@@ -1011,3 +1012,7 @@ window.updateCartBadge = function () {
 document.addEventListener('DOMContentLoaded', () => {
     window.updateCartBadge();
 });
+    if (!sessionStorage.getItem('aham_visited')) {
+        // removed tracking logic here, moved to tracker.js
+        sessionStorage.setItem('aham_visited', 'true');
+    }
