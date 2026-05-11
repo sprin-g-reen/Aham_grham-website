@@ -1,15 +1,10 @@
 {
   "version": 2,
   "cleanUrls": true,
-  "functions": {
-    "aham_grham_backend/src/app.js": {
-      "runtime": "vercel-node@latest"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/aham_grham_backend/src/app.js"
+      "destination": "/api/index.js"
     }
   ]
 }
