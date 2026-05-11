@@ -1,6 +1,6 @@
 const testPost = async () => {
   try {
-    const response = await fetch('http://localhost:5000/api/products', {
+    const response = await fetch('https://aham-grham-website.vercel.app/api/products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

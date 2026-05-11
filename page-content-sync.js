@@ -11,8 +11,8 @@ async function initPageContentSync() {
   // Determine if we're on the About page or a regular Hero-based page
   const isAboutPage = pageName === 'about';
   const apiUrl = isAboutPage 
-    ? 'http://localhost:5000/api/about' 
-    : `http://localhost:5000/api/hero?page=${pageName}`;
+    ? 'https://aham-grham-website.vercel.app/api/about' 
+    : `https://aham-grham-website.vercel.app/api/hero?page=${pageName}`;
 
   try {
     const response = await fetch(apiUrl);
@@ -44,7 +44,7 @@ function syncHeroPage(data, pageName) {
     const heroImg = document.querySelector('[data-content="hero-image"]');
     if (heroImg) {
       // Correctly handle backend-served images
-      const imgSrc = data.image.startsWith('http') ? data.image : `http://localhost:5000${data.image}`;
+      const imgSrc = data.image.startsWith('http') ? data.image : `https://aham-grham-website.vercel.app${data.image}`;
       if (heroImg.tagName === 'IMG') heroImg.src = imgSrc;
       else if (heroImg.tagName === 'IMAGE') heroImg.setAttribute('href', imgSrc);
       else heroImg.style.backgroundImage = `url(${imgSrc})`;

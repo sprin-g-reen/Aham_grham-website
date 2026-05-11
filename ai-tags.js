@@ -1,5 +1,5 @@
 async function initAiTags() {
-  const API_URL = 'http://localhost:5000/api/aitags';
+  const API_URL = 'https://aham-grham-website.vercel.app/api/aitags';
   let aiTags = [];
 
   // 1. Setup delegation immediately
