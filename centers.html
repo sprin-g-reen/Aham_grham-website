@@ -7,11 +7,13 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap"
     rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
   <!-- Fonts for the footer and site (IBM Plex Sans) -->
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="scroll-velocity.css" />
@@ -41,7 +43,7 @@
     .about-main {
       padding: 80px 16px 24px;
       display: grid;
-      gap: 24px; 
+      gap: 24px;
     }
 
     @media (min-width: 768px) {
@@ -54,7 +56,7 @@
     .about-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 24px; 
+      gap: 24px;
     }
 
     @media (min-width: 768px) {
@@ -67,7 +69,7 @@
     .about-card {
       border-radius: 24px;
       background: linear-gradient(var(--about-surface), var(--about-surface)) padding-box,
-                  conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
       border: 1.5px solid transparent;
       animation: rotate 6s linear infinite;
       overflow: hidden;
@@ -172,16 +174,17 @@
     /* Centers Bento Grid Specific Styles */
     .centers-shell {
       background: linear-gradient(var(--about-card), var(--about-card)) padding-box,
-                  conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
       border: 1.5px solid transparent;
       animation: rotate 8s linear infinite;
       border-radius: 28px;
       box-shadow: 0 16px 38px rgba(0, 0, 0, 0.4);
       padding: clamp(24px, 4vw, 44px);
     }
+
     .glass-card {
       background: linear-gradient(rgba(51, 24, 77, 0.6), rgba(51, 24, 77, 0.6)) padding-box,
-                  conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
       border: 1.5px solid transparent;
       animation: rotate 10s linear infinite;
       backdrop-filter: blur(24px);
@@ -204,7 +207,7 @@
     /* LIGHT THEME CENTERS ADJUSTMENTS */
     html.light-theme .centers-shell {
       background: #ffffff padding-box,
-                  conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
+        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
@@ -251,7 +254,8 @@
     <div class="nav-container">
       <!-- Logo Area -->
       <div class="logo-area">
-        <img src="assets/logo_transparent.png" alt="Logo" class="logo-img" onerror="this.src='https://placehold.co/400x100/2c2c3a/white?text=AHAM'">
+        <img src="assets/logo_transparent.png" alt="Logo" class="logo-img"
+          onerror="this.src='https://placehold.co/400x100/2c2c3a/white?text=AHAM'">
         <div class="logo-text">
           <div class="brand-name">aham grham</div>
           <div class="brand-sub">return to you inner Home</div>
@@ -295,7 +299,9 @@
           <div class="about-hero-content">
             <span data-content="hero-kicker" class="about-kicker">sanctuary network</span>
             <h1 data-content="hero-title" class="about-title">our centers</h1>
-            <p data-content="hero-subtitle" class="about-subtitle">discover a network of portals designed to elevate your spirit. each sanctuary is a living manifestation of peace, blending sacred geometry with modern neurological hospitality.</p>
+            <p data-content="hero-subtitle" class="about-subtitle">discover a network of portals designed to elevate
+              your spirit. each sanctuary is a living manifestation of peace, blending sacred geometry with modern
+              neurological hospitality.</p>
           </div>
         </section>
       </div>
@@ -304,76 +310,94 @@
     <!-- CONTENT WRAPPER - WIDENED TO REDUCE SIDE GAPS -->
     <div class="px-2 max-w-[98%] mx-auto py-10 relative z-20">
       <div class="centers-shell">
-      <section class="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-8">
-        <div class="max-w-2xl">
-          <h2 class="text-4xl font-headline font-medium tracking-tight mb-4 text-white centers-adaptive-title" data-content="section-mainCenters-title">Our Centers</h2>
-          <p class="text-gray-400 text-lg leading-relaxed" data-content="section-mainCenters-description">Each of our physical locations is meticulously engineered to
-            provide biological synchronization and spiritual depth.</p>
-        </div>
-        <div class="flex gap-4">
-          <div class="bg-[#0a0a20] px-6 py-4 rounded-lg text-center border border-[#3b82f6]/20 min-w-[120px] shadow-sm">
-            <span class="text-2xl font-bold text-[#3b82f6]" data-content="section-stats-active">12</span>
-            <p class="text-[0.65rem] uppercase tracking-widest text-gray-400">Active Portals</p>
+        <section class="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div class="max-w-2xl">
+            <h2 class="text-4xl font-headline font-medium tracking-tight mb-4 text-white centers-adaptive-title"
+              data-content="section-mainCenters-title">Our Centers</h2>
+            <p class="text-gray-400 text-lg leading-relaxed" data-content="section-mainCenters-description">Each of our
+              physical locations is meticulously engineered to
+              provide biological synchronization and spiritual depth.</p>
           </div>
-          <div class="bg-[#0a0a20] px-6 py-4 rounded-lg text-center border border-[#3b82f6]/20 min-w-[120px] shadow-sm">
-            <span class="text-2xl font-bold text-[#3b82f6]" data-content="section-stats-soon">4</span>
-            <p class="text-[0.65rem] uppercase tracking-widest text-gray-400">Opening Soon</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Bento Grid of Sanctuaries -->
-      <div id="centers-container" class="grid grid-cols-1 md:grid-cols-12 gap-8">
-        <!-- Sanctuary Card 1: Large Featured -->
-        <div class="md:col-span-8 group relative overflow-hidden rounded-3xl bg-[#170529] shadow-2xl transition-all">
-          <div class="aspect-[16/9] w-full overflow-hidden">
-            <img alt="The Midnight Grove" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAj3gUat_UqDuRkvashlbnAbLnHttO3Iu3V490jZUriJlSqPruIS32r3YvtWnXimc_eSfyxV58FkZJz4to8oGxnO22u8VoyjO1c0dCxvRm81chgifdXoXGGX0ERq9v19ad_XKHpxJlXUQ-zEd1P9URzAArpQJ6Je09oAxtDfF8bBc8T553GHCGVQKQDXUn_Fst_4D1S1nVl-LPs__VfriWBITmGu3BV6WihNA1PaiLfHXeb4Gh_pbEbAI0jJpb8QXAXUo-HKo_a8E" />
-          </div>
-        </div>
-
-        <!-- Sanctuary Card 2: No Image, Description -->
-        <div class="md:col-span-4 group flex flex-col bg-[#170529] rounded-3xl overflow-hidden shadow-xl border border-white/5">
-          <div class="p-8 flex-grow flex flex-col justify-center text-center text-white">
-            <span class="material-symbols-outlined text-5xl text-[#8c52ff] mb-6">architecture</span>
-            <h3 class="text-2xl font-headline font-medium mb-4 centers-adaptive-title">Celestial Spire</h3>
-            <p class="text-purple-100 text-sm italic leading-relaxed mb-8">
-              An elevated sanctuary reaching toward the cosmic ceiling. This architectural marvel features a 360-degree glass atrium designed to harness lunar energy and provide an unobstructed view of the infinite stars during our deep night meditations.
-            </p>
-            <div class="h-px w-16 bg-[#8c52ff]/30 mx-auto"></div>
-          </div>
-          <div class="p-6 border-t border-white/10 text-center">
-            <p class="text-purple-200 text-xs mb-6">+1 (555) 888-0101 • info@cspire.ethereal</p>
-
-          </div>
-        </div>
-
-        <!-- Sanctuary Card 3: Horizontal Asymmetric - MATCHING HEIGHT -->
-        <div class="md:col-span-5 bg-[#250e3a] rounded-3xl p-8 flex flex-col justify-between border border-white/5 relative overflow-hidden group h-[480px]">
-          <div class="absolute -right-12 -top-12 w-48 h-48 bg-[#8c52ff]/10 rounded-full blur-3xl text-white"></div>
-          <div>
-            <div class="flex justify-between items-start mb-12">
-              <span class="w-12 h-12 rounded-full border border-[#8c52ff]/30 flex items-center justify-center">
-                <span class="material-symbols-outlined text-[#8c52ff]">auto_awesome</span>
-              </span>
-              <span class="text-[0.65rem] uppercase tracking-[0.3em] text-purple-300">Est. 2024</span>
+          <div class="flex gap-4">
+            <div
+              class="bg-[#0a0a20] px-6 py-4 rounded-lg text-center border border-[#3b82f6]/20 min-w-[120px] shadow-sm">
+              <span class="text-2xl font-bold text-[#3b82f6]" data-content="section-stats-active">12</span>
+              <p class="text-[0.65rem] uppercase tracking-widest text-gray-400">Active Portals</p>
             </div>
-            <h3 class="text-2xl font-headline mb-4 text-white centers-adaptive-title">The Velvet Void</h3>
-            <p class="text-purple-200 text-sm leading-relaxed mb-6">A sanctuary dedicated to deep restorative practices, featuring complete light isolation and therapeutic silence.</p>
-          </div>
-          <div class="space-y-4">
-            <p class="text-[0.65rem] text-[#8c52ff] uppercase tracking-widest font-bold">Available Amenities</p>
-            <div class="flex gap-3 overflow-x-auto pb-4 no-scrollbar">
-              <div class="flex-shrink-0 px-4 py-2 bg-white/5 rounded-full text-[10px] text-white border border-white/10">Isolation Pods</div>
-              <div class="flex-shrink-0 px-4 py-2 bg-white/5 rounded-full text-[10px] text-white border border-white/10">Velvet Mats</div>
-              <div class="flex-shrink-0 px-4 py-2 bg-white/5 rounded-full text-[10px] text-white border border-white/10">Herb Garden</div>
+            <div
+              class="bg-[#0a0a20] px-6 py-4 rounded-lg text-center border border-[#3b82f6]/20 min-w-[120px] shadow-sm">
+              <span class="text-2xl font-bold text-[#3b82f6]" data-content="section-stats-soon">4</span>
+              <p class="text-[0.65rem] uppercase tracking-widest text-gray-400">Opening Soon</p>
             </div>
           </div>
-        </div>
+        </section>
 
-        <!-- Sanctuary Card 4: Image Focus - MATCHING HEIGHT -->
-        <div class="md:col-span-7 group relative rounded-3xl overflow-hidden shadow-xl h-[480px]">
-          <img alt="Aether Hall" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkUsbfCCL0UUZ_4aNMr5KXE2eiKbjtSp2isovouTH_XxWfZ1foTglkUPl7mA0Sth1_NegAolYG3DhkSpyPEIYosxskK2eak-xlEcbugmWa4_LqPLAc0w2NLpU31Q_oEFdomNJ0w0tpk2-NnnqquluT9aEQRSuaPd9i7Bn5jiV7Vr1SDsUXzjjogP1r7fV0NP6jIuX1QlwD3Wo2j6O8SWV5AyxzXpGy44cRDi9cpMFiz3nzfcoUDjMAKq-7thSmNelQp0Bxf-pcyRU" />
-        </div>
+        <!-- Bento Grid of Sanctuaries -->
+        <div id="centers-container" class="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <!-- Sanctuary Card 1: Large Featured -->
+          <div class="md:col-span-8 group relative overflow-hidden rounded-3xl bg-[#170529] shadow-2xl transition-all">
+            <div class="aspect-[16/9] w-full overflow-hidden">
+              <img alt="The Midnight Grove"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAj3gUat_UqDuRkvashlbnAbLnHttO3Iu3V490jZUriJlSqPruIS32r3YvtWnXimc_eSfyxV58FkZJz4to8oGxnO22u8VoyjO1c0dCxvRm81chgifdXoXGGX0ERq9v19ad_XKHpxJlXUQ-zEd1P9URzAArpQJ6Je09oAxtDfF8bBc8T553GHCGVQKQDXUn_Fst_4D1S1nVl-LPs__VfriWBITmGu3BV6WihNA1PaiLfHXeb4Gh_pbEbAI0jJpb8QXAXUo-HKo_a8E" />
+            </div>
+          </div>
+
+          <!-- Sanctuary Card 2: No Image, Description -->
+          <div
+            class="md:col-span-4 group flex flex-col bg-[#170529] rounded-3xl overflow-hidden shadow-xl border border-white/5">
+            <div class="p-8 flex-grow flex flex-col justify-center text-center text-white">
+              <span class="material-symbols-outlined text-5xl text-[#8c52ff] mb-6">architecture</span>
+              <h3 class="text-2xl font-headline font-medium mb-4 centers-adaptive-title">Celestial Spire</h3>
+              <p class="text-purple-100 text-sm italic leading-relaxed mb-8">
+                An elevated sanctuary reaching toward the cosmic ceiling. This architectural marvel features a
+                360-degree glass atrium designed to harness lunar energy and provide an unobstructed view of the
+                infinite stars during our deep night meditations.
+              </p>
+              <div class="h-px w-16 bg-[#8c52ff]/30 mx-auto"></div>
+            </div>
+            <div class="p-6 border-t border-white/10 text-center">
+              <p class="text-purple-200 text-xs mb-6">+1 (555) 888-0101 • info@cspire.ethereal</p>
+
+            </div>
+          </div>
+
+          <!-- Sanctuary Card 3: Horizontal Asymmetric - MATCHING HEIGHT -->
+          <div
+            class="md:col-span-5 bg-[#250e3a] rounded-3xl p-8 flex flex-col justify-between border border-white/5 relative overflow-hidden group h-[480px]">
+            <div class="absolute -right-12 -top-12 w-48 h-48 bg-[#8c52ff]/10 rounded-full blur-3xl text-white"></div>
+            <div>
+              <div class="flex justify-between items-start mb-12">
+                <span class="w-12 h-12 rounded-full border border-[#8c52ff]/30 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[#8c52ff]">auto_awesome</span>
+                </span>
+                <span class="text-[0.65rem] uppercase tracking-[0.3em] text-purple-300">Est. 2024</span>
+              </div>
+              <h3 class="text-2xl font-headline mb-4 text-white centers-adaptive-title">The Velvet Void</h3>
+              <p class="text-purple-200 text-sm leading-relaxed mb-6">A sanctuary dedicated to deep restorative
+                practices, featuring complete light isolation and therapeutic silence.</p>
+            </div>
+            <div class="space-y-4">
+              <p class="text-[0.65rem] text-[#8c52ff] uppercase tracking-widest font-bold">Available Amenities</p>
+              <div class="flex gap-3 overflow-x-auto pb-4 no-scrollbar">
+                <div
+                  class="flex-shrink-0 px-4 py-2 bg-white/5 rounded-full text-[10px] text-white border border-white/10">
+                  Isolation Pods</div>
+                <div
+                  class="flex-shrink-0 px-4 py-2 bg-white/5 rounded-full text-[10px] text-white border border-white/10">
+                  Velvet Mats</div>
+                <div
+                  class="flex-shrink-0 px-4 py-2 bg-white/5 rounded-full text-[10px] text-white border border-white/10">
+                  Herb Garden</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sanctuary Card 4: Image Focus - MATCHING HEIGHT -->
+          <div class="md:col-span-7 group relative rounded-3xl overflow-hidden shadow-xl h-[480px]">
+            <img alt="Aether Hall" class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkUsbfCCL0UUZ_4aNMr5KXE2eiKbjtSp2isovouTH_XxWfZ1foTglkUPl7mA0Sth1_NegAolYG3DhkSpyPEIYosxskK2eak-xlEcbugmWa4_LqPLAc0w2NLpU31Q_oEFdomNJ0w0tpk2-NnnqquluT9aEQRSuaPd9i7Bn5jiV7Vr1SDsUXzjjogP1r7fV0NP6jIuX1QlwD3Wo2j6O8SWV5AyxzXpGy44cRDi9cpMFiz3nzfcoUDjMAKq-7thSmNelQp0Bxf-pcyRU" />
+          </div>
         </div>
       </div>
     </div>
@@ -381,15 +405,21 @@
 
   <!-- DIGITAL SANCTUARY CTA SECTION -->
   <section class="w-full px-4">
-    <div class="max-w-[98%] mx-auto bg-[#170529] rounded-[32px] py-20 px-6 text-center shadow-2xl border border-white/5 html-light-theme-bg-white">
-      <h2 class="text-4xl md:text-6xl font-headline font-medium text-white mb-6 tracking-tight centers-adaptive-title" data-content="section-cta-title">
+    <div
+      class="max-w-[98%] mx-auto bg-[#170529] rounded-[32px] py-20 px-6 text-center shadow-2xl border border-white/5 html-light-theme-bg-white">
+      <h2 class="text-4xl md:text-6xl font-headline font-medium text-white mb-6 tracking-tight centers-adaptive-title"
+        data-content="section-cta-title">
         Find Your Sanctuary Anywhere
       </h2>
-      <p class="text-purple-200/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-serif italic" data-content="section-cta-description">
-        Our digital classes and guided meditations are available worldwide for those who cannot visit our physical portals.
+      <p class="text-purple-200/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-serif italic"
+        data-content="section-cta-description">
+        Our digital classes and guided meditations are available worldwide for those who cannot visit our physical
+        portals.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-        <button class="centers-adaptive-btn border border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/5 transition-all active:scale-95" onclick="window.location.href='book-session.html#contacts'">
+        <button
+          class="centers-adaptive-btn border border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/5 transition-all active:scale-95"
+          onclick="window.location.href='book-session.html#contacts'">
           contact concierge
         </button>
       </div>
@@ -406,99 +436,100 @@
       <li><a href="centers" class="mobile-nav-link">centers</a></li>
       <li><a href="sacred-moon-oil" class="mobile-nav-link">shop</a></li>
       <li><a href="about" class="mobile-nav-link">about us</a></li>
-      <li><button onclick="handleAddToCartClick(event)" class="btn-secondary mt-4 w-full flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined">shopping_cart</span>
-        add to cart
-        <span class="cart-badge" style="display: none;">0</span>
-      </button></li>
+      <li><button onclick="handleAddToCartClick(event)"
+          class="btn-secondary mt-4 w-full flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          add to cart
+          <span class="cart-badge" style="display: none;">0</span>
+        </button></li>
       <li><a href="book-session" class="btn-primary mt-4">book session</a></li>
     </ul>
   </div>
 
   <footer class="footer">
-      <!-- Row 1: AI Tags Marquee (Dynamic) -->
-      <div class="footer-top">
-        <div id="marquee-1" class="velocity-marquee">
-          <div class="marquee-content"></div>
+    <!-- Row 1: AI Tags Marquee (Dynamic) -->
+    <div class="footer-top">
+      <div id="marquee-1" class="velocity-marquee">
+        <div class="marquee-content"></div>
+      </div>
+      <div id="marquee-2" class="velocity-marquee">
+        <div class="marquee-content"></div>
+      </div>
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-container">
+        <!-- Column 1: Brand & Identity -->
+        <div class="footer-col footer-brand-col">
+          <div class="footer-quote-wrap">
+            <p class="footer-quote" id="footer-slogan">
+              bridging ancient wisdom with modern neurological insights.<br>
+              your path to biological transcendence begins here.
+            </p>
+          </div>
+          <img src="Untitled%20design%20(2).png" alt="Aham Graham Logo" class="footer-logo">
+          <img src="Copy of VJS-Logo (1).png" alt="VJS Logo" class="footer-badge dark-logo">
+          <img src="VJS-Logo-transparent.png" alt="VJS Logo" class="footer-badge light-logo">
         </div>
-        <div id="marquee-2" class="velocity-marquee">
-          <div class="marquee-content"></div>
+
+        <!-- Column 2: Navigation -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="about">about us</a></li>
+            <li><a href="services">Services</a></li>
+            <li><a href="events">Events</a></li>
+            <li><a href="centers">Centers</a></li>
+            <li><a href="sacred-moon-oil">Shop</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Our Centers -->
+        <div class="footer-col">
+          <h4 class="footer-subheading">Our Centers</h4>
+          <ul id="footer-centers-list">
+            <li>Rishikesh, India</li>
+            <li>Swiss Alps, Switzerland</li>
+            <li>Ubud, Bali</li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Social Media -->
+        <div class="footer-col">
+          <h4 class="footer-subheading">Social Media</h4>
+          <ul id="footer-social-list">
+            <li>Facebook</li>
+            <li>Instagram</li>
+            <li>YouTube</li>
+            <li>LinkedIn</li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Contact Us -->
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-stack">
+            <a href="mailto:contact@ahamgraham.com" class="contact-link" id="footer-contact-email">
+              <span class="material-symbols-outlined">mail</span>
+              contact@ahamgraham.com
+            </a>
+            <a href="tel:+919876543210" class="contact-link" id="footer-contact-phone">
+              <span class="material-symbols-outlined">call</span>
+              +91 98765 43210
+            </a>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="footer-main">
-        <div class="footer-container">
-          <!-- Column 1: Brand & Identity -->
-          <div class="footer-col footer-brand-col">
-            <div class="footer-quote-wrap">
-              <p class="footer-quote" id="footer-slogan">
-                bridging ancient wisdom with modern neurological insights.<br>
-                your path to biological transcendence begins here.
-              </p>
-            </div>
-            <img src="Untitled%20design%20(2).png" alt="Aham Graham Logo" class="footer-logo">
-            <img src="Copy of VJS-Logo (1).png" alt="VJS Logo" class="footer-badge dark-logo">
-            <img src="VJS-Logo-transparent.png" alt="VJS Logo" class="footer-badge light-logo">
-          </div>
-
-          <!-- Column 2: Navigation -->
-          <div class="footer-col">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="about">about us</a></li>
-              <li><a href="services">Services</a></li>
-              <li><a href="events">Events</a></li>
-              <li><a href="centers">Centers</a></li>
-              <li><a href="sacred-moon-oil">Shop</a></li>
-            </ul>
-          </div>
-
-          <!-- Column 3: Our Centers -->
-          <div class="footer-col">
-            <h4 class="footer-subheading">Our Centers</h4>
-            <ul id="footer-centers-list">
-              <li>Rishikesh, India</li>
-              <li>Swiss Alps, Switzerland</li>
-              <li>Ubud, Bali</li>
-            </ul>
-          </div>
-
-          <!-- Column 4: Social Media -->
-          <div class="footer-col">
-            <h4 class="footer-subheading">Social Media</h4>
-            <ul id="footer-social-list">
-              <li>Facebook</li>
-              <li>Instagram</li>
-              <li>YouTube</li>
-              <li>LinkedIn</li>
-            </ul>
-          </div>
-
-          <!-- Column 5: Contact Us -->
-          <div class="footer-col">
-            <h4>Contact Us</h4>
-            <div class="contact-stack">
-              <a href="mailto:contact@ahamgraham.com" class="contact-link" id="footer-contact-email">
-                <span class="material-symbols-outlined">mail</span>
-                contact@ahamgraham.com
-              </a>
-              <a href="tel:+919876543210" class="contact-link" id="footer-contact-phone">
-                <span class="material-symbols-outlined">call</span>
-                +91 98765 43210
-              </a>
-            </div>
-          </div>
-        </div>
+    <!-- SECTION 3: COPYRIGHT -->
+    <div class="footer-large-text">aham grham</div>
+    <div class="footer-bottom">
+      <div class="bottom-content">
+        <p>&copy; 2026 Aham Graham. all rights reserved.</p>
       </div>
-
-      <!-- SECTION 3: COPYRIGHT -->
-      <div class="footer-large-text">aham grham</div>
-        <div class="footer-bottom">
-        <div class="bottom-content">
-          <p>&copy; 2026 Aham Graham. all rights reserved.</p>
-        </div>
-      </div>
+    </div>
   </footer>
 
   <script src="gsap.min.js"></script>
@@ -512,4 +543,3 @@
 </body>
 
 </html>
-
