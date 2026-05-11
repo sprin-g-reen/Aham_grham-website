@@ -28,11 +28,11 @@ const upload = multer({ storage });
 
 router.route('/')
   .get(getEvents)
-  .post(upload.fields([{ name: 'image', maxCount: 1 }, { name: 'video', maxCount: 1 }]), createEvent);
+  .post(createEvent);
 
 router.route('/:id')
   .delete(deleteEvent)
-  .put(upload.fields([{ name: 'image', maxCount: 1 }, { name: 'video', maxCount: 1 }]), updateEvent);
+  .put(updateEvent);
 
 router.patch('/:id/toggle-blog', toggleBlogStatus);
 
