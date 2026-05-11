@@ -1,11 +1,11 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
-import { 
-  getPrograms, 
-  createProgram, 
+import {
+  getPrograms,
+  createProgram,
   deleteProgram,
-  updateProgram 
+  updateProgram
 } from '../controllers/programController.js';
 
 const router = express.Router();

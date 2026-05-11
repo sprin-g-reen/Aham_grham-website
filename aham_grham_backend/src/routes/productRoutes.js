@@ -1,10 +1,10 @@
 import express from 'express';
-import { 
-  createProduct, 
-  getAllProducts, 
-  getSingleProduct, 
+import {
+  createProduct,
+  getAllProducts,
+  getSingleProduct,
   updateProduct,
-  deleteProduct 
+  deleteProduct
 } from '../controllers/productController.js';
 import upload from '../middleware/upload.js';
 

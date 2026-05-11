@@ -14,7 +14,7 @@ export const createCenter = async (req, res) => {
   try {
     const { name, location, description, status } = req.body;
     const image = req.file ? `/uploads/${req.file.filename}` : '';
-    
+
     const center = new Center({
       name,
       location,
@@ -39,7 +39,7 @@ export const updateCenter = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, location, description, status } = req.body;
-    
+
     const updateData = { name, location, description, status };
     if (req.file) {
       updateData.image = `/uploads/${req.file.filename}`;

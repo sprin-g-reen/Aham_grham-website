@@ -87,7 +87,7 @@ export const updateProduct = async (req, res) => {
       product.sku = sku || product.sku;
       product.tax = tax || product.tax;
       product.stockStatus = stockStatus || product.stockStatus;
-      
+
       if (isMostSelling !== undefined) {
         product.isMostSelling = isMostSelling === 'true' || isMostSelling === true;
       }

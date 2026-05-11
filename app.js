@@ -507,7 +507,7 @@ async function loadTestimonialsToHome() {
 
         const testimonialImages = ['assets/22.jpg', 'assets/23.jpg', 'assets/24.jpg', 'assets/25.jpg', 'assets/26.jpg', 'assets/27.jpg'];
         let baseTestimonials = [];
-        
+
         if (dbTestimonials && dbTestimonials.length > 0) {
             baseTestimonials = dbTestimonials.map((t, i) => ({
                 src: t.image ? (t.image.startsWith('data:') ? t.image : `http://localhost:5000${t.image}`) : testimonialImages[i % testimonialImages.length],
@@ -527,7 +527,7 @@ async function loadTestimonialsToHome() {
                 alt: `Testimonial ${i + 1}`
             }));
         }
-        
+
         // Update global testimonials array for the quote card
         testimonials = baseTestimonials;
         window.testimonials = baseTestimonials;
@@ -606,7 +606,7 @@ async function loadEventsToPage() {
             if (workshopGrid && categorized['Workshop'].length > 0) {
                 workshopGrid.innerHTML = '';
                 const workshopPatterns = [
-                    'sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1 lg:row-span-2', 
+                    'sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1 lg:row-span-2',
                     'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1',
                     'sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1',
                     'sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1'
@@ -643,7 +643,7 @@ async function loadEventsToPage() {
                 if (categorized['Highlight'].length > 0) {
                     if (highlightsSection) highlightsSection.style.display = 'block';
                     galleryContainer.innerHTML = '';
-                    
+
                     let highlightData = categorized['Highlight'];
                     // Circular Gallery needs a few items to look good and function correctly
                     while (highlightData.length < 5) {
@@ -1052,7 +1052,7 @@ window.updateCartBadge = function () {
 document.addEventListener('DOMContentLoaded', () => {
     window.updateCartBadge();
 });
-    if (!sessionStorage.getItem('aham_visited')) {
-        // removed tracking logic here, moved to tracker.js
-        sessionStorage.setItem('aham_visited', 'true');
-    }
+if (!sessionStorage.getItem('aham_visited')) {
+    // removed tracking logic here, moved to tracker.js
+    sessionStorage.setItem('aham_visited', 'true');
+}

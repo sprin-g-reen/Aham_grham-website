@@ -137,23 +137,23 @@ export const updateEvent = async (req, res) => {
 // @route   PATCH /api/events/:id/toggle-blog
 // @access  Private/Admin
 export const toggleBlogStatus = async (req, res) => {
-    try {
-        const event = await Event.findById(req.params.id);
-        if (event) {
-            event.isBlog = !event.isBlog;
-            const updatedEvent = await event.save();
-            await logActivity({
-                action: 'UPDATE',
-                module: 'Events',
-                description: `${updatedEvent.isBlog ? 'Added' : 'Removed'} event ${updatedEvent.name} ${updatedEvent.isBlog ? 'to' : 'from'} Blog`
-            });
-            res.json(updatedEvent);
-        } else {
-            res.status(404).json({ message: 'Event not found' });
-        }
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+  try {
+    const event = await Event.findById(req.params.id);
+    if (event) {
+      event.isBlog = !event.isBlog;
+      const updatedEvent = await event.save();
+      await logActivity({
+        action: 'UPDATE',
+        module: 'Events',
+        description: `${updatedEvent.isBlog ? 'Added' : 'Removed'} event ${updatedEvent.name} ${updatedEvent.isBlog ? 'to' : 'from'} Blog`
+      });
+      res.json(updatedEvent);
+    } else {
+      res.status(404).json({ message: 'Event not found' });
     }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 // @desc    Delete an event

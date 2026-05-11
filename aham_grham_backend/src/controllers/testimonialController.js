@@ -87,7 +87,7 @@ export const updateTestimonial = async (req, res) => {
       testimonial.role = role || testimonial.role;
       testimonial.content = content || testimonial.content;
       testimonial.rating = rating ? Number(rating) : testimonial.rating;
-      
+
       if (req.file) {
         testimonial.image = `/uploads/${req.file.filename}`;
       }
@@ -126,20 +126,20 @@ export const bulkCreateTestimonials = async (req, res) => {
     }
 
     const createdTestimonials = await Testimonial.insertMany(newTestimonials.map(t => ({
-        ...t,
-        rating: Number(t.rating || 5),
-        image: t.image || ''
+      ...t,
+      rating: Number(t.rating || 5),
+      image: t.image || ''
     })));
 
     await logActivity({
-        action: 'IMPORT',
-        module: 'Testimonials',
-        description: `Imported ${createdTestimonials.length} testimonials via CSV`
+      action: 'IMPORT',
+      module: 'Testimonials',
+      description: `Imported ${createdTestimonials.length} testimonials via CSV`
     });
 
     res.status(201).json({
-        message: `${createdTestimonials.length} testimonials imported successfully`,
-        count: createdTestimonials.length
+      message: `${createdTestimonials.length} testimonials imported successfully`,
+      count: createdTestimonials.length
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

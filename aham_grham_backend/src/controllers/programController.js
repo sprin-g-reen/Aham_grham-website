@@ -86,7 +86,7 @@ export const updateProgram = async (req, res) => {
       program.programId = programId || program.programId;
       program.bookingPrice = bookingPrice || program.bookingPrice;
       program.description = description || program.description;
-      
+
       if (req.file) {
         program.image = `/uploads/${req.file.filename}`;
       }
