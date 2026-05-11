@@ -1,17 +1,18 @@
 import Product from '../models/Product.js';
 import { logActivity } from '../utils/logger.js';
+import { uploadToCloudinary } from '../utils/cloudinary.js';
 
 // @desc    Create a product
 // @route   POST /api/products
 // @access  Private/Admin
 export const createProduct = async (req, res) => {
-  console.log('📦 Create Product Request:', req.body);
+  console.log('📦 Create Product Request:', { ...req.body, image: req.body.image ? 'Base64 data...' : 'None' });
   try {
-    const { name, price, category, description, isMostSelling, offer, sku, tax, stockStatus } = req.body;
+    const { name, price, category, description, isMostSelling, offer, sku, tax, stockStatus, image } = req.body;
 
-    let imagePath = 'no-photo.jpg';
-    if (req.file) {
-      imagePath = req.file.filename;
+    let imageUrl = image || '';
+    if (imageUrl && imageUrl.startsWith('data:')) {
+      imageUrl = await uploadToCloudinary(imageUrl);
     }
 
     const product = new Product({
@@ -19,7 +20,7 @@ export const createProduct = async (req, res) => {
       price,
       category,
       description,
-      image: imagePath,
+      image: imageUrl || 'no-photo.jpg',
       isMostSelling: isMostSelling === 'true' || isMostSelling === true,
       isServicePage: req.body.isServicePage === 'true' || req.body.isServicePage === true,
       offer,
@@ -36,6 +37,7 @@ export const createProduct = async (req, res) => {
     });
     res.status(201).json(createdProduct);
   } catch (error) {
+    console.error('❌ Error creating product:', error);
     res.status(400).json({ message: error.message });
   }
 };
@@ -75,7 +77,7 @@ export const getSingleProduct = async (req, res) => {
 // @access  Private/Admin
 export const updateProduct = async (req, res) => {
   try {
-    const { name, price, category, description, isMostSelling, offer, sku, tax, stockStatus } = req.body;
+    const { name, price, category, description, isMostSelling, offer, sku, tax, stockStatus, image } = req.body;
     const product = await Product.findById(req.params.id);
 
     if (product) {
@@ -96,8 +98,10 @@ export const updateProduct = async (req, res) => {
         product.isServicePage = req.body.isServicePage === 'true' || req.body.isServicePage === true;
       }
 
-      if (req.file) {
-        product.image = req.file.filename;
+      if (image && image.startsWith('data:')) {
+        product.image = await uploadToCloudinary(image);
+      } else if (image) {
+        product.image = image;
       }
 
       const updatedProduct = await product.save();
@@ -111,6 +115,7 @@ export const updateProduct = async (req, res) => {
       res.status(404).json({ message: 'Product not found' });
     }
   } catch (error) {
+    console.error('❌ Error updating product:', error);
     res.status(500).json({ message: error.message });
   }
 };

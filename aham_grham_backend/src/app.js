@@ -32,6 +32,11 @@ dotenv.config();
 // Connect to Database
 connectDB();
 
+console.log('--------------------------------------------------');
+console.log('☁️  Cloudinary Status:', process.env.CLOUDINARY_CLOUD_NAME ? 'Configured' : 'MISSING');
+console.log('📸 Centers Image System: CLOUDINARY (JSON-BASE64)');
+console.log('--------------------------------------------------');
+
 const app = express();
 
 // --- Standard Middleware ---
