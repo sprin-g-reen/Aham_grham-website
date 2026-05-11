@@ -58,7 +58,7 @@ export const createEvent = async (req, res) => {
     const event = await Event.create({
       name,
       eventId,
-      bookingPrice: category === 'Highlight' ? 0 : bookingPrice,
+      bookingPrice: category === 'Highlight' ? 0 : Number(bookingPrice || 0),
       description,
       about,
       category,
@@ -74,10 +74,15 @@ export const createEvent = async (req, res) => {
         description: `Created event ${name} (${eventId})`
       });
       res.status(201).json(event);
-    } else {
-      res.status(400).json({ message: 'Invalid event data' });
     }
   } catch (error) {
+    console.error('❌ Error creating event:', error);
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ message: error.message });
+    }
+    if (error.code === 11000) {
+      return res.status(400).json({ message: 'Event ID must be unique' });
+    }
     res.status(500).json({ message: error.message });
   }
 };
@@ -93,43 +98,37 @@ export const updateEvent = async (req, res) => {
     if (event) {
       event.name = name || event.name;
       event.eventId = eventId || event.eventId;
-      event.bookingPrice = bookingPrice || event.bookingPrice;
+      event.bookingPrice = category === 'Highlight' ? 0 : (bookingPrice !== undefined ? Number(bookingPrice) : event.bookingPrice);
       event.description = description || event.description;
       event.about = about || event.about;
       event.category = category || event.category;
       event.isBlog = isBlog !== undefined ? isBlog : event.isBlog;
-      
-      if (event.category === 'Highlight') {
-        event.bookingPrice = 0;
-      }
 
-      if (req.body.image) {
-        if (req.body.image.startsWith('data:')) {
-          event.image = await uploadToCloudinary(req.body.image);
-        } else {
-          event.image = req.body.image;
-        }
-      } else if (req.files?.image) {
-        event.image = `/uploads/${req.files.image[0].filename}`;
+      // Handle Image update
+      let imageUrl = req.body.image || event.image;
+      if (imageUrl && imageUrl.startsWith('data:')) {
+        imageUrl = await uploadToCloudinary(imageUrl);
       }
+      event.image = imageUrl;
 
-      if (req.body.video) {
-        event.video = req.body.video;
-      } else if (req.files?.video) {
-        event.video = `/uploads/${req.files.video[0].filename}`;
-      }
+      // Handle Video update (from payload or previous state)
+      event.video = req.body.video || event.video;
 
       const updatedEvent = await event.save();
       await logActivity({
         action: 'UPDATE',
         module: 'Events',
-        description: `Updated event ${updatedEvent.name} (${updatedEvent.eventId})`
+        description: `Updated event ${event.name} (${event.eventId})`
       });
       res.json(updatedEvent);
     } else {
       res.status(404).json({ message: 'Event not found' });
     }
   } catch (error) {
+    console.error('❌ Error updating event:', error);
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ message: error.message });
+    }
     res.status(500).json({ message: error.message });
   }
 };

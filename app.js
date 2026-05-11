@@ -468,11 +468,16 @@ async function loadEventsToBlog() {
 
             blogEvents.forEach((ev, i) => {
                 const index = (i % 15) + 1; // 15 unique layouts c1-c15
-                const imgSrc = ev.image ? (ev.image.startsWith('data:') ? ev.image : `http://localhost:5000${ev.image}`) : 'assets/AhamGraham-Web/placeholder.png';
+                const imgSrc = ev.image ? (ev.image.startsWith('data:') || ev.image.startsWith('http') ? ev.image : `http://localhost:5000${ev.image}`) : 'assets/AhamGraham-Web/placeholder.png';
 
                 const cardHTML = `
-                    <article class="bento-blog-item c${index}">
-                        <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services.html'" style="cursor: pointer; position: relative; opacity: 1; visibility: visible; background: var(--bg-surface);">
+                    <article class="bento-blog-item c${index} group relative overflow-hidden" 
+                             data-description="${ev.description || ''}"
+                             data-about="${ev.about || ''}"
+                             data-category="${ev.category}">
+                        <img src="${imgSrc}" alt="${ev.name}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services.html'" 
+                             style="cursor: pointer; position: absolute; inset: 0; opacity: 1; visibility: visible; background: linear-gradient(to top, rgba(15, 7, 34, 0.9) 0%, rgba(15, 7, 34, 0.2) 100%);">
                             <div class="blog-item-content">
                                 <span class="category">${ev.category || 'Event'}</span>
                                 <h3>${ev.name}</h3>
