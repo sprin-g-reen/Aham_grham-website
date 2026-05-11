@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npx serve -p 3000 ."
+    "dev": "npx serve -p 3000 .",
+    "build": "echo 'Static build' && exit 0"
+  },
+  "engines": {
+    "node": ">=18.x"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
