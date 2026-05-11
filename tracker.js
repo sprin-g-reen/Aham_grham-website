@@ -3,7 +3,7 @@
  * Fires as early as possible to capture every visit.
  */
 (function() {
-    const API_URL = '/api/analytics/track';
+    const API_URL = window.API_BASE_URL + '/api/analytics/track';
     
     async function track(type) {
         try {

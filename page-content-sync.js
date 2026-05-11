@@ -11,8 +11,8 @@ async function initPageContentSync() {
   // Determine if we're on the About page or a regular Hero-based page
   const isAboutPage = pageName === 'about';
   const apiUrl = isAboutPage 
-    ? '/api/about' 
-    : `/api/hero?page=${pageName}`;
+    ? window.API_BASE_URL + '/api/about' 
+    : window.API_BASE_URL + `/api/hero?page=${pageName}`;
 
   try {
     const response = await fetch(apiUrl);

@@ -1,5 +1,5 @@
 async function initAiTags() {
-  const API_URL = '/api/aitags';
+  const API_URL = window.API_BASE_URL + '/api/aitags';
   let aiTags = [];
 
   // 1. Setup delegation immediately

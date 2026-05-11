@@ -350,7 +350,7 @@ async function loadProgramsToServices() {
     if (!grid) return;
 
     try {
-        const response = await fetch('/api/programs');
+        const response = await fetch(window.API_BASE_URL + '/api/programs');
         const programs = await response.json();
 
         if (programs.length > 0) {
@@ -392,7 +392,7 @@ async function loadProgramsToHome() {
     if (!grid || document.querySelector('.programs-grid')) return; // Avoid running on services page
 
     try {
-        const response = await fetch('/api/programs');
+        const response = await fetch(window.API_BASE_URL + '/api/programs');
         const programs = await response.json();
 
         if (programs.length > 0) {
@@ -458,7 +458,7 @@ async function loadEventsToBlog() {
     if (!grid) return;
 
     try {
-        const response = await fetch('/api/events');
+        const response = await fetch(window.API_BASE_URL + '/api/events');
         const events = await response.json();
 
         // Filter events that have isBlog set to true
@@ -504,7 +504,7 @@ async function loadTestimonialsToHome() {
     if (!container || !window.DomeGallery) return;
 
     try {
-        const response = await fetch('/api/testimonials');
+        const response = await fetch(window.API_BASE_URL + '/api/testimonials');
         const dbTestimonials = await response.json();
 
         const testimonialImages = ['assets/22.jpg', 'assets/23.jpg', 'assets/24.jpg', 'assets/25.jpg', 'assets/26.jpg', 'assets/27.jpg'];
@@ -580,7 +580,7 @@ async function loadEventsToPage() {
     if (!mainGrid && !workshopGrid && !upcomingGrid && !highlightGrid) return;
 
     try {
-        const response = await fetch('/api/events');
+        const response = await fetch(window.API_BASE_URL + '/api/events');
         const events = await response.json();
 
         if (events.length > 0) {
@@ -697,7 +697,7 @@ async function loadProductsToServices() {
     if (!grid) return;
 
     try {
-        const response = await fetch('/api/products');
+        const response = await fetch(window.API_BASE_URL + '/api/products');
         const products = await response.json();
 
         // Filter products for service page
@@ -755,7 +755,9 @@ async function loadHeroForPage(pageName) {
             const subtitle = document.getElementById(`${pageName}-hero-subtitle`);
 
             if (img && hero.image) {
-                img.src = (hero.image.startsWith('http') || hero.image.startsWith('data:')) ? hero.image : (hero.image.startsWith('/') ? `${hero.image}` : `assets/AhamGraham-Web/${hero.image}`);
+                img.src = (hero.image.startsWith('http') || hero.image.startsWith('data:')) 
+                    ? hero.image 
+                    : (hero.image.startsWith('/') ? `${window.API_BASE_URL}${hero.image}` : `${window.API_BASE_URL}/uploads/${hero.image}`);
             }
             if (kicker) kicker.innerText = hero.kicker;
             if (title) title.innerText = hero.title;
@@ -774,7 +776,7 @@ async function loadAboutToPage() {
     if (!heroTitle) return;
 
     try {
-        const response = await fetch('/api/about');
+        const response = await fetch(window.API_BASE_URL + '/api/about');
         const about = await response.json();
 
         if (about) {
@@ -788,7 +790,9 @@ async function loadAboutToPage() {
                 if (heroTitle) heroTitle.innerText = about.hero.title;
                 if (subtitle) subtitle.innerText = about.hero.subtitle;
                 if (img && about.hero.image) {
-                    img.src = (about.hero.image.startsWith('http') || about.hero.image.startsWith('data:')) ? about.hero.image : (about.hero.image.startsWith('/') ? `${about.hero.image}` : `assets/AhamGraham-Web/${about.hero.image}`);
+                    img.src = (about.hero.image.startsWith('http') || about.hero.image.startsWith('data:')) 
+                        ? about.hero.image 
+                        : (about.hero.image.startsWith('/') ? `${window.API_BASE_URL}${about.hero.image}` : `${window.API_BASE_URL}/uploads/${about.hero.image}`);
                 }
             }
 
@@ -886,7 +890,7 @@ async function loadCentersToPage() {
     if (!centersContainer) return;
 
     try {
-        const response = await fetch('/api/centers');
+        const response = await fetch(window.API_BASE_URL + '/api/centers');
         const centers = await response.json();
 
         if (centers && centers.length > 0) {

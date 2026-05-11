@@ -5,7 +5,7 @@
 
 async function initFooterSync() {
   try {
-    const response = await fetch('/api/footer');
+    const response = await fetch(window.API_BASE_URL + '/api/footer');
     if (!response.ok) throw new Error('Failed to fetch footer data');
     const data = await response.json();
     
