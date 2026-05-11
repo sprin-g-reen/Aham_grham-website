@@ -46,28 +46,28 @@ const testimonials = [
         name: "Dr. Leila Ahmadi",
         role: "Clinical Research Director",
         initials: "LA",
-        image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1600&q=80"
+        image: "assets/AhamGraham-Web/t4.jpg"
     },
     {
         text: "The teachers here hold space with such grace. I've found a stillness I never thought possible in my hectic city life.",
-        name: "Dr. Arjun Graham",
-        role: "Director of Neuroscience",
-        initials: "AG",
-        image: "https://images.unsplash.com/photo-1469571486292-b53601020f09?auto=format&fit=crop&w=1600&q=80"
+        name: "Arjun Sharma",
+        role: "Yoga Practitioner",
+        initials: "AS",
+        image: "assets/AhamGraham-Web/t1.jpg"
     },
     {
         text: "Every session guides me back to clarity. My posture improved, but more importantly, my mind became quieter and lighter.",
-        name: "Dr. Priya Nair",
-        role: "Head of Biomechanics",
+        name: "Priya Nair",
+        role: "Wellness Consultant",
         initials: "PN",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1600&q=80"
+        image: "assets/AhamGraham-Web/t3.jpg"
     },
     {
         text: "The blend of breathwork and mindful flow gave me back my focus. I now carry that calm into every part of my day.",
-        name: "James Whitfield",
-        role: "Lead Breathwork Researcher",
-        initials: "JW",
-        image: "https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=1600&q=80"
+        name: "Rahul Varma",
+        role: "Meditation Guide",
+        initials: "RV",
+        image: "assets/AhamGraham-Web/t2.jpg"
     }
 ];
 
@@ -105,7 +105,9 @@ function updateTestimonial() {
         textEl.innerText = testimonials[index].text;
         nameEl.innerText = testimonials[index].name;
         roleEl.innerText = testimonials[index].role;
-        quoteCard.style.backgroundImage = `url("${testimonials[index].image}")`;
+        // Restore image as requested
+        const imgSrc = testimonials[index].image;
+        quoteCard.style.backgroundImage = `url("${imgSrc}")`;
         renderFacultyIndicators();
         quoteCard.classList.remove("is-switching");
         testimonialTimer = null;
@@ -201,11 +203,19 @@ function setupThemeToggle() {
             localStorage.setItem('theme', 'light');
             lightBtn.style.display = 'none';
             darkBtn.style.display = 'flex';
+            if (window.lightRays) {
+                window.lightRays.updateColor('#ffffff');
+                window.lightRays.updateSaturation(0);
+            }
         } else {
             document.documentElement.classList.remove('light-theme');
             localStorage.setItem('theme', 'dark');
             lightBtn.style.display = 'flex';
             darkBtn.style.display = 'none';
+            if (window.lightRays) {
+                window.lightRays.updateColor('#6366f1');
+                window.lightRays.updateSaturation(1);
+            }
         }
 
         // Force redraw for canvas-based elements (like light-rays)
@@ -459,8 +469,7 @@ async function loadEventsToBlog() {
 
                 const cardHTML = `
                     <article class="bento-blog-item c${index}">
-                        <img src="${imgSrc}" alt="${ev.name || ''}" style="cursor: pointer;">
-                        <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services.html'" style="cursor: pointer;">
+                        <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services.html'" style="cursor: pointer; position: relative; opacity: 1; visibility: visible; background: var(--bg-surface);">
                             <div class="blog-item-content">
                                 <span class="category">${ev.category || 'Event'}</span>
                                 <h3>${ev.name}</h3>
@@ -488,35 +497,31 @@ async function loadTestimonialsToHome() {
         const response = await fetch('http://localhost:5000/api/testimonials');
         const dbTestimonials = await response.json();
 
+        const testimonialImages = ['assets/22.jpg', 'assets/23.jpg', 'assets/24.jpg', 'assets/25.jpg', 'assets/26.jpg', 'assets/27.jpg'];
         let baseTestimonials = [];
-
-        if (dbTestimonials.length > 0) {
-            baseTestimonials = dbTestimonials.map(t => ({
-                src: t.image ? `http://localhost:5000${t.image}` : 'https://placehold.co/400x600/2c2c3a/white?text=' + t.name.charAt(0),
+        
+        if (dbTestimonials && dbTestimonials.length > 0) {
+            baseTestimonials = dbTestimonials.map((t, i) => ({
+                src: testimonialImages[i % testimonialImages.length],
+                image: testimonialImages[i % testimonialImages.length],
                 name: t.name,
                 role: t.role,
                 text: t.content,
                 alt: t.name
             }));
         } else {
-            // Fallback to original static data if none in DB
-            baseTestimonials = [
-                {
-                    src: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=776&auto=format&fit=crop',
-                    name: 'Dr. Leila Ahmadi',
-                    role: 'Clinical Research Director',
-                    text: 'Every session is a data point. Our students don\'t just feel better - they can prove it with numbers.',
-                    alt: 'Dr. Leila Ahmadi'
-                },
-                {
-                    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=774&auto=format&fit=crop',
-                    name: 'Marcus Thorne',
-                    role: 'Professional Athlete',
-                    text: 'The neurological synchronization techniques here transformed my recovery process completely.',
-                    alt: 'Marcus Thorne'
-                }
-            ];
+            baseTestimonials = testimonialImages.map((img, i) => ({
+                src: img,
+                image: img,
+                name: `Client ${i + 1}`,
+                role: 'Wellness Enthusiast',
+                text: 'Aham Grham has transformed my daily routine and mental clarity.',
+                alt: `Testimonial ${i + 1}`
+            }));
         }
+        
+        // Update global testimonials array for the quote card
+        window.testimonials = baseTestimonials;
 
         // Duplicate the data to fill the dense grid (min 20 items recommended for Dome)
         let testimonialData = [...baseTestimonials];
@@ -895,8 +900,7 @@ function createEventCard(ev, patternClass, isWorkshop = false) {
              data-description="${ev.description || ''}"
              data-about="${ev.about || ''}"
              data-category="${ev.category}">
-            <img src="${imgSrc}" alt="${ev.name || ''}" class="${isWorkshop ? 'w-full h-full object-cover rounded-[28px]' : ''}">
-            <div class="bento-overlay ${overlayClass}">
+            <div class="bento-overlay ${overlayClass}" style="position: relative; opacity: 1; visibility: visible; background: var(--bg-surface);">
                 <div class="bento-content ${isWorkshop ? 'mt-auto' : ''}">
                     <h3 class="${isWorkshop ? 'text-white' : ''}">${ev.name}</h3>
                     <p class="${isWorkshop ? 'text-white/80' : ''}">${ev.description?.substring(0, 60)}${ev.description?.length > 60 ? '...' : ''}</p>

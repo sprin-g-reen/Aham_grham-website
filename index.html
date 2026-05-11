@@ -96,10 +96,10 @@
     }
 
     html.light-theme .hero-light-mode {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      z-index: 10;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 1;
     }
 
     .hero-light-rays {
@@ -109,9 +109,24 @@
     }
 
     html.light-theme .hero-light-rays {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      background: #F3EEFD;
+      z-index: 10;
+    }
+
+    html.light-theme .hero-brand-name {
+      color: #000000 !important;
+    }
+
+    html.light-theme .hero-brand-sub {
+      color: rgba(0, 0, 0, 0.7) !important;
+    }
+
+    html.light-theme .hero-logo {
+      filter: drop-shadow(0 0 10px rgba(124, 77, 255, 0.2)) !important;
+      animation: none !important;
     }
 
     html.light-theme .hero-light-mode .hero-image {
@@ -528,7 +543,6 @@
       <div class="bento-blog-grid">
         <!-- C1: FEATURE TALL -->
         <article class="bento-blog-item c1">
-          <img src="assets/30.jpg" alt="Meditation" style="cursor: pointer;">
           <div class="blog-item-content" onclick="event.stopPropagation(); window.location.href='services'"
             style="cursor: pointer;">
             <h3>The Silence Within</h3>
@@ -537,7 +551,6 @@
 
         <!-- C2: WIDE TOP -->
         <article class="bento-blog-item c2">
-          <img src="assets/31.jpg" alt="Yoga" style="cursor: pointer;">
           <div class="blog-item-content" onclick="event.stopPropagation(); window.location.href='services'"
             style="cursor: pointer;">
             <h3>Breath as Medicine</h3>
@@ -546,8 +559,6 @@
 
         <!-- C3: SMALL -->
         <article class="bento-blog-item c3">
-          <img src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&q=80" alt="Spine"
-            onclick="event.stopPropagation(); window.location.href='services'" style="cursor: pointer;">
           <div class="blog-item-content">
             <h3>Spinal Sync</h3>
           </div>
@@ -555,8 +566,6 @@
 
         <!-- C4: WIDE -->
         <article class="bento-blog-item c4">
-          <img src="https://images.unsplash.com/photo-1532798442725-41036acc7489?auto=format&fit=crop&q=80" alt="Moon"
-            onclick="event.stopPropagation(); window.location.href='services'" style="cursor: pointer;">
           <div class="blog-item-content">
             <h3>Celestial Alignment</h3>
           </div>
@@ -564,8 +573,6 @@
 
         <!-- C5: SMALL -->
         <article class="bento-blog-item c5">
-          <img src="https://images.unsplash.com/photo-1518611012118-2969c31aef7e?auto=format&fit=crop&q=80" alt="Reset"
-            onclick="event.stopPropagation(); window.location.href='services'" style="cursor: pointer;">
           <div class="blog-item-content">
             <h3>Quick Reset</h3>
           </div>
@@ -573,9 +580,6 @@
 
         <!-- C6: SMALL -->
         <article class="bento-blog-item c6">
-          <img src="https://images.unsplash.com/photo-1512438248406-306ad8d273af?auto=format&fit=crop&q=80"
-            alt="Rituals" onclick="event.stopPropagation(); window.location.href='services'"
-            style="cursor: pointer;">
           <div class="blog-item-content">
             <h3>Daily Rituals</h3>
           </div>
@@ -583,8 +587,6 @@
 
         <!-- C7: TALL MID -->
         <article class="bento-blog-item c7">
-          <img src="https://images.unsplash.com/photo-1528642463367-8d7bd31da3cd?auto=format&fit=crop&q=80" alt="Sound"
-            onclick="event.stopPropagation(); window.location.href='services'" style="cursor: pointer;">
           <div class="blog-item-content">
             <h3>Healing Soundscapes</h3>
           </div>
@@ -592,8 +594,6 @@
 
         <!-- C8: LARGE SQUARE -->
         <article class="bento-blog-item c8">
-          <img src="https://images.unsplash.com/photo-1545201071-75f0581696ae?auto=format&fit=crop&q=80" alt="Summit"
-            onclick="event.stopPropagation(); window.location.href='services'" style="cursor: pointer;">
           <div class="blog-item-content">
             <h3>Wellness Summit 2026</h3>
           </div>
@@ -601,9 +601,6 @@
 
         <!-- C9: WIDE LOWER -->
         <article class="bento-blog-item c9">
-          <img src="https://images.unsplash.com/photo-1599447421416-3414502d18a5?auto=format&fit=crop&q=80"
-            alt="Somatic" onclick="event.stopPropagation(); window.location.href='services'"
-            style="cursor: pointer;">
           <div class="blog-item-content">
             <span class="category">Workshop</span>
             <h3>Somatic Healing</h3>
@@ -611,21 +608,8 @@
           </div>
         </article>
 
-        <!-- C10: VERTICAL LARGE -->
+        <!-- C10: WIDE -->
         <article class="bento-blog-item c10">
-          <img src="https://images.unsplash.com/photo-1507120410856-1f35574c3b45?auto=format&fit=crop&q=80" alt="Prana"
-            onclick="event.stopPropagation(); window.location.href='services'" style="cursor: pointer;">
-          <div class="blog-item-content">
-            <span class="category">Energy Flow</span>
-            <h3>Path of Prana</h3>
-            <p>Mastering the subtle energy systems of the Vedic tradition.</p>
-          </div>
-        </article>
-
-        <!-- C11: WIDE -->
-        <article class="bento-blog-item c11">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80" alt="B2B"
-            onclick="event.stopPropagation(); window.location.href='services'" style="cursor: pointer;">
           <div class="blog-item-content">
             <span class="category">Corporate</span>
             <h3>Strategic Stillness</h3>
@@ -633,11 +617,17 @@
           </div>
         </article>
 
+        <!-- C11: VERTICAL LARGE -->
+        <article class="bento-blog-item c11">
+          <div class="blog-item-content">
+            <span class="category">Energy Flow</span>
+            <h3>Path of Prana</h3>
+            <p>Mastering the subtle energy systems of the Vedic tradition.</p>
+          </div>
+        </article>
+
         <!-- C12: BOTTOM LARGE -->
         <article class="bento-blog-item c12">
-          <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80"
-            alt="Geometry" onclick="event.stopPropagation(); window.location.href='services'"
-            style="cursor: pointer;">
           <div class="blog-item-content">
             <span class="category">Sacred Geometry</span>
             <h3>Architecture of Spirit</h3>
@@ -647,8 +637,6 @@
 
         <!-- C13: TALL RIGHT -->
         <article class="bento-blog-item c13">
-          <img src="https://images.unsplash.com/photo-1517404212328-397cf3ad48b0?auto=format&fit=crop&q=80"
-            alt="Echoes">
           <div class="blog-item-content">
             <span class="category">Insights</span>
             <h3>Ethereal Echoes</h3>
@@ -658,7 +646,6 @@
 
         <!-- C14: FOOTER WIDE -->
         <article class="bento-blog-item c14">
-          <img src="https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&q=80" alt="Journal">
           <div class="blog-item-content">
             <span class="category">Community</span>
             <h3>Aham Graham Journal</h3>
@@ -668,8 +655,6 @@
 
         <!-- C15: HORIZONTAL WIDE -->
         <article class="bento-blog-item c15">
-          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80"
-            alt="Quantum Mindfulness">
           <div class="blog-item-content">
             <span class="category">Cognitive Reset</span>
             <h3>Quantum Mindfulness</h3>

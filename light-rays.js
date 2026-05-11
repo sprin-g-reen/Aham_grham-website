@@ -204,6 +204,20 @@ class LightRays {
   }
 
 
+  updateColor(hex) {
+    this.raysColor = hex;
+    if (this.uniforms && this.uniforms.raysColor) {
+      this.uniforms.raysColor.value = this.hexToRgb(hex);
+    }
+  }
+
+  updateSaturation(val) {
+    this.saturation = val;
+    if (this.uniforms && this.uniforms.saturation) {
+      this.uniforms.saturation.value = val;
+    }
+  }
+
   destroy() {
     cancelAnimationFrame(this.raf);
     window.removeEventListener('resize', this.onResize);
@@ -218,17 +232,19 @@ class LightRays {
 window.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('light-rays-hero');
   if (container) {
+    const isLight = document.documentElement.classList.contains('light-theme');
     window.lightRays = new LightRays({
       container: container,
       raysOrigin: 'top-center',
-      raysColor: '#6366f1',
+      raysColor: isLight ? '#ffffff' : '#6366f1',
       raysSpeed: 1.5,
       lightSpread: 0.8,
       rayLength: 1.2,
       followMouse: true,
       mouseInfluence: 0.1,
       noiseAmount: 0.1,
-      distortion: 0.05
+      distortion: 0.05,
+      saturation: isLight ? 0.0 : 1.0
     });
   }
 });
