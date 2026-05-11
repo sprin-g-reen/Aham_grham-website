@@ -43,9 +43,11 @@ function syncHeroPage(data, pageName) {
   if (data.image) {
     const heroImg = document.querySelector('[data-content="hero-image"]');
     if (heroImg) {
-      if (heroImg.tagName === 'IMG') heroImg.src = data.image;
-      else if (heroImg.tagName === 'IMAGE') heroImg.setAttribute('href', data.image); // For SVG <image>
-      else heroImg.style.backgroundImage = `url(${data.image})`;
+      // Correctly handle backend-served images
+      const imgSrc = data.image.startsWith('http') ? data.image : `http://localhost:5000${data.image}`;
+      if (heroImg.tagName === 'IMG') heroImg.src = imgSrc;
+      else if (heroImg.tagName === 'IMAGE') heroImg.setAttribute('href', imgSrc);
+      else heroImg.style.backgroundImage = `url(${imgSrc})`;
     }
   }
 
