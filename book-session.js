@@ -253,7 +253,9 @@ async function fetchAndRenderUserEvents() {
 
     list.innerHTML = events.map(b => {
       const e = b.eventId;
-      const imgSrc = e.image ? (e.image.startsWith('http') ? e.image : `http://localhost:5000/${e.image}`) : 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80';
+      const imgSrc = e.image 
+        ? (e.image.startsWith('http') || e.image.startsWith('data:') ? e.image : `http://localhost:5000${e.image.startsWith('/') ? '' : '/'}${e.image}`) 
+        : 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80';
       return `
         <div class="group relative rounded-3xl overflow-hidden bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all duration-500">
           <div class="aspect-[16/9] overflow-hidden">
@@ -431,7 +433,9 @@ async function fetchAndRenderPrograms() {
 
     content.innerHTML = programs.map(p => {
       const isBooked = userBookedIds.includes(p._id);
-      const imgSrc = p.image ? (p.image.startsWith('http') ? p.image : `http://localhost:5000/${p.image}`) : 'https://placehold.co/600x400/2c2c3a/white?text=Program';
+      const imgSrc = p.image 
+        ? (p.image.startsWith('http') || p.image.startsWith('data:') ? p.image : `http://localhost:5000${p.image.startsWith('/') ? '' : '/'}${p.image}`) 
+        : 'https://placehold.co/600x400/2c2c3a/white?text=Program';
       return `
       <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-all duration-300 group session-booking-card">
         <div class="h-48 rounded-2xl overflow-hidden mb-6">
@@ -489,7 +493,9 @@ async function fetchAndRenderEvents() {
 
     content.innerHTML = events.map(e => {
       const isBooked = userBookedEventIds.includes(e._id);
-      const imgSrc = e.image ? (e.image.startsWith('http') ? e.image : `http://localhost:5000/${e.image}`) : 'https://placehold.co/600x400/2c2c3a/white?text=Event';
+      const imgSrc = e.image 
+        ? (e.image.startsWith('http') || e.image.startsWith('data:') ? e.image : `http://localhost:5000${e.image.startsWith('/') ? '' : '/'}${e.image}`) 
+        : 'https://placehold.co/600x400/2c2c3a/white?text=Event';
       return `
       <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-purple-500/30 transition-all duration-300 group session-booking-card">
         <div class="h-48 rounded-2xl overflow-hidden mb-6">

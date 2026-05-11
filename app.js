@@ -425,7 +425,9 @@ async function loadProgramsToHome() {
                 if (progIndex < programs.length) {
                     const prog = programs[progIndex];
                     const patternClass = patterns[i] || '';
-                    const imgSrc = prog.image ? (prog.image.startsWith('data:') ? prog.image : `http://localhost:5000${prog.image}`) : 'assets/AhamGraham-Web/placeholder.png';
+                    const imgSrc = prog.image 
+                        ? (prog.image.startsWith('http') || prog.image.startsWith('data:') ? prog.image : `http://localhost:5000${prog.image.startsWith('/') ? '' : '/'}${prog.image}`) 
+                        : 'assets/AhamGraham-Web/placeholder.png';
 
                     const cardHTML = `
                         <div class="bento-item ${patternClass}" 
@@ -510,8 +512,12 @@ async function loadTestimonialsToHome() {
 
         if (dbTestimonials && dbTestimonials.length > 0) {
             baseTestimonials = dbTestimonials.map((t, i) => ({
-                src: t.image ? (t.image.startsWith('data:') ? t.image : `http://localhost:5000${t.image}`) : testimonialImages[i % testimonialImages.length],
-                image: t.image ? (t.image.startsWith('data:') ? t.image : `http://localhost:5000${t.image}`) : testimonialImages[i % testimonialImages.length],
+                src: t.image 
+                    ? (t.image.startsWith('http') || t.image.startsWith('data:') ? t.image : `http://localhost:5000${t.image.startsWith('/') ? '' : '/'}${t.image}`) 
+                    : testimonialImages[i % testimonialImages.length],
+                image: t.image 
+                    ? (t.image.startsWith('http') || t.image.startsWith('data:') ? t.image : `http://localhost:5000${t.image.startsWith('/') ? '' : '/'}${t.image}`) 
+                    : testimonialImages[i % testimonialImages.length],
                 name: t.name,
                 role: t.role,
                 text: t.content,
@@ -652,7 +658,9 @@ async function loadEventsToPage() {
 
                     const highlightItems = highlightData.map(ev => {
                         return {
-                            image: ev.image ? (ev.image.startsWith('data:') ? ev.image : `http://localhost:5000${ev.image}`) : 'assets/AhamGraham-Web/AboutUs-Page.jpg',
+                            image: ev.image 
+                                ? (ev.image.startsWith('http') || ev.image.startsWith('data:') ? ev.image : `http://localhost:5000${ev.image.startsWith('/') ? '' : '/'}${ev.image}`) 
+                                : 'assets/AhamGraham-Web/AboutUs-Page.jpg',
                             text: ev.name,
                             description: ev.description,
                             about: ev.about,
@@ -699,8 +707,10 @@ async function loadProductsToServices() {
             grid.innerHTML = '';
 
             serviceProducts.forEach(product => {
-                const imgSrc = product.image && product.image !== 'no-photo.jpg'
-                    ? (product.image.startsWith('data:') ? product.image : `http://localhost:5000/uploads/${product.image}`)
+                const imgSrc = product.image 
+                    ? (product.image.startsWith('http') || product.image.startsWith('data:') 
+                        ? product.image 
+                        : `http://localhost:5000/uploads/${product.image}`)
                     : 'https://images.unsplash.com/photo-1592179900431-1e021ea5c783?auto=format&fit=crop&q=80';
 
                 const cardHTML = `
@@ -745,7 +755,7 @@ async function loadHeroForPage(pageName) {
             const subtitle = document.getElementById(`${pageName}-hero-subtitle`);
 
             if (img && hero.image) {
-                img.src = hero.image.startsWith('/') ? `http://localhost:5000${hero.image}` : `assets/AhamGraham-Web/${hero.image}`;
+                img.src = (hero.image.startsWith('http') || hero.image.startsWith('data:')) ? hero.image : (hero.image.startsWith('/') ? `http://localhost:5000${hero.image}` : `assets/AhamGraham-Web/${hero.image}`);
             }
             if (kicker) kicker.innerText = hero.kicker;
             if (title) title.innerText = hero.title;
@@ -778,7 +788,7 @@ async function loadAboutToPage() {
                 if (heroTitle) heroTitle.innerText = about.hero.title;
                 if (subtitle) subtitle.innerText = about.hero.subtitle;
                 if (img && about.hero.image) {
-                    img.src = about.hero.image.startsWith('/') ? `http://localhost:5000${about.hero.image}` : `assets/AhamGraham-Web/${about.hero.image}`;
+                    img.src = (about.hero.image.startsWith('http') || about.hero.image.startsWith('data:')) ? about.hero.image : (about.hero.image.startsWith('/') ? `http://localhost:5000${about.hero.image}` : `assets/AhamGraham-Web/${about.hero.image}`);
                 }
             }
 
@@ -933,7 +943,9 @@ async function loadCentersToPage() {
 }
 
 function createEventCard(ev, patternClass, isWorkshop = false) {
-    const imgSrc = ev.image ? (ev.image.startsWith('data:') || ev.image.startsWith('http') ? ev.image : `http://localhost:5000${ev.image}`) : 'assets/AhamGraham-Web/placeholder.png';
+    const imgSrc = ev.image 
+        ? (ev.image.startsWith('http') || ev.image.startsWith('data:') ? ev.image : `http://localhost:5000${ev.image.startsWith('/') ? '' : '/'}${ev.image}`) 
+        : 'assets/AhamGraham-Web/placeholder.png';
     const overlayClass = isWorkshop ? '!bg-gradient-to-t !from-[#231f37]/80 !to-transparent' : '';
     const groupClass = isWorkshop ? 'group flex flex-col h-full' : '';
 

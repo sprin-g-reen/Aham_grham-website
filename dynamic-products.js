@@ -35,8 +35,8 @@ async function fetchProducts() {
           descEl.style.display = 'none';
         }
         
-        if (featured.image && featured.image !== 'no-photo.jpg') {
-          imageEl.src = `${UPLOADS_URL}/${featured.image}`;
+        if (featured.image) {
+          imageEl.src = (featured.image.startsWith('http') || featured.image.startsWith('data:')) ? featured.image : `${UPLOADS_URL}/${featured.image}`;
         }
       }
     }
@@ -53,8 +53,10 @@ async function fetchProducts() {
         productCard.setAttribute('data-desc', product.description);
         productCard.setAttribute('data-offer', product.offer || '');
 
-        const imageUrl = product.image && product.image !== 'no-photo.jpg' 
-          ? `${UPLOADS_URL}/${product.image}` 
+        const imageUrl = product.image 
+          ? (product.image.startsWith('http') || product.image.startsWith('data:') 
+              ? product.image 
+              : `${UPLOADS_URL}/${product.image}`)
           : 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80';
 
         productCard.innerHTML = `
