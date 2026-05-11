@@ -600,7 +600,12 @@ async function loadEventsToPage() {
             // Populate Workshops
             if (workshopGrid && categorized['Workshop'].length > 0) {
                 workshopGrid.innerHTML = '';
-                const workshopPatterns = ['sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1 lg:row-span-2', 'sm:col-span-1 lg:col-span-1'];
+                const workshopPatterns = [
+                    'sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1 lg:row-span-2', 
+                    'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1',
+                    'sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1',
+                    'sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1'
+                ];
                 categorized['Workshop'].forEach((ev, i) => {
                     const pattern = workshopPatterns[i % workshopPatterns.length];
                     workshopGrid.insertAdjacentHTML('beforeend', createEventCard(ev, pattern, true));
@@ -921,7 +926,7 @@ async function loadCentersToPage() {
 }
 
 function createEventCard(ev, patternClass, isWorkshop = false) {
-    const imgSrc = ev.image ? (ev.image.startsWith('data:') ? ev.image : `http://localhost:5000${ev.image}`) : 'assets/AhamGraham-Web/placeholder.png';
+    const imgSrc = ev.image ? (ev.image.startsWith('data:') || ev.image.startsWith('http') ? ev.image : `http://localhost:5000${ev.image}`) : 'assets/AhamGraham-Web/placeholder.png';
     const overlayClass = isWorkshop ? '!bg-gradient-to-t !from-[#231f37]/80 !to-transparent' : '';
     const groupClass = isWorkshop ? 'group flex flex-col h-full' : '';
 
@@ -931,7 +936,7 @@ function createEventCard(ev, patternClass, isWorkshop = false) {
              data-about="${ev.about || ''}"
              data-category="${ev.category}">
             <img src="${imgSrc}" alt="${ev.name}" class="w-full h-full object-cover">
-            <div class="bento-overlay ${overlayClass}" style="position: relative; opacity: 1; visibility: visible; background: var(--bg-surface);">
+            <div class="bento-overlay ${overlayClass}" style="position: absolute; inset: 0; opacity: 1; visibility: visible; background: transparent;">
                 <div class="bento-content ${isWorkshop ? 'mt-auto' : ''}">
                     <h3 class="${isWorkshop ? 'text-white' : ''}">${ev.name}</h3>
                     <p class="${isWorkshop ? 'text-white/80' : ''}">${ev.description?.substring(0, 60)}${ev.description?.length > 60 ? '...' : ''}</p>
