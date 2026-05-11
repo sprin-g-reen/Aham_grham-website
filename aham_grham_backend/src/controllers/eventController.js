@@ -1,5 +1,25 @@
 import Event from '../models/Event.js';
 import { logActivity } from '../utils/logger.js';
+import { v2 as cloudinary } from 'cloudinary';
+
+// Cloudinary Configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+const uploadToCloudinary = async (base64Str) => {
+  if (!base64Str || !base64Str.startsWith('data:')) return base64Str;
+  try {
+    const uploadResponse = await cloudinary.uploader.upload(base64Str);
+    console.log('☁️ Cloudinary Upload Success:', uploadResponse.secure_url);
+    return uploadResponse.secure_url;
+  } catch (error) {
+    console.error('Cloudinary upload error:', error);
+    return base64Str; // Fallback to Base64 if upload fails
+  }
+};
 
 // @desc    Get all events
 // @route   GET /api/events
@@ -26,6 +46,15 @@ export const createEvent = async (req, res) => {
       return res.status(400).json({ message: 'Event ID already exists' });
     }
 
+    let imageUrl = req.body.image || '';
+    let videoUrl = req.body.video || '';
+
+    if (imageUrl && imageUrl.startsWith('data:')) {
+      imageUrl = await uploadToCloudinary(imageUrl);
+    } else if (req.files?.image) {
+      imageUrl = `/uploads/${req.files.image[0].filename}`;
+    }
+
     const event = await Event.create({
       name,
       eventId,
@@ -34,8 +63,8 @@ export const createEvent = async (req, res) => {
       about,
       category,
       isBlog: isBlog === 'true' || isBlog === true,
-      image: req.body.image || (req.files?.image ? `/uploads/${req.files.image[0].filename}` : ''),
-      video: req.body.video || (req.files?.video ? `/uploads/${req.files.video[0].filename}` : '')
+      image: imageUrl,
+      video: videoUrl || (req.files?.video ? `/uploads/${req.files.video[0].filename}` : '')
     });
 
     if (event) {
@@ -75,7 +104,11 @@ export const updateEvent = async (req, res) => {
       }
 
       if (req.body.image) {
-        event.image = req.body.image;
+        if (req.body.image.startsWith('data:')) {
+          event.image = await uploadToCloudinary(req.body.image);
+        } else {
+          event.image = req.body.image;
+        }
       } else if (req.files?.image) {
         event.image = `/uploads/${req.files.image[0].filename}`;
       }
