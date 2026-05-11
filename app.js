@@ -745,7 +745,7 @@ async function loadProductsToServices() {
  */
 async function loadHeroForPage(pageName) {
     try {
-        const response = await fetch(`/api/hero?page=${pageName}`);
+        const response = await fetch((window.API_BASE_URL || '') + `/api/hero?page=${pageName}`);
         const hero = await response.json();
 
         if (hero) {

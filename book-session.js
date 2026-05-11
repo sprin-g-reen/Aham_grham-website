@@ -131,7 +131,7 @@ async function handleBooking(itemId, itemType) {
   }
 
   try {
-    const response = await fetch('/api/bookings', {
+    const response = await fetch((window.API_BASE_URL || '') + '/api/bookings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ async function fetchAndRenderUserPrograms() {
 
   const token = AuthHelper.getToken();
   try {
-    const response = await fetch('/api/bookings/my', {
+    const response = await fetch((window.API_BASE_URL || '') + '/api/bookings/my', {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -228,7 +228,7 @@ async function fetchAndRenderUserEvents() {
   const token = AuthHelper.getToken();
   const user = AuthHelper.getUser();
   try {
-    const response = await fetch('/api/bookings/my', {
+    const response = await fetch((window.API_BASE_URL || '') + '/api/bookings/my', {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -297,7 +297,7 @@ async function fetchAndRenderCancelList() {
 
   const token = AuthHelper.getToken();
   try {
-    const response = await fetch('/api/bookings/my', {
+    const response = await fetch((window.API_BASE_URL || '') + '/api/bookings/my', {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     const bookings = await response.json();
@@ -412,7 +412,7 @@ async function fetchAndRenderPrograms() {
     let userBookedIds = [];
     
     if (token) {
-      const myBookingsRes = await fetch('/api/bookings/my', {
+      const myBookingsRes = await fetch((window.API_BASE_URL || '') + '/api/bookings/my', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (myBookingsRes.ok) {
@@ -423,7 +423,7 @@ async function fetchAndRenderPrograms() {
       }
     }
 
-    const response = await fetch('/api/programs');
+    const response = await fetch((window.API_BASE_URL || '') + '/api/programs');
     const programs = await response.json();
 
     if (programs.length === 0) {
@@ -472,7 +472,7 @@ async function fetchAndRenderEvents() {
     let userBookedEventIds = [];
     
     if (token) {
-      const myBookingsRes = await fetch('/api/bookings/my', {
+      const myBookingsRes = await fetch((window.API_BASE_URL || '') + '/api/bookings/my', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (myBookingsRes.ok) {
@@ -483,7 +483,7 @@ async function fetchAndRenderEvents() {
       }
     }
 
-    const response = await fetch('/api/events');
+    const response = await fetch((window.API_BASE_URL || '') + '/api/events');
     const events = await response.json();
 
     if (events.length === 0) {
