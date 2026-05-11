@@ -36,12 +36,18 @@ const authUser = async (req, res) => {
 // @route   POST /api/users
 // @access  Public
 const registerUser = async (req, res) => {
+  console.log('📝 Registration attempt:', req.body);
   const { name, email, password, whatsappNumber } = req.body;
+
+  if (!name || !email || !password) {
+    res.status(400).json({ message: 'Missing required fields: name, email, and password are required' });
+    return;
+  }
 
   const userExists = await User.findOne({ email });
 
   if (userExists) {
-    res.status(400).json({ message: 'User already exists' });
+    res.status(400).json({ message: `Registration failed: User with email ${email} already exists` });
     return;
   }
 
