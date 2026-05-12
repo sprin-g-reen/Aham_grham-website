@@ -385,7 +385,9 @@ async function loadProgramsToServices() {
 
             programs.forEach((prog, i) => {
                 const patternClass = patterns[i % patterns.length];
-                const imgSrc = prog.image ? `${prog.image}` : 'assets/AhamGraham-Web/placeholder.png';
+                const imgSrc = prog.image 
+                    ? (prog.image.startsWith('http') || prog.image.startsWith('data:') ? prog.image : `${window.API_BASE_URL}${prog.image.startsWith('/') ? '' : '/'}${prog.image}`)
+                    : 'assets/AhamGraham-Web/placeholder.png';
 
                 const cardHTML = `
                     <div class="bento-card ${patternClass}" 
