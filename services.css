@@ -129,6 +129,7 @@ body {
               conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
   border: 1.5px solid transparent;
   animation: rotate 10s linear infinite;
+  overflow: hidden;
 }
 
 .bento-card h3 {

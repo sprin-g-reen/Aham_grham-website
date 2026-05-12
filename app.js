@@ -2,9 +2,29 @@ window.addEventListener("load", () => {
     document.body.classList.add("page-ready");
 });
 
+// Initialize Calendly assets dynamically
+(function() {
+    const link = document.createElement('link');
+    link.href = 'https://assets.calendly.com/assets/external/widget.css';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.head.appendChild(script);
+})();
+
 function handleBookSessionClick(e) {
     if (e) e.preventDefault();
-    window.location.href = 'https://calendly.com/aham_grham-salem';
+    if (typeof Calendly !== 'undefined') {
+        Calendly.initPopupWidget({
+            url: 'https://calendly.com/office-ahamgrham-springreen?primary_color=8c52ff'
+        });
+    } else {
+        // Fallback if script hasn't loaded yet
+        window.open('https://calendly.com/office-ahamgrham-springreen', '_blank');
+    }
 }
 
 const nav = document.querySelector(".menu-buttons");
@@ -714,7 +734,7 @@ async function loadProductsToServices() {
                     : 'https://images.unsplash.com/photo-1592179900431-1e021ea5c783?auto=format&fit=crop&q=80';
 
                 const cardHTML = `
-                    <div class="group cursor-pointer product-card rounded-[32px] shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col"
+                    <div class="group cursor-pointer product-card rounded-[32px] overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col"
                          onclick="window.location.href='sacred-moon-oil.html'"
                          data-description="${product.description || ''}">
                         <img src="${imgSrc}" alt="${product.name}" class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">

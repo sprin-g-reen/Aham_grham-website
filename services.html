@@ -221,6 +221,7 @@
         conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
       border: 1.5px solid transparent;
       animation: rotate 10s linear infinite;
+      overflow: hidden;
     }
 
     .product-card .p-6 {
@@ -604,9 +605,9 @@
         <div class="footer-col">
           <h4 class="footer-subheading">Our Centers</h4>
           <ul id="footer-centers-list">
-            <li>Rishikesh, India</li>
-            <li>Swiss Alps, Switzerland</li>
-            <li>Ubud, Bali</li>
+            <li><span class="link-text">Rishikesh, India</span></li>
+            <li><span class="link-text">Swiss Alps, Switzerland</span></li>
+            <li><span class="link-text">Ubud, Bali</span></li>
           </ul>
         </div>
 
@@ -625,11 +626,11 @@
           <div class="contact-stack">
             <a href="mailto:contact@ahamgraham.com" class="contact-link" id="footer-contact-email">
               <span class="material-symbols-outlined">mail</span>
-              contact@ahamgraham.com
+              <span class="link-text">contact@ahamgraham.com</span>
             </a>
             <a href="tel:+919876543210" class="contact-link" id="footer-contact-phone">
               <span class="material-symbols-outlined">call</span>
-              +91 98765 43210
+              <span class="link-text">+91 98765 43210</span>
             </a>
           </div>
         </div>

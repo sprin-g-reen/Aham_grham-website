@@ -1474,7 +1474,7 @@ html.light-theme .dark-logo {
   color: var(--text-secondary);
   font-weight: 500;
   line-height: 1.5;
-  font-style: italic;
+  font-style: normal;
   position: relative;
   max-width: 450px !important;
   margin: 10px 0 !important;
@@ -3963,8 +3963,18 @@ body,
 
   .footer a:hover,
   .footer li:hover {
+    color: #7c4dff !important;
+  }
+
+  .footer a:hover .link-text,
+  .footer li:hover .link-text,
+  .footer a:hover:not(.contact-link) {
     text-decoration: underline !important;
     text-underline-offset: 4px;
+  }
+
+  .contact-link:hover {
+    text-decoration: none !important;
   }
 
 

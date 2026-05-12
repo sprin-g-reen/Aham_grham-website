@@ -19,7 +19,7 @@ async function initFooterSync() {
     const centersList = document.getElementById('footer-centers-list');
     if (centersList && data.centers) {
       centersList.innerHTML = data.centers
-        .map(center => `<li>${center}</li>`)
+        .map(center => `<li><span class="link-text">${center}</span></li>`)
         .join('');
     }
 
@@ -37,7 +37,7 @@ async function initFooterSync() {
       contactEmail.href = `mailto:${data.contact.email}`;
       contactEmail.innerHTML = `
         <span class="material-symbols-outlined">mail</span>
-        ${data.contact.email}
+        <span class="link-text">${data.contact.email}</span>
       `;
     }
 
@@ -46,7 +46,7 @@ async function initFooterSync() {
       contactPhone.href = `tel:${data.contact.phone.replace(/\s/g, '')}`;
       contactPhone.innerHTML = `
         <span class="material-symbols-outlined">call</span>
-        ${data.contact.phone}
+        <span class="link-text">${data.contact.phone}</span>
       `;
     }
 
