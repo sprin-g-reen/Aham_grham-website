@@ -3,6 +3,18 @@
 
 <head>
   <meta charset="UTF-8" />
+  <script>
+    const isLocal = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1' || 
+                    window.location.hostname.startsWith('192.168.') || 
+                    window.location.hostname.startsWith('172.') || 
+                    window.location.hostname.startsWith('10.') || 
+                    window.location.hostname.endsWith('.local');
+
+    window.API_BASE_URL = isLocal 
+      ? 'http://' + window.location.hostname + ':5000' 
+      : 'https://aham-grham-backend.vercel.app';
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sacred Moon Oil | Aham Grham</title>
 
@@ -18,11 +30,11 @@
           const searchTerm = e.target.value.toLowerCase();
           // Query cards inside the listener because they are loaded dynamically
           const productCards = document.querySelectorAll('.review-card');
-          
+
           productCards.forEach(card => {
             const productName = card.getAttribute('data-name')?.toLowerCase() || '';
             const productDesc = card.getAttribute('data-desc')?.toLowerCase() || '';
-            
+
             if (productName.includes(searchTerm) || productDesc.includes(searchTerm)) {
               card.style.display = ''; // Revert to default (block/flex as defined in CSS)
             } else {
@@ -86,7 +98,7 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .review-card > div:nth-child(2) {
+    .review-card>div:nth-child(2) {
       margin-top: 20px !important;
     }
 
@@ -821,13 +833,19 @@
 
           </div>
           <div class="grid grid-cols-3 gap-3 w-full md:w-max">
-            <button class="btn-primary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold cta-glow flex items-center justify-center" onclick="openProductModal(document.querySelector('.services-feature-shell'))">
+            <button
+              class="btn-primary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold cta-glow flex items-center justify-center"
+              onclick="openProductModal(document.querySelector('.services-feature-shell'))">
               <span>Buy</span>
             </button>
-            <button class="btn-secondary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold flex items-center justify-center" onclick="addToCart('Sacred Moon Oil', 78, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo')">
+            <button
+              class="btn-secondary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold flex items-center justify-center"
+              onclick="addToCart('Sacred Moon Oil', 78, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo')">
               <span>Cart</span>
             </button>
-            <button class="btn-secondary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold flex items-center justify-center" onclick="openReviewModal(document.querySelector('.services-feature-shell'))">
+            <button
+              class="btn-secondary py-4 px-8 rounded-full text-[10px] uppercase tracking-widest font-bold flex items-center justify-center"
+              onclick="openReviewModal(document.querySelector('.services-feature-shell'))">
               <span>Review</span>
             </button>
           </div>
@@ -940,11 +958,12 @@
       <li><a href="centers" class="mobile-nav-link">centers</a></li>
       <li><a href="sacred-moon-oil" class="mobile-nav-link">products</a></li>
       <li><a href="about" class="mobile-nav-link">about us</a></li>
-      <li><button onclick="handleAddToCartClick(event)" class="btn-secondary mt-4 w-full flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined">shopping_cart</span>
-        add to cart
-        <span class="cart-badge" style="display: none;">0</span>
-      </button></li>
+      <li><button onclick="handleAddToCartClick(event)"
+          class="btn-secondary mt-4 w-full flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          add to cart
+          <span class="cart-badge" style="display: none;">0</span>
+        </button></li>
       <li><a href="book-session" class="btn-primary mt-4">book session</a></li>
     </ul>
   </div>
@@ -1112,7 +1131,7 @@
       const modal = document.getElementById('productModal');
       const imgEl = card.querySelector('img');
       if (!imgEl) return;
-      
+
       const img = imgEl.src;
       const title = card.getAttribute('data-name') || 'Aham Graham Essential';
       const detail = card.getAttribute('data-desc') || 'Celestial Vessel of Energy.';
@@ -1150,32 +1169,33 @@
 
     // Initialize interactions using Event Delegation
     document.addEventListener('DOMContentLoaded', () => {
-        // 1. Handle clicks in the dynamic product grid
-        const grid = document.getElementById('dynamic-product-grid');
-        if (grid) {
-            grid.addEventListener('click', (e) => {
-                const button = e.target.closest('button');
-                if (!button) return;
-                
-                const card = button.closest('.review-card');
-                if (!card) return;
+      // 1. Handle clicks in the dynamic product grid
+      const grid = document.getElementById('dynamic-product-grid');
+      if (grid) {
+        grid.addEventListener('click', (e) => {
+          const button = e.target.closest('button');
+          if (!button) return;
 
-                const btnText = button.innerText.trim().toLowerCase();
-                
-                if (btnText === 'buy') {
-                    e.stopPropagation();
-                    openProductModal(card);
-                } else if (btnText === 'review') {
-                    e.stopPropagation();
-                    openReviewModal(card); // Assuming openReviewModal is defined or meant to be openReviewsModal
-                }
-                // 'Cart' is handled by its own inline onclick in dynamic-products.js
-            });
-        }
+          const card = button.closest('.review-card');
+          if (!card) return;
 
-        // 2. Fix the specific issue where openReviewModal was called but openReviewsModal was defined
-        window.openReviewModal = openReviewsModal;
+          const btnText = button.innerText.trim().toLowerCase();
+
+          if (btnText === 'buy') {
+            e.stopPropagation();
+            openProductModal(card);
+          } else if (btnText === 'review') {
+            e.stopPropagation();
+            openReviewModal(card); // Assuming openReviewModal is defined or meant to be openReviewsModal
+          }
+          // 'Cart' is handled by its own inline onclick in dynamic-products.js
+        });
+      }
+
+      // 2. Fix the specific issue where openReviewModal was called but openReviewsModal was defined
+      window.openReviewModal = openReviewsModal;
     });
   </script>
 </body>
+
 </html>

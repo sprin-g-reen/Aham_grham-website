@@ -1,7 +1,7 @@
-const API_URL = '/api';
-const UPLOADS_URL = '/uploads';
-
 async function fetchProducts() {
+  const API_URL = (window.API_BASE_URL || '') + '/api';
+  const UPLOADS_URL = (window.API_BASE_URL || '') + '/uploads';
+
   const nameEl = document.getElementById('featuredProductName');
   const priceEl = document.getElementById('featuredProductPrice');
   const descEl = document.getElementById('featuredProductDesc');
@@ -11,7 +11,7 @@ async function fetchProducts() {
   try {
     const response = await fetch(`${API_URL}/products`);
     const products = await response.json();
-    
+
     // 1. Handle Featured Product
     if (nameEl && priceEl && descEl && imageEl) {
       const featured = products
@@ -20,7 +20,7 @@ async function fetchProducts() {
 
       if (featured) {
         nameEl.innerHTML = featured.name;
-        
+
         if (featured.price) {
           priceEl.innerText = `₹${featured.price}.00`;
           priceEl.style.display = 'block';
@@ -34,7 +34,7 @@ async function fetchProducts() {
         } else {
           descEl.style.display = 'none';
         }
-        
+
         if (featured.image) {
           imageEl.src = (featured.image.startsWith('http') || featured.image.startsWith('data:')) ? featured.image : `${UPLOADS_URL}/${featured.image}`;
         }
@@ -44,7 +44,7 @@ async function fetchProducts() {
     // 2. Handle Product Grid (Show all products)
     if (gridContainer && products.length > 0) {
       gridContainer.innerHTML = ''; // Clear existing
-      
+
       products.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'space-y-6 group review-card cursor-pointer';
@@ -53,10 +53,10 @@ async function fetchProducts() {
         productCard.setAttribute('data-desc', product.description);
         productCard.setAttribute('data-offer', product.offer || '');
 
-        const imageUrl = product.image 
-          ? (product.image.startsWith('http') || product.image.startsWith('data:') 
-              ? product.image 
-              : `${UPLOADS_URL}/${product.image}`)
+        const imageUrl = product.image
+          ? (product.image.startsWith('http') || product.image.startsWith('data:')
+            ? product.image
+            : `${UPLOADS_URL}/${product.image}`)
           : 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80';
 
         productCard.innerHTML = `

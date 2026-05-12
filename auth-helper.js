@@ -85,7 +85,7 @@ const AuthHelper = {
 // Auto-update UI on load
 document.addEventListener('DOMContentLoaded', () => {
     AuthHelper.updateGlobalUI();
-    
+
     // Redirect if on book-session.html and not logged in
     if (window.location.pathname.includes('book-session.html') && !AuthHelper.isLoggedIn()) {
         window.location.href = 'auth.html';
