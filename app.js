@@ -411,21 +411,27 @@ async function loadProgramsToServices() {
 
 async function loadProgramsToHome() {
     const grid = document.querySelector('.bento-grid');
-    if (!grid || document.querySelector('.programs-grid')) return; // Avoid running on services page
+    if (!grid || document.querySelector('.programs-grid')) return;
 
     try {
         const response = await fetch(window.API_BASE_URL + '/api/programs');
         const programs = await response.json();
 
         if (programs.length > 0) {
-            // Clear static content
             grid.innerHTML = '';
 
-            // Bento patterns for index page
+            // The exact pattern from the original index.html design
+            // Index refers to the position in the 10-slot grid (including Brand Card)
             const patterns = [
-                'row-2', 'span-2', '', '',
-                'span-2 row-2 brand-card', // Brand card placeholder (we'll handle it)
-                '', '', 'row-2', '', 'span-2'
+                'row-2',       // 0: Private & Group (Tall)
+                'span-2',      // 1: Rehab & Recovery (Wide)
+                '',            // 2: B2B (Square)
+                'span-2 row-2 brand-card', // 3: BRAND SHOWCASE (Placeholder for i=3)
+                '',            // 4: Online (Square)
+                '',            // 5: Certification (Square)
+                'row-2',       // 6: Medical Therapeutic (Tall)
+                '',            // 7: Kids & Youth (Square)
+                'span-2'       // 8: Retreats (Wide)
             ];
 
             const brandCardHTML = `
@@ -438,8 +444,9 @@ async function loadProgramsToHome() {
             `;
 
             let progIndex = 0;
-            for (let i = 0; i < 10; i++) {
-                if (i === 4) { // Insert brand card at 5th position
+            // We loop through the pattern slots
+            for (let i = 0; i < patterns.length; i++) {
+                if (i === 3) { // Brand card is at the 4th position (index 3)
                     grid.insertAdjacentHTML('beforeend', brandCardHTML);
                     continue;
                 }
@@ -448,14 +455,16 @@ async function loadProgramsToHome() {
                     const prog = programs[progIndex];
                     const patternClass = patterns[i] || '';
                     const imgSrc = prog.image 
-                        ? (prog.image.startsWith('http') || prog.image.startsWith('data:') ? prog.image : '' + (prog.image.startsWith('/') ? '' : '/') + prog.image) 
+                        ? (prog.image.startsWith('http') || prog.image.startsWith('data:') ? prog.image : `${window.API_BASE_URL}${prog.image.startsWith('/') ? '' : '/'}${prog.image}`)
                         : 'assets/AhamGraham-Web/placeholder.png';
 
                     const cardHTML = `
                         <div class="bento-item ${patternClass}" 
+                             onclick="window.location.href='services'"
+                             style="cursor: pointer;"
                              data-description="${prog.description || ''}">
-                            <img src="${imgSrc}" alt="${prog.name || ''}" style="cursor: pointer;">
-                            <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services.html'" style="cursor: pointer;">
+                            <img src="${imgSrc}" alt="${prog.name || ''}">
+                            <div class="bento-overlay">
                                 <div class="bento-content">
                                     <h3>${(prog.name || '').toLowerCase()}</h3>
                                 </div>
@@ -467,11 +476,31 @@ async function loadProgramsToHome() {
                 }
             }
 
+            // If there are more programs than the initial grid pattern, 
+            // append them as standard square items
+            while (progIndex < programs.length) {
+                const prog = programs[progIndex];
+                const cardHTML = `
+                    <div class="bento-item" 
+                         onclick="window.location.href='services'"
+                         style="cursor: pointer;"
+                         data-description="${prog.description || ''}">
+                        <img src="${prog.image ? (prog.image.startsWith('http') ? prog.image : `${window.API_BASE_URL}${prog.image}`) : 'assets/AhamGraham-Web/placeholder.png'}" alt="${prog.name || ''}">
+                        <div class="bento-overlay">
+                            <div class="bento-content">
+                                <h3>${(prog.name || '').toLowerCase()}</h3>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', cardHTML);
+                progIndex++;
+            }
             // Re-initialize reveal animations for new items
-            initRevealAnimation();
+            if (typeof initRevealAnimation === 'function') initRevealAnimation();
         }
     } catch (error) {
-        console.error("Failed to load programs for home:", error);
+        console.error("Failed to load home programs:", error);
     }
 }
 
