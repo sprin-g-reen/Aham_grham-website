@@ -976,7 +976,7 @@ document.addEventListener('DOMContentLoaded', () => {
         path.includes('services.html') ? 'services' :
             path.includes('events.html') ? 'events' :
                 path.includes('centers.html') ? 'centers' :
-                    path.includes('shop.html') || path.includes('sacred-moon-oil.html') ? 'shop' : null;
+                    path.includes('shop.html') || path.includes('sacred-moon-oil.html') ? 'products' : null;
 
     if (page) {
         loadHeroForPage(page);

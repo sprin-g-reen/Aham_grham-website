@@ -19,7 +19,7 @@ function renderCart() {
                 <span class="material-symbols-outlined empty-cart-icon">shopping_cart_off</span>
                 <h2 class="empty-cart-title">your sanctuary cart is empty</h2>
                 <p class="empty-cart-text">prepare for your ritual tools and vessels by exploring our collection.</p>
-                <button class="btn-primary" style="padding: 12px 32px; border-radius: 999px;" onclick="window.location.href='sacred-moon-oil.html'">explore shop</button>
+                <button class="btn-primary" style="padding: 12px 32px; border-radius: 999px;" onclick="window.location.href='sacred-moon-oil.html'">explore products</button>
             </div>
         `;
         return;
