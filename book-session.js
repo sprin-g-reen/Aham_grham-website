@@ -131,7 +131,7 @@ async function handleBooking(itemId, itemType) {
   }
 
   try {
-    const response = await fetch('https://aham-grham-website.vercel.app/api/bookings', {
+    const response = await fetch((window.API_BASE_URL || '') + '/api/bookings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ async function fetchAndRenderUserPrograms() {
 
   const token = AuthHelper.getToken();
   try {
-    const response = await fetch('https://aham-grham-website.vercel.app/api/bookings/my', {
+    const response = await fetch((window.API_BASE_URL || '') + '/api/bookings/my', {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -228,7 +228,7 @@ async function fetchAndRenderUserEvents() {
   const token = AuthHelper.getToken();
   const user = AuthHelper.getUser();
   try {
-    const response = await fetch('https://aham-grham-website.vercel.app/api/bookings/my', {
+    const response = await fetch((window.API_BASE_URL || '') + '/api/bookings/my', {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -254,7 +254,7 @@ async function fetchAndRenderUserEvents() {
     list.innerHTML = events.map(b => {
       const e = b.eventId;
       const imgSrc = e.image 
-        ? (e.image.startsWith('http') || e.image.startsWith('data:') ? e.image : `https://aham-grham-website.vercel.app${e.image.startsWith('/') ? '' : '/'}${e.image}`) 
+        ? (e.image.startsWith('http') || e.image.startsWith('data:') ? e.image : (e.image.startsWith('/') ? '' : '/') + e.image) 
         : 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80';
       return `
         <div class="group relative rounded-3xl overflow-hidden bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all duration-500">
@@ -297,7 +297,7 @@ async function fetchAndRenderCancelList() {
 
   const token = AuthHelper.getToken();
   try {
-    const response = await fetch('https://aham-grham-website.vercel.app/api/bookings/my', {
+    const response = await fetch((window.API_BASE_URL || '') + '/api/bookings/my', {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     const bookings = await response.json();
@@ -384,7 +384,7 @@ async function cancelBooking(bookingId, itemName) {
       
       const token = AuthHelper.getToken();
       try {
-        const response = await fetch(`https://aham-grham-website.vercel.app/api/bookings/${bookingId}`, {
+        const response = await fetch(`/api/bookings/${bookingId}`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -412,7 +412,7 @@ async function fetchAndRenderPrograms() {
     let userBookedIds = [];
     
     if (token) {
-      const myBookingsRes = await fetch('https://aham-grham-website.vercel.app/api/bookings/my', {
+      const myBookingsRes = await fetch((window.API_BASE_URL || '') + '/api/bookings/my', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (myBookingsRes.ok) {
@@ -423,7 +423,7 @@ async function fetchAndRenderPrograms() {
       }
     }
 
-    const response = await fetch('https://aham-grham-website.vercel.app/api/programs');
+    const response = await fetch((window.API_BASE_URL || '') + '/api/programs');
     const programs = await response.json();
 
     if (programs.length === 0) {
@@ -434,7 +434,7 @@ async function fetchAndRenderPrograms() {
     content.innerHTML = programs.map(p => {
       const isBooked = userBookedIds.includes(p._id);
       const imgSrc = p.image 
-        ? (p.image.startsWith('http') || p.image.startsWith('data:') ? p.image : `https://aham-grham-website.vercel.app${p.image.startsWith('/') ? '' : '/'}${p.image}`) 
+        ? (p.image.startsWith('http') || p.image.startsWith('data:') ? p.image : (p.image.startsWith('/') ? '' : '/') + p.image) 
         : 'https://placehold.co/600x400/2c2c3a/white?text=Program';
       return `
       <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-all duration-300 group session-booking-card">
@@ -472,7 +472,7 @@ async function fetchAndRenderEvents() {
     let userBookedEventIds = [];
     
     if (token) {
-      const myBookingsRes = await fetch('https://aham-grham-website.vercel.app/api/bookings/my', {
+      const myBookingsRes = await fetch((window.API_BASE_URL || '') + '/api/bookings/my', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (myBookingsRes.ok) {
@@ -483,7 +483,7 @@ async function fetchAndRenderEvents() {
       }
     }
 
-    const response = await fetch('https://aham-grham-website.vercel.app/api/events');
+    const response = await fetch((window.API_BASE_URL || '') + '/api/events');
     const events = await response.json();
 
     if (events.length === 0) {

@@ -146,7 +146,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       try {
-        const response = await fetch('https://aham-grham-website.vercel.app/api/about');
+        const response = await fetch('/api/about');
         const about = await response.json();
         
         if (about && about.faculties) {

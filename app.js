@@ -350,7 +350,7 @@ async function loadProgramsToServices() {
     if (!grid) return;
 
     try {
-        const response = await fetch('https://aham-grham-website.vercel.app/api/programs');
+        const response = await fetch(window.API_BASE_URL + '/api/programs');
         const programs = await response.json();
 
         if (programs.length > 0) {
@@ -365,7 +365,7 @@ async function loadProgramsToServices() {
 
             programs.forEach((prog, i) => {
                 const patternClass = patterns[i % patterns.length];
-                const imgSrc = prog.image ? `https://aham-grham-website.vercel.app${prog.image}` : 'assets/AhamGraham-Web/placeholder.png';
+                const imgSrc = prog.image ? `${prog.image}` : 'assets/AhamGraham-Web/placeholder.png';
 
                 const cardHTML = `
                     <div class="bento-card ${patternClass}" 
@@ -392,7 +392,7 @@ async function loadProgramsToHome() {
     if (!grid || document.querySelector('.programs-grid')) return; // Avoid running on services page
 
     try {
-        const response = await fetch('https://aham-grham-website.vercel.app/api/programs');
+        const response = await fetch(window.API_BASE_URL + '/api/programs');
         const programs = await response.json();
 
         if (programs.length > 0) {
@@ -426,7 +426,7 @@ async function loadProgramsToHome() {
                     const prog = programs[progIndex];
                     const patternClass = patterns[i] || '';
                     const imgSrc = prog.image 
-                        ? (prog.image.startsWith('http') || prog.image.startsWith('data:') ? prog.image : `https://aham-grham-website.vercel.app${prog.image.startsWith('/') ? '' : '/'}${prog.image}`) 
+                        ? (prog.image.startsWith('http') || prog.image.startsWith('data:') ? prog.image : '' + (prog.image.startsWith('/') ? '' : '/') + prog.image) 
                         : 'assets/AhamGraham-Web/placeholder.png';
 
                     const cardHTML = `
@@ -458,7 +458,7 @@ async function loadEventsToBlog() {
     if (!grid) return;
 
     try {
-        const response = await fetch('https://aham-grham-website.vercel.app/api/events');
+        const response = await fetch(window.API_BASE_URL + '/api/events');
         const events = await response.json();
 
         // Filter events that have isBlog set to true
@@ -470,7 +470,7 @@ async function loadEventsToBlog() {
 
             blogEvents.forEach((ev, i) => {
                 const index = (i % 15) + 1; // 15 unique layouts c1-c15
-                const imgSrc = ev.image ? (ev.image.startsWith('data:') || ev.image.startsWith('http') ? ev.image : `https://aham-grham-website.vercel.app${ev.image}`) : 'assets/AhamGraham-Web/placeholder.png';
+                const imgSrc = ev.image ? (ev.image.startsWith('data:') || ev.image.startsWith('http') ? ev.image : '' + ev.image) : 'assets/AhamGraham-Web/placeholder.png';
 
                 const cardHTML = `
                     <article class="bento-blog-item c${index} group relative overflow-hidden" 
@@ -504,7 +504,7 @@ async function loadTestimonialsToHome() {
     if (!container || !window.DomeGallery) return;
 
     try {
-        const response = await fetch('https://aham-grham-website.vercel.app/api/testimonials');
+        const response = await fetch(window.API_BASE_URL + '/api/testimonials');
         const dbTestimonials = await response.json();
 
         const testimonialImages = ['assets/22.jpg', 'assets/23.jpg', 'assets/24.jpg', 'assets/25.jpg', 'assets/26.jpg', 'assets/27.jpg'];
@@ -513,10 +513,10 @@ async function loadTestimonialsToHome() {
         if (dbTestimonials && dbTestimonials.length > 0) {
             baseTestimonials = dbTestimonials.map((t, i) => ({
                 src: t.image 
-                    ? (t.image.startsWith('http') || t.image.startsWith('data:') ? t.image : `https://aham-grham-website.vercel.app${t.image.startsWith('/') ? '' : '/'}${t.image}`) 
+                    ? (t.image.startsWith('http') || t.image.startsWith('data:') ? t.image : '' + (t.image.startsWith('/') ? '' : '/') + t.image) 
                     : testimonialImages[i % testimonialImages.length],
                 image: t.image 
-                    ? (t.image.startsWith('http') || t.image.startsWith('data:') ? t.image : `https://aham-grham-website.vercel.app${t.image.startsWith('/') ? '' : '/'}${t.image}`) 
+                    ? (t.image.startsWith('http') || t.image.startsWith('data:') ? t.image : '' + (t.image.startsWith('/') ? '' : '/') + t.image) 
                     : testimonialImages[i % testimonialImages.length],
                 name: t.name,
                 role: t.role,
@@ -580,7 +580,7 @@ async function loadEventsToPage() {
     if (!mainGrid && !workshopGrid && !upcomingGrid && !highlightGrid) return;
 
     try {
-        const response = await fetch('https://aham-grham-website.vercel.app/api/events');
+        const response = await fetch(window.API_BASE_URL + '/api/events');
         const events = await response.json();
 
         if (events.length > 0) {
@@ -659,7 +659,7 @@ async function loadEventsToPage() {
                     const highlightItems = highlightData.map(ev => {
                         return {
                             image: ev.image 
-                                ? (ev.image.startsWith('http') || ev.image.startsWith('data:') ? ev.image : `https://aham-grham-website.vercel.app${ev.image.startsWith('/') ? '' : '/'}${ev.image}`) 
+                                ? (ev.image.startsWith('http') || ev.image.startsWith('data:') ? ev.image : '' + (ev.image.startsWith('/') ? '' : '/') + ev.image) 
                                 : 'assets/AhamGraham-Web/AboutUs-Page.jpg',
                             text: ev.name,
                             description: ev.description,
@@ -697,7 +697,7 @@ async function loadProductsToServices() {
     if (!grid) return;
 
     try {
-        const response = await fetch('https://aham-grham-website.vercel.app/api/products');
+        const response = await fetch(window.API_BASE_URL + '/api/products');
         const products = await response.json();
 
         // Filter products for service page
@@ -710,7 +710,7 @@ async function loadProductsToServices() {
                 const imgSrc = product.image 
                     ? (product.image.startsWith('http') || product.image.startsWith('data:') 
                         ? product.image 
-                        : `https://aham-grham-website.vercel.app/uploads/${product.image}`)
+                        : `/uploads/${product.image}`)
                     : 'https://images.unsplash.com/photo-1592179900431-1e021ea5c783?auto=format&fit=crop&q=80';
 
                 const cardHTML = `
@@ -745,7 +745,7 @@ async function loadProductsToServices() {
  */
 async function loadHeroForPage(pageName) {
     try {
-        const response = await fetch(`https://aham-grham-website.vercel.app/api/hero?page=${pageName}`);
+        const response = await fetch((window.API_BASE_URL || '') + `/api/hero?page=${pageName}`);
         const hero = await response.json();
 
         if (hero) {
@@ -755,7 +755,9 @@ async function loadHeroForPage(pageName) {
             const subtitle = document.getElementById(`${pageName}-hero-subtitle`);
 
             if (img && hero.image) {
-                img.src = (hero.image.startsWith('http') || hero.image.startsWith('data:')) ? hero.image : (hero.image.startsWith('/') ? `https://aham-grham-website.vercel.app${hero.image}` : `assets/AhamGraham-Web/${hero.image}`);
+                img.src = (hero.image.startsWith('http') || hero.image.startsWith('data:')) 
+                    ? hero.image 
+                    : (hero.image.startsWith('/') ? `${window.API_BASE_URL}${hero.image}` : `${window.API_BASE_URL}/uploads/${hero.image}`);
             }
             if (kicker) kicker.innerText = hero.kicker;
             if (title) title.innerText = hero.title;
@@ -774,7 +776,7 @@ async function loadAboutToPage() {
     if (!heroTitle) return;
 
     try {
-        const response = await fetch('https://aham-grham-website.vercel.app/api/about');
+        const response = await fetch(window.API_BASE_URL + '/api/about');
         const about = await response.json();
 
         if (about) {
@@ -788,7 +790,9 @@ async function loadAboutToPage() {
                 if (heroTitle) heroTitle.innerText = about.hero.title;
                 if (subtitle) subtitle.innerText = about.hero.subtitle;
                 if (img && about.hero.image) {
-                    img.src = (about.hero.image.startsWith('http') || about.hero.image.startsWith('data:')) ? about.hero.image : (about.hero.image.startsWith('/') ? `https://aham-grham-website.vercel.app${about.hero.image}` : `assets/AhamGraham-Web/${about.hero.image}`);
+                    img.src = (about.hero.image.startsWith('http') || about.hero.image.startsWith('data:')) 
+                        ? about.hero.image 
+                        : (about.hero.image.startsWith('/') ? `${window.API_BASE_URL}${about.hero.image}` : `${window.API_BASE_URL}/uploads/${about.hero.image}`);
                 }
             }
 
@@ -865,7 +869,7 @@ async function loadAboutToPage() {
                 if (ctaSubtitle) ctaSubtitle.innerText = about.cta.subtitle;
                 if (ctaButton) ctaButton.innerText = about.cta.buttonText;
                 if (ctaSection && about.cta.image) {
-                    const imgUrl = about.cta.image.startsWith('/') ? `https://aham-grham-website.vercel.app${about.cta.image}` : `assets/AhamGraham-Web/${about.cta.image}`;
+                    const imgUrl = about.cta.image.startsWith('/') ? `${about.cta.image}` : `assets/AhamGraham-Web/${about.cta.image}`;
                     ctaSection.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${imgUrl})`;
                     ctaSection.style.backgroundSize = 'cover';
                     ctaSection.style.backgroundPosition = 'center';
@@ -886,7 +890,7 @@ async function loadCentersToPage() {
     if (!centersContainer) return;
 
     try {
-        const response = await fetch('https://aham-grham-website.vercel.app/api/centers');
+        const response = await fetch(window.API_BASE_URL + '/api/centers');
         const centers = await response.json();
 
         if (centers && centers.length > 0) {
@@ -894,7 +898,7 @@ async function loadCentersToPage() {
                 const isReversed = index % 2 !== 0;
                 const hasImage = !!center.image;
                 const imageUrl = hasImage 
-                    ? (center.image.startsWith('http') || center.image.startsWith('data:') ? center.image : `https://aham-grham-website.vercel.app${center.image}`)
+                    ? (center.image.startsWith('http') || center.image.startsWith('data:') ? center.image : `${center.image}`)
                     : 'https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&w=1920&q=80';
 
                 // Image Card (8 columns)

@@ -4,7 +4,7 @@
  */
 
 const AUTH_CONFIG = {
-    API_BASE_URL: 'https://aham-grham-website.vercel.app/api/users',
+    API_BASE_URL: '/api/users',
     TOKEN_KEY: 'aham_grham_token',
     USER_KEY: 'aham_grham_user'
 };
@@ -85,7 +85,7 @@ const AuthHelper = {
 // Auto-update UI on load
 document.addEventListener('DOMContentLoaded', () => {
     AuthHelper.updateGlobalUI();
-    
+
     // Redirect if on book-session.html and not logged in
     if (window.location.pathname.includes('book-session.html') && !AuthHelper.isLoggedIn()) {
         window.location.href = 'auth.html';
