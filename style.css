@@ -179,7 +179,7 @@ html.light-theme .bento-item,
 html.light-theme .bento-blog-item,
 html.light-theme .bento-card,
 html.light-theme .product-card,
-html.light-theme .services-feature-shell {
+html.light-theme .removed-shell-style {
   background: var(--bg-surface) padding-box !important;
   border-color: rgba(0, 0, 0, 0.05) !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
@@ -245,7 +245,7 @@ html.light-theme .bento-item,
 html.light-theme .bento-blog-item,
 html.light-theme .bento-card,
 html.light-theme .product-card,
-html.light-theme .services-feature-shell {
+html.light-theme .removed-shell-style {
   background: var(--bg-surface) padding-box !important;
   border-color: rgba(0, 0, 0, 0.05) !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
@@ -313,7 +313,7 @@ html.light-theme .bento-item,
 html.light-theme .bento-blog-item,
 html.light-theme .bento-card,
 html.light-theme .product-card,
-html.light-theme .services-feature-shell {
+html.light-theme .removed-shell-style {
   background: var(--bg-surface) padding-box !important;
   border-color: rgba(0, 0, 0, 0.05) !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
