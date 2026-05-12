@@ -60,21 +60,21 @@ async function fetchProducts() {
           : 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80';
 
         productCard.innerHTML = `
-          <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 shadow-xl cursor-pointer" 
+          <div class="aspect-square rounded-[32px] overflow-hidden relative border border-white/5 shadow-2xl cursor-pointer mb-6" 
             onclick="openProductModal(this.closest('.review-card'));">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${imageUrl}" alt="${product.name}">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="${imageUrl}" alt="${product.name}">
           </div>
-          <div class="space-y-3 w-full mt-4 z-20 relative">
-            <div class="grid grid-cols-3 gap-2 w-full">
-              <button class="py-2.5 bg-accent-blue/20 text-accent-cyan border border-accent-blue/30 rounded-xl text-[10px] uppercase tracking-widest font-bold hover:bg-accent-blue/30 transition-all" 
-                onclick="event.stopPropagation(); openProductModal(this.closest('.review-card'));">Buy</button>
-              <button class="py-2.5 bg-white/5 border border-white/10 text-white rounded-xl text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-all" 
+          <div class="space-y-1 text-left px-2">
+            <h3 class="text-xl font-sans text-white font-medium">${product.name}</h3>
+            <p class="text-text-secondary font-sans text-sm opacity-60">₹ ${product.price}.00</p>
+            <div class="pt-4">
+              <button class="px-6 py-2.5 bg-[#1a1c1e] text-white border border-white/10 rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-[#25282c] transition-all"
                 data-name="${product.name.replace(/"/g, '&quot;')}"
                 data-price="${product.price}"
                 data-image="${imageUrl}"
-                onclick="event.stopPropagation(); const d=this.dataset; addToCart(d.name, parseFloat(d.price), d.image);">Cart</button>
-              <button class="py-2.5 bg-white/5 border border-white/10 text-white rounded-xl text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-all" 
-                onclick="event.stopPropagation(); openReviewModal(this.closest('.review-card'));">Review</button>
+                onclick="event.stopPropagation(); const d=this.dataset; addToCart(d.name, parseFloat(d.price), d.image);">
+                Add to Cart
+              </button>
             </div>
           </div>
         `;
