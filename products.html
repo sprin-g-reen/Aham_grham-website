@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <script>
-    const isLocal = window.location.hostname === 'localhost' || 
-                    window.location.hostname === '127.0.0.1' || 
-                    window.location.hostname.startsWith('192.168.') || 
-                    window.location.hostname.startsWith('172.') || 
-                    window.location.hostname.startsWith('10.') || 
-                    window.location.hostname.endsWith('.local');
+    const isLocal = window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1' ||
+      window.location.hostname.startsWith('192.168.') ||
+      window.location.hostname.startsWith('172.') ||
+      window.location.hostname.startsWith('10.') ||
+      window.location.hostname.endsWith('.local');
 
-    window.API_BASE_URL = isLocal 
-      ? 'http://' + window.location.hostname + ':5000' 
+    window.API_BASE_URL = isLocal
+      ? 'http://' + window.location.hostname + ':5000'
       : 'https://aham-grham-backend.vercel.app';
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -838,8 +838,7 @@
         <!-- Image Canvas -->
         <div class="relative group">
           <div
-            class="aspect-[5/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] border border-white/10 cursor-pointer"
-            onclick="const urlParams = new URLSearchParams(window.location.search); window.location.href = 'product-details.html?id=' + (window.featuredProductId || '');">
+            class="aspect-[5/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] border border-white/10 cursor-pointer">
             <img id="featuredProductImage" class="w-full h-full object-cover"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo"
               alt="Sacred Moon Oil bottle">
@@ -911,7 +910,8 @@
             <div class="relative z-10 space-y-8">
               <div class="space-y-4">
                 <h3 class="text-4xl font-sans text-white">Vessels of Intention</h3>
-                <p class="text-text-secondary max-w-md">Warm three drops between the palms of your hands. Close your eyes
+                <p class="text-text-secondary max-w-md">Warm three drops between the palms of your hands. Close your
+                  eyes
                   and inhale deeply for a count of four, hold for two, and release for six.</p>
               </div>
               <ul class="space-y-4">
@@ -942,7 +942,8 @@
             <span class="material-symbols-outlined text-5xl text-accent-blue silhouette-icon"
               data-icon="nights_stay">nights_stay</span>
             <h4 class="font-sans text-xl text-white ">Lunar Synergy</h4>
-            <p class="text-sm text-text-secondary leading-loose">Best used during the New Moon to manifest clarity, or the
+            <p class="text-sm text-text-secondary leading-loose">Best used during the New Moon to manifest clarity, or
+              the
               Full Moon to release what no longer serves your journey.</p>
           </div>
 
@@ -960,7 +961,8 @@
           </div>
 
           <!-- Bento 4: Material Card -->
-          <div class="md:col-span-6 bg-white/5 border border-white/10 rounded-3xl p-8 flex items-center justify-between">
+          <div
+            class="md:col-span-6 bg-white/5 border border-white/10 rounded-3xl p-8 flex items-center justify-between">
             <div class="space-y-2">
               <h4 class="text-[10px] uppercase tracking-widest font-bold text-accent-cyan">Eco-Conscious</h4>
               <p class="text-text-secondary">Violet Miron Glass preserves the bio-energy of our botanical extracts.</p>
@@ -978,12 +980,15 @@
           <div class="faq-item border-b border-white/5 py-6 group cursor-pointer" onclick="toggleFaq(this)">
             <div class="flex justify-between items-center gap-4">
               <h4 class="text-xl text-white font-sans">how should i store the sacred moon oil?</h4>
-              <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:border-accent-blue shrink-0">
-                <span class="material-symbols-outlined text-accent-blue transition-transform duration-300 faq-icon">add</span>
+              <button
+                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:border-accent-blue shrink-0">
+                <span
+                  class="material-symbols-outlined text-accent-blue transition-transform duration-300 faq-icon">add</span>
               </button>
             </div>
             <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="pt-6 text-text-secondary leading-relaxed">store in a cool, dark place away from direct sunlight. the miron glass bottle is designed to protect the delicate botanical extracts.</p>
+              <p class="pt-6 text-text-secondary leading-relaxed">store in a cool, dark place away from direct sunlight.
+                the miron glass bottle is designed to protect the delicate botanical extracts.</p>
             </div>
           </div>
 
@@ -991,12 +996,15 @@
           <div class="faq-item border-b border-white/5 py-6 group cursor-pointer" onclick="toggleFaq(this)">
             <div class="flex justify-between items-center gap-4">
               <h4 class="text-xl text-white font-sans">is this product vegan and cruelty-free?</h4>
-              <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:border-accent-blue shrink-0">
-                <span class="material-symbols-outlined text-accent-blue transition-transform duration-300 faq-icon">add</span>
+              <button
+                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:border-accent-blue shrink-0">
+                <span
+                  class="material-symbols-outlined text-accent-blue transition-transform duration-300 faq-icon">add</span>
               </button>
             </div>
             <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="pt-6 text-text-secondary leading-relaxed">yes, all our products are 100% vegan, cruelty-free, and ethically sourced. we never test on animals.</p>
+              <p class="pt-6 text-text-secondary leading-relaxed">yes, all our products are 100% vegan, cruelty-free,
+                and ethically sourced. we never test on animals.</p>
             </div>
           </div>
 
@@ -1004,12 +1012,15 @@
           <div class="faq-item border-b border-white/5 py-6 group cursor-pointer" onclick="toggleFaq(this)">
             <div class="flex justify-between items-center gap-4">
               <h4 class="text-xl text-white font-sans">can it be used on all skin types?</h4>
-              <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:border-accent-blue shrink-0">
-                <span class="material-symbols-outlined text-accent-blue transition-transform duration-300 faq-icon">add</span>
+              <button
+                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:border-accent-blue shrink-0">
+                <span
+                  class="material-symbols-outlined text-accent-blue transition-transform duration-300 faq-icon">add</span>
               </button>
             </div>
             <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="pt-6 text-text-secondary leading-relaxed">our sacred moon oil is formulated with non-comedogenic oils suitable for most skin types. we always recommend a patch test.</p>
+              <p class="pt-6 text-text-secondary leading-relaxed">our sacred moon oil is formulated with non-comedogenic
+                oils suitable for most skin types. we always recommend a patch test.</p>
             </div>
           </div>
 
@@ -1017,12 +1028,15 @@
           <div class="faq-item border-b border-white/5 py-6 group cursor-pointer" onclick="toggleFaq(this)">
             <div class="flex justify-between items-center gap-4">
               <h4 class="text-xl text-white font-sans">when is the best time to apply?</h4>
-              <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:border-accent-blue shrink-0">
-                <span class="material-symbols-outlined text-accent-blue transition-transform duration-300 faq-icon">add</span>
+              <button
+                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:border-accent-blue shrink-0">
+                <span
+                  class="material-symbols-outlined text-accent-blue transition-transform duration-300 faq-icon">add</span>
               </button>
             </div>
             <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <p class="pt-6 text-text-secondary leading-relaxed">we recommend application during your evening ritual or before meditation to fully experience the grounding aromatic benefits.</p>
+              <p class="pt-6 text-text-secondary leading-relaxed">we recommend application during your evening ritual or
+                before meditation to fully experience the grounding aromatic benefits.</p>
             </div>
           </div>
         </div>
@@ -1211,14 +1225,18 @@
   </div>
 
   <!-- CHECKOUT MODAL (IFRAME) -->
-  <div id="checkoutModal" style="display: none; position: fixed; inset: 0; z-index: 10000; align-items: center; justify-content: center;">
-    <div class="modal-overlay" onclick="closeCheckoutModal()" style="position: absolute; inset: 0; background: rgba(5, 5, 26, 0.9); backdrop-filter: blur(10px);"></div>
+  <div id="checkoutModal"
+    style="display: none; position: fixed; inset: 0; z-index: 10000; align-items: center; justify-content: center;">
+    <div class="modal-overlay" onclick="closeCheckoutModal()"
+      style="position: absolute; inset: 0; background: rgba(5, 5, 26, 0.9); backdrop-filter: blur(10px);"></div>
     <div style="position: relative; width: 100%; max-width: 500px; height: 820px; max-height: 95vh; z-index: 10001;">
       <div style="width: 100%; height: 100%; overflow: visible;">
-        <div class="close-modal" onclick="closeCheckoutModal()" style="position: absolute; top: -10px; right: -10px; z-index: 10010; background: #3b82f6; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.4);">
+        <div class="close-modal" onclick="closeCheckoutModal()"
+          style="position: absolute; top: -10px; right: -10px; z-index: 10010; background: #3b82f6; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.4);">
           <span class="material-symbols-outlined text-xl">close</span>
         </div>
-        <iframe src="checkout.html" frameborder="0" style="width: 100%; height: 100%; background: transparent;"></iframe>
+        <iframe src="checkout.html" frameborder="0"
+          style="width: 100%; height: 100%; background: transparent;"></iframe>
       </div>
     </div>
   </div>
@@ -1265,7 +1283,7 @@
       const modal = document.getElementById('reviewsModal');
       const listEl = document.getElementById('modalReviewsList');
       const imgEl = card.querySelector('img');
-      
+
       if (imgEl) {
         document.getElementById('reviewsModalProductImg').src = imgEl.src;
       }
