@@ -535,80 +535,306 @@
         </div>
       </section>
 
+
+
+      <style>
+        /* Timeline Specific Styles */
+        .timeline-section {
+          grid-column: span 12;
+          padding: 80px 0;
+          background: transparent;
+        }
+        
+        .timeline-container {
+          position: relative;
+          max-width: 1100px;
+          margin: 40px auto;
+          padding: 40px 0;
+        }
+        
+        .timeline-container::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          width: 2px;
+          background: linear-gradient(to bottom, transparent, rgba(124, 77, 255, 0.3), transparent);
+          transform: translateX(-50%);
+        }
+        
+        html.light-theme .timeline-container::before {
+          background: linear-gradient(to bottom, transparent, rgba(124, 77, 255, 0.15), transparent);
+        }
+        
+        .timeline-item {
+          margin-bottom: 120px;
+          position: relative;
+          width: 100%;
+        }
+        
+        .timeline-item:last-child {
+          margin-bottom: 0;
+        }
+        
+        .timeline-item-inner {
+          display: flex;
+          align-items: center;
+          width: 100%;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-item-inner {
+          flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+          flex: 1;
+          padding: 0 60px;
+          text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+          text-align: left;
+        }
+        
+        .timeline-image-wrap {
+          position: relative;
+          width: 200px;
+          height: 200px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 10;
+        }
+        
+        .timeline-circle {
+          width: 180px;
+          height: 180px;
+          border-radius: 50%;
+          border: 4px solid var(--about-surface);
+          overflow: hidden;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+          background: #000;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .timeline-item:hover .timeline-circle {
+          transform: scale(1.05);
+          box-shadow: 0 20px 60px rgba(124, 77, 255, 0.3);
+          border-color: #7c4dff;
+        }
+        
+        .timeline-circle img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0.7;
+          transition: opacity 0.5s;
+        }
+        
+        .timeline-item:hover .timeline-circle img {
+          opacity: 1;
+        }
+        
+
+        
+        .timeline-spacer {
+          flex: 1;
+        }
+        
+        .timeline-year {
+          font-size: 32px;
+          font-weight: 900;
+          color: #7c4dff;
+          margin-bottom: 12px;
+          letter-spacing: -0.02em;
+        }
+        
+        .timeline-desc {
+          font-size: 16px;
+          color: var(--about-muted);
+          line-height: 1.8;
+          max-width: 400px;
+          margin-left: auto;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-desc {
+          margin-left: 0;
+          margin-right: auto;
+        }
+        
+        /* Light Theme Overrides */
+        html.light-theme .timeline-circle {
+          background: #f3f4f6;
+          border-color: #ffffff;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        html.light-theme .timeline-item:hover .timeline-circle {
+          box-shadow: 0 20px 50px rgba(124, 77, 255, 0.2);
+        }
+        
+        html.light-theme .timeline-item-inner h3 {
+          color: #111827 !important;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 900px) {
+          .timeline-container::before {
+            left: 40px;
+            transform: none;
+          }
+          
+          .timeline-item-inner, .timeline-item:nth-child(even) .timeline-item-inner {
+            flex-direction: row;
+            padding-left: 20px;
+          }
+          
+          .timeline-content {
+            text-align: left !important;
+            padding: 0 20px 0 100px;
+          }
+          
+          .timeline-desc {
+            margin-left: 0;
+            max-width: none;
+          }
+          
+          .timeline-image-wrap {
+            position: absolute;
+            left: 0;
+            width: 80px;
+            height: 80px;
+          }
+          
+          .timeline-circle {
+            width: 70px;
+            height: 70px;
+            border-width: 2px;
+          }
+          
+          .timeline-dot {
+            left: 40px;
+          }
+          
+          .timeline-spacer {
+            display: none;
+          }
+          
+          .timeline-year {
+            font-size: 24px;
+          }
+        }
+      </style>
+
+      <!-- Removed Spiritual Guides, Lineage Voice, and Ancient Lineage sections as requested -->
+
       <section class="about-card about-wide">
-        <h2 data-content="about-philosophy-title">core philosophy</h2>
-        <p data-content="about-philosophy-content">yoga is not a workout, it is a work-in. every posture, breath, and pause is a return to inner home. beyond
+        <h2 data-content="about-philosophy-title" class="text-4xl font-bold mb-6">core philosophy</h2>
+        <p data-content="about-philosophy-content" class="text-2xl max-w-4xl mx-auto leading-relaxed">yoga is not a workout, it is a work-in. every posture, breath, and pause is a return to inner home. beyond
           the physical poses lies a path to biological transcendence, where every breath becomes a conscious
           reconnection with the pulse of the universe and its ancestral rhythms.</p>
       </section>
 
-      <section class="about-card guides-wrap">
-        <div class="guides-head">
-          <div>
-            <h2>spiritual guides</h2>
-            <p>the faculty who carry our lineage and walk the path with you.</p>
+      <!-- Company Timeline Section -->
+      <section class="about-card timeline-section">
+        <div class="guides-head text-center flex-col items-center mb-16 border-none">
+          <h2 class="text-4xl font-bold mb-4">our journey</h2>
+          <p class="max-w-2xl">a timeline of transcendence, from the first breath in the mountains to a global network of healing portals.</p>
+        </div>
+
+        <div class="timeline-container">
+          <!-- Timeline Items -->
+          <div class="timeline-item">
+            <div class="timeline-item-inner">
+              <div class="timeline-content">
+                <div class="timeline-year">2018</div>
+                <h3 class="text-xl font-bold mb-2 text-white">the seed</h3>
+                <p class="timeline-desc">founding of aham grham in the rishikesh mountains. a commitment to bridging clinical science with ancient breathwork.</p>
+              </div>
+              <div class="timeline-image-wrap">
+
+                <div class="timeline-circle">
+                  <img src="assets/AhamGraham-Web/lotus-2026-01-05-00-53-39-utc.jpg" alt="2018">
+                </div>
+              </div>
+              <div class="timeline-spacer"></div>
+            </div>
           </div>
-          <button class="btn-primary" type="button">view all guides</button>
-        </div>
 
-        <div class="guide-grid">
-          <article class="guide-card">
-            <img src="assets/22.jpg" alt="Elena Vance">
-            <div class="guide-content">
-              <h3>elena vance</h3>
-              <span class="guide-role">breathwork and flow</span>
-              <p>known for gentle sequencing that calms overactive minds and rebuilds confidence in movement. she
-                integrates somatic movement and neuro-respiratory synchronization to help practitioners overcome
-                physical plateaus and mental fog.</p>
+          <div class="timeline-item">
+            <div class="timeline-item-inner">
+              <div class="timeline-content">
+                <div class="timeline-year">2020</div>
+                <h3 class="text-xl font-bold mb-2 text-white">digital transition</h3>
+                <p class="timeline-desc">launch of our first online clinical sanctuary, bringing neurological synchronization to homes worldwide during a global shift.</p>
+              </div>
+              <div class="timeline-image-wrap">
+
+                <div class="timeline-circle">
+                  <img src="assets/AhamGraham-Web/young-women-doing-yoga-sport-2026-03-24-23-12-41-utc.jpg" alt="2020">
+                </div>
+              </div>
+              <div class="timeline-spacer"></div>
             </div>
-          </article>
+          </div>
 
-          <article class="guide-card">
-            <img src="assets/23.jpg" alt="Julian Thorne">
-            <div class="guide-content">
-              <h3>julian thorne</h3>
-              <span class="guide-role">vedic meditation</span>
-              <p>blends mantra tradition and modern mindfulness to help students access deep, sustainable stillness. his
-                methodology focuses on the intersection of ancient Vedic chanting and modern cognitive science,
-                facilitating profound shifts in consciousness.</p>
-            </div>
-          </article>
+          <div class="timeline-item">
+            <div class="timeline-item-inner">
+              <div class="timeline-content">
+                <div class="timeline-year">2022</div>
+                <h3 class="text-xl font-bold mb-2 text-white">global expansion</h3>
+                <p class="timeline-desc">opening of the swiss alps sanctuary. integrating high-altitude resonance with advanced somatic recovery protocols.</p>
+              </div>
+              <div class="timeline-image-wrap">
 
-          <article class="guide-card">
-            <img src="assets/24.jpg" alt="Amara Sylla">
-            <div class="guide-content">
-              <h3>amara sylla</h3>
-              <span class="guide-role">sacred sound healing</span>
-              <p>guides restorative sound journeys that support emotional release and nervous-system ease. using
-                precision-calibrated harmonic patterns, she facilitates a unique environment for cellular reset and
-                vibrational alignment with the earth's frequency.</p>
+                <div class="timeline-circle">
+                  <img src="assets/AhamGraham-Web/multinational-women-doing-breathing-exercises-or-y-2026-01-08-23-11-26-utc.jpg" alt="2022">
+                </div>
+              </div>
+              <div class="timeline-spacer"></div>
             </div>
-          </article>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-item-inner">
+              <div class="timeline-content">
+                <div class="timeline-year">2024</div>
+                <h3 class="text-xl font-bold mb-2 text-white">innovation peak</h3>
+                <p class="timeline-desc">implementation of precision-calibrated harmonic patterns and real-time neuro-respiratory monitoring in all centers.</p>
+              </div>
+              <div class="timeline-image-wrap">
+
+                <div class="timeline-circle">
+                  <img src="assets/AhamGraham-Web/YogaClass-GroupSessions.jpg" alt="2024">
+                </div>
+              </div>
+              <div class="timeline-spacer"></div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-item-inner">
+              <div class="timeline-content">
+                <div class="timeline-year">2026</div>
+                <h3 class="text-xl font-bold mb-2 text-white">the future</h3>
+                <p class="timeline-desc">pioneering biological transcendence for the modern age, expanding to ubud and beyond with a mission of universal calm.</p>
+              </div>
+              <div class="timeline-image-wrap">
+
+                <div class="timeline-circle">
+                  <img src="assets/23.jpg" alt="2026">
+                </div>
+              </div>
+              <div class="timeline-spacer"></div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="about-card about-quote">
-        <h2>lineage voice</h2>
-        <p>"tradition is not the worship of ashes, but the preservation of fire." to honor the past is to live the truth
-          in the present. our teachings are a living river, flowing from ancestral peaks to the modern valley.</p>
-        <div class="quote-author">the sage mahavir</div>
-      </section>
 
-      <section class="about-card about-mini">
-        <span>ancient lineage</span>
-        <strong>500+ years of oral wisdom carried through movement, breath, and devotion. a commitment to preserving the
-          sacred geometry of the soul through rigorous clinical practice.</strong>
-      </section>
 
-      <section class="about-card about-cta">
-        <h2 data-content="about-cta-title">begin your ascent</h2>
-        <p data-content="about-cta-subtitle">step into the sanctuary and experience a grounded path shaped by ancient wisdom and caring faculty guidance.
-        </p>
-        <div class="cta-actions">
-          <button class="btn-ghost-light" type="button" onclick="handleBookSessionClick(event)" data-content="about-cta-button">explore
-            sessions</button>
-        </div>
-      </section>
+
     </div>
   </main>
 
