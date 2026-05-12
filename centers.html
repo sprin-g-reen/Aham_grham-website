@@ -67,15 +67,13 @@
     }
 
     .about-card {
-      border-radius: 24px;
-      background: linear-gradient(var(--about-surface), var(--about-surface)) padding-box,
-        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
-      border: 1.5px solid transparent;
-      animation: rotate 6s linear infinite;
-      overflow: hidden;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      overflow: visible;
       position: relative;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      transition: transform 0.35s ease;
     }
 
     .about-hero {
@@ -173,12 +171,10 @@
 
     /* Centers Bento Grid Specific Styles */
     .centers-shell {
-      background: linear-gradient(var(--about-card), var(--about-card)) padding-box,
-        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
-      border: 1.5px solid transparent;
-      animation: rotate 8s linear infinite;
-      border-radius: 28px;
-      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.4);
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
       padding: clamp(24px, 4vw, 44px);
     }
 
@@ -206,9 +202,8 @@
 
     /* LIGHT THEME CENTERS ADJUSTMENTS */
     html.light-theme .centers-shell {
-      background: #ffffff padding-box,
-        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      background: transparent;
+      box-shadow: none;
     }
 
     html.light-theme .md\:col-span-4.group,

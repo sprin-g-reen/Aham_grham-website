@@ -540,7 +540,7 @@ body {
 .events-blog-section,
 .testimonial-section,
 .cta-section {
-  border-bottom: 1px solid rgba(112, 5, 230, 0.1);
+  border-bottom: none;
 }
 
 /* ========== NAVBAR STYLES ========== */
@@ -1698,13 +1698,11 @@ html.light-theme .dark-logo {
 }
 
 .bento-blog-item {
-  position: relative;
-  background: linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box,
-    conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
-  border: 1.5px solid transparent !important;
+  background: var(--bg-surface);
+  border: none !important;
   border-radius: 16px;
   overflow: hidden;
-  animation: rotate 8s linear infinite;
+  animation: none;
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -2105,14 +2103,12 @@ html.light-theme .dark-logo {
 }
 
 .bento-item {
-  position: relative;
-  background: linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box,
-    conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
-  border: 1.5px solid transparent !important;
+  background: var(--bg-surface);
+  border: none !important;
   border-radius: 28px;
   overflow: hidden;
-  animation: rotate 8s linear infinite;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: none;
+  box-shadow: none;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
 }
@@ -2576,12 +2572,11 @@ img {
 }
 
 .testimonial-card {
-  background: linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box,
-    conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box !important;
-  border: 1.5px solid transparent !important;
+  background: var(--bg-surface);
+  border: none !important;
   border-radius: 22px;
-  animation: rotate 4s linear infinite;
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.4);
+  animation: none;
+  box-shadow: none;
 }
 
 .testimonial-main {
@@ -3965,6 +3960,14 @@ body,
   .footer-col ul li {
     width: 100%;
   }
+
+  .footer a:hover,
+  .footer li:hover {
+    text-decoration: underline !important;
+    text-underline-offset: 4px;
+  }
+
+
 
 
   /* Bento Overlay Light Mode - White Shade */

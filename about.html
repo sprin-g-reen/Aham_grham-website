@@ -48,15 +48,13 @@
     }
 
     .about-card {
-      border-radius: 24px;
-      background: linear-gradient(var(--about-surface), var(--about-surface)) padding-box,
-        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
-      border: 1.5px solid transparent;
-      animation: rotate 6s linear infinite;
-      overflow: hidden;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      overflow: visible;
       position: relative;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      transition: transform 0.35s ease;
     }
 
     .about-card:hover {
@@ -130,9 +128,8 @@
     }
 
     html.light-theme .about-card {
-      background: #ffffff padding-box,
-                  conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
+      background: transparent;
+      box-shadow: none;
     }
 
     html.light-theme .about-half h2,
@@ -204,11 +201,9 @@
       grid-column: span 12;
       padding: 42px;
       text-align: center;
-      background: linear-gradient(var(--about-surface), var(--about-surface)) padding-box,
-        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
-      border: 1.5px solid transparent;
-      animation: rotate 10s linear infinite;
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+      background: transparent;
+      border: none;
+      box-shadow: none;
     }
 
     .about-wide p {
@@ -249,13 +244,11 @@
     }
 
     .guide-card {
-      background: linear-gradient(var(--about-card), var(--about-card)) padding-box,
-        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
-      border: 1.5px solid transparent;
-      animation: rotate 8s linear infinite;
-      border-radius: 20px;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      overflow: visible;
+      transition: transform 0.3s ease;
     }
 
     .guide-card:hover {
@@ -294,10 +287,8 @@
     .about-quote {
       grid-column: span 8;
       padding: 36px;
-      background: linear-gradient(var(--about-surface), var(--about-surface)) padding-box,
-        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
-      border: 1.5px solid transparent;
-      animation: rotate 8s linear infinite;
+      background: transparent;
+      border: none;
       color: #f4efff;
     }
 
@@ -329,10 +320,8 @@
       display: grid;
       gap: 12px;
       place-content: center;
-      background: linear-gradient(var(--about-surface), var(--about-surface)) padding-box,
-        conic-gradient(from var(--angle), #3b82f6, #06b6d4, #3b82f6) border-box;
-      border: 1.5px solid transparent;
-      animation: rotate 8s linear infinite;
+      background: transparent;
+      border: none;
     }
 
     .about-mini span {

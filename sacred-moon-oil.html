@@ -837,10 +837,20 @@
 
     <!-- The Ritual (Bento Section) -->
     <section class="px-6 md:px-12 lg:px-24 mb-32">
-      <div class="mb-12">
-        <h2 class="text-3xl font-sans mb-2">The Ritual</h2>
-        <div class="h-1 w-12 bg-accent-blue rounded-full"></div>
+      <!-- Tabs Header -->
+      <div class="flex gap-12 mb-12 border-b border-white/5">
+        <button onclick="switchProductTab('details')" id="tab-btn-details" class="pb-4 text-2xl font-sans text-white relative group transition-all">
+          details
+          <div id="tab-indicator-details" class="absolute bottom-0 left-0 w-full h-1 bg-accent-blue rounded-full"></div>
+        </button>
+        <button onclick="switchProductTab('faq')" id="tab-btn-faq" class="pb-4 text-2xl font-sans text-text-secondary relative group transition-all hover:text-white">
+          faq
+          <div id="tab-indicator-faq" class="absolute bottom-0 left-0 w-full h-0 bg-accent-blue rounded-full transition-all"></div>
+        </button>
       </div>
+
+      <!-- Tab Content: Details -->
+      <div id="tab-content-details" class="block">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
         <!-- Bento 1: Main Process -->
         <div id="vessels-card"
@@ -906,7 +916,30 @@
             data-icon="recycling">recycling</span>
         </div>
       </div>
-    </section>
+    </div>
+
+    <!-- Tab Content: FAQ -->
+    <div id="tab-content-faq" class="hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-24">
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-4">
+          <h4 class="text-xl text-white font-sans">how should i store the sacred moon oil?</h4>
+          <p class="text-text-secondary leading-relaxed">store in a cool, dark place away from direct sunlight. the miron glass bottle is designed to protect the delicate botanical extracts, but extreme temperatures should be avoided.</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-4">
+          <h4 class="text-xl text-white font-sans">is this product vegan and cruelty-free?</h4>
+          <p class="text-text-secondary leading-relaxed">yes, all our products are 100% vegan, cruelty-free, and ethically sourced. we never test on animals.</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-4">
+          <h4 class="text-xl text-white font-sans">can it be used on all skin types?</h4>
+          <p class="text-text-secondary leading-relaxed">our sacred moon oil is formulated with non-comedogenic oils suitable for most skin types. however, we always recommend a patch test before full application.</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-4">
+          <h4 class="text-xl text-white font-sans">when is the best time to apply?</h4>
+          <p class="text-text-secondary leading-relaxed">while it can be used anytime, we recommend application during your evening ritual or before meditation to fully experience the grounding aromatic benefits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
     <!-- Student Reflections (Reviews) -->
     <section class="px-6 md:px-12 lg:px-24 mb-32">
@@ -1176,6 +1209,55 @@
         // 2. Fix the specific issue where openReviewModal was called but openReviewsModal was defined
         window.openReviewModal = openReviewsModal;
     });
+  </script>
+  <script>
+    function switchProductTab(tabId) {
+      // Elements
+      const detailsContent = document.getElementById('tab-content-details');
+      const faqContent = document.getElementById('tab-content-faq');
+      const detailsBtn = document.getElementById('tab-btn-details');
+      const faqBtn = document.getElementById('tab-btn-faq');
+      const detailsIndicator = document.getElementById('tab-indicator-details');
+      const faqIndicator = document.getElementById('tab-indicator-faq');
+
+      if (tabId === 'details') {
+        // Show Details
+        detailsContent.classList.remove('hidden');
+        detailsContent.classList.add('block');
+        faqContent.classList.remove('block');
+        faqContent.classList.add('hidden');
+
+        // Update Buttons
+        detailsBtn.classList.remove('text-text-secondary');
+        detailsBtn.classList.add('text-white');
+        faqBtn.classList.remove('text-white');
+        faqBtn.classList.add('text-text-secondary');
+
+        // Update Indicators
+        detailsIndicator.classList.remove('h-0');
+        detailsIndicator.classList.add('h-1');
+        faqIndicator.classList.remove('h-1');
+        faqIndicator.classList.add('h-0');
+      } else {
+        // Show FAQ
+        faqContent.classList.remove('hidden');
+        faqContent.classList.add('block');
+        detailsContent.classList.remove('block');
+        detailsContent.classList.add('hidden');
+
+        // Update Buttons
+        faqBtn.classList.remove('text-text-secondary');
+        faqBtn.classList.add('text-white');
+        detailsBtn.classList.remove('text-white');
+        detailsBtn.classList.add('text-text-secondary');
+
+        // Update Indicators
+        faqIndicator.classList.remove('h-0');
+        faqIndicator.classList.add('h-1');
+        detailsIndicator.classList.remove('h-1');
+        detailsIndicator.classList.add('h-0');
+      }
+    }
   </script>
 </body>
 </html>
