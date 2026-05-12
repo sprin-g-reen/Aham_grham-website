@@ -492,7 +492,7 @@
           <span class="material-symbols-outlined">shopping_cart</span>
           <span class="cart-badge" style="display: none;">0</span>
         </button>
-        <button class="btn-primary" onclick="window.location.href='book-session'">book session</button>
+        <button class="btn-primary" onclick="handleBookSessionClick(event)">book session</button>
         <button class="btn-icon"><span class="material-symbols-outlined">light_mode</span></button>
         <button class="btn-icon"><span class="material-symbols-outlined">dark_mode</span></button>
         <button class="hamburger-btn">
@@ -605,7 +605,7 @@
         <p data-content="about-cta-subtitle">step into the sanctuary and experience a grounded path shaped by ancient wisdom and caring faculty guidance.
         </p>
         <div class="cta-actions">
-          <button class="btn-ghost-light" type="button" onclick="window.location.href='book-session'" data-content="about-cta-button">explore
+          <button class="btn-ghost-light" type="button" onclick="handleBookSessionClick(event)" data-content="about-cta-button">explore
             sessions</button>
         </div>
       </section>
@@ -626,7 +626,7 @@
         add to cart
         <span class="cart-badge" style="display: none;">0</span>
       </button></li>
-      <li><a href="book-session" class="btn-primary mt-4">book session</a></li>
+      <li><button onclick="handleBookSessionClick(event)" class="btn-primary mt-4 w-full">book session</button></li>
     </ul>
   </div>
 

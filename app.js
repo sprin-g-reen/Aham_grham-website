@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
 
 function handleBookSessionClick(e) {
     if (e) e.preventDefault();
-    window.location.href = 'book-session.html';
+    window.location.href = 'https://calendly.com/aham_grham-salem';
 }
 
 const nav = document.querySelector(".menu-buttons");
@@ -1026,7 +1026,7 @@ setupFooterAccordion();
 
 // Global hook for the "Book Session" buttons (Bypass Auth for now)
 window.handleBookSessionClick = function (event) {
-    window.location.href = 'book-session.html';
+    window.location.href = 'https://calendly.com/aham_grham-salem';
 };
 
 window.handleAddToCartClick = function (event) {

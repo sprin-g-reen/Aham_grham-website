@@ -153,13 +153,12 @@ function showSuccess() {
     success.style.display = 'block';
 
     setTimeout(() => {
-        window.location.href = 'book-session.html';
+        window.location.href = 'https://calendly.com/aham_grham-salem';
     }, 1500);
 }
 
 // Global hook for the "Book Session" buttons
 window.handleBookSessionClick = function(event) {
-    // If not logged in, show modal
-    // For now, always show modal to test UI
-    showAuthModal();
+    if (event) event.preventDefault();
+    window.location.href = 'https://calendly.com/aham_grham-salem';
 };

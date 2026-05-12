@@ -4138,3 +4138,145 @@ body,
     height: 44px;
   }
 }
+/* Amazon-Style Review Card */
+.amazon-review-card {
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+html.light-theme .amazon-review-card {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.arc-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.arc-avatar {
+    width: 34px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+html.light-theme .arc-avatar {
+    background: #e5e7eb;
+    color: #9ca3af;
+}
+
+.arc-username {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.arc-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.arc-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.arc-star {
+    color: #ffa41c;
+    font-size: 16px;
+}
+
+.arc-star.empty {
+    color: #e5e7eb;
+}
+
+.arc-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.arc-meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.arc-product-info {
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.arc-verified {
+    color: #c45500;
+    font-weight: 700;
+}
+
+.arc-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin: 4px 0;
+}
+
+.arc-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 12px;
+}
+
+.arc-helpful-btn {
+    padding: 8px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.arc-helpful-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-primary);
+}
+
+html.light-theme .arc-helpful-btn {
+    background: #ffffff;
+    border: 1px solid #d5d9d9;
+    box-shadow: 0 2px 5px rgba(213, 217, 217, 0.5);
+    color: #0f1111;
+}
+
+html.light-theme .arc-helpful-btn:hover {
+    background: #f7fafa;
+    border-color: #adb1b1;
+}
+
+.arc-report {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.arc-report:hover {
+    color: #ffa41c;
+    text-decoration: underline;
+}
+

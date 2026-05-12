@@ -819,7 +819,7 @@
           <span class="material-symbols-outlined">shopping_cart</span>
           <span class="cart-badge" style="display: none;">0</span>
         </button>
-        <button class="btn-primary" onclick="window.location.href='book-session'">book session</button>
+        <button class="btn-primary" onclick="handleBookSessionClick(event)">book session</button>
         <button class="btn-icon"><span class="material-symbols-outlined">light_mode</span></button>
         <button class="btn-icon"><span class="material-symbols-outlined">dark_mode</span></button>
         <button class="hamburger-btn">
@@ -1067,7 +1067,7 @@
           add to cart
           <span class="cart-badge" style="display: none;">0</span>
         </button></li>
-      <li><a href="book-session" class="btn-primary mt-4">book session</a></li>
+      <li><button onclick="handleBookSessionClick(event)" class="btn-primary mt-4 w-full">book session</button></li>
     </ul>
   </div>
 
@@ -1223,10 +1223,80 @@
     function openReviewsModal(card) {
       if (!card) return;
       const modal = document.getElementById('reviewsModal');
+      const listEl = document.getElementById('modalReviewsList');
       const imgEl = card.querySelector('img');
+      
       if (imgEl) {
         document.getElementById('reviewsModalProductImg').src = imgEl.src;
       }
+
+      // Sample reviews data (matching user provided image)
+      const mockReviews = [
+        {
+          name: "Abhishek shukla",
+          rating: 5,
+          title: "Great product",
+          date: "3 February 2026",
+          location: "India",
+          variant: "Size: 3XL | Colour: Rust",
+          verified: true,
+          content: "The shirt gives you premium look .loved the fabric"
+        },
+        {
+          name: "Mukesh",
+          rating: 4,
+          title: "Good clothes",
+          date: "16 April 2026",
+          location: "India",
+          variant: "Size: M | Colour: Lt.Blue",
+          verified: true,
+          content: "Nice"
+        },
+        {
+          name: "Priya Nair",
+          rating: 5,
+          title: "Exceeded expectations",
+          date: "20 May 2026",
+          location: "India",
+          variant: "Size: L | Colour: Deep Sea",
+          verified: true,
+          content: "The quality of the material is outstanding. Highly recommend for daily rituals."
+        }
+      ];
+
+      if (listEl) {
+        listEl.innerHTML = mockReviews.map(review => `
+          <div class="amazon-review-card">
+            <div class="arc-user">
+              <div class="arc-avatar">
+                <span class="material-symbols-outlined">person</span>
+              </div>
+              <span class="arc-username">${review.name}</span>
+            </div>
+            <div class="arc-rating-row">
+              <div class="arc-stars">
+                ${Array(5).fill(0).map((_, i) => `
+                  <span class="material-symbols-outlined arc-star ${i >= review.rating ? 'empty' : ''}">
+                    ${i >= review.rating ? 'star_outline' : 'star'}
+                  </span>
+                `).join('')}
+              </div>
+              <span class="arc-title">${review.title}</span>
+            </div>
+            <div class="arc-meta">Reviewed in ${review.location} on ${review.date}</div>
+            <div class="arc-product-info">
+              <span>${review.variant}</span>
+              ${review.verified ? '<span class="arc-verified">Verified Purchase</span>' : ''}
+            </div>
+            <div class="arc-body">${review.content}</div>
+            <div class="arc-actions">
+              <button class="arc-helpful-btn">Helpful</button>
+              <span class="arc-report">Report</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
       modal.style.display = 'flex';
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';

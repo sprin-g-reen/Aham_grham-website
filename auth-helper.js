@@ -74,11 +74,7 @@ const AuthHelper = {
     },
 
     handleBookSession() {
-        if (this.isLoggedIn()) {
-            window.location.href = 'book-session.html';
-        } else {
-            window.location.href = 'auth.html';
-        }
+        window.location.href = 'https://calendly.com/aham_grham-salem';
     }
 };
 
