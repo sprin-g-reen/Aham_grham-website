@@ -36,7 +36,27 @@ async function fetchProducts() {
         }
 
         if (featured.image) {
-          imageEl.src = (featured.image.startsWith('http') || featured.image.startsWith('data:')) ? featured.image : `${UPLOADS_URL}/${featured.image}`;
+          const finalImageUrl = (featured.image.startsWith('http') || featured.image.startsWith('data:')) ? featured.image : `${UPLOADS_URL}/${featured.image}`;
+          imageEl.src = finalImageUrl;
+
+          // Dynamically update Featured Product buttons if they exist
+          const buyBtn = document.getElementById('featuredProductBuyBtn');
+          const cartBtn = document.getElementById('featuredProductCartBtn');
+
+          if (buyBtn) {
+            buyBtn.onclick = () => {
+              window.location.href = `product-detail.html?name=${encodeURIComponent(featured.name)}`;
+            };
+          }
+
+          if (cartBtn) {
+            cartBtn.onclick = () => {
+              if (window.addToCart) {
+                window.addToCart(featured.name, featured.price, finalImageUrl);
+                if (window.showToast) window.showToast(`${featured.name} added to cart!`);
+              }
+            };
+          }
         }
       }
     }

@@ -1118,8 +1118,20 @@ window.updateCartBadge = function () {
     }
 };
 
-// Initialize cart on load
+// Initialize cart on load and perform cleanup of legacy hardcoded items
 document.addEventListener('DOMContentLoaded', () => {
+    // Cleanup: Remove legacy 'Sacred Moon Oil' if it exists in localStorage
+    try {
+        let cart = JSON.parse(localStorage.getItem('aham_cart') || '[]');
+        if (Array.isArray(cart)) {
+            const newCart = cart.filter(item => item.name !== 'Sacred Moon Oil');
+            if (newCart.length !== cart.length) {
+                localStorage.setItem('aham_cart', JSON.stringify(newCart));
+                console.log('🧹 Cleaned up legacy products from cart.');
+            }
+        }
+    } catch (e) { console.error("Cleanup failed:", e); }
+
     window.updateCartBadge();
 });
 if (!sessionStorage.getItem('aham_visited')) {
