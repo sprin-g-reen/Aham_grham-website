@@ -847,7 +847,7 @@
         <div class="relative group">
           <div
             class="aspect-[5/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] border border-white/10 cursor-pointer"
-            onclick="openProductModal(document.querySelector('.services-feature-shell'))">
+            onclick="window.location.href='product-detail.html?name=' + encodeURIComponent(document.getElementById('featuredProductName').innerText)">
             <img id="featuredProductImage" class="w-full h-full object-cover"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJF2gYO_9peCTNyAcmpoFuu84Ec6rIIyx11-RKEotzPidsuV-AtO432K7F-cu80JolASQzvpiLbZH26E0nubN0io-vPGMiK44U1qUwPm5zES2EFnr_DVt9aspWe0rhTJu26vVz3IYRB_szUeAyWYR35KLyH8DfAo2h2nti739HQdsvD5uhcrLsNAPRVsC4VgvBcK9OZJXKxW0U5W9aQonSQIP6jjHWWz3d_j_pj9Wb2aakEj3KKHx9aa7WYooHQiYUz7JTxJqyzDo"
               alt="Sacred Moon Oil bottle">
@@ -1413,12 +1413,12 @@
 
           const btnText = button.innerText.trim().toLowerCase();
 
-          if (btnText === 'buy') {
+          if (btnText === 'buy' || btnText === 'review') {
             e.stopPropagation();
-            openProductModal(card);
-          } else if (btnText === 'review') {
-            e.stopPropagation();
-            openReviewModal(card); // Assuming openReviewModal is defined or meant to be openReviewsModal
+            const name = card.getAttribute('data-name');
+            if (name) {
+              window.location.href = 'product-detail.html?name=' + encodeURIComponent(name);
+            }
           }
           // 'Cart' is handled by its own inline onclick in dynamic-products.js
         });

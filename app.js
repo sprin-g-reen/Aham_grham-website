@@ -460,7 +460,6 @@ async function loadProgramsToHome() {
 
                     const cardHTML = `
                         <div class="bento-item ${patternClass}" 
-                             onclick="window.location.href='services'"
                              style="cursor: pointer;"
                              data-description="${prog.description || ''}">
                             <img src="${imgSrc}" alt="${prog.name || ''}">
@@ -482,7 +481,6 @@ async function loadProgramsToHome() {
                 const prog = programs[progIndex];
                 const cardHTML = `
                     <div class="bento-item" 
-                         onclick="window.location.href='services'"
                          style="cursor: pointer;"
                          data-description="${prog.description || ''}">
                         <img src="${prog.image ? (prog.image.startsWith('http') ? prog.image : `${window.API_BASE_URL}${prog.image}`) : 'assets/AhamGraham-Web/placeholder.png'}" alt="${prog.name || ''}">
@@ -529,7 +527,7 @@ async function loadEventsToBlog() {
                              data-about="${ev.about || ''}"
                              data-category="${ev.category}">
                         <img src="${imgSrc}" alt="${ev.name}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services.html'" 
+                        <div class="bento-overlay" 
                              style="cursor: pointer; position: absolute; inset: 0; opacity: 1; visibility: visible; background: transparent;">
                             <div class="blog-item-content">
                                 <span class="category">${ev.category || 'Event'}</span>
@@ -1077,7 +1075,10 @@ setupFooterAccordion();
 
 // Global hook for the "Book Session" buttons (Bypass Auth for now)
 window.handleBookSessionClick = function (event) {
-    window.location.href = 'https://calendly.com/aham_grham-salem';
+    const contactSection = document.getElementById('footer-contact');
+    if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
 };
 
 window.handleAddToCartClick = function (event) {

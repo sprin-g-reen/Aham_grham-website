@@ -147,7 +147,42 @@ html.light-theme {
   box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }
 
-.btn-desc {
+.product-card-title {
+  color: white;
+}
+
+html.light-theme .product-card-title {
+  color: #111827;
+}
+
+.btn-add-to-cart {
+  padding: 10px 24px;
+  background: #1a1c1e;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-add-to-cart:hover {
+  background: #25282c;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+html.light-theme .btn-add-to-cart {
+  background: #7c4dff;
+  border-color: rgba(124, 77, 255, 0.2);
+  color: white;
+}
+
+html.light-theme .btn-add-to-cart:hover {
+  background: #6200ea;
+}
   background: var(--btn-desc-bg);
   color: var(--accent-purple) !important;
   border: 1px solid var(--btn-desc-border);

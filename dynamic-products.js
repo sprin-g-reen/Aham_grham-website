@@ -61,14 +61,14 @@ async function fetchProducts() {
 
         productCard.innerHTML = `
           <div class="aspect-square rounded-[32px] overflow-hidden relative border border-white/5 shadow-2xl cursor-pointer mb-6" 
-            onclick="openProductModal(this.closest('.review-card'));">
+            onclick="window.location.href='product-detail.html?name=' + encodeURIComponent('${product.name}')">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="${imageUrl}" alt="${product.name}">
           </div>
           <div class="space-y-1 text-left px-2">
-            <h3 class="text-xl font-sans text-white font-medium">${product.name}</h3>
+            <h3 class="text-xl font-sans font-medium product-card-title">${product.name}</h3>
             <p class="text-text-secondary font-sans text-sm opacity-60">₹ ${product.price}.00</p>
             <div class="pt-4">
-              <button class="px-6 py-2.5 bg-[#1a1c1e] text-white border border-white/10 rounded-lg text-[10px] uppercase tracking-widest font-bold hover:bg-[#25282c] transition-all"
+              <button class="btn-add-to-cart"
                 data-name="${product.name.replace(/"/g, '&quot;')}"
                 data-price="${product.price}"
                 data-image="${imageUrl}"

@@ -100,12 +100,17 @@
       grid-column: span 1;
       min-height: 400px;
       background: #19112b;
+      border-radius: 40px;
+      overflow: hidden;
+      margin: 20px 20px 0;
+      position: relative;
     }
 
     @media (min-width: 768px) {
       .about-hero {
         grid-column: span 12;
         min-height: 540px;
+        margin: 0 40px 0;
       }
     }
 
@@ -442,7 +447,7 @@
       <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
         <button
           class="centers-adaptive-btn border border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/5 transition-all active:scale-95"
-          onclick="handleBookSessionClick(event)">
+          onclick="document.getElementById('footer-contact').scrollIntoView({behavior: 'smooth'})">
           contact concierge
         </button>
       </div>
@@ -530,7 +535,7 @@
         </div>
 
         <!-- Column 5: Contact Us -->
-        <div class="footer-col">
+        <div class="footer-col" id="footer-contact">
           <h4>Contact Us</h4>
           <div class="contact-stack">
             <a href="mailto:contact@ahamgraham.com" class="contact-link" id="footer-contact-email">

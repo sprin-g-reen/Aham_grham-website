@@ -99,7 +99,10 @@
     .hero-light-mode {
       grid-area: 1 / 1;
       transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s ease;
-      width: 100%;
+      width: calc(100% - 40px);
+      margin: 20px auto;
+      border-radius: 40px;
+      overflow: hidden;
     }
 
     .hero-light-mode {
@@ -442,8 +445,7 @@
             <source srcset="assets/AhamGraham-Web/resp_private.png" media="(max-width: 768px)">
             <img src="assets/AhamGraham-Web/Untitled design (4).png" alt="Yoga Practice" style="cursor: pointer;">
           </picture>
-          <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services'"
-            style="cursor: pointer;">
+          <div class="bento-overlay" style="cursor: pointer;">
             <div class="bento-content">
               <h3>Private & Group</h3>
 
@@ -457,8 +459,7 @@
             <source srcset="assets/AhamGraham-Web/re_mobile.png" media="(max-width: 600px)">
             <img src="assets/AhamGraham-Web/re.png" alt="Restorative Practice" style="cursor: pointer;">
           </picture>
-          <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services'"
-            style="cursor: pointer;">
+          <div class="bento-overlay" style="cursor: pointer;">
             <div class="bento-content">
               <h3>Rehab & Recovery</h3>
 
@@ -469,8 +470,7 @@
         <!-- 3. B2B (Square) -->
         <div class="bento-item">
           <img src="assets/AhamGraham-Web/b2bpc.png" alt="Corporate Team" style="cursor: pointer;">
-          <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services'"
-            style="cursor: pointer;">
+          <div class="bento-overlay" style="cursor: pointer;">
             <div class="bento-content">
               <h3>B2B</h3>
 
@@ -489,8 +489,7 @@
         <!-- 4. ONLINE (Square) -->
         <div class="bento-item">
           <img src="assets/AhamGraham-Web/online.png" alt="Digital Yoga" style="cursor: pointer;">
-          <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services'"
-            style="cursor: pointer;">
+          <div class="bento-overlay" style="cursor: pointer;">
             <div class="bento-content">
               <h3>Online</h3>
 
@@ -501,8 +500,7 @@
         <!-- 6. CERTIFICATION (Square) -->
         <div class="bento-item">
           <img src="assets/AhamGraham-Web/certification.png" alt="Certification Training" style="cursor: pointer;">
-          <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services'"
-            style="cursor: pointer;">
+          <div class="bento-overlay" style="cursor: pointer;">
             <div class="bento-content">
               <h3>Certification</h3>
 
@@ -513,8 +511,7 @@
         <!-- 7. MEDICAL THERAPEUTIC (Tall) -->
         <div class="bento-item row-2">
           <img src="assets/AhamGraham-Web/medical.png" alt="Therapeutic Yoga" style="cursor: pointer;">
-          <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services'"
-            style="cursor: pointer;">
+          <div class="bento-overlay" style="cursor: pointer;">
             <div class="bento-content">
               <h3>Medical Therapeutic</h3>
 
@@ -529,8 +526,7 @@
               media="(min-width: 601px) and (max-width: 1100px)">
             <img src="assets/AhamGraham-Web/y&k.png" alt="Kids Yoga" style="cursor: pointer;">
           </picture>
-          <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services'"
-            style="cursor: pointer;">
+          <div class="bento-overlay" style="cursor: pointer;">
             <div class="bento-content">
               <h3>Kids & Youth</h3>
 
@@ -541,8 +537,7 @@
         <!-- 9. RETREATS (Wide) -->
         <div class="bento-item span-2">
           <img src="assets/AhamGraham-Web/retreat.png" alt="Serene Retreat" style="cursor: pointer;">
-          <div class="bento-overlay" onclick="event.stopPropagation(); window.location.href='services'"
-            style="cursor: pointer;">
+          <div class="bento-overlay" style="cursor: pointer;">
             <div class="bento-content">
               <h3>Retreats & Getaways</h3>
 
@@ -708,8 +703,8 @@
     </p>
 
     <div class="cta-buttons">
-      <button class="btn-primary" onclick="handleBookSessionClick(event)">consult with a specialist</button>
-      <button class="btn-outline" onclick="window.location.href='centers'">view all locations</button>
+      <button class="btn-primary" onclick="document.getElementById('footer-contact').scrollIntoView({behavior: 'smooth'})">consult with a specialist</button>
+      <button class="btn-outline" onclick="window.location.href='centers#centers-container'">view all locations</button>
     </div>
   </section>
 
@@ -795,7 +790,7 @@
         </div>
 
         <!-- Column 5: Contact Us -->
-        <div class="footer-col">
+        <div class="footer-col" id="footer-contact">
           <h4>Contact Us</h4>
           <div class="contact-stack">
             <a href="mailto:contact@ahamgraham.com" class="contact-link" id="footer-contact-email">

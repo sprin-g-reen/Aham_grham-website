@@ -65,7 +65,12 @@ function closeProductModal() {
 // Add click event to all product cards
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', () => openProductModal(card));
+    card.addEventListener('click', () => {
+      const name = card.getAttribute('data-name');
+      if (name) {
+        window.location.href = 'product-detail.html?name=' + encodeURIComponent(name);
+      }
+    });
   });
 
   // Add click event to all review cards
