@@ -851,6 +851,7 @@ async function loadAboutToPage() {
                 halfContainer.innerHTML = about.halfSections.map(section => `
                     <section class="about-card about-half">
                         <div>
+                            ${section.kicker ? `<span class="about-kicker mb-2 block">${section.kicker}</span>` : ''}
                             <h2>${section.title}</h2>
                             <p>${section.content}</p>
                         </div>
@@ -884,45 +885,26 @@ async function loadAboutToPage() {
                 if (miniContent) miniContent.innerText = about.ancientLineage.content;
             }
 
-            // Faculties
-            if (about.faculties) {
-                const facTitle = document.getElementById('about-faculties-title');
-                const facSubtitle = document.getElementById('about-faculties-subtitle');
-                const facGrid = document.getElementById('about-faculties-grid');
-
-                if (facTitle) facTitle.innerText = about.faculties.title;
-                if (facSubtitle) facSubtitle.innerText = about.faculties.subtitle;
-                if (facGrid && about.faculties.guides) {
-                    const displayGuides = about.faculties.guides.slice(0, 3);
-                    facGrid.innerHTML = displayGuides.map(guide => `
-                        <article class="guide-card">
-                            <img src="${guide.image.startsWith('http') || guide.image.startsWith('/') ? guide.image : 'assets/' + guide.image}" alt="${guide.name}">
-                            <div class="guide-content">
-                                <h3>${guide.name}</h3>
-                                <span class="guide-role">${guide.role}</span>
-                                <p>${guide.bio}</p>
+            // Timeline Map
+            const timelineContainer = document.querySelector('.timeline-container');
+            if (timelineContainer && about.timeline && about.timeline.length > 0) {
+                timelineContainer.innerHTML = about.timeline.map(item => `
+                    <div class="timeline-item">
+                        <div class="timeline-item-inner">
+                            <div class="timeline-content">
+                                <div class="timeline-year">${item.year}</div>
+                                <h3 class="text-xl font-bold mb-2 text-white">${item.title}</h3>
+                                <p class="timeline-desc">${item.description}</p>
                             </div>
-                        </article>
-                    `).join('');
-                }
-            }
-
-            // CTA
-            if (about.cta) {
-                const ctaTitle = document.getElementById('about-cta-title');
-                const ctaSubtitle = document.getElementById('about-cta-subtitle');
-                const ctaButton = document.getElementById('about-cta-button');
-                const ctaSection = document.getElementById('about-cta-section');
-
-                if (ctaTitle) ctaTitle.innerText = about.cta.title;
-                if (ctaSubtitle) ctaSubtitle.innerText = about.cta.subtitle;
-                if (ctaButton) ctaButton.innerText = about.cta.buttonText;
-                if (ctaSection && about.cta.image) {
-                    const imgUrl = about.cta.image.startsWith('/') ? `${about.cta.image}` : `assets/AhamGraham-Web/${about.cta.image}`;
-                    ctaSection.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${imgUrl})`;
-                    ctaSection.style.backgroundSize = 'cover';
-                    ctaSection.style.backgroundPosition = 'center';
-                }
+                            <div class="timeline-image-wrap">
+                                <div class="timeline-circle">
+                                    <img src="${item.image.startsWith('http') || item.image.startsWith('/') ? item.image : 'assets/AhamGraham-Web/' + item.image}" alt="${item.year}">
+                                </div>
+                            </div>
+                            <div class="timeline-spacer"></div>
+                        </div>
+                    </div>
+                `).join('');
             }
 
             initRevealAnimation();
