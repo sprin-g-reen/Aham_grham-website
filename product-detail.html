@@ -263,6 +263,20 @@
     .close-modal:hover {
       opacity: 1;
     }
+    .silhouette-icon {
+      pointer-events: none;
+      color: rgba(94, 53, 177, 0.4);
+      transition: opacity 0.3s ease;
+    }
+
+    .group:hover .silhouette-icon {
+      opacity: 0.6;
+    }
+
+    html.light-theme .silhouette-icon {
+      color: #5E35B1 !important;
+      opacity: 0.4 !important;
+    }
   </style>
 </head>
 
@@ -328,19 +342,146 @@
           Secure Payment via Razorpay • Fast Delivery
         </p>
       </div>
+    </div>
+  </main>
 
-      <div class="space-y-4" style="margin-top: 30px;">
-        <h3 class="text-xl font-bold uppercase tracking-widest opacity-40">Reviews</h3>
-        <div class="review-card">
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-            <div style="width: 30px; height: 30px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px;">AS</div>
-            <span class="font-bold">Abhishek Shukla</span>
+  <!-- The Ritual (Tabbed Section) -->
+  <section class="px-6 md:px-12 lg:px-24 mb-32 mt-20">
+    <!-- Tabs Header (Segmented Control) -->
+    <div class="inline-flex p-1.5 bg-white/5 border border-white/10 rounded-2xl mb-16">
+      <button onclick="switchProductTab('details')" id="tab-btn-details"
+        class="px-10 py-3 text-xl font-sans text-white rounded-xl bg-accent-blue transition-all shadow-lg shadow-accent-blue/20">
+        details
+      </button>
+      <button onclick="switchProductTab('faq')" id="tab-btn-faq"
+        class="px-10 py-3 text-xl font-sans text-text-secondary rounded-xl transition-all hover:text-white">
+        faq
+      </button>
+    </div>
+
+    <!-- Tab Content: Details -->
+    <div id="tab-content-details" class="block">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <!-- Bento 1: Main Process -->
+        <div id="vessels-card"
+          class="md:col-span-8 bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[400px] relative overflow-hidden group hover:bg-white/[0.07] transition-colors">
+          <div class="relative z-10 space-y-8">
+            <div class="space-y-4">
+              <h3 class="text-4xl font-sans text-white">Vessels of Intention</h3>
+              <p class="text-text-secondary max-w-md">Warm three drops between the palms of your hands. Close your eyes
+                and inhale deeply for a count of four, hold for two, and release for six.</p>
+            </div>
+            <ul class="space-y-4">
+              <li class="flex items-start space-x-4">
+                <span
+                  class="w-8 h-8 rounded-full bg-accent-blue/20 flex items-center justify-center text-accent-blue font-bold text-xs shrink-0">01</span>
+                <p class="text-text-secondary">Apply to the pulse points at the wrists and behind the ears before
+                  stillness.</p>
+              </li>
+              <li class="flex items-start space-x-4">
+                <span
+                  class="w-8 h-8 rounded-full bg-accent-blue/20 flex items-center justify-center text-accent-blue font-bold text-xs shrink-0">02</span>
+                <p class="text-text-secondary">Massage into the soles of the feet to ground your energy for dreamwork.
+                </p>
+              </li>
+            </ul>
           </div>
-          <p class="italic opacity-70">"The oil gives a truly premium experience. I've used many, but this one actually helps my meditation sessions."</p>
+          <div
+            class="absolute right-0 bottom-0 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
+            <span class="material-symbols-outlined text-[240px] silhouette-icon"
+              data-icon="self_improvement">self_improvement</span>
+          </div>
+        </div>
+
+        <!-- Bento 2: Note Card -->
+        <div
+          class="md:col-span-4 bg-accent-blue/10 border border-accent-blue/20 rounded-3xl p-8 flex flex-col justify-center items-center text-center space-y-6">
+          <span class="material-symbols-outlined text-5xl text-accent-blue silhouette-icon"
+            data-icon="nights_stay">nights_stay</span>
+          <h4 class="font-sans text-xl text-white ">Lunar Synergy</h4>
+          <p class="text-sm text-text-secondary leading-loose">Best used during the New Moon to manifest clarity, or the
+            Full Moon to release what no longer serves your journey.</p>
+        </div>
+
+        <!-- Bento 3: Sensory Card -->
+        <div class="md:col-span-6 bg-white/5 border border-white/10 rounded-3xl p-8 flex items-center space-x-8">
+          <div class="w-24 h-24 rounded-full overflow-hidden shrink-0 border border-white/10">
+            <img class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBie2Fpl4QHo0CN376kgufZCJ9BEoROhNzJSZhvYco63dtHcbUeKBl_Ne_F4Drh41BmS0fzoxDyE4aSz2rfy4paCDdisTT4toxIPOXURa0H3i7ZrNvQsEUReQjjtnBAdAmqh9t3ZNjUXe91M8OwCHOIOWuUfbEZaV_TotuG1WeAhbfS9jk9aPET9hTuIQQa6NX5BKJhaxdM8bT7bIyQ9YyNsNKJUtf8a1mFc_yunLGq-YvWH5q1Thr-JBbOTdeyyZ4fLGvFw8OD8s"
+              alt="Violet petals">
+          </div>
+          <div>
+            <h4 class="text-[10px] uppercase tracking-widest font-bold text-accent-cyan mb-1">Olfactory Notes</h4>
+            <p class="font-sans text-lg text-white">Crushed Violet, Evening Jasmine, Sacred Sandalwood</p>
+          </div>
+        </div>
+
+        <!-- Bento 4: Material Card -->
+        <div class="md:col-span-6 bg-white/5 border border-white/10 rounded-3xl p-8 flex items-center justify-between">
+          <div class="space-y-2">
+            <h4 class="text-[10px] uppercase tracking-widest font-bold text-accent-cyan">Eco-Conscious</h4>
+            <p class="text-text-secondary">Violet Miron Glass preserves the bio-energy of our botanical extracts.</p>
+          </div>
+          <span class="material-symbols-outlined text-4xl text-accent-blue/40 silhouette-icon"
+            data-icon="recycling">recycling</span>
         </div>
       </div>
     </div>
-  </main>
+
+    <!-- Tab Content: FAQ -->
+    <div id="tab-content-faq" class="hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-2">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item border-b border-white/5 py-6 group cursor-pointer" onclick="toggleFaq(this)">
+          <div class="flex justify-between items-center gap-4">
+            <h4 class="text-xl text-white font-sans">how should i store the product?</h4>
+            <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:border-accent-blue shrink-0">
+              <span class="material-symbols-outlined text-accent-blue transition-transform duration-300 faq-icon">add</span>
+            </button>
+          </div>
+          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="pt-6 text-text-secondary leading-relaxed">Store in a cool, dark place away from direct sunlight. The violet glass is designed to protect the delicate extracts.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item border-b border-white/5 py-6 group cursor-pointer" onclick="toggleFaq(this)">
+          <div class="flex justify-between items-center gap-4">
+            <h4 class="text-xl text-white font-sans">is this product vegan and cruelty-free?</h4>
+            <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:border-accent-blue shrink-0">
+              <span class="material-symbols-outlined text-accent-blue transition-transform duration-300 faq-icon">add</span>
+            </button>
+          </div>
+          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="pt-6 text-text-secondary leading-relaxed">Yes, all our products are 100% vegan, cruelty-free, and ethically sourced. We never test on animals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Reviews Section -->
+  <section class="px-6 md:px-12 lg:px-24 mb-32">
+    <div class="max-w-4xl">
+      <h3 class="text-3xl font-bold mb-10 text-white">Reviews</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white/5 border border-white/10 p-8 rounded-[32px]">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+            <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">AS</div>
+            <span class="font-bold text-white">Abhishek Shukla</span>
+          </div>
+          <p class="italic text-text-secondary text-lg">"The oil gives a truly premium experience. I've used many, but this one actually helps my meditation sessions."</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 p-8 rounded-[32px]">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+            <div style="width: 40px; height: 40px; background: #8b5cf6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">MP</div>
+            <span class="font-bold text-white">Meera Patel</span>
+          </div>
+          <p class="italic text-text-secondary text-lg">"Exceeded my expectations. The aroma is subtle but deep, perfect for anchoring my morning ritual."</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <script>
     async function loadData() {
@@ -463,6 +604,54 @@
       t.innerText = msg;
       t.classList.add('active');
       setTimeout(() => t.classList.remove('active'), 3000);
+    }
+
+    function switchProductTab(tabId) {
+      const detailsContent = document.getElementById('tab-content-details');
+      const faqContent = document.getElementById('tab-content-faq');
+      const detailsBtn = document.getElementById('tab-btn-details');
+      const faqBtn = document.getElementById('tab-btn-faq');
+
+      if (tabId === 'details') {
+        detailsContent.classList.remove('hidden');
+        detailsContent.classList.add('block');
+        faqContent.classList.remove('block');
+        faqContent.classList.add('hidden');
+        detailsBtn.classList.add('bg-accent-blue', 'text-white', 'shadow-lg', 'shadow-accent-blue/20');
+        detailsBtn.classList.remove('text-text-secondary');
+        faqBtn.classList.remove('bg-accent-blue', 'text-white', 'shadow-lg', 'shadow-accent-blue/20');
+        faqBtn.classList.add('text-text-secondary');
+      } else {
+        faqContent.classList.remove('hidden');
+        faqContent.classList.add('block');
+        detailsContent.classList.remove('block');
+        detailsContent.classList.add('hidden');
+        faqBtn.classList.add('bg-accent-blue', 'text-white', 'shadow-lg', 'shadow-accent-blue/20');
+        faqBtn.classList.remove('text-text-secondary');
+        detailsBtn.classList.remove('bg-accent-blue', 'text-white', 'shadow-lg', 'shadow-accent-blue/20');
+        detailsBtn.classList.add('text-text-secondary');
+      }
+    }
+
+    function toggleFaq(element) {
+      const answer = element.querySelector('.faq-answer');
+      const icon = element.querySelector('.faq-icon');
+      const allItems = document.querySelectorAll('.faq-item');
+      allItems.forEach(item => {
+        if (item !== element) {
+          const otherAnswer = item.querySelector('.faq-answer');
+          const otherIcon = item.querySelector('.faq-icon');
+          if (otherAnswer) otherAnswer.style.maxHeight = null;
+          if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+        }
+      });
+      if (answer.style.maxHeight) {
+        answer.style.maxHeight = null;
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        icon.style.transform = 'rotate(45deg)';
+      }
     }
 
     syncTheme();

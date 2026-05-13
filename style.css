@@ -112,6 +112,13 @@ html.light-theme {
   --btn-desc-border: rgba(124, 77, 255, 0.2);
 }
 
+.map-container-wrapper, .map-container-wrapper iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+  border-radius: 32px;
+}
+
 /* Card Action Buttons */
 .card-actions {
   display: flex;
@@ -183,6 +190,7 @@ html.light-theme .btn-add-to-cart {
 html.light-theme .btn-add-to-cart:hover {
   background: #6200ea;
 }
+.btn-desc {
   background: var(--btn-desc-bg);
   color: var(--accent-purple) !important;
   border: 1px solid var(--btn-desc-border);
@@ -210,7 +218,7 @@ html.light-theme .btn-desc:hover {
   background: rgba(124, 77, 255, 0.15);
 }
 
-html.light-theme .bento-item,
+html.light-theme .bento-item:not(.brand-card),
 html.light-theme .bento-blog-item,
 html.light-theme .bento-card,
 html.light-theme .product-card,
@@ -276,7 +284,7 @@ html.light-theme .btn-desc:hover {
   background: rgba(124, 77, 255, 0.15);
 }
 
-html.light-theme .bento-item,
+html.light-theme .bento-item:not(.brand-card),
 html.light-theme .bento-blog-item,
 html.light-theme .bento-card,
 html.light-theme .product-card,
@@ -344,7 +352,7 @@ html.light-theme .btn-desc:hover {
   background: rgba(22, 163, 74, 0.15);
 }
 
-html.light-theme .bento-item,
+html.light-theme .bento-item:not(.brand-card),
 html.light-theme .bento-blog-item,
 html.light-theme .bento-card,
 html.light-theme .product-card,
@@ -1745,6 +1753,7 @@ html.light-theme .dark-logo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   transition: transform 0.8s ease;
 }
 

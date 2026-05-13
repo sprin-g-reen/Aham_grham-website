@@ -950,11 +950,15 @@ async function loadCentersToPage() {
                     ? (center.image.startsWith('http') || center.image.startsWith('data:') ? center.image : `${center.image}`)
                     : 'https://images.unsplash.com/photo-1544124499-17362c6ea00b?auto=format&fit=crop&w=1920&q=80';
 
-                // Image Card (8 columns)
+                // Image/Map Card (8 columns)
+                const cardContent = center.mapIframe 
+                    ? `<div class="map-container-wrapper w-full h-full">${center.mapIframe}</div>`
+                    : `<img src="${imageUrl}" alt="${center.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                       <div class="absolute inset-0 bg-gradient-to-t from-[#170529]/40 to-transparent opacity-60"></div>`;
+
                 const imageCard = `
                     <div class="md:col-span-8 group relative overflow-hidden rounded-[32px] bg-[#170529] shadow-2xl transition-all h-[480px]">
-                        <img src="${imageUrl}" alt="${center.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#170529]/40 to-transparent opacity-60"></div>
+                        ${cardContent}
                     </div>
                 `;
 
@@ -987,7 +991,18 @@ async function loadCentersToPage() {
                 `;
 
                 // Combine them in the correct order
-                return isReversed ? (infoCard + imageCard) : (imageCard + infoCard);
+                const combinedCards = isReversed ? (infoCard + imageCard) : (imageCard + infoCard);
+
+                // If mapLink exists, wrap the whole section in a link
+                if (center.mapLink) {
+                    return `
+                        <a href="${center.mapLink}" target="_blank" class="contents group/center">
+                            ${combinedCards}
+                        </a>
+                    `;
+                }
+
+                return combinedCards;
             }).join('');
         }
     } catch (err) {

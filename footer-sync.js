@@ -19,7 +19,7 @@ async function initFooterSync() {
     const centersList = document.getElementById('footer-centers-list');
     if (centersList && data.centers) {
       centersList.innerHTML = data.centers
-        .map(center => `<li><span class="link-text">${center}</span></li>`)
+        .map(center => `<li><a href="${center.link || '#'}" target="_blank" class="link-text">${center.name || center}</a></li>`)
         .join('');
     }
 
