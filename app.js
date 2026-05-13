@@ -562,11 +562,11 @@ async function loadTestimonialsToHome() {
         if (dbTestimonials && dbTestimonials.length > 0) {
             baseTestimonials = dbTestimonials.map((t, i) => ({
                 src: t.image 
-                    ? (t.image.startsWith('http') || t.image.startsWith('data:') ? t.image : '' + (t.image.startsWith('/') ? '' : '/') + t.image) 
-                    : testimonialImages[i % testimonialImages.length],
+                    ? (t.image.startsWith('http') || t.image.startsWith('data:') ? t.image : (window.API_BASE_URL || '') + (t.image.startsWith('/') ? '' : '/') + t.image) 
+                    : testimonialImages[Math.floor(Math.random() * testimonialImages.length)],
                 image: t.image 
-                    ? (t.image.startsWith('http') || t.image.startsWith('data:') ? t.image : '' + (t.image.startsWith('/') ? '' : '/') + t.image) 
-                    : testimonialImages[i % testimonialImages.length],
+                    ? (t.image.startsWith('http') || t.image.startsWith('data:') ? t.image : (window.API_BASE_URL || '') + (t.image.startsWith('/') ? '' : '/') + t.image) 
+                    : testimonialImages[Math.floor(Math.random() * testimonialImages.length)],
                 name: t.name,
                 role: t.role,
                 text: t.content,
@@ -582,6 +582,12 @@ async function loadTestimonialsToHome() {
                 alt: `Testimonial ${i + 1}`
             }));
         }
+        
+        // Randomize the base list so the featured quote is different on every load
+        for (let i = baseTestimonials.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [baseTestimonials[i], baseTestimonials[j]] = [baseTestimonials[j], baseTestimonials[i]];
+        }
 
         // Update global testimonials array for the quote card
         testimonials = baseTestimonials;
@@ -592,8 +598,14 @@ async function loadTestimonialsToHome() {
 
         // Duplicate the data to fill the dense grid (min 20 items recommended for Dome)
         let testimonialData = [...baseTestimonials];
-        while (testimonialData.length < 20) {
+        while (testimonialData.length < 30) { // Increased to 30 for better variety
             testimonialData = [...testimonialData, ...baseTestimonials];
+        }
+        
+        // Shuffle the final array to ensure random distribution
+        for (let i = testimonialData.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [testimonialData[i], testimonialData[j]] = [testimonialData[j], testimonialData[i]];
         }
 
         const isMobile = window.innerWidth <= 768;
@@ -612,7 +624,7 @@ async function loadTestimonialsToHome() {
             openedImageHeight: isMobile ? `${mobileHeight}px` : '550px',
             imageBorderRadius: '30px',
             grayscale: false,
-            segments: isMobile ? 30 : 55
+            segments: isMobile ? 28 : 48
         });
 
     } catch (error) {
@@ -635,8 +647,8 @@ async function loadEventsToPage() {
         if (events.length > 0) {
             // Sort events by category
             const categorized = {
-                'Main Event': [],
-                'Workshop': [],
+                'Regularly Happening': [],
+                'Regular events': [],
                 'Highlight': [],
                 'Upcoming Event': []
             };
@@ -647,18 +659,18 @@ async function loadEventsToPage() {
                 }
             });
 
-            // Populate Main Events
-            if (mainGrid && categorized['Main Event'].length > 0) {
+            // Populate Regularly Happening
+            if (mainGrid && categorized['Regularly Happening'].length > 0) {
                 mainGrid.innerHTML = '';
                 const mainPatterns = ['span-2', 'span-1', 'span-1', 'span-3', 'span-1', 'span-1', 'span-1', 'span-2'];
-                categorized['Main Event'].forEach((ev, i) => {
+                categorized['Regularly Happening'].forEach((ev, i) => {
                     const pattern = mainPatterns[i % mainPatterns.length];
                     mainGrid.insertAdjacentHTML('beforeend', createEventCard(ev, pattern));
                 });
             }
 
-            // Populate Workshops
-            if (workshopGrid && categorized['Workshop'].length > 0) {
+            // Populate Regular events
+            if (workshopGrid && categorized['Regular events'].length > 0) {
                 workshopGrid.innerHTML = '';
                 const workshopPatterns = [
                     'sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1 lg:row-span-2',
@@ -666,7 +678,7 @@ async function loadEventsToPage() {
                     'sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1',
                     'sm:col-span-2 lg:col-span-2', 'sm:col-span-1 lg:col-span-1', 'sm:col-span-1 lg:col-span-1'
                 ];
-                categorized['Workshop'].forEach((ev, i) => {
+                categorized['Regular events'].forEach((ev, i) => {
                     const pattern = workshopPatterns[i % workshopPatterns.length];
                     workshopGrid.insertAdjacentHTML('beforeend', createEventCard(ev, pattern, true));
                 });
@@ -764,7 +776,7 @@ async function loadProductsToServices() {
 
                 const cardHTML = `
                     <div class="group cursor-pointer product-card rounded-[32px] overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col"
-                         onclick="window.location.href='sacred-moon-oil.html'"
+                         onclick="window.location.href='product-detail.html?name=' + encodeURIComponent('${product.name}')"
                          data-description="${product.description || ''}">
                         <img src="${imgSrc}" alt="${product.name}" class="w-full aspect-[4/3] object-cover rounded-t-[32px] transition-transform duration-500 group-hover:scale-105">
                         <div class="p-6">

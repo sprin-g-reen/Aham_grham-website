@@ -265,7 +265,7 @@ async function fetchAndRenderUserEvents() {
           </div>
           <div class="p-8 relative -mt-20">
             <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-[10px] font-bold tracking-widest mb-3 block w-fit">
-              ${e.category || 'Main Event'}
+              ${e.category || 'Regularly Happening'}
             </span>
             <h3 class="text-2xl font-bold mb-4">${e.name}</h3>
             <p class="text-gray-400 text-sm mb-6 line-clamp-2">${e.description}</p>
