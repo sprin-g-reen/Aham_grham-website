@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    const isLocal = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1' || 
+                    window.location.hostname.startsWith('192.168.') || 
+                    window.location.hostname.startsWith('172.') || 
+                    window.location.hostname.startsWith('10.') || 
+                    window.location.hostname.endsWith('.local');
+
+    window.API_BASE_URL = isLocal 
+      ? 'http://' + window.location.hostname + ':5000' 
+      : 'https://aham-grham-backend.vercel.app';
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Write a Review | Aham Grham</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "bg-deep": "#05051a",
+            "bg-surface": "#0a0a20",
+            "accent-blue": "#3b82f6",
+            "accent-cyan": "#06b6d4",
+            "text-primary": "#ffffff",
+            "text-secondary": "#94a3b8",
+          },
+          fontFamily: {
+            sans: ['IBM Plex Sans', 'sans-serif'],
+          }
+        },
+      },
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <style>
+    body {
+      background-color: var(--bg-deep);
+      font-family: 'IBM Plex Sans', sans-serif;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 40px;
+    }
+    .star-rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      gap: 8px;
+    }
+    .star-rating input { 
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .star-rating label {
+      font-family: 'Material Symbols Outlined';
+      font-size: 48px;
+      color: rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-variation-settings: 'FILL' 0, 'wght' 400;
+      user-select: none;
+    }
+    .star-rating input:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+      color: #fbbf24 !important;
+      font-variation-settings: 'FILL' 1, 'wght' 400;
+    }
+    .upload-box {
+      border: 2px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      transition: all 0.3s ease;
+    }
+    .upload-box:hover {
+      border-color: var(--accent-blue);
+      background: rgba(59, 130, 246, 0.05);
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 16px;
+    }
+    .preview-item {
+      aspect-ratio: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .preview-remove {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Light Mode Overrides */
+    html.light-theme body { background-color: #f8faff; color: #05051a; }
+    html.light-theme .glass-card { 
+      background: rgba(0, 0, 0, 0.02); 
+      border-color: rgba(0, 0, 0, 0.05); 
+      box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    }
+    html.light-theme h1, html.light-theme h2 { color: #05051a; }
+    html.light-theme .text-text-secondary { color: #4b5563; }
+    html.light-theme input, html.light-theme textarea {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.1);
+      color: #05051a;
+    }
+    html.light-theme input:focus, html.light-theme textarea:focus {
+      border-color: var(--accent-blue);
+      background: white;
+    }
+    html.light-theme .upload-box {
+      border-color: rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.02);
+    }
+    html.light-theme .star-rating label {
+      color: rgba(0, 0, 0, 0.1);
+    }
+    html.light-theme .w-12.h-12.rounded-2xl.bg-white\/5 {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    html.light-theme .brightness-0.invert {
+      brightness: 1;
+      invert: 0;
+      opacity: 1;
+    }
+    html.light-theme .group:hover span.text-text-secondary {
+      color: #05051a !important;
+    }
+  </style>
+</head>
+
+<body class="bg-[#05051a] overflow-x-hidden">
+  
+  <nav class="p-8">
+    <div class="max-w-[1400px] mx-auto flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-4 group">
+        <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-accent-blue transition-all">
+          <span class="material-symbols-outlined text-accent-blue">arrow_back</span>
+        </div>
+        <span class="text-sm font-bold uppercase tracking-[0.3em] text-text-secondary group-hover:text-white transition-all">Back to product</span>
+      </a>
+    </div>
+  </nav>
+
+  <main class="px-6 pb-20">
+    <div class="max-w-[800px] mx-auto">
+      
+      <!-- Product Context -->
+      <div class="mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div>
+          <h1 class="text-4xl font-bold text-white mb-2" id="productName">Write a Review</h1>
+          <p class="text-text-secondary">Your feedback helps millions of others make better choices.</p>
+        </div>
+      </div>
+
+      <!-- Review Form Card -->
+      <form id="reviewForm" class="glass-card p-8 md:p-12 space-y-12 shadow-2xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
+        
+        <!-- Star Rating -->
+        <div class="space-y-6 text-center md:text-left">
+          <label class="text-xs uppercase tracking-[0.3em] font-bold text-accent-blue">How would you rate it?</label>
+          <div class="star-rating">
+            <input type="radio" name="rating" id="star5" value="5"><label for="star5">star</label>
+            <input type="radio" name="rating" id="star4" value="4"><label for="star4">star</label>
+            <input type="radio" name="rating" id="star3" value="3"><label for="star3">star</label>
+            <input type="radio" name="rating" id="star2" value="2"><label for="star2">star</label>
+            <input type="radio" name="rating" id="star1" value="1" required><label for="star1">star</label>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Name Input -->
+          <div class="space-y-4">
+            <label class="text-xs uppercase tracking-[0.3em] font-bold text-text-secondary">Your Display Name</label>
+            <input type="text" id="revName" required 
+                   class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:border-accent-blue outline-none transition-all placeholder:opacity-30" 
+                   placeholder="e.g. John Doe">
+          </div>
+
+          <!-- Photo Upload -->
+          <div class="space-y-4">
+            <label class="text-xs uppercase tracking-[0.3em] font-bold text-text-secondary">Add Photos (Recommended)</label>
+            <div onclick="document.getElementById('revPhotos').click()" class="upload-box flex items-center justify-center gap-4 py-4 px-6 cursor-pointer">
+              <span class="material-symbols-outlined text-accent-blue">add_a_photo</span>
+              <span class="text-xs font-bold uppercase tracking-widest opacity-50">Choose Images</span>
+              <input type="file" id="revPhotos" multiple accept="image/*" class="hidden" onchange="handleReviewPhotos(this)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Preview Area -->
+        <div id="photoPreview" class="preview-grid hidden p-6 bg-white/5 rounded-[32px] border border-white/5"></div>
+
+        <!-- Review Comment -->
+        <div class="space-y-4">
+          <label class="text-xs uppercase tracking-[0.3em] font-bold text-text-secondary">What did you think?</label>
+          <textarea id="revComment" required rows="6" 
+                    class="w-full bg-white/5 border border-white/10 rounded-[32px] px-8 py-6 text-white focus:border-accent-blue outline-none transition-all resize-none placeholder:opacity-30 leading-relaxed" 
+                    placeholder="Tell us about the quality, value, and your overall experience..."></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitBtn" 
+                class="w-full py-6 bg-gradient-to-r from-accent-blue to-accent-cyan text-white font-bold rounded-[24px] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-2xl shadow-accent-blue/30 text-lg uppercase tracking-widest">
+          Submit Review for Approval
+        </button>
+      </form>
+
+    </div>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-white text-black px-8 py-4 rounded-2xl font-bold shadow-2xl opacity-0 translate-y-10 transition-all duration-500 z-[2000] flex items-center gap-3">
+    <span class="material-symbols-outlined text-green-600">check_circle</span>
+    <span id="toastMsg">Review submitted!</span>
+  </div>
+
+  <script>
+    // Theme Sync
+    function syncTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.classList.add('light-theme');
+      } else {
+        document.documentElement.classList.remove('light-theme');
+      }
+    }
+    syncTheme();
+
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id');
+    const pName = params.get('name');
+    const pImg = params.get('img');
+
+    // Populate Context
+    if (pName) document.getElementById('productName').innerText = pName;
+    document.querySelector('nav a').href = `product-detail.html?name=${encodeURIComponent(pName)}`;
+
+    let reviewPhotosBase64 = [];
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.remove('opacity-0', 'translate-y-10');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-10');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 3000);
+    }
+
+    async function handleReviewPhotos(input) {
+      const files = Array.from(input.files);
+      const preview = document.getElementById('photoPreview');
+      preview.classList.remove('hidden');
+      
+      for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const base64 = e.target.result;
+          reviewPhotosBase64.push(base64);
+          
+          const item = document.createElement('div');
+          item.className = 'preview-item';
+          item.innerHTML = `
+            <img src="${base64}">
+            <div class="preview-remove" onclick="this.parentElement.remove(); reviewPhotosBase64 = reviewPhotosBase64.filter(i => i !== '${base64}')">
+              <span class="material-symbols-outlined text-[14px]">close</span>
+            </div>
+          `;
+          preview.appendChild(item);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    document.getElementById('reviewForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = `<span class="flex items-center justify-center gap-3"><span class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> Processing...</span>`;
+
+      const reviewData = {
+        product: productId,
+        customerName: document.getElementById('revName').value,
+        rating: parseInt(document.querySelector('input[name="rating"]:checked').value),
+        comment: document.getElementById('revComment').value,
+        images: reviewPhotosBase64
+      };
+
+      try {
+        const res = await fetch(`${window.API_BASE_URL}/api/reviews`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(reviewData)
+        });
+
+        if (res.ok) {
+          showToast("Review submitted for approval! Redirecting...");
+          setTimeout(() => {
+            window.location.href = `product-detail.html?name=${encodeURIComponent(pName)}`;
+          }, 2000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      } catch (err) {
+        showToast("Error submitting review. Please try again.");
+        console.error(err);
+        btn.disabled = false;
+        btn.innerText = "Submit Review for Approval";
+      }
+    };
+  </script>
+</body>
+</html>

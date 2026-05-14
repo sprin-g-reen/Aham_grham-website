@@ -295,7 +295,27 @@ function injectDetailModal() {
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    // Also inject Checkout Modal if not present
+    if (!document.getElementById('checkoutModal')) {
+        const checkoutHTML = `
+            <div id="checkoutModal" style="position: fixed; inset: 0; z-index: 10000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; padding: 20px;">
+                <span class="material-symbols-outlined" onclick="closeCheckout()" style="position: absolute; top: 30px; right: 30px; color: white; cursor: pointer; opacity: 0.6; font-size: 32px;">close</span>
+                <iframe id="checkoutIframe" src="" style="width: 100%; max-width: 1100px; height: 90vh; border: none; border-radius: 32px; background: transparent;"></iframe>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', checkoutHTML);
+    }
 }
+
+window.closeCheckout = function() {
+    const modal = document.getElementById('checkoutModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.getElementById('checkoutIframe').src = '';
+        document.body.style.overflow = '';
+    }
+};
 
 function openProgramDetail(title, image, description, category, about) {
     const modal = document.getElementById('programModal');
@@ -1082,11 +1102,40 @@ function setupFooterAccordion() {
 }
 setupFooterAccordion();
 
-// Global hook for the "Book Session" buttons (Bypass Auth for now)
+// Global hook for the "Book Session" buttons
 window.handleBookSessionClick = function (event) {
-    const contactSection = document.getElementById('footer-contact');
-    if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
+    if (event) event.preventDefault();
+    
+    // Try to get context from the clicked element or current modal
+    let title = "private session";
+    let img = "assets/AhamGraham-Web/retreat.png";
+    let desc = "begin your personal journey of transformation with a dedicated one-on-one session tailored to your needs.";
+
+    // If we are already in the program detail modal, use its content
+    const modalTitle = document.getElementById('modalTitle');
+    const modalImg = document.getElementById('modalImg');
+    const modalDesc = document.getElementById('modalDesc');
+    
+    if (document.getElementById('programModal')?.classList.contains('active')) {
+        if (modalTitle) title = modalTitle.innerText;
+        if (modalImg) img = modalImg.src;
+        if (modalDesc) desc = modalDesc.innerText;
+        
+        // Close the detail modal first
+        window.closeProgramModal();
+    }
+
+    const checkoutUrl = `session-checkout.html?title=${encodeURIComponent(title)}&img=${encodeURIComponent(img)}&desc=${encodeURIComponent(desc)}`;
+    const iframe = document.getElementById('checkoutIframe');
+    const modal = document.getElementById('checkoutModal');
+    
+    if (iframe && modal) {
+        iframe.src = checkoutUrl;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    } else {
+        // Fallback if modal injection failed
+        window.location.href = 'https://calendly.com/aham_grham-salem';
     }
 };
 

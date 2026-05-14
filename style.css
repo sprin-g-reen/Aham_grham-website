@@ -1475,21 +1475,26 @@ body {
 }
 
 .footer-brand-col {
-  gap: 12px;
+  gap: 32px;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 800px;
 }
 
 .footer-logo {
-  height: 90px;
-  width: auto;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
   object-fit: contain;
 }
 
 .footer-badge {
-  height: 120px;
-  width: auto;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
   object-fit: contain;
-  margin-top: auto;
   opacity: 1;
+  display: block;
 }
 
 /* Theme-aware logo toggling */
@@ -1519,7 +1524,8 @@ html.light-theme .dark-logo {
   line-height: 1.5;
   font-style: normal;
   position: relative;
-  max-width: 450px !important;
+  width: 100%;
+  max-width: 400px !important;
   margin: 10px 0 !important;
   text-align: left !important;
   overflow-wrap: break-word !important;

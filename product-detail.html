@@ -277,6 +277,137 @@
       color: #5E35B1 !important;
       opacity: 0.4 !important;
     }
+
+    /* Rating Bars & Review Section Styles */
+    .rating-bar-bg {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      overflow: hidden;
+      flex-grow: 1;
+      margin: 0 12px;
+    }
+    .rating-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #06b6d4);
+      border-radius: 4px;
+      transition: width 1s ease-out;
+    }
+    .review-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 8px;
+      font-size: 13px;
+      color: #3b82f6;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .review-tag:hover {
+      background: rgba(59, 130, 246, 0.2);
+      transform: translateY(-2px);
+    }
+    .review-img-thumb {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .review-img-thumb:hover {
+      transform: scale(1.05);
+      border-color: #3b82f6;
+    }
+    
+    html.light-theme .rating-bar-bg { background: rgba(0,0,0,0.05); }
+    html.light-theme .review-tag { background: rgba(124, 77, 255, 0.05); border-color: rgba(124, 77, 255, 0.2); color: #7c4dff; }
+    html.light-theme .review-tag:hover { background: rgba(124, 77, 255, 0.1); }
+    
+    /* Light Mode Global Text Overrides */
+    html.light-theme h1, 
+    html.light-theme h2, 
+    html.light-theme h3, 
+    html.light-theme h4, 
+    html.light-theme h5 { 
+      color: #05051a !important; 
+    }
+    html.light-theme .text-white { color: #05051a !important; }
+    html.light-theme .text-text-secondary { color: #4b5563 !important; }
+    html.light-theme .border-white\/5, 
+    html.light-theme .border-white\/10 { 
+      border-color: rgba(0, 0, 0, 0.1) !important; 
+    }
+    
+    /* Preserve White Text for Buttons and Cards with Dark Backgrounds in Light Mode if any */
+    html.light-theme button.bg-accent-blue .text-white,
+    html.light-theme a.bg-accent-blue .text-white {
+      color: white !important;
+    }
+    
+    html.light-theme .bg-white\/5 { background-color: rgba(0, 0, 0, 0.03) !important; }
+    html.light-theme .bg-white\/10 { background-color: rgba(0, 0, 0, 0.05) !important; }
+    
+    html.light-theme #writeReviewLink {
+      border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+    html.light-theme #writeReviewLink:hover {
+      background-color: rgba(0, 0, 0, 0.03) !important;
+    }
+    
+    html.light-theme .cart-btn {
+      color: #05051a !important;
+      border-color: rgba(0, 0, 0, 0.15) !important;
+    }
+    html.light-theme .cart-btn:hover {
+      background-color: rgba(0, 0, 0, 0.03) !important;
+      border-color: #05051a !important;
+    }
+    .upload-box {
+      border: 2px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .upload-box:hover {
+      border-color: var(--accent-blue);
+      background: rgba(var(--accent-blue-rgb), 0.05);
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .preview-item {
+      aspect-ratio: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .preview-remove {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -289,13 +420,9 @@
   <div id="toast" class="toast">Product added to cart!</div>
 
   <nav class="detail-nav">
-    <div style="display: flex; align-items: center; gap: 15px; cursor: pointer;" onclick="history.back()">
-      <span class="material-symbols-outlined">arrow_back</span>
-      <span style="font-weight: 700; font-size: 18px;">aham grham</span>
-    </div>
-    <div style="display: flex; gap: 20px;">
-       <button onclick="window.location.href='/'" style="font-size: 12px; font-weight: 700; opacity: 0.6;">HOME</button>
-       <button onclick="window.location.href='sacred-moon-oil'" style="font-size: 12px; font-weight: 700; opacity: 0.6;">PRODUCTS</button>
+    <div style="display: flex; align-items: center; gap: 15px; cursor: pointer;" onclick="window.location.href='sacred-moon-oil'">
+      <span class="material-symbols-outlined" style="opacity: 0.6; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">arrow_back</span>
+      <img src="assets/logo_transparent.png" alt="Logo" style="height: 40px; width: auto;">
     </div>
   </nav>
 
@@ -460,28 +587,116 @@
     </div>
   </section>
 
-  <!-- Product Reviews Section -->
+  <!-- Banner Images Section (Very Big Images) -->
+  <section id="banner-images-section" class="hidden w-full mb-32">
+    <div id="banner-images-container" class="flex flex-col gap-10 md:gap-20 max-w-[1400px] mx-auto">
+      <!-- Banner images will be injected here -->
+    </div>
+  </section>
+
+  <!-- Product Reviews Section (Premium Amazon Style) -->
   <section class="px-6 md:px-12 lg:px-24 mb-32">
-    <div class="max-w-4xl">
-      <h3 class="text-3xl font-bold mb-10 text-white">Reviews</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white/5 border border-white/10 p-8 rounded-[32px]">
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-            <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">AS</div>
-            <span class="font-bold text-white">Abhishek Shukla</span>
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        
+        <!-- Left: Customer Reviews Summary -->
+        <div class="lg:col-span-4 space-y-8">
+          <div>
+            <h3 class="text-3xl font-bold text-white mb-2">Customer reviews</h3>
+            <div class="flex items-center gap-4 mb-1">
+              <div id="summary-avg-stars" class="flex text-accent-blue">
+                <span class="material-symbols-outlined">star</span>
+                <span class="material-symbols-outlined">star</span>
+                <span class="material-symbols-outlined">star</span>
+                <span class="material-symbols-outlined">star</span>
+                <span class="material-symbols-outlined">star</span>
+              </div>
+              <span id="summary-avg-text" class="text-xl font-bold text-white">0 out of 5</span>
+            </div>
+            <p id="summary-total-count" class="text-text-secondary text-sm">0 global ratings</p>
           </div>
-          <p class="italic text-text-secondary text-lg">"The oil gives a truly premium experience. I've used many, but this one actually helps my meditation sessions."</p>
-        </div>
-        <div class="bg-white/5 border border-white/10 p-8 rounded-[32px]">
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-            <div style="width: 40px; height: 40px; background: #8b5cf6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">MP</div>
-            <span class="font-bold text-white">Meera Patel</span>
+
+          <!-- Rating Histogram -->
+          <div class="space-y-3">
+            <div class="flex items-center text-sm">
+              <span class="w-12 text-text-secondary">5 star</span>
+              <div class="rating-bar-bg"><div id="bar-5" class="rating-bar-fill" style="width: 0%"></div></div>
+              <span id="pct-5" class="w-8 text-right text-accent-blue">0%</span>
+            </div>
+            <div class="flex items-center text-sm">
+              <span class="w-12 text-text-secondary">4 star</span>
+              <div class="rating-bar-bg"><div id="bar-4" class="rating-bar-fill" style="width: 0%"></div></div>
+              <span id="pct-4" class="w-8 text-right text-accent-blue">0%</span>
+            </div>
+            <div class="flex items-center text-sm">
+              <span class="w-12 text-text-secondary">3 star</span>
+              <div class="rating-bar-bg"><div id="bar-3" class="rating-bar-fill" style="width: 0%"></div></div>
+              <span id="pct-3" class="w-8 text-right text-accent-blue">0%</span>
+            </div>
+            <div class="flex items-center text-sm">
+              <span class="w-12 text-text-secondary">2 star</span>
+              <div class="rating-bar-bg"><div id="bar-2" class="rating-bar-fill" style="width: 0%"></div></div>
+              <span id="pct-2" class="w-8 text-right text-accent-blue">0%</span>
+            </div>
+            <div class="flex items-center text-sm">
+              <span class="w-12 text-text-secondary">1 star</span>
+              <div class="rating-bar-bg"><div id="bar-1" class="rating-bar-fill" style="width: 0%"></div></div>
+              <span id="pct-1" class="w-8 text-right text-accent-blue">0%</span>
+            </div>
           </div>
-          <p class="italic text-text-secondary text-lg">"Exceeded my expectations. The aroma is subtle but deep, perfect for anchoring my morning ritual."</p>
+
+          <div class="pt-6 border-t border-white/5">
+            <h4 class="text-lg font-bold text-white mb-2">Review this product</h4>
+            <p class="text-text-secondary text-sm mb-6">Share your thoughts with other customers</p>
+            <a id="writeReviewLink" href="#" class="w-full py-3 border border-white/20 rounded-xl font-bold hover:bg-white/5 transition-all text-center block">Write a product review</a>
+          </div>
         </div>
+
+        <!-- Right: AI Summary & Gallery -->
+        <div class="lg:col-span-8 space-y-12">
+          
+          <!-- AI Insights Section -->
+          <div id="ai-insights-section" class="hidden bg-white/5 border border-white/10 p-8 rounded-[32px] space-y-6">
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-4">Customers say</h3>
+              <p id="ai-summary-text" class="text-text-secondary leading-relaxed">
+                <!-- AI Summary will be injected here -->
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-sm font-bold text-white uppercase tracking-widest opacity-40">Select to learn more</p>
+              <div id="review-tags-container" class="flex flex-wrap gap-3">
+                <!-- Tags will be injected here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Reviews with Images -->
+          <div id="review-images-section" class="hidden space-y-6">
+            <div class="flex justify-between items-end">
+              <h3 class="text-2xl font-bold text-white">Reviews with images</h3>
+              <a href="#" class="text-accent-blue text-sm hover:underline">See all photos</a>
+            </div>
+            <div id="review-images-container" class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+              <!-- User images will be injected here -->
+            </div>
+          </div>
+
+          <!-- Individual Text Reviews -->
+          <div class="space-y-8 mt-12">
+            <h3 class="text-2xl font-bold text-white">Top reviews from India</h3>
+            <div id="individual-reviews-container" class="space-y-8">
+              <!-- Reviews will be injected here -->
+              <p class="text-text-secondary italic opacity-50">Loading customer reviews...</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
+
 
   <script>
     async function loadData() {
@@ -538,6 +753,47 @@
             document.getElementById('pImg').style.opacity = '1';
           }
 
+          // Render Banner Images
+          const bannerSection = document.getElementById('banner-images-section');
+          const bannerContainer = document.getElementById('banner-images-container');
+          
+          if (product.bannerImages && product.bannerImages.length > 0) {
+            bannerSection.classList.remove('hidden');
+            bannerContainer.innerHTML = product.bannerImages.map(imgUrl => {
+              const url = (imgUrl.startsWith('http') || imgUrl.startsWith('data:')) 
+                ? imgUrl 
+                : `${window.API_BASE_URL}/uploads/${imgUrl}`;
+              return `
+                <div class="w-full px-4 md:px-0">
+                  <img src="${url}" class="w-full h-auto object-cover rounded-[40px] shadow-2xl transition-all duration-700 hover:scale-[1.01]" 
+                       style="max-height: 90vh;" alt="Banner Image">
+                </div>
+              `;
+            }).join('');
+          } else {
+            bannerSection.classList.add('hidden');
+          }
+
+          // Render AI Review Summary
+          if (product.aiReviewSummary) {
+            document.getElementById('ai-insights-section').classList.remove('hidden');
+            document.getElementById('ai-summary-text').innerHTML = product.aiReviewSummary;
+            
+            const tagsContainer = document.getElementById('review-tags-container');
+            if (product.reviewKeywords && product.reviewKeywords.length > 0) {
+              tagsContainer.innerHTML = product.reviewKeywords.map(tag => `
+                <div class="review-tag">
+                  <span class="material-symbols-outlined text-sm mr-2">${tag.trend === 'up' ? 'trending_up' : (tag.trend === 'down' ? 'trending_down' : 'sync_alt')}</span>
+                  ${tag.label} (${tag.count})
+                </div>
+              `).join('');
+            } else {
+              tagsContainer.innerHTML = '<p class="text-sm text-text-secondary italic">No highlights available yet.</p>';
+            }
+          } else {
+            document.getElementById('ai-insights-section').classList.add('hidden');
+          }
+
           // Link Buy Now Button
           document.getElementById('buyBtn').onclick = () => {
             const checkoutUrl = `checkout.html?name=${encodeURIComponent(product.name)}&price=${product.price}`;
@@ -567,6 +823,100 @@
             showToast(`${product.name} added to cart!`);
             if (window.updateCartBadge) window.updateCartBadge();
           };
+
+          // Update Write Review Link
+          const pImg = (product.image.startsWith('http') || product.image.startsWith('data:')) 
+            ? product.image 
+            : `${window.API_BASE_URL}/uploads/${product.image}`;
+            
+          document.getElementById('writeReviewLink').href = `write-review.html?id=${product._id}&name=${encodeURIComponent(product.name)}&img=${encodeURIComponent(pImg)}`;
+
+          // Fetch and Render Individual Reviews
+          fetch(`${window.API_BASE_URL}/api/reviews?productId=${product._id}`)
+            .then(res => res.json())
+            .then(reviews => {
+              const approvedReviews = reviews.filter(r => r.isApproved);
+              
+              // --- Update Summary Stats ---
+              if (approvedReviews.length > 0) {
+                const total = approvedReviews.length;
+                const sum = approvedReviews.reduce((acc, curr) => acc + curr.rating, 0);
+                const avg = (sum / total).toFixed(1);
+                
+                document.getElementById('summary-avg-text').innerText = `${avg} out of 5`;
+                document.getElementById('summary-total-count').innerText = `${total.toLocaleString()} global ratings`;
+                
+                // Update Star Icons
+                const starRow = document.getElementById('summary-avg-stars');
+                starRow.innerHTML = Array(5).fill(0).map((_, i) => {
+                  const fill = Math.min(Math.max(avg - i, 0), 1);
+                  let icon = 'star';
+                  if (fill < 0.3) icon = 'star';
+                  else if (fill < 0.8) icon = 'star_half';
+                  else icon = 'star';
+                  
+                  return `<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' ${fill >= 0.8 ? 1 : 0};">${icon}</span>`;
+                }).join('');
+
+                // Update Histogram
+                const counts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+                approvedReviews.forEach(r => counts[r.rating]++);
+                
+                for (let i = 1; i <= 5; i++) {
+                  const pct = Math.round((counts[i] / total) * 100);
+                  document.getElementById(`bar-${i}`).style.width = `${pct}%`;
+                  document.getElementById(`pct-${i}`).innerText = `${pct}%`;
+                }
+
+                // --- Update Review Images Gallery ---
+                const allImages = approvedReviews.reduce((acc, r) => [...acc, ...r.images], []);
+                const gallerySection = document.getElementById('review-images-section');
+                const galleryContainer = document.getElementById('review-images-container');
+                
+                if (allImages.length > 0) {
+                  gallerySection.classList.remove('hidden');
+                  galleryContainer.innerHTML = allImages.map(img => `
+                    <img src="${img}" class="review-img-thumb" alt="User review photo">
+                  `).join('');
+                } else {
+                  gallerySection.classList.add('hidden');
+                }
+              }
+
+              // --- Render Review Cards ---
+              const container = document.getElementById('individual-reviews-container');
+              if (approvedReviews.length > 0) {
+                container.innerHTML = approvedReviews.map(review => `
+                  <div class="space-y-3 pb-8 border-b border-white/5">
+                    <div class="flex items-center gap-3">
+                      <div class="w-8 h-8 rounded-full bg-accent-blue/20 flex items-center justify-center text-[10px] font-bold text-accent-blue">
+                        ${review.customerName.charAt(0).toUpperCase()}
+                      </div>
+                      <span class="text-sm font-medium text-white">${review.customerName}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="flex gap-0.5">
+                        ${Array(5).fill(0).map((_, i) => `
+                          <span class="material-symbols-outlined text-[14px]" 
+                                style="font-variation-settings: 'FILL' ${i < review.rating ? 1 : 0}, 'wght' 400; 
+                                       color: ${i < review.rating ? '#fbbf24' : 'rgba(255,255,255,0.15)'};">
+                            star
+                          </span>
+                        `).join('')}
+                      </div>
+                      <span class="text-xs font-bold text-white ml-1">Verified Purchase</span>
+                    </div>
+                    <p class="text-text-secondary text-sm leading-relaxed">${review.comment}</p>
+                  </div>
+                `).join('');
+              } else {
+                container.innerHTML = '<p class="text-sm text-text-secondary italic opacity-40">No reviews yet. Be the first to share your experience!</p>';
+              }
+            })
+            .catch(err => {
+              console.error("Error loading reviews:", err);
+              document.getElementById('individual-reviews-container').innerHTML = '';
+            });
         } else {
           document.getElementById('pTitle').innerText = "Product Not Found";
           document.getElementById('pDesc').innerText = "We couldn't find the product you're looking for. Please browse our collection.";
