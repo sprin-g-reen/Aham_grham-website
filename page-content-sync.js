@@ -78,8 +78,11 @@ function syncAboutPage(data) {
 
   // Narrative Sections (Half Sections)
   if (data.halfSections && data.halfSections.length >= 2) {
+    updateElement('[data-content="about-left-kicker"]', data.halfSections[0].kicker);
     updateElement('[data-content="about-left-title"]', data.halfSections[0].title);
     updateElement('[data-content="about-left-content"]', data.halfSections[0].content);
+    
+    updateElement('[data-content="about-right-kicker"]', data.halfSections[1].kicker);
     updateElement('[data-content="about-right-title"]', data.halfSections[1].title);
     updateElement('[data-content="about-right-content"]', data.halfSections[1].content);
   }
@@ -92,6 +95,30 @@ function syncAboutPage(data) {
   updateElement('[data-content="about-cta-title"]', data.cta?.title);
   updateElement('[data-content="about-cta-subtitle"]', data.cta?.subtitle);
   updateElement('[data-content="about-cta-button"]', data.cta?.buttonText);
+
+  // Timeline
+  if (data.timeline && data.timeline.length > 0) {
+    const timelineContainer = document.querySelector('.timeline-container');
+    if (timelineContainer) {
+      timelineContainer.innerHTML = data.timeline.map(item => `
+        <div class="timeline-item">
+          <div class="timeline-item-inner">
+            <div class="timeline-content">
+              <div class="timeline-year">${item.year}</div>
+              <h3 class="text-xl font-bold mb-2 text-white">${item.title}</h3>
+              <p class="timeline-desc">${item.description}</p>
+            </div>
+            <div class="timeline-image-wrap">
+              <div class="timeline-circle">
+                <img src="${item.image?.startsWith('http') ? item.image : (window.API_BASE_URL + '/' + item.image)}" alt="${item.year}">
+              </div>
+            </div>
+            <div class="timeline-spacer"></div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
 }
 
 /**
@@ -112,7 +139,7 @@ function syncNestedSection(obj, parentKey) {
  * Safe element updater
  */
 function updateElement(selector, value) {
-  if (!value) return;
+  if (value === undefined || value === null) return;
   const elements = document.querySelectorAll(selector);
   elements.forEach(el => {
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
