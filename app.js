@@ -1137,6 +1137,11 @@ window.handleBookSessionClick = function (event, el = null) {
     }
 };
 
+window.handleCalendlyRedirect = function (event) {
+    if (event) event.preventDefault();
+    window.location.href = "https://calendly.com/aham_grham-salem";
+};
+
 window.handleAddToCartClick = function (event) {
     window.location.href = 'cart.html';
 };
