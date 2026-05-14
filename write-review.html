@@ -61,7 +61,7 @@
     .star-rating {
       display: flex;
       flex-direction: row-reverse;
-      justify-content: flex-start;
+      justify-content: flex-end;
       gap: 8px;
     }
     .star-rating input { 
@@ -194,7 +194,7 @@
       <form id="reviewForm" class="glass-card p-8 md:p-12 space-y-12 shadow-2xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
         
         <!-- Star Rating -->
-        <div class="space-y-6 text-center md:text-left">
+        <div class="space-y-6 text-left">
           <label class="text-xs uppercase tracking-[0.3em] font-bold text-accent-blue">How would you rate it?</label>
           <div class="star-rating">
             <input type="radio" name="rating" id="star5" value="5"><label for="star5">star</label>
