@@ -1554,8 +1554,8 @@ html.light-theme .dark-logo {
   position: relative;
   width: 100%;
   max-width: 400px !important;
-  margin: 10px 0 !important;
-  text-align: left !important;
+  margin: 10px auto !important;
+  text-align: center !important;
   overflow-wrap: break-word !important;
   word-wrap: break-word !important;
   display: block !important;
@@ -3699,6 +3699,7 @@ html.light-theme .footer-large-text {
 
   .footer-brand-col .footer-badge {
     margin-top: 10px !important;
+    margin-left: 30px !important;
   }
 
   .footer-brand-col .footer-logo {

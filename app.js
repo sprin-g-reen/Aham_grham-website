@@ -2,30 +2,6 @@ window.addEventListener("load", () => {
     document.body.classList.add("page-ready");
 });
 
-// Initialize Calendly assets dynamically
-(function() {
-    const link = document.createElement('link');
-    link.href = 'https://assets.calendly.com/assets/external/widget.css';
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
-
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.head.appendChild(script);
-})();
-
-function handleBookSessionClick(e) {
-    if (e) e.preventDefault();
-    if (typeof Calendly !== 'undefined') {
-        Calendly.initPopupWidget({
-            url: 'https://calendly.com/office-ahamgrham-springreen?primary_color=8c52ff'
-        });
-    } else {
-        // Fallback if script hasn't loaded yet
-        window.open('https://calendly.com/office-ahamgrham-springreen', '_blank');
-    }
-}
 
 const nav = document.querySelector(".menu-buttons");
 const indicator = document.querySelector(".nav-indicator");
@@ -1030,6 +1006,14 @@ function createEventCard(ev, patternClass, isWorkshop = false) {
         : 'assets/AhamGraham-Web/placeholder.png';
     const overlayClass = isWorkshop ? '!bg-gradient-to-t !from-[#231f37]/80 !to-transparent' : '';
     const groupClass = isWorkshop ? 'group flex flex-col h-full' : '';
+    
+    // Add booking button for upcoming events
+    const isUpcoming = ev.category === 'Upcoming Event';
+    const bookingBtn = isUpcoming ? `
+        <button class="btn-primary mt-4 py-2 px-6 text-xs w-fit" 
+                onclick="event.stopPropagation(); handleBookSessionClick(event, this)">
+            book this session
+        </button>` : '';
 
     return `
         <div class="bento-item ${patternClass} ${groupClass}" 
@@ -1041,6 +1025,7 @@ function createEventCard(ev, patternClass, isWorkshop = false) {
                 <div class="bento-content ${isWorkshop ? 'mt-auto' : ''}">
                     <h3 class="${isWorkshop ? 'text-white' : ''}">${ev.name}</h3>
                     <p class="${isWorkshop ? 'text-white/80' : ''}">${ev.description?.substring(0, 60)}${ev.description?.length > 60 ? '...' : ''}</p>
+                    ${bookingBtn}
                 </div>
             </div>
         </div>
@@ -1103,20 +1088,33 @@ function setupFooterAccordion() {
 setupFooterAccordion();
 
 // Global hook for the "Book Session" buttons
-window.handleBookSessionClick = function (event) {
+window.handleBookSessionClick = function (event, el = null) {
     if (event) event.preventDefault();
     
-    // Try to get context from the clicked element or current modal
+    // Default values
     let title = "private session";
     let img = "assets/AhamGraham-Web/retreat.png";
     let desc = "begin your personal journey of transformation with a dedicated one-on-one session tailored to your needs.";
 
-    // If we are already in the program detail modal, use its content
-    const modalTitle = document.getElementById('modalTitle');
-    const modalImg = document.getElementById('modalImg');
-    const modalDesc = document.getElementById('modalDesc');
-    
-    if (document.getElementById('programModal')?.classList.contains('active')) {
+    // 1. If triggered from a specific element (like a button on a card)
+    if (el) {
+        const card = el.closest('.bento-item, .bento-card, .bento-blog-item');
+        if (card) {
+            const titleEl = card.querySelector('h3');
+            const imgEl = card.querySelector('img');
+            const descEl = card.querySelector('p');
+            
+            if (titleEl) title = titleEl.innerText;
+            if (imgEl) img = imgEl.src;
+            if (descEl) desc = descEl.innerText;
+        }
+    } 
+    // 2. If triggered from the program detail modal
+    else if (document.getElementById('programModal')?.classList.contains('active')) {
+        const modalTitle = document.getElementById('modalTitle');
+        const modalImg = document.getElementById('modalImg');
+        const modalDesc = document.getElementById('modalDesc');
+        
         if (modalTitle) title = modalTitle.innerText;
         if (modalImg) img = modalImg.src;
         if (modalDesc) desc = modalDesc.innerText;
@@ -1134,8 +1132,8 @@ window.handleBookSessionClick = function (event) {
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     } else {
-        // Fallback if modal injection failed
-        window.location.href = 'https://calendly.com/aham_grham-salem';
+        // Ultimate fallback if modal injection failed - redirect to checkout page directly
+        window.location.href = checkoutUrl;
     }
 };
 

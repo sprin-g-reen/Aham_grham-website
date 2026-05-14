@@ -86,12 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.includes('book-session.html') && !AuthHelper.isLoggedIn()) {
         window.location.href = 'auth.html';
     }
-
-    // Override handleBookSessionClick if it exists
-    window.handleBookSessionClick = (event) => {
-        if (event) event.preventDefault();
-        AuthHelper.handleBookSession();
-    };
 });
 
 window.AuthHelper = AuthHelper;

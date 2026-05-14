@@ -156,9 +156,3 @@ function showSuccess() {
         window.location.href = 'https://calendly.com/aham_grham-salem';
     }, 1500);
 }
-
-// Global hook for the "Book Session" buttons
-window.handleBookSessionClick = function(event) {
-    if (event) event.preventDefault();
-    window.location.href = 'https://calendly.com/aham_grham-salem';
-};
