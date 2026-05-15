@@ -117,7 +117,7 @@ html.light-theme .btn-secondary:hover {
   --accent-cyan: #ffffff;
   --border-subtle: rgba(124, 77, 255, 0.15);
 
-  --btn-book-gradient: linear-gradient(135deg, #7c4dff, #3b82f6);
+  --btn-book-gradient: #7c4dff;
   --btn-desc-bg: rgba(124, 77, 255, 0.1);
   --btn-desc-border: rgba(124, 77, 255, 0.3);
 }
@@ -135,7 +135,7 @@ html.light-theme {
   --about-muted: #6b7280;
   --accent-purple: #7C4DFF;
   --accent-cyan: #A78BFA;
-  --btn-book-gradient: linear-gradient(135deg, #7C4DFF, #A78BFA);
+  --btn-book-gradient: #7C4DFF;
   --btn-desc-bg: rgba(124, 77, 255, 0.05);
   --btn-desc-border: rgba(124, 77, 255, 0.2);
 }
@@ -713,7 +713,7 @@ body {
 .nav-indicator {
   position: absolute;
   height: calc(100% - 12px);
-  background: var(--btn-book-gradient);
+  background: #7c4dff;
   border-radius: 999px;
   top: 6px;
   left: 0;
@@ -740,7 +740,7 @@ body {
 }
 
 .navbar-scrolled .nav-btn:hover {
-  background: var(--btn-book-gradient);
+  background: #7c4dff;
   color: #ffffff !important;
 }
 
@@ -766,7 +766,7 @@ body {
 }
 
 .btn-primary {
-  background: var(--btn-book-gradient);
+  background: #7c4dff;
   padding: 8px 20px;
   /* Exact match with .nav-btn */
   border-radius: 999px;
