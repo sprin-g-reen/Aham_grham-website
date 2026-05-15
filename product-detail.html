@@ -346,11 +346,6 @@
 </head>
 
 <body>
-  <div id="checkoutModal">
-    <span class="material-symbols-outlined close-modal" onclick="closeCheckout()">close</span>
-    <iframe id="checkoutIframe" src="" class="modal-frame"></iframe>
-  </div>
-
   <div id="toast" class="toast">Product added to cart!</div>
   <div id="checkoutModal"
     style="position: fixed; inset: 0; z-index: 10000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; padding: 20px;">
@@ -359,6 +354,7 @@
     <iframe id="checkoutIframe" src=""
       style="width: 100%; max-width: 1100px; height: 90vh; border: none; border-radius: 32px; background: transparent;"></iframe>
   </div>
+
 
   <nav id="mainNavbar" class="fixed-nav navbar-initial">
     <div class="nav-container">
@@ -767,9 +763,11 @@
 
           // Link Buy Now Button
           document.getElementById('buyBtn').onclick = () => {
-            const checkoutUrl = `checkout.html?name=${encodeURIComponent(product.name)}&price=${product.price}`;
+            const checkoutUrl = `checkout.html?name=${encodeURIComponent(product.name)}&price=${product.price}&t=${Date.now()}`;
             document.getElementById('checkoutIframe').src = checkoutUrl;
-            document.getElementById('checkoutModal').classList.add('active');
+            const modal = document.getElementById('checkoutModal');
+            modal.style.display = 'flex';
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden'; // Prevent scroll
           };
 
@@ -909,9 +907,11 @@
     }
 
     function closeCheckout() {
-      document.getElementById('checkoutModal').classList.remove('active');
+      const modal = document.getElementById('checkoutModal');
+      modal.classList.remove('active');
+      modal.style.display = 'none';
       document.getElementById('checkoutIframe').src = '';
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     }
 
     window.addEventListener('message', (event) => {

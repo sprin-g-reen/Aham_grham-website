@@ -950,13 +950,28 @@
   <script>
     function openCheckoutModal() {
       const modal = document.getElementById('checkoutModal');
+      const iframe = modal ? modal.querySelector('iframe') : null;
+      
       if (modal) {
+        // 1. Force iframe reload with a timestamp to prevent caching/stale state
+        if (iframe) {
+          iframe.src = 'checkout.html?t=' + Date.now();
+        }
+
+        // 2. Close product modal manually without resetting overflow yet
+        const pModal = document.getElementById('productModal');
+        if (pModal) {
+          pModal.classList.remove('active');
+          pModal.style.display = 'none';
+        }
+
+        // 3. Show checkout modal and lock scroll
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
       }
-      // Close product modal if open
-      if (typeof closeProductModal === 'function') closeProductModal();
     }
+
+
 
     function closeCheckoutModal() {
       const modal = document.getElementById('checkoutModal');

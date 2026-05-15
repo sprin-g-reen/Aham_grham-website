@@ -248,17 +248,60 @@
         const params = new URLSearchParams(window.location.search);
         const title = params.get('title');
 
-        function handleBooking(e) {
+        // Dynamic API URL detection
+        const getApiUrl = () => {
+            const isLocal = window.location.hostname === 'localhost' || 
+                            window.location.hostname === '127.0.0.1' || 
+                            window.location.hostname.startsWith('192.168.') || 
+                            window.location.hostname.startsWith('10.');
+            
+            return isLocal 
+                ? `http://${window.location.hostname}:5000/api/customers`
+                : 'https://aham-grham-backend.vercel.app/api/customers';
+        };
+
+        async function handleBooking(e) {
             e.preventDefault();
             const btn = document.getElementById('bookBtn');
-            btn.innerText = 'redirecting to scheduler...';
+            const originalText = btn.innerText;
+            btn.innerText = 'saving your info...';
             btn.disabled = true;
+
+            const customerData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                // Defaulting other fields for session booking
+                pincode: "Session",
+                city: "Online/Salem",
+                state: "Tamil Nadu",
+                address: "Booked via Session Scheduler"
+            };
             
-            // Redirect to Calendly after a brief delay
-            setTimeout(() => {
+            try {
+                // Save customer info to backend
+                await fetch(getApiUrl(), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(customerData)
+                });
+
+                btn.innerText = 'redirecting to scheduler...';
+                
+                // Redirect to Calendly after a brief delay
+                setTimeout(() => {
+                    window.parent.location.href = 'https://calendly.com/aham_grham-salem';
+                }, 800);
+            } catch (error) {
+                console.error('Error saving customer info:', error);
+                // Even if saving fails, we should probably redirect them to book.
                 window.parent.location.href = 'https://calendly.com/aham_grham-salem';
-            }, 1000);
+            }
         }
     </script>
+
+
 </body>
 </html>
